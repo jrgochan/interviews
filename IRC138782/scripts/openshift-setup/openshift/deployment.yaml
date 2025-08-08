@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${APP_NAME:-app}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ${APP_NAME:-app}
+  template:
+    metadata:
+      labels:
+        app: ${APP_NAME:-app}
+    spec:
+      containers:
+        - name: ${APP_NAME:-app}
+          # If you used --build, your ImageStreamTag will exist and triggers can pull it
+          image: image-registry.openshift-image-registry.svc:5000/${NAMESPACE:-demo}/${APP_NAME:-app}:${IMAGE_TAG:-local}
+          ports:
+            - containerPort: ${APP_PORT:-8080}
+          env:
+            - name: NODE_ENV
+              value: "production"

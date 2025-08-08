@@ -1,0 +1,18 @@
+# Build step
+FROM node:20-alpine AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --omit=dev || npm install --omit=dev
+COPY . .
+# If you have a build step, uncomment:
+# RUN npm run build
+
+# Runtime step
+FROM node:20-alpine
+WORKDIR /app
+# If your app has a build output, copy that; otherwise copy all
+# COPY --from=build /app/dist ./
+COPY --from=build /app ./
+ENV NODE_ENV=production
+EXPOSE 8080
+CMD ["node", "server.js"]
