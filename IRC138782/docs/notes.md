@@ -11,6 +11,4 @@
 - Research `sysctl` and kernel tuning more
 - Refresh `cgroups`
 - Refresh `systemd` in relation to IB/NVIDIA
-
-# Print if hired
-- https://commons.wikimedia.org/wiki/File:Tcp_state_diagram_fixed.svg
+- Remember `Multus` is a Kubernetes CNI "Container Network Interface" plugin

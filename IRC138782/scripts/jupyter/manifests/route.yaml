@@ -1,0 +1,19 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: jupyterhub
+  namespace: jupyter-dev
+  labels:
+    app: jupyterhub
+    component: hub
+  annotations:
+    haproxy.router.openshift.io/timeout: "300s"
+    haproxy.router.openshift.io/balance: "roundrobin"
+spec:
+  to:
+    kind: Service
+    name: jupyterhub
+    weight: 100
+  port:
+    targetPort: http
+  wildcardPolicy: None

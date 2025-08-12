@@ -1,0 +1,95 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jupyterhub-config
+  namespace: jupyter-dev
+  labels:
+    app: jupyterhub
+    component: hub
+data:
+  jupyterhub_config.py: |
+    # JupyterHub configuration for OpenShift deployment
+    import os
+    from kubespawner import KubeSpawner
+    from oauthenticator.generic import GenericOAuthenticator
+    
+    # Basic configuration
+    c.JupyterHub.ip = '0.0.0.0'
+    c.JupyterHub.port = 8000
+    c.JupyterHub.hub_ip = '0.0.0.0'
+    
+    # Database configuration (using SQLite for simplicity)
+    c.JupyterHub.db_url = 'sqlite:///jupyterhub.sqlite'
+    
+    # Admin configuration
+    c.Authenticator.admin_users = {'myuser'}
+    
+    # Use simple authenticator for local development
+    c.JupyterHub.authenticator_class = 'jupyterhub.auth.DummyAuthenticator'
+    c.DummyAuthenticator.password = 'mypassword'
+    
+    # Spawner configuration for Kubernetes/OpenShift
+    c.JupyterHub.spawner_class = KubeSpawner
+    
+    # Kubernetes/OpenShift spawner settings
+    c.KubeSpawner.namespace = 'jupyter-dev'
+    c.KubeSpawner.image = 'quay.io/jupyter/scipy-notebook:latest'
+    c.KubeSpawner.cpu_limit = 1000 / 1000.0
+    c.KubeSpawner.mem_limit = '2Gi'
+    c.KubeSpawner.storage_capacity = '5Gi'
+    
+    # Storage configuration
+    c.KubeSpawner.pvc_name_template = 'claim-{username}'
+    c.KubeSpawner.volume_mounts = [
+        {
+            'name': 'volume-{username}',
+            'mountPath': '/home/jovyan/work'
+        }
+    ]
+    c.KubeSpawner.volumes = [
+        {
+            'name': 'volume-{username}',
+            'persistentVolumeClaim': {
+                'claimName': 'claim-{username}'
+            }
+        }
+    ]
+    
+    # Security context for OpenShift
+    c.KubeSpawner.uid = None  # Let OpenShift assign UID
+    c.KubeSpawner.gid = None  # Let OpenShift assign GID
+    c.KubeSpawner.fs_gid = None
+    
+    # Service account
+    c.KubeSpawner.service_account = 'jupyterhub'
+    
+    # Networking
+    c.KubeSpawner.hub_connect_ip = 'jupyterhub'
+    c.KubeSpawner.hub_connect_port = 8081
+    
+    # Timeouts and limits
+    c.Spawner.start_timeout = 300
+    c.Spawner.http_timeout = 120
+    c.JupyterHub.concurrent_spawn_limit = 10
+    
+    # Culling configuration
+    c.JupyterHub.services = [
+        {
+            'name': 'cull-idle',
+            'admin': True,
+            'command': [
+                'python3', '-m', 'jupyterhub_idle_culler',
+                '--timeout=3600',
+                '--cull-every=300',
+                '--max-age=7200'
+            ],
+        }
+    ]
+    
+    # Logging
+    c.JupyterHub.log_level = 'INFO'
+    c.Spawner.debug = True
+    
+    # Allow named servers (optional)
+    c.JupyterHub.allow_named_servers = True
+    c.JupyterHub.named_server_limit_per_user = 2
