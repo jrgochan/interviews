@@ -1,0 +1,50 @@
+# MPI Debugging Image - Extended HPC environment for MPI debugging examples
+FROM hpc-base:latest
+
+USER root
+
+# Install additional debugging tools
+RUN dnf install -y \
+        gdb-gdbserver \
+        elfutils \
+        binutils \
+        ltrace \
+        perf \
+        systemtap \
+        && dnf clean all
+
+# Install Intel Inspector (community edition) if available
+# Note: This would require Intel oneAPI repository setup in production
+RUN pip3 install --no-cache-dir \
+    psutil \
+    memory-profiler \
+    line-profiler
+
+USER hpcuser
+
+# Build MPI debugging examples
+WORKDIR /home/hpcuser/workspace
+RUN cd examples/mpi_debugging && \
+    mkdir -p build && \
+    cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Debug .. && \
+    make
+
+# Set up debugging environment
+ENV OMPI_MCA_mpi_show_handle_leaks=1
+ENV OMPI_MCA_mpi_abort_print_stack=1
+ENV MALLOC_CHECK_=2
+ENV MALLOC_PERTURB_=42
+
+# Create debugging script
+RUN echo '#!/bin/bash' > /home/hpcuser/debug_mpi.sh && \
+    echo 'echo "🐛 MPI Debugging Environment Ready"' >> /home/hpcuser/debug_mpi.sh && \
+    echo 'echo "Available examples:"' >> /home/hpcuser/debug_mpi.sh && \
+    echo 'echo "  - Deadlock demonstration: mpirun -np 2 examples/mpi_debugging/build/mpi_deadlock"' >> /home/hpcuser/debug_mpi.sh && \
+    echo 'echo "  - Race condition demo: mpirun -np 4 examples/mpi_debugging/build/mpi_race_condition"' >> /home/hpcuser/debug_mpi.sh && \
+    echo 'echo "  - Debug with GDB: mpirun -np 2 xterm -e gdb examples/mpi_debugging/build/mpi_deadlock"' >> /home/hpcuser/debug_mpi.sh && \
+    echo 'echo "  - Valgrind analysis: mpirun -np 2 valgrind --tool=helgrind examples/mpi_debugging/build/mpi_race_condition"' >> /home/hpcuser/debug_mpi.sh && \
+    chmod +x /home/hpcuser/debug_mpi.sh
+
+# Default command shows debugging options
+CMD ["/home/hpcuser/debug_mpi.sh"]

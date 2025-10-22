@@ -1,0 +1,16 @@
+STEP 1/15: FROM registry.access.redhat.com/ubi9/ubi:latest
+STEP 2/15: LABEL maintainer="HPC Interview Preparation"
+--> 60b5c86fe395
+STEP 3/15: LABEL description="Base HPC environment with essential tools"
+--> 9948a1f833a9
+STEP 4/15: LABEL version="1.0"
+--> af1e9ce84b73
+STEP 5/15: RUN dnf update -y &&     dnf install -y         gcc gcc-c++ gcc-gfortran         make cmake autoconf automake libtool         git wget curl vim         python3 python3-pip python3-devel         openmpi openmpi-devel         hwloc-devel         numactl         which file         procps-ng         htop         strace gdb valgrind         && dnf clean all
+Updating Subscription Management repositories.
+subscription-manager is operating in container mode.
+Red Hat Enterprise Linux 9 for ARM 64 - BaseOS  453  B/s | 462  B     00:01    
+Errors during downloading metadata for repository 'rhel-9-for-aarch64-baseos-rpms':
+  - Status code: 403 for https://cdn.redhat.com/content/dist/rhel9/9/aarch64/baseos/os/repodata/repomd.xml (IP: 184.84.192.251)
+Error: Failed to download metadata for repo 'rhel-9-for-aarch64-baseos-rpms': Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tried
+Error: building at STEP "RUN dnf update -y &&     dnf install -y         gcc gcc-c++ gcc-gfortran         make cmake autoconf automake libtool         git wget curl vim         python3 python3-pip python3-devel         openmpi openmpi-devel         hwloc-devel         numactl         which file         procps-ng         htop         strace gdb valgrind         && dnf clean all": while running runtime: exit status 1
+

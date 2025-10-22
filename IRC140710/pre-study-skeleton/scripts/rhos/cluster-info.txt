@@ -1,0 +1,26 @@
+=== HPC Interview Environment Info ===
+Generated: Tue Oct 21 23:51:46 MDT 2025
+
+OpenShift Cluster:
+- API: https://api.crc.testing:6443
+- Console: https://console-openshift-console.apps-crc.testing
+- Namespace: hpc-interview
+
+Login Commands:
+oc login -u developer -p developer https://api.crc.testing:6443
+oc project hpc-interview
+
+Web Interfaces:
+- Jupyter: https://jupyter-route-hpc-interview.apps-crc.testing
+- TensorBoard: https://tensorboard-route-hpc-interview.apps-crc.testing
+
+Demo Scripts:
+- MPI Debugging: /Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/scripts/rhos/examples/run-mpi-debug.sh
+- Performance Testing: /Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/scripts/rhos/examples/run-reframe-tests.sh  
+- AI/ML Training: /Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/scripts/rhos/examples/run-aiml-demo.sh
+- Interactive Shell: /Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/scripts/rhos/examples/shell.sh
+
+Quick Start:
+eval $(crc oc-env)
+oc project hpc-interview
+/Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/scripts/rhos/examples/shell.sh

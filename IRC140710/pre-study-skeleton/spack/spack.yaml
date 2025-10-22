@@ -1,0 +1,14 @@
+spack:
+  specs:
+  - gcc
+  - openmpi
+  - hdf5 +mpi
+  - fftw +mpi
+  view: false
+  concretizer:
+    unify: true
+  packages:
+    all:
+      compiler: [gcc]
+  config:
+    install_tree: ./opt/spack

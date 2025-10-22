@@ -1,0 +1,43 @@
+# AI/ML Image - HPC + AI/ML distributed training environment
+FROM hpc-base:latest
+
+USER root
+
+# Install additional AI/ML dependencies
+RUN dnf install -y \
+        libjpeg-turbo-devel \
+        libpng-devel \
+        && dnf clean all
+
+# Install PyTorch and AI/ML packages
+RUN pip3 install --no-cache-dir \
+    torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu \
+    tensorboard \
+    scikit-learn \
+    scipy \
+    seaborn \
+    jupyter \
+    notebook \
+    ipykernel
+
+USER hpcuser
+
+# Set up AI/ML environment
+WORKDIR /home/hpcuser/workspace
+ENV PYTHONPATH=/home/hpcuser/workspace:$PYTHONPATH
+
+# Create AI/ML demo script
+RUN echo '#!/bin/bash' > /home/hpcuser/demo_aiml.sh && \
+    echo 'echo "🧠 AI/ML Distributed Training Environment"' >> /home/hpcuser/demo_aiml.sh && \
+    echo 'echo "Available examples:"' >> /home/hpcuser/demo_aiml.sh && \
+    echo 'echo "  - Single node training: python examples/ai_ml/distributed_training.py --epochs 5"' >> /home/hpcuser/demo_aiml.sh && \
+    echo 'echo "  - Multi-process simulation: mpirun -np 2 python examples/ai_ml/distributed_training.py --epochs 5"' >> /home/hpcuser/demo_aiml.sh && \
+    echo 'echo "  - Jupyter notebook: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser"' >> /home/hpcuser/demo_aiml.sh && \
+    echo 'echo "  - TensorBoard: tensorboard --logdir=./logs --host=0.0.0.0 --port=6006"' >> /home/hpcuser/demo_aiml.sh && \
+    chmod +x /home/hpcuser/demo_aiml.sh
+
+# Expose ports for Jupyter and TensorBoard
+EXPOSE 8888 6006
+
+# Default command shows AI/ML options
+CMD ["/home/hpcuser/demo_aiml.sh"]

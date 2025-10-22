@@ -1,0 +1,326 @@
+---
+# System setup tasks for HPC build host
+# Installs base packages and configures system settings
+
+- name: Update package cache (RedHat family)
+  yum:
+    update_cache: yes
+  when: ansible_os_family == "RedHat"
+  tags: ['packages']
+
+- name: Update package cache (Debian family)
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  when: ansible_os_family == "Debian"
+  tags: ['packages']
+
+- name: Install essential system packages (RedHat)
+  yum:
+    name:
+      - epel-release
+      - git
+      - curl
+      - wget
+      - vim
+      - htop
+      - tree
+      - lsof
+      - strace
+      - tcpdump
+      - rsync
+      - screen
+      - tmux
+      - which
+      - file
+      - patch
+      - pciutils
+      - numactl
+      - hwloc
+      - hwloc-devel
+      - infiniband-diags
+      - rdma-core-devel
+    state: present
+  when: ansible_os_family == "RedHat"
+  tags: ['packages']
+
+- name: Install essential system packages (Debian)
+  apt:
+    name:
+      - git
+      - curl
+      - wget
+      - vim
+      - htop
+      - tree
+      - lsof
+      - strace
+      - tcpdump
+      - rsync
+      - screen
+      - tmux
+      - file
+      - patch
+      - pciutils
+      - numactl
+      - hwloc-nox
+      - libhwloc-dev
+      - infiniband-diags
+      - rdma-core
+      - librdmacm-dev
+    state: present
+  when: ansible_os_family == "Debian"
+  tags: ['packages']
+
+- name: Install build essentials (RedHat)
+  yum:
+    name:
+      - gcc
+      - gcc-c++
+      - gcc-gfortran
+      - make
+      - autoconf
+      - automake
+      - libtool
+      - pkgconfig
+      - m4
+      - bison
+      - flex
+      - texinfo
+      - help2man
+      - unzip
+      - tar
+      - gzip
+      - bzip2
+      - xz
+      - zlib-devel
+      - bzip2-devel
+      - xz-devel
+      - openssl-devel
+      - ncurses-devel
+      - readline-devel
+      - sqlite-devel
+      - tk-devel
+      - gdbm-devel
+      - db4-devel
+      - libpcap-devel
+      - xz-devel
+      - expat-devel
+      - libffi-devel
+    state: present
+  when: ansible_os_family == "RedHat"
+  tags: ['packages', 'build-tools']
+
+- name: Install build essentials (Debian)
+  apt:
+    name:
+      - build-essential
+      - gcc
+      - g++
+      - gfortran
+      - make
+      - autoconf
+      - automake
+      - libtool
+      - pkg-config
+      - m4
+      - bison
+      - flex
+      - texinfo
+      - help2man
+      - unzip
+      - tar
+      - gzip
+      - bzip2
+      - xz-utils
+      - zlib1g-dev
+      - libbz2-dev
+      - liblzma-dev
+      - libssl-dev
+      - libncurses5-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - tk-dev
+      - libgdbm-dev
+      - libdb-dev
+      - libpcap-dev
+      - libexpat1-dev
+      - libffi-dev
+    state: present
+  when: ansible_os_family == "Debian"
+  tags: ['packages', 'build-tools']
+
+- name: Configure system limits for HPC workloads
+  pam_limits:
+    domain: '*'
+    limit_type: "{{ item.type }}"
+    limit_item: "{{ item.item }}"
+    value: "{{ item.value }}"
+  loop:
+    - { type: 'soft', item: 'memlock', value: 'unlimited' }
+    - { type: 'hard', item: 'memlock', value: 'unlimited' }
+    - { type: 'soft', item: 'stack', value: 'unlimited' }
+    - { type: 'hard', item: 'stack', value: 'unlimited' }
+    - { type: 'soft', item: 'nofile', value: '65536' }
+    - { type: 'hard', item: 'nofile', value: '65536' }
+    - { type: 'soft', item: 'nproc', value: '32768' }
+    - { type: 'hard', item: 'nproc', value: '32768' }
+  tags: ['system']
+
+- name: Configure kernel parameters for HPC
+  sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    state: present
+    reload: yes
+  loop:
+    - { name: 'kernel.shmmax', value: '68719476736' }  # 64GB
+    - { name: 'kernel.shmall', value: '4294967296' }   # 16TB
+    - { name: 'net.core.rmem_default', value: '262144' }
+    - { name: 'net.core.rmem_max', value: '16777216' }
+    - { name: 'net.core.wmem_default', value: '262144' }
+    - { name: 'net.core.wmem_max', value: '16777216' }
+    - { name: 'net.core.netdev_max_backlog', value: '30000' }
+    - { name: 'net.ipv4.tcp_rmem', value: '4096 16384 16777216' }
+    - { name: 'net.ipv4.tcp_wmem', value: '4096 65536 16777216' }
+  tags: ['system']
+
+- name: Create HPC directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+  loop:
+    - /opt/hpc
+    - /opt/hpc/modules
+    - /opt/hpc/software
+    - /opt/hpc/compilers
+    - /opt/hpc/mpi
+    - /scratch
+    - /shared
+  tags: ['directories']
+
+- name: Set up module files directory structure
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+  loop:
+    - /opt/hpc/modules/compilers
+    - /opt/hpc/modules/mpi
+    - /opt/hpc/modules/libraries
+    - /opt/hpc/modules/applications
+    - /opt/hpc/modules/tools
+  tags: ['modules']
+
+- name: Install Environment Modules (RedHat)
+  yum:
+    name: environment-modules
+    state: present
+  when: ansible_os_family == "RedHat"
+  tags: ['modules']
+
+- name: Install Environment Modules (Debian)
+  apt:
+    name: environment-modules
+    state: present
+  when: ansible_os_family == "Debian"
+  tags: ['modules']
+
+- name: Configure global module initialization
+  copy:
+    dest: /etc/profile.d/modules.sh
+    mode: '0644'
+    content: |
+      #!/bin/bash
+      # Initialize Environment Modules
+      if [ -f /usr/share/Modules/init/bash ]; then
+          source /usr/share/Modules/init/bash
+      elif [ -f /etc/profile.d/modules.sh ]; then
+          source /etc/profile.d/modules.sh
+      fi
+      
+      # Set module path for HPC software
+      if [ -d /opt/hpc/modules ]; then
+          module use /opt/hpc/modules/compilers
+          module use /opt/hpc/modules/mpi
+          module use /opt/hpc/modules/libraries
+          module use /opt/hpc/modules/applications
+          module use /opt/hpc/modules/tools
+      fi
+  tags: ['modules']
+
+- name: Configure tmpfs for fast build operations
+  mount:
+    src: tmpfs
+    path: /tmp/build
+    fstype: tmpfs
+    opts: "size={{ ansible_memtotal_mb // 4 }}M,noatime,nodiratime"
+    state: mounted
+  tags: ['performance']
+
+- name: Create build user account
+  user:
+    name: "{{ hpc_build_user }}"
+    uid: "{{ hpc_build_uid | default(omit) }}"
+    group: "{{ hpc_build_group }}"
+    groups: wheel
+    shell: /bin/bash
+    home: "/home/{{ hpc_build_user }}"
+    create_home: yes
+    state: present
+  tags: ['users']
+
+- name: Create build group
+  group:
+    name: "{{ hpc_build_group }}"
+    gid: "{{ hpc_build_gid | default(omit) }}"
+    state: present
+  tags: ['users']
+
+- name: Configure sudo access for build user
+  copy:
+    dest: "/etc/sudoers.d/{{ hpc_build_user }}"
+    mode: '0440'
+    content: |
+      {{ hpc_build_user }} ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart *, /usr/bin/systemctl start *, /usr/bin/systemctl stop *, /usr/bin/mount, /usr/bin/umount
+  tags: ['users']
+
+- name: Install performance monitoring tools
+  package:
+    name:
+      - iotop
+      - nethogs
+      - iftop
+      - dstat
+      - sysstat
+      - perf
+    state: present
+  tags: ['monitoring']
+
+- name: Configure logrotate for build logs
+  copy:
+    dest: /etc/logrotate.d/hpc-builds
+    content: |
+      /var/log/hpc-builds/*.log {
+          weekly
+          rotate 4
+          compress
+          delaycompress
+          missingok
+          create 0644 {{ hpc_build_user }} {{ hpc_build_group }}
+      }
+  tags: ['logging']
+
+- name: Create log directory for HPC builds
+  file:
+    path: /var/log/hpc-builds
+    state: directory
+    owner: "{{ hpc_build_user }}"
+    group: "{{ hpc_build_group }}"
+    mode: '0755'
+  tags: ['logging']

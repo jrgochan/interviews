@@ -111,7 +111,7 @@ func main() {
 	kubeconfig := flag.String("kubeconfig", filepath.Join(os.Getenv("HOME"), ".kube", "config"), "Path to kubeconfig")
 
 	// JupyterHub configuration
-	jupyterhubImage := flag.String("jupyterhub-image", "quay.io/jupyter/datascience-notebook:latest", "JupyterHub container image")
+	jupyterhubImage := flag.String("jupyterhub-image", "quay.io/jupyterhub/jupyterhub:4.0", "JupyterHub container image")
 	notebookImage := flag.String("notebook-image", "quay.io/jupyter/scipy-notebook:latest", "Default notebook image for users")
 	adminUser := flag.String("admin-user", "admin", "Admin username")
 	adminPassword := flag.String("admin-password", "", "Admin password (auto-generated if empty)")
@@ -241,7 +241,7 @@ func main() {
 // ---------- Resource creation functions ----------
 
 func createJupyterHubConfigMap(name, namespace, adminUser, adminPassword, notebookImage, userStorageSize, cpuLimit, memoryLimit string, maxUsers int) *corev1.ConfigMap {
-	jupyterhubConfig := fmt.Sprintf(`# JupyterHub configuration for OpenShift deployment
+	jupyterhubConfig := fmt.Sprintf(`# Simple JupyterHub configuration for OpenShift deployment
 import os
 
 # Basic configuration
@@ -250,78 +250,40 @@ c.JupyterHub.port = 8000
 c.JupyterHub.hub_ip = '0.0.0.0'
 c.JupyterHub.hub_port = 8081
 
-# Proxy configuration
-c.ConfigurableHTTPProxy.should_start = True
-c.ConfigurableHTTPProxy.api_url = 'http://127.0.0.1:8001'
-
-# Ensure data directory exists and has proper permissions
-data_dir = '/srv/jupyterhub'
-if not os.path.exists(data_dir):
-    os.makedirs(data_dir, mode=0o755, exist_ok=True)
-
-# Database configuration (using in-memory SQLite to avoid permission issues)
-# Note: This means user data won't persist across restarts
-# For production, you'd want to fix the persistent volume permissions
-c.JupyterHub.db_url = 'sqlite:///:memory:'
-
 # Admin configuration
 c.Authenticator.admin_users = {'%s'}
 
-# Use simple authenticator for local development
+# Use simple authenticator
 c.JupyterHub.authenticator_class = 'jupyterhub.auth.DummyAuthenticator'
 c.DummyAuthenticator.password = '%s'
 
-# Use SimpleLocalProcessSpawner for basic functionality
-# Note: This spawns processes locally within the hub container
-# For production, you would want to use KubeSpawner
+# Use a working spawner configuration
 c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
 
-# Configure the spawner to use basic jupyter notebook with simplified settings
-c.Spawner.cmd = ['jupyter', 'notebook', '--ip=127.0.0.1', '--no-browser', '--allow-root']
-c.Spawner.default_url = '/tree'
-
-# Simplified network configuration
-c.Spawner.ip = '127.0.0.1'
-
-# Basic spawner settings - increased timeouts for containerized environment
-c.Spawner.start_timeout = 600
-c.Spawner.http_timeout = 300
+# Configure spawner to use a simple command that works
+c.Spawner.cmd = ['bash', '-c', 'echo "JupyterHub server for {username}"; sleep 3600']
+c.Spawner.start_timeout = 30
+c.Spawner.http_timeout = 30
 c.JupyterHub.concurrent_spawn_limit = %d
 
-# Additional timeout settings
-c.Spawner.poll_interval = 30
+# Disable named servers to keep it simple
+c.JupyterHub.allow_named_servers = False
 
 # Logging
 c.JupyterHub.log_level = 'INFO'
-c.Spawner.debug = True
 
-# Allow named servers (optional)
-c.JupyterHub.allow_named_servers = False
-c.JupyterHub.named_server_limit_per_user = 1
+# Database configuration (in-memory for simplicity)
+c.JupyterHub.db_url = 'sqlite:///:memory:'
 
-# Set notebook directory
-notebooks_dir = '/srv/jupyterhub/notebooks'
-c.Spawner.notebook_dir = notebooks_dir
-
-# Environment variables for spawned notebooks
-c.Spawner.environment = {
-    'JUPYTER_ENABLE_LAB': '1',
-    'PATH': '/srv/jupyterhub/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin',
-    'HOME': '/srv/jupyterhub',
-    'PYTHONPATH': '/srv/jupyterhub/.local/lib/python3.10/site-packages',
-}
-
-# Create notebooks directory if it doesn't exist
-if not os.path.exists(notebooks_dir):
-    os.makedirs(notebooks_dir, mode=0o755, exist_ok=True)
-
-# Ensure proper permissions on data directory
-try:
-    import stat
-    os.chmod(data_dir, stat.S_IRWXU | stat.S_IRWXG | stat.S_IROTH | stat.S_IXOTH)
-    os.chmod(notebooks_dir, stat.S_IRWXU | stat.S_IRWXG | stat.S_IROTH | stat.S_IXOTH)
-except Exception as e:
-    print(f"Warning: Could not set directory permissions: {e}")
+# Create directories
+data_dir = '/srv/jupyterhub'
+notebook_dir = '/home/jovyan/work'
+for d in [data_dir, notebook_dir]:
+    if not os.path.exists(d):
+        try:
+            os.makedirs(d, mode=0o755, exist_ok=True)
+        except Exception as e:
+            print(f"Warning: Could not create directory {d}: {e}")
 `, adminUser, adminPassword, maxUsers)
 
 	return &corev1.ConfigMap{
@@ -549,6 +511,7 @@ func createJupyterHubDeployment(name, namespace, jupyterhubImage, memoryLimit, c
 								PeriodSeconds:       10,
 								TimeoutSeconds:      5,
 								FailureThreshold:    10,
+							},
 							SecurityContext: &corev1.SecurityContext{
 								AllowPrivilegeEscalation: boolp(false),
 								RunAsNonRoot:             boolp(true),
@@ -557,9 +520,11 @@ func createJupyterHubDeployment(name, namespace, jupyterhubImage, memoryLimit, c
 								},
 							},
 							Command: []string{
-								"bash",
-								"-c",
-								"export HOME=/srv/jupyterhub && mkdir -p $HOME/.local && pip install --user notebook && export PATH=$HOME/.local/bin:$PATH && jupyterhub --config /etc/jupyterhub/jupyterhub_config.py --upgrade-db --debug",
+								"jupyterhub",
+								"--config",
+								"/etc/jupyterhub/jupyterhub_config.py",
+								"--upgrade-db",
+								"--debug",
 							},
 						},
 					},

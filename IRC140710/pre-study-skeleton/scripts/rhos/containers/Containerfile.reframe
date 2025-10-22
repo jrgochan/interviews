@@ -1,0 +1,37 @@
+# ReFrame Testing Image - Performance testing and regression detection
+FROM hpc-base:latest
+
+USER root
+
+# Install ReFrame and testing dependencies
+RUN pip3 install --no-cache-dir \
+    reframe-hpc \
+    pytest \
+    pyyaml \
+    jinja2 \
+    requests
+
+USER hpcuser
+
+# Build all examples for testing
+WORKDIR /home/hpcuser/workspace
+RUN cd examples/mpi && \
+    mkdir -p build && \
+    cd build && \
+    cmake .. && \
+    make
+
+# Set up ReFrame configuration
+RUN mkdir -p /home/hpcuser/.reframe && \
+    cp reframe/reframe_settings.py /home/hpcuser/.reframe/settings.py
+
+# Create test runner script
+RUN echo '#!/bin/bash' > /home/hpcuser/run_tests.sh && \
+    echo 'echo "📊 ReFrame Performance Testing Environment"' >> /home/hpcuser/run_tests.sh && \
+    echo 'echo "Running performance regression tests..."' >> /home/hpcuser/run_tests.sh && \
+    echo 'cd /home/hpcuser/workspace' >> /home/hpcuser/run_tests.sh && \
+    echo 'reframe -C reframe/reframe_settings.py -c reframe/tests/ -r --system local:cpu' >> /home/hpcuser/run_tests.sh && \
+    chmod +x /home/hpcuser/run_tests.sh
+
+# Default command runs tests
+CMD ["/home/hpcuser/run_tests.sh"]

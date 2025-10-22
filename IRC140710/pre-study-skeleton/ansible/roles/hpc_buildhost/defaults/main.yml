@@ -1,0 +1,155 @@
+---
+# Default variables for HPC Build Host role
+
+# User and group configuration
+hpc_build_user: hpcbuild
+hpc_build_group: hpcbuild
+hpc_build_uid: 2000
+hpc_build_gid: 2000
+
+# Compiler configuration
+install_gcc_versions:
+  - "11.3.0"
+  - "12.2.0"
+install_intel_compiler: false
+install_llvm_compiler: true
+llvm_version: "15.0.0"
+
+# MPI implementations to install
+mpi_implementations:
+  openmpi:
+    enabled: true
+    versions: ["4.1.4", "4.1.5"]
+    variants: ["+pmi", "+thread_multiple"]
+  intel_mpi:
+    enabled: false
+    version: "2021.7.1"
+  mpich:
+    enabled: false
+    version: "4.0.3"
+
+# Spack configuration
+spack_root: "/opt/spack"
+spack_version: "v0.19.2"
+spack_user: "{{ hpc_build_user }}"
+install_spack: true
+
+# Container runtime
+container_runtime: "apptainer"  # or "singularity", "docker"
+apptainer_version: "1.1.3"
+
+# Development tools
+install_cmake: true
+cmake_version: "3.24.0"
+
+install_debugging_tools: true
+debugging_tools:
+  - gdb
+  - valgrind
+  - strace
+  - ltrace
+
+install_profiling_tools: true
+profiling_tools:
+  - perf
+  - oprofile
+
+# GPU support
+enable_gpu_support: false
+cuda_version: "11.8"
+nvidia_driver_version: "latest"
+
+# Monitoring and logging
+enable_monitoring: true
+monitoring_tools:
+  - collectd
+  - node_exporter
+  - ganglia-gmond
+
+log_retention_days: 30
+max_log_size: "100M"
+
+# Security settings
+enable_hardening: true
+disable_unused_services: true
+configure_firewall: false  # Usually managed centrally in HPC
+
+# Network tuning
+tune_network_for_hpc: true
+infiniband_support: true
+
+# File systems
+configure_lustre_client: false
+lustre_mount_points: []
+
+configure_beegfs_client: false
+beegfs_mount_points: []
+
+# Batch system integration
+batch_system: "slurm"  # or "pbs", "torque", "lsf"
+install_batch_client: true
+
+# Software stack defaults
+default_software_stack:
+  - name: "hdf5"
+    version: "1.14.0"
+    variants: ["+mpi", "+fortran"]
+  - name: "netcdf-c"
+    version: "4.9.2"
+    variants: ["+mpi"]
+  - name: "fftw"
+    version: "3.3.10"
+    variants: ["+mpi", "+openmp"]
+
+# Performance optimization
+cpu_scaling_governor: "performance"
+enable_transparent_hugepages: false
+tune_vm_parameters: true
+
+# Build optimization
+parallel_make_jobs: "{{ ansible_processor_vcpus }}"
+build_tmpfs_size: "{{ ansible_memtotal_mb // 4 }}M"
+
+# Repository configuration
+package_repositories:
+  epel: true
+  powertools: true  # CentOS 8/RHEL 8
+  rpmfusion: false
+
+# Backup configuration
+backup_important_configs: true
+backup_destination: "/opt/hpc/backups"
+
+# Notification settings
+send_build_notifications: false
+notification_email: "admin@example.com"
+notification_webhook: ""
+
+# Custom module files
+create_custom_modules: true
+module_template_dir: "{{ role_path }}/templates/modulefiles"
+
+# License server configuration (for commercial software)
+license_servers: []
+# Example:
+# license_servers:
+#   - name: "intel"
+#     server: "flexlm.example.com"
+#     port: 28518
+
+# Environment variables to set globally
+global_environment_vars:
+  SCRATCH_DIR: "/scratch"
+  SHARED_DIR: "/shared"
+  HPC_SOFTWARE_ROOT: "/opt/hpc/software"
+  MODULE_ROOT: "/opt/hpc/modules"
+
+# Custom software installations
+custom_software: []
+# Example:
+# custom_software:
+#   - name: "myapp"
+#     version: "1.0.0"
+#     source_url: "https://example.com/myapp-1.0.0.tar.gz"
+#     build_script: "custom_build_myapp.sh"
+#     module_file: "myapp.lua"

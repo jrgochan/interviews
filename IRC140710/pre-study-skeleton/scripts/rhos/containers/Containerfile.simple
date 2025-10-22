@@ -1,0 +1,30 @@
+FROM quay.io/centos/centos:stream9
+
+# Install all necessary packages
+RUN dnf update -y && \
+    dnf install -y \
+        gcc gcc-c++ gcc-gfortran \
+        make cmake \
+        git python3 python3-pip \
+        openmpi openmpi-devel \
+        gdb valgrind strace \
+        && dnf clean all
+
+# Set up MPI environment
+ENV MPI_ROOT=/usr/lib64/openmpi
+ENV PATH=$MPI_ROOT/bin:$PATH
+ENV LD_LIBRARY_PATH=$MPI_ROOT/lib:$LD_LIBRARY_PATH
+
+# Install Python packages (split for compatibility)
+RUN pip3 install --no-cache-dir \
+    numpy matplotlib reframe-hpc
+
+RUN pip3 install --no-cache-dir \
+    torch torchvision --index-url https://download.pytorch.org/whl/cpu
+
+# Create user
+RUN useradd -m -s /bin/bash hpcuser
+WORKDIR /home/hpcuser
+USER hpcuser
+
+CMD ["/bin/bash"]

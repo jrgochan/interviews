@@ -1,0 +1,12 @@
+# Build artifacts
+build*/
+*.o
+*.a
+*.so
+*.dylib
+*.out
+*.png
+*.qdrep
+__pycache__/
+.opt/
+opt/

@@ -1,0 +1,42 @@
+=== HPC Interview Environment Setup - Tue Oct 21 23:26:28 MDT 2025 ===
+2025-10-21 23:26:28 - Starting HPC Interview Environment Setup
+2025-10-21 23:26:28 - Starting prerequisites check
+2025-10-21 23:26:28 - podman found at /opt/homebrew/bin/podman
+2025-10-21 23:26:28 - oc found at /Users/jrgochan/.crc/bin/oc/oc
+2025-10-21 23:26:28 - ERROR: docker not found
+2025-10-21 23:26:28 - git found at /usr/bin/git
+2025-10-21 23:26:28 - Podman connectivity verified
+2025-10-21 23:26:28 - OpenShift connectivity verified
+2025-10-21 23:26:28 - Prerequisites check completed successfully
+2025-10-21 23:26:28 - Creating namespace: hpc-interview
+2025-10-21 23:26:28 - Created new namespace: hpc-interview
+2025-10-21 23:26:28 - Namespace configured successfully
+2025-10-21 23:26:28 - Starting container image builds
+2025-10-21 23:26:28 - Building image: hpc-base
+2025-10-21 23:26:31 - ERROR: Failed to build hpc-base
+2025-10-21 23:26:33 - Building image: hpc-mpi-debug
+2025-10-21 23:26:34 - ERROR: Failed to build hpc-mpi-debug
+2025-10-21 23:26:36 - Building image: hpc-reframe
+2025-10-21 23:26:37 - ERROR: Failed to build hpc-reframe
+2025-10-21 23:26:38 - Building image: hpc-aiml
+2025-10-21 23:26:39 - ERROR: Failed to build hpc-aiml
+2025-10-21 23:26:39 - Building image: hpc-simple
+2025-10-21 23:26:40 - Successfully built hpc-simple
+2025-10-21 23:26:40 - Image verified: hpc-simple
+2025-10-21 23:26:40 - All container builds completed
+2025-10-21 23:26:40 - Starting OpenShift resource deployment
+2025-10-21 23:26:40 - Found        2 manifest files
+2025-10-21 23:36:40 - WARNING: deployment.apps/aiml-workspace not ready within timeout
+2025-10-21 23:46:40 - WARNING: deployment.apps/hpc-workspace not ready within timeout
+2025-10-21 23:46:40 - OpenShift resource deployment completed
+2025-10-21 23:46:40 - Setting up all HPC examples
+2025-10-21 23:46:40 - WARNING: HPC workspace pod not found
+2025-10-21 23:46:40 - CUDA examples prepared
+2025-10-21 23:46:40 - All HPC examples setup completed
+2025-10-21 23:46:40 - Setting up monitoring
+2025-10-21 23:46:40 - Monitoring setup completed
+2025-10-21 23:46:40 - Starting health checks
+2025-10-21 23:46:41 - Health checks completed
+2025-10-21 23:46:41 - Starting deployment validation
+2025-10-21 23:51:45 - Deployment validation completed
+2025-10-21 23:51:46 - Setup completed successfully

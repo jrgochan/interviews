@@ -1,0 +1,4 @@
+- hosts: buildhosts
+  become: yes
+  roles:
+    - buildhost

@@ -1,0 +1,384 @@
+stages:
+  - validate
+  - build
+  - test
+  - benchmark
+  - deploy
+
+variables:
+  SLURM_PARTITION: "cpu"
+  SLURM_ACCOUNT: "hpc-testing"
+  SPACK_ROOT: "/opt/spack"
+  MODULE_ROOT: "/opt/hpc/modules"
+  ARTIFACTS_EXPIRE: "1 week"
+
+# Pre-flight validation
+validate:environment:
+  stage: validate
+  tags: 
+    - hpc-runner
+  script:
+    - echo "=== Environment Validation ==="
+    - module --version || echo "Environment modules not available"
+    - spack --version || echo "Spack not available"
+    - mpirun --version || echo "MPI not available"
+    - sbatch --version || echo "Slurm not available"
+    - nvidia-smi || echo "No GPUs detected"
+    - echo "=== System Information ==="
+    - uname -a
+    - lscpu | head -20
+    - free -h
+    - df -h /tmp /scratch || true
+  artifacts:
+    reports:
+      junit: validation-report.xml
+    paths:
+      - validation-*.log
+    expire_in: $ARTIFACTS_EXPIRE
+
+# Spack environment builds
+build:spack:cpu:
+  stage: build
+  tags: 
+    - hpc-runner
+    - cpu
+  script:
+    - echo "=== Building CPU Environment ==="
+    - cd spack/environments
+    - spack env activate -d production
+    - spack concretize --fresh
+    - spack install --fail-fast --show-log-on-error
+    - spack module tcl refresh
+  artifacts:
+    paths:
+      - spack/environments/production/spack.lock
+      - spack/environments/production/.spack-env/
+    expire_in: $ARTIFACTS_EXPIRE
+  timeout: 2h
+
+build:spack:gpu:
+  stage: build
+  tags: 
+    - hpc-runner 
+    - gpu
+  script:
+    - echo "=== Building GPU Environment ==="
+    - cd spack/environments
+    - spack env activate -d gpu
+    - spack concretize --fresh
+    - spack install --fail-fast --show-log-on-error
+    - spack module tcl refresh
+  artifacts:
+    paths:
+      - spack/environments/gpu/spack.lock
+      - spack/environments/gpu/.spack-env/
+    expire_in: $ARTIFACTS_EXPIRE
+  timeout: 3h
+  allow_failure: true  # GPU nodes might not be available
+
+# Traditional build systems
+build:mpi:
+  stage: build
+  tags: 
+    - hpc-runner
+  script:
+    - echo "=== Building MPI Examples ==="
+    - module load openmpi
+    - mkdir -p build_mpi && cd build_mpi
+    - cmake ../examples/mpi -DCMAKE_BUILD_TYPE=Release
+    - make -j$(nproc)
+    - echo "=== Building MPI Debugging Examples ==="
+    - mkdir -p build_mpi_debug && cd ../build_mpi_debug
+    - cmake ../examples/mpi_debugging -DCMAKE_BUILD_TYPE=Debug
+    - make -j$(nproc)
+  artifacts:
+    paths:
+      - build_mpi/
+      - build_mpi_debug/
+    expire_in: $ARTIFACTS_EXPIRE
+
+build:cuda:
+  stage: build
+  tags: 
+    - hpc-runner
+    - gpu
+  script:
+    - echo "=== Building CUDA Examples ==="
+    - module load cuda openmpi
+    - mkdir -p build_cuda && cd build_cuda
+    - cmake ../examples/cuda -DCMAKE_BUILD_TYPE=Release
+    - make -j$(nproc)
+  artifacts:
+    paths:
+      - build_cuda/
+    expire_in: $ARTIFACTS_EXPIRE
+  allow_failure: true
+
+# Container builds
+build:containers:
+  stage: build
+  tags: 
+    - hpc-runner
+  script:
+    - echo "=== Building Apptainer Containers ==="
+    - cd ci/containers
+    - apptainer build --force hpc-dev.sif Apptainer.def
+    - apptainer exec hpc-dev.sif mpirun --version
+    - apptainer exec hpc-dev.sif gcc --version
+  artifacts:
+    paths:
+      - ci/containers/*.sif
+    expire_in: $ARTIFACTS_EXPIRE
+
+# ReFrame testing suite
+test:reframe:basic:
+  stage: test
+  tags: 
+    - hpc-runner
+  dependencies: 
+    - build:mpi
+  script:
+    - echo "=== Running ReFrame Basic Tests ==="
+    - module load python reframe
+    - export PATH="$HOME/.local/bin:$PATH"
+    - pip3 install --user reframe-hpc || true
+    - cd reframe
+    - reframe -C reframe_settings.py -c tests/test_modules.py -r --system local:cpu
+    - reframe -C reframe_settings.py -c tests/test_mpi_ring.py -r --system local:cpu
+  artifacts:
+    reports:
+      junit: reframe/reports/junit.xml
+    paths:
+      - reframe/reports/
+      - reframe/logs/
+    expire_in: $ARTIFACTS_EXPIRE
+
+test:reframe:performance:
+  stage: test
+  tags: 
+    - hpc-runner
+    - performance
+  dependencies: 
+    - build:mpi
+  script:
+    - echo "=== Running ReFrame Performance Tests ==="
+    - module load python reframe openmpi
+    - cd reframe
+    - reframe -C reframe_settings.py -c tests/test_mpi_bandwidth.py -r --system local:cpu
+    - reframe -C reframe_settings.py -c tests/test_io_bw.py -r --system local:cpu
+  artifacts:
+    reports:
+      junit: reframe/reports/performance-junit.xml
+    paths:
+      - reframe/reports/
+      - reframe/performance-data/
+    expire_in: $ARTIFACTS_EXPIRE
+
+# Slurm integration testing
+test:slurm:mpi:
+  stage: test
+  tags: 
+    - hpc-runner
+    - slurm
+  dependencies: 
+    - build:mpi
+  script:
+    - echo "=== Testing MPI via Slurm ==="
+    - cd examples/mpi
+    - export SBATCH_PARTITION=$SLURM_PARTITION
+    - export SBATCH_ACCOUNT=$SLURM_ACCOUNT
+    - # Submit and wait for job completion
+    - JOB_ID=$(sbatch --parsable --wait slurm_mpi.sbatch)
+    - echo "Job ID: $JOB_ID"
+    - # Check job output
+    - scontrol show job $JOB_ID
+    - cat slurm-$JOB_ID.out
+    - # Verify successful completion
+    - grep -q "final token" slurm-$JOB_ID.out || exit 1
+  artifacts:
+    paths:
+      - examples/mpi/slurm-*.out
+      - examples/mpi/slurm-*.err
+    expire_in: $ARTIFACTS_EXPIRE
+  timeout: 30m
+
+test:slurm:gpu:
+  stage: test
+  tags: 
+    - hpc-runner
+    - slurm
+    - gpu
+  dependencies: 
+    - build:cuda
+  script:
+    - echo "=== Testing CUDA via Slurm ==="
+    - cd examples/cuda
+    - export SBATCH_PARTITION=gpu
+    - export SBATCH_ACCOUNT=$SLURM_ACCOUNT
+    - JOB_ID=$(sbatch --parsable --wait slurm_cuda.sbatch)
+    - echo "Job ID: $JOB_ID"
+    - cat slurm-$JOB_ID.out
+    - grep -q "y\[0\]=" slurm-$JOB_ID.out || exit 1
+  artifacts:
+    paths:
+      - examples/cuda/slurm-*.out
+      - examples/cuda/slurm-*.err
+    expire_in: $ARTIFACTS_EXPIRE
+  timeout: 15m
+  allow_failure: true
+
+# Debugging validation
+test:debugging:
+  stage: test
+  tags: 
+    - hpc-runner
+  dependencies: 
+    - build:mpi
+  script:
+    - echo "=== Testing Debugging Tools ==="
+    - cd examples/mpi_debugging
+    - module load openmpi valgrind
+    - # Test that we can detect the deadlock with timeout
+    - timeout 30s mpirun -np 2 ./mpi_deadlock || test $? -eq 124
+    - # Test race condition detection (may not always trigger)
+    - mpirun -np 4 ./mpi_race_condition || true
+    - # Run with Valgrind Helgrind (if available)
+    - mpirun -np 2 valgrind --tool=helgrind --log-file=helgrind.log ./mpi_race_condition || true
+  artifacts:
+    paths:
+      - examples/mpi_debugging/*.log
+    expire_in: $ARTIFACTS_EXPIRE
+
+# Benchmark suite
+benchmark:hpl:
+  stage: benchmark
+  tags: 
+    - hpc-runner
+    - benchmark
+  dependencies: 
+    - build:spack:cpu
+  script:
+    - echo "=== Running HPL Benchmark ==="
+    - spack env activate -d production
+    - spack load hpl openmpi
+    - cd /tmp
+    - cp $(spack location -i hpl)/share/hpl/HPL.dat .
+    - # Small problem size for testing
+    - sed -i 's/^[0-9]*[[:space:]]*Ns/1000 Ns/' HPL.dat
+    - mpirun -np 4 xhpl
+  artifacts:
+    paths:
+      - /tmp/HPL.out
+    expire_in: $ARTIFACTS_EXPIRE
+  allow_failure: true
+  timeout: 1h
+
+benchmark:stream:
+  stage: benchmark
+  tags: 
+    - hpc-runner
+    - benchmark
+  script:
+    - echo "=== Running STREAM Benchmark ==="
+    - git clone https://github.com/jeffhammond/STREAM.git /tmp/stream
+    - cd /tmp/stream
+    - make CC=gcc CFLAGS="-O3 -fopenmp -DSTREAM_ARRAY_SIZE=100000000"
+    - export OMP_NUM_THREADS=$(nproc)
+    - ./stream_c
+  artifacts:
+    paths:
+      - /tmp/stream/stream_c.out
+    expire_in: $ARTIFACTS_EXPIRE
+
+# Software deployment
+deploy:modules:
+  stage: deploy
+  tags: 
+    - hpc-runner
+  dependencies: 
+    - build:spack:cpu
+    - build:spack:gpu
+  script:
+    - echo "=== Deploying Module Files ==="
+    - spack env activate -d production
+    - spack module tcl refresh --delete-tree
+    - spack env activate -d gpu
+    - spack module tcl refresh --delete-tree
+    - # Update global module path if authorized
+    - module avail 2>&1 | head -20
+  artifacts:
+    paths:
+      - $MODULE_ROOT/
+    expire_in: 4 weeks
+  only:
+    - main
+    - master
+
+deploy:documentation:
+  stage: deploy
+  tags: 
+    - hpc-runner
+  script:
+    - echo "=== Generating Documentation ==="
+    - mkdir -p public/docs
+    - cp -r docs/* public/docs/
+    - cp README.md public/
+    - # Generate software inventory
+    - spack find --format "{name}@{version} %{compiler}" > public/software-inventory.txt
+    - # Generate system report
+    - echo "System Report - $(date)" > public/system-report.txt
+    - lscpu >> public/system-report.txt
+    - echo "=== Installed Software ===" >> public/system-report.txt
+    - module avail >> public/system-report.txt 2>&1
+  artifacts:
+    paths:
+      - public/
+    expire_in: 4 weeks
+  only:
+    - main
+    - master
+
+# Notification and reporting
+.notify_template: &notify_template
+  stage: .post
+  tags: 
+    - hpc-runner
+  script:
+    - echo "=== Sending Notifications ==="
+    - |
+      if [ -n "$NOTIFICATION_WEBHOOK" ]; then
+        curl -X POST -H 'Content-type: application/json' \
+          --data "{\"text\":\"CI Pipeline $CI_PIPELINE_STATUS for $CI_PROJECT_NAME (commit: $CI_COMMIT_SHORT_SHA)\"}" \
+          $NOTIFICATION_WEBHOOK
+      fi
+    - |
+      if [ -n "$NOTIFICATION_EMAIL" ]; then
+        echo "Pipeline $CI_PIPELINE_STATUS for $CI_PROJECT_NAME" | \
+        mail -s "HPC CI Pipeline Status" $NOTIFICATION_EMAIL
+      fi
+  when: always
+
+notify:success:
+  <<: *notify_template
+  when: on_success
+
+notify:failure:
+  <<: *notify_template
+  when: on_failure
+  script:
+    - echo "=== Pipeline Failed - Gathering Debug Info ==="
+    - squeue -u $USER || true
+    - df -h || true
+    - free -h || true
+    - echo "=== Sending Failure Notifications ==="
+    - |
+      if [ -n "$NOTIFICATION_WEBHOOK" ]; then
+        curl -X POST -H 'Content-type: application/json' \
+          --data "{\"text\":\"CI Pipeline FAILED for $CI_PROJECT_NAME (commit: $CI_COMMIT_SHORT_SHA)\"}" \
+          $NOTIFICATION_WEBHOOK
+      fi
+    - |
+      if [ -n "$NOTIFICATION_EMAIL" ]; then
+        echo "Pipeline FAILED for $CI_PROJECT_NAME" | \
+        mail -s "HPC CI Pipeline FAILED" $NOTIFICATION_EMAIL
+      fi

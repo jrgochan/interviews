@@ -1,0 +1,52 @@
+# HPC Base Image - Foundation for HPC Interview Examples
+FROM registry.access.redhat.com/ubi9/ubi:latest
+
+# Metadata
+LABEL maintainer="HPC Interview Preparation"
+LABEL description="Base HPC environment with essential tools"
+LABEL version="1.0"
+
+# Install system packages
+RUN dnf update -y && \
+    dnf install -y \
+        gcc gcc-c++ gcc-gfortran \
+        make cmake autoconf automake libtool \
+        git wget curl vim \
+        python3 python3-pip python3-devel \
+        openmpi openmpi-devel \
+        hwloc-devel \
+        numactl \
+        which file \
+        procps-ng \
+        htop \
+        strace gdb valgrind \
+        && dnf clean all
+
+# Set up MPI environment
+ENV MPI_ROOT=/usr/lib64/openmpi
+ENV PATH=$MPI_ROOT/bin:$PATH
+ENV LD_LIBRARY_PATH=$MPI_ROOT/lib:$LD_LIBRARY_PATH
+ENV MANPATH=$MPI_ROOT/share/man:$MANPATH
+
+# Install Python packages
+RUN pip3 install --no-cache-dir \
+    numpy \
+    matplotlib \
+    pandas \
+    jupyter \
+    ipython
+
+# Create non-root user
+RUN useradd -m -s /bin/bash hpcuser && \
+    mkdir -p /home/hpcuser/workspace && \
+    chown -R hpcuser:hpcuser /home/hpcuser
+
+# Copy project files
+COPY --chown=hpcuser:hpcuser . /home/hpcuser/workspace/
+
+# Set working directory and user
+WORKDIR /home/hpcuser/workspace
+USER hpcuser
+
+# Default command
+CMD ["/bin/bash"]

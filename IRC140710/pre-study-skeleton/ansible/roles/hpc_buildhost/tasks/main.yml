@@ -1,0 +1,56 @@
+---
+# Main tasks for HPC Build Host configuration
+# This role sets up a comprehensive build environment for HPC applications
+
+- name: Import system setup tasks
+  import_tasks: system_setup.yml
+  tags: ['system', 'packages']
+
+- name: Import compiler setup tasks
+  import_tasks: compilers.yml
+  tags: ['compilers']
+
+- name: Import MPI setup tasks
+  import_tasks: mpi.yml
+  tags: ['mpi']
+
+- name: Import development tools setup
+  import_tasks: devtools.yml
+  tags: ['devtools']
+
+- name: Import container runtime setup
+  import_tasks: containers.yml
+  tags: ['containers']
+
+- name: Import Spack setup tasks
+  import_tasks: spack.yml
+  tags: ['spack']
+
+- name: Import monitoring setup tasks
+  import_tasks: monitoring.yml
+  tags: ['monitoring']
+
+- name: Import security hardening tasks
+  import_tasks: security.yml
+  tags: ['security']
+
+- name: Create build environment validation script
+  template:
+    src: validate_environment.sh.j2
+    dest: /usr/local/bin/validate_hpc_environment
+    mode: '0755'
+    owner: root
+    group: root
+  tags: ['validation']
+
+- name: Run environment validation
+  command: /usr/local/bin/validate_hpc_environment
+  register: validation_result
+  changed_when: false
+  failed_when: validation_result.rc != 0
+  tags: ['validation']
+
+- name: Display validation results
+  debug:
+    msg: "{{ validation_result.stdout_lines }}"
+  tags: ['validation']

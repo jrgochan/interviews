@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aiml-workspace
+  labels:
+    app: aiml-workspace
+    component: ai-ml-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aiml-workspace
+  template:
+    metadata:
+      labels:
+        app: aiml-workspace
+    spec:
+      containers:
+      - name: aiml-container
+        image: hpc-aiml:latest
+        imagePullPolicy: Never
+        command: ["/bin/bash"]
+        args: ["-c", "while true; do sleep 30; done"]
+        ports:
+        - containerPort: 8888
+          name: jupyter
+        - containerPort: 6006
+          name: tensorboard
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "1000m"
+          limits:
+            memory: "4Gi"
+            cpu: "2000m"
+        volumeMounts:
+        - name: workspace
+          mountPath: /home/hpcuser/workspace
+        - name: data-volume
+          mountPath: /home/hpcuser/data
+        env:
+        - name: JUPYTER_ENABLE_LAB
+          value: "yes"
+        - name: PYTHONPATH
+          value: "/home/hpcuser/workspace"
+      volumes:
+      - name: workspace
+        emptyDir: {}
+      - name: data-volume
+        emptyDir: {}
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aiml-service
+  labels:
+    app: aiml-workspace
+spec:
+  selector:
+    app: aiml-workspace
+  ports:
+  - name: jupyter
+    port: 8888
+    targetPort: 8888
+  - name: tensorboard
+    port: 6006
+    targetPort: 6006
+  type: ClusterIP
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: jupyter-route
+  labels:
+    app: aiml-workspace
+spec:
+  to:
+    kind: Service
+    name: aiml-service
+  port:
+    targetPort: jupyter
+  tls:
+    termination: edge
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: tensorboard-route
+  labels:
+    app: aiml-workspace
+spec:
+  to:
+    kind: Service
+    name: aiml-service
+  port:
+    targetPort: tensorboard
+  tls:
+    termination: edge

@@ -1,0 +1,5 @@
+STEP 1/9: FROM hpc-base:latest
+Resolving "hpc-base" using unqualified-search registries (/etc/containers/registries.conf.d/999-podman-machine.conf)
+Trying to pull docker.io/library/hpc-base:latest...
+Error: creating build container: initializing source docker://hpc-base:latest: reading manifest latest in docker.io/library/hpc-base: requested access to the resource is denied
+

@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 3.15)
+project(mpi_examples C)
+find_package(MPI REQUIRED)
+add_executable(mpi_ring mpi_ring.c)
+target_link_libraries(mpi_ring MPI::MPI_C)
+add_executable(mpi_pingpong mpi_pingpong.c)
+target_link_libraries(mpi_pingpong MPI::MPI_C)
