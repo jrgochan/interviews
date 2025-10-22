@@ -54,7 +54,7 @@ Dedicated software developer/architect, systems engineer, and systems administra
 
 ## Professional Experience
 
-### **Guest Scientist** | *Los Alamos National Laboratory* | 2024-Present
+### **Guest Scientist** | *Los Alamos National Laboratory* | 2024-2025
 
 *Advanced systems engineering and infrastructure development*
 
@@ -113,13 +113,12 @@ Dedicated software developer/architect, systems engineer, and systems administra
 
 - **Minor:** Computer Science
 - **Focus Areas:** Enterprise systems, network infrastructure, software development, system security
-- **Capstone Experience:** Large-scale system integration and management projects
 
 ### **Professional Development & Continuous Learning**
 
 - **Eagle Scout** - Leadership and project management foundation
 - **LANL Training Programs** - Ongoing professional development in HPC technologies, security compliance, and scientific computing
-- **Industry Conferences** - Regular participation in systems administration and HPC community events
+- **Industry Conferences** - Regular participation in systems administration and community events
 
 ---
 
@@ -146,14 +145,7 @@ Created production-quality technical portfolio showcasing:
 
 - **Full-stack rewrite** of LANSCE proposal and sample tracking systems using modern technologies
 - **Technology exploration:** NodeJS backends (currently Strapi), React/Angular/Vue frontends (currently Refine.dev)
-- **AWS CI/CD pipeline** development and API Gateway implementation
 - **API-first design** documented in OpenAPI 3 specification via SwaggerHub
-
-**FluxView LLC**
-
-- **Consulting practice** providing web development and business software solutions
-- **Community technology support** serving as "friendly neighborhood nerd" for local businesses
-- **Custom software development** for small businesses and organizations
 
 ---
 
