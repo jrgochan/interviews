@@ -1,34 +1,34 @@
-STEP 1/11: FROM quay.io/centos/centos:stream9
+STEP 1/11: FROM rockylinux:9
 STEP 2/11: RUN dnf update -y &&     dnf install -y         gcc gcc-c++ gcc-gfortran         make cmake         git python3 python3-pip         openmpi openmpi-devel         gdb valgrind strace         && dnf clean all
---> Using cache 8821b1d3c7616158d2431d4eb8b282ebba97287f0cee570ea3e584fb9b4a20cb
---> 8821b1d3c761
+--> Using cache 402ed410d9bdf8e36c36decdc94a6edfadc24d15124c4592a0a62fa3df97f4ac
+--> 402ed410d9bd
 STEP 3/11: ENV MPI_ROOT=/usr/lib64/openmpi
---> Using cache 376c9c620b20df0f56a6c1d77c5ab778e69bf41e86fdb068dc82f6bc5634298f
---> 376c9c620b20
+--> Using cache 2b15aa2324bd69a61ba461511e8f635343129518306314047e97df496ca58a8f
+--> 2b15aa2324bd
 STEP 4/11: ENV PATH=$MPI_ROOT/bin:$PATH
---> Using cache 539f051b090d2d642492946da4c65aa707e4d69620e84fe1443351a74a0def8f
---> 539f051b090d
+--> Using cache 378a2e0ab987d635dd9e9ad24df14e0e8df8df542e82843a9d0645fb825c84bb
+--> 378a2e0ab987
 STEP 5/11: ENV LD_LIBRARY_PATH=$MPI_ROOT/lib:$LD_LIBRARY_PATH
---> Using cache 5e01c78d11d8d7f928dbf71172cde6125d10597d48cde51027abe8577480d3c2
---> 5e01c78d11d8
+--> Using cache db683023570ff8abaca57c692e84fc87f554367142560e9528e91241efa98aec
+--> db683023570f
 STEP 6/11: RUN pip3 install --no-cache-dir     numpy matplotlib reframe-hpc
---> Using cache 6f505966b2991ffff3809ed5d979bc181701a1e79c8097e0d47f5e2b93900e21
---> 6f505966b299
+--> Using cache 2649df252407da0ef429734faa228bfae8a6acb4bf88c0a96a753e165e8f305d
+--> 2649df252407
 STEP 7/11: RUN pip3 install --no-cache-dir     torch torchvision --index-url https://download.pytorch.org/whl/cpu
---> Using cache 1f84077ff272e980f4ce8044465d7b1a7b44b1c440fefa2de466e00d2d061d77
---> 1f84077ff272
+--> Using cache 568dac0c552456811a498ec7d58b4fe917c56d3591d20715fcb3b1c019d282b0
+--> 568dac0c5524
 STEP 8/11: RUN useradd -m -s /bin/bash hpcuser
---> Using cache 7153cfb5abd11282e5e553ee8a65c8357c255f56eb6b183f8343e37785761a91
---> 7153cfb5abd1
+--> Using cache b032ddfc9226cb56ad33c886f97bd9d45d7f31e3790c8a76e920c22d154ec2d9
+--> b032ddfc9226
 STEP 9/11: WORKDIR /home/hpcuser
---> Using cache cd48be75ab03abc498275a4e32a4915ee0fbd63a20dbabc427956dbee4a5105d
---> cd48be75ab03
+--> Using cache 7c75f56c0439e56ef6dbfc9f1b3e50c57a271f17b0ff880363ef11944aee6ad7
+--> 7c75f56c0439
 STEP 10/11: USER hpcuser
---> Using cache acbaae4877ca9a4e2ac061d6fc53ee0768fc1034f848750238c36d688464880b
---> acbaae4877ca
+--> Using cache 731b2495d4af91fd9bab566dd3352deb0f1be85aa49e5ea2144d3b6ef66de7f1
+--> 731b2495d4af
 STEP 11/11: CMD ["/bin/bash"]
---> Using cache 6e5dc1ca707feec39233e9d7d44cfda38b9a6317bc3b4542e75b2921992d873c
+--> Using cache d91eb4d62220c99f133159cc74e65305bd759fff0a5dfa7e082cb17976855f17
 COMMIT hpc-simple:latest
---> 6e5dc1ca707f
+--> d91eb4d62220
 Successfully tagged localhost/hpc-simple:latest
-6e5dc1ca707feec39233e9d7d44cfda38b9a6317bc3b4542e75b2921992d873c
+d91eb4d62220c99f133159cc74e65305bd759fff0a5dfa7e082cb17976855f17

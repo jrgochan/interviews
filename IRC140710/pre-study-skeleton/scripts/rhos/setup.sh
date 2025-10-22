@@ -162,62 +162,148 @@ EOF
     log "Namespace configured successfully"
 }
 
-# Function to build container images with robust error handling
+# Function to build container images using OpenShift BuildConfigs
 build_images() {
-    echo -e "${BLUE}🔨 Building container images...${NC}"
-    log "Starting container image builds"
+    echo -e "${BLUE}🔨 Building container images using OpenShift BuildConfigs...${NC}"
+    log "Starting container image builds using OpenShift BuildConfigs"
     
-    local images=(
-        "hpc-base:${SCRIPT_DIR}/containers/Containerfile.hpc-base"
-        "hpc-mpi-debug:${SCRIPT_DIR}/containers/Containerfile.mpi-debug" 
-        "hpc-reframe:${SCRIPT_DIR}/containers/Containerfile.reframe"
-        "hpc-aiml:${SCRIPT_DIR}/containers/Containerfile.aiml"
-        "hpc-simple:${SCRIPT_DIR}/containers/Containerfile.simple"
-    )
+    # Build base image first
+    build_single_image "hpc-base" "${SCRIPT_DIR}/containers/Containerfile.hpc-base"
     
-    for image_info in "${images[@]}"; do
-        local image_name="${image_info%%:*}"
-        local dockerfile="${image_info##*:}"
-        
-        echo -e "${CYAN}Building ${image_name}...${NC}"
-        log "Building image: ${image_name}"
-        
-        # Check if Containerfile exists
-        if [ ! -f "${dockerfile}" ]; then
-            echo -e "${RED}❌ Containerfile not found: ${dockerfile}${NC}"
-            log "ERROR: Containerfile not found: ${dockerfile}"
-            continue
-        fi
-        
-        # Build with detailed output on failure
-        if ! podman build -t "${image_name}:latest" -f "${dockerfile}" "${PROJECT_ROOT}" > "${LOG_FILE}.${image_name}" 2>&1; then
-            echo -e "${RED}❌ Failed to build ${image_name}${NC}"
-            echo -e "Check log: ${LOG_FILE}.${image_name}"
-            log "ERROR: Failed to build ${image_name}"
-            
-            # Show last few lines of build log
-            echo -e "${YELLOW}Last 10 lines of build output:${NC}"
-            tail -10 "${LOG_FILE}.${image_name}"
-            
-            # Ask whether to continue
-            read -p "Continue with other images? [y/N]: " -n 1 -r
-            echo
-            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-                exit 1
-            fi
-        else
-            echo -e "${GREEN}✅ ${image_name} built successfully${NC}"
-            log "Successfully built ${image_name}"
-            
-            # Verify image
-            if podman images "${image_name}:latest" --format "{{.Repository}}:{{.Tag}} {{.Size}}" | head -1; then
-                log "Image verified: ${image_name}"
-            fi
-        fi
-    done
+    # Build dependent images (need to update their Containerfiles to use internal registry)
+    build_dependent_image "hpc-aiml" "${SCRIPT_DIR}/containers/Containerfile.aiml"
     
-    echo -e "${GREEN}✅ Container image builds completed${NC}"
-    log "All container builds completed"
+    echo -e "${GREEN}✅ Container image builds completed in OpenShift${NC}"
+    log "All container builds completed in OpenShift"
+}
+
+# Function to build a single base image
+build_single_image() {
+    local image_name="$1"
+    local dockerfile="$2"
+    
+    echo -e "${CYAN}Creating BuildConfig for ${image_name}...${NC}"
+    log "Creating BuildConfig for image: ${image_name}"
+    
+    # Check if Containerfile exists
+    if [ ! -f "${dockerfile}" ]; then
+        echo -e "${RED}❌ Containerfile not found: ${dockerfile}${NC}"
+        log "ERROR: Containerfile not found: ${dockerfile}"
+        return 1
+    fi
+    
+    # Create BuildConfig and ImageStream
+    cat <<EOF | oc apply -f - -n "${NAMESPACE}"
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: ${image_name}
+  labels:
+    app: ${image_name}
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: ${image_name}:latest
+  source:
+    type: Binary
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  triggers: []
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: ${image_name}
+  labels:
+    app: ${image_name}
+spec:
+  lookupPolicy:
+    local: true
+EOF
+    
+    # Copy Containerfile to project root
+    echo -e "${CYAN}Preparing build context for ${image_name}...${NC}"
+    cp "${dockerfile}" "${PROJECT_ROOT}/Dockerfile"
+    
+    # Start build
+    echo -e "${CYAN}Starting build for ${image_name}...${NC}"
+    if ! oc start-build "${image_name}" --from-dir="${PROJECT_ROOT}" --follow --wait -n "${NAMESPACE}" > "${LOG_FILE}.${image_name}" 2>&1; then
+        echo -e "${RED}❌ Failed to build ${image_name}${NC}"
+        echo -e "Check log: ${LOG_FILE}.${image_name}"
+        log "ERROR: Failed to build ${image_name}"
+        return 1
+    else
+        echo -e "${GREEN}✅ ${image_name} built successfully in OpenShift${NC}"
+        log "Successfully built ${image_name}"
+    fi
+}
+
+# Function to build dependent images with internal registry base reference
+build_dependent_image() {
+    local image_name="$1"
+    local dockerfile="$2"
+    
+    echo -e "${CYAN}Creating BuildConfig for ${image_name} (dependent)...${NC}"
+    log "Creating BuildConfig for dependent image: ${image_name}"
+    
+    # Check if Containerfile exists
+    if [ ! -f "${dockerfile}" ]; then
+        echo -e "${RED}❌ Containerfile not found: ${dockerfile}${NC}"
+        log "ERROR: Containerfile not found: ${dockerfile}"
+        return 1
+    fi
+    
+    # Create modified Containerfile with internal registry reference
+    echo -e "${CYAN}Creating modified Containerfile for ${image_name}...${NC}"
+    sed "s|FROM hpc-base:latest|FROM image-registry.openshift-image-registry.svc:5000/${NAMESPACE}/hpc-base:latest|g" \
+        "${dockerfile}" > "${PROJECT_ROOT}/Dockerfile"
+    
+    # Create BuildConfig and ImageStream  
+    cat <<EOF | oc apply -f - -n "${NAMESPACE}"
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: ${image_name}
+  labels:
+    app: ${image_name}
+spec:
+  output:
+    to:
+      kind: ImageStreamTag
+      name: ${image_name}:latest
+  source:
+    type: Binary
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  triggers: []
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: ${image_name}
+  labels:
+    app: ${image_name}
+spec:
+  lookupPolicy:
+    local: true
+EOF
+    
+    # Start build
+    echo -e "${CYAN}Starting build for ${image_name}...${NC}"
+    if ! oc start-build "${image_name}" --from-dir="${PROJECT_ROOT}" --follow --wait -n "${NAMESPACE}" > "${LOG_FILE}.${image_name}" 2>&1; then
+        echo -e "${RED}❌ Failed to build ${image_name}${NC}"
+        echo -e "Check log: ${LOG_FILE}.${image_name}"
+        log "ERROR: Failed to build ${image_name}"
+        return 1
+    else
+        echo -e "${GREEN}✅ ${image_name} built successfully in OpenShift${NC}"
+        log "Successfully built ${image_name}"
+    fi
 }
 
 # Function to deploy OpenShift resources with verification

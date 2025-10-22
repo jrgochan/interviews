@@ -1,16 +1,1868 @@
-STEP 1/15: FROM registry.access.redhat.com/ubi9/ubi:latest
-STEP 2/15: LABEL maintainer="HPC Interview Preparation"
---> 60b5c86fe395
-STEP 3/15: LABEL description="Base HPC environment with essential tools"
---> 9948a1f833a9
-STEP 4/15: LABEL version="1.0"
---> af1e9ce84b73
-STEP 5/15: RUN dnf update -y &&     dnf install -y         gcc gcc-c++ gcc-gfortran         make cmake autoconf automake libtool         git wget curl vim         python3 python3-pip python3-devel         openmpi openmpi-devel         hwloc-devel         numactl         which file         procps-ng         htop         strace gdb valgrind         && dnf clean all
-Updating Subscription Management repositories.
-subscription-manager is operating in container mode.
-Red Hat Enterprise Linux 9 for ARM 64 - BaseOS  453  B/s | 462  B     00:01    
-Errors during downloading metadata for repository 'rhel-9-for-aarch64-baseos-rpms':
-  - Status code: 403 for https://cdn.redhat.com/content/dist/rhel9/9/aarch64/baseos/os/repodata/repomd.xml (IP: 184.84.192.251)
-Error: Failed to download metadata for repo 'rhel-9-for-aarch64-baseos-rpms': Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tried
-Error: building at STEP "RUN dnf update -y &&     dnf install -y         gcc gcc-c++ gcc-gfortran         make cmake autoconf automake libtool         git wget curl vim         python3 python3-pip python3-devel         openmpi openmpi-devel         hwloc-devel         numactl         which file         procps-ng         htop         strace gdb valgrind         && dnf clean all": while running runtime: exit status 1
+Uploading directory "/Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton" as binary input for the build ...
+...................
+Uploading finished
+build.build.openshift.io/hpc-base-1 started
+Receiving source from STDIN as archive ...
+time="2025-10-22T22:44:41Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
+I1022 22:44:41.257659       1 defaults.go:112] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
+Caching blobs under "/var/cache/blobs".
 
+Pulling image rockylinux:9 ...
+Resolving "rockylinux" using unqualified-search registries (/etc/containers/registries.conf)
+Trying to pull registry.redhat.io/rockylinux:9...
+Trying to pull registry.access.redhat.com/rockylinux:9...
+Trying to pull quay.io/rockylinux:9...
+Trying to pull docker.io/library/rockylinux:9...
+Getting image source signatures
+Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
+Copying config sha256:60c8e2290c74b125914947f699c34947f0512281f51589fc21b66514d28111bc
+Writing manifest to image destination
+Adding transient rw bind mount for /run/secrets/rhsm
+STEP 1/17: FROM rockylinux:9
+STEP 2/17: LABEL maintainer="HPC Interview Preparation"
+--> 03e018701df9
+STEP 3/17: LABEL description="Base HPC environment with essential tools"
+--> a7f78879f43d
+STEP 4/17: LABEL version="1.0"
+--> 8da2283e0abd
+STEP 5/17: RUN dnf update -y &&     dnf install -y --allowerasing         gcc gcc-c++ gcc-gfortran         make cmake autoconf automake libtool         git wget curl vim         python3 python3-pip python3-devel         openmpi openmpi-devel         hwloc-devel         numactl         which file         procps-ng         strace gdb valgrind         && dnf clean all
+Rocky Linux 9 - BaseOS                          2.1 MB/s | 2.6 MB     00:01    
+Rocky Linux 9 - AppStream                       4.6 MB/s | 8.1 MB     00:01    
+Rocky Linux 9 - Extras                           31 kB/s |  18 kB     00:00    
+Dependencies resolved.
+================================================================================
+ Package                     Arch    Version                       Repo    Size
+================================================================================
+Upgrading:
+ alternatives                aarch64 1.24-2.el9                    baseos  37 k
+ audit-libs                  aarch64 3.1.5-4.el9                   baseos 119 k
+ basesystem                  noarch  11-13.el9.0.1                 baseos 6.4 k
+ bash                        aarch64 5.1.8-9.el9                   baseos 1.6 M
+ binutils                    aarch64 2.35.2-63.el9                 baseos 4.7 M
+ binutils-gold               aarch64 2.35.2-63.el9                 baseos 881 k
+ bzip2-libs                  aarch64 1.0.8-10.el9_5                baseos  40 k
+ ca-certificates             noarch  2024.2.69_v8.0.303-91.4.el9_4 baseos 911 k
+ coreutils-single            aarch64 8.32-39.el9                   baseos 602 k
+ crypto-policies             noarch  20250128-1.git5269e22.el9     baseos  55 k
+ crypto-policies-scripts     noarch  20250128-1.git5269e22.el9     baseos  83 k
+ curl-minimal                aarch64 7.76.1-31.el9_6.1             baseos 123 k
+ dnf                         noarch  4.14.0-25.el9                 baseos 466 k
+ dnf-data                    noarch  4.14.0-25.el9                 baseos  35 k
+ elfutils-debuginfod-client  aarch64 0.192-6.el9_6                 baseos  41 k
+ elfutils-default-yama-scope noarch  0.192-6.el9_6                 baseos 8.5 k
+ elfutils-libelf             aarch64 0.192-6.el9_6                 baseos 202 k
+ elfutils-libs               aarch64 0.192-6.el9_6                 baseos 258 k
+ expat                       aarch64 2.5.0-5.el9_6                 baseos 109 k
+ file-libs                   aarch64 5.39-16.el9                   baseos 586 k
+ filesystem                  aarch64 3.16-5.el9                    baseos 1.1 M
+ findutils                   aarch64 1:4.8.0-7.el9                 baseos 537 k
+ gdbm-libs                   aarch64 1:1.23-1.el9                  baseos  55 k
+ glib2                       aarch64 2.68.4-16.el9_6.2             baseos 2.6 M
+ glibc                       aarch64 2.34-168.el9_6.23             baseos 1.7 M
+ glibc-common                aarch64 2.34-168.el9_6.23             baseos 285 k
+ glibc-minimal-langpack      aarch64 2.34-168.el9_6.23             baseos  22 k
+ gnutls                      aarch64 3.8.3-6.el9_6.2               baseos 1.0 M
+ ima-evm-utils               aarch64 1.5-3.el9.rocky.0.1           baseos  68 k
+ krb5-libs                   aarch64 1.21.1-8.el9_6                baseos 757 k
+ less                        aarch64 590-5.el9                     baseos 160 k
+ libacl                      aarch64 2.3.1-4.el9                   baseos  22 k
+ libarchive                  aarch64 3.5.3-6.el9_6                 baseos 385 k
+ libatomic                   aarch64 11.5.0-5.el9_5                baseos  28 k
+ libblkid                    aarch64 2.37.4-21.el9                 baseos 106 k
+ libcom_err                  aarch64 1.46.5-7.el9                  baseos  25 k
+ libcurl-minimal             aarch64 7.76.1-31.el9_6.1             baseos 220 k
+ libdb                       aarch64 5.3.28-57.el9_6               baseos 707 k
+ libdnf                      aarch64 0.69.0-13.el9                 baseos 599 k
+ libeconf                    aarch64 0.4.1-4.el9                   baseos  25 k
+ libevent                    aarch64 2.1.12-8.el9_4                baseos 253 k
+ libfdisk                    aarch64 2.37.4-21.el9                 baseos 148 k
+ libgcc                      aarch64 11.5.0-5.el9_5                baseos  78 k
+ libgcrypt                   aarch64 1.10.0-11.el9                 baseos 454 k
+ libgomp                     aarch64 11.5.0-5.el9_5                baseos 258 k
+ libksba                     aarch64 1.5.1-7.el9                   baseos 150 k
+ libmount                    aarch64 2.37.4-21.el9                 baseos 131 k
+ libnghttp2                  aarch64 1.43.0-6.el9                  baseos  72 k
+ librepo                     aarch64 1.14.5-2.el9                  baseos  84 k
+ libselinux                  aarch64 3.6-3.el9                     baseos  85 k
+ libsemanage                 aarch64 3.6-5.el9_6                   baseos 114 k
+ libsepol                    aarch64 3.6-2.el9                     baseos 317 k
+ libsmartcols                aarch64 2.37.4-21.el9                 baseos  61 k
+ libsolv                     aarch64 0.7.24-3.el9                  baseos 387 k
+ libstdc++                   aarch64 11.5.0-5.el9_5                baseos 695 k
+ libtasn1                    aarch64 4.16.0-9.el9                  baseos  72 k
+ libuser                     aarch64 0.63-16.el9                   baseos 384 k
+ libuuid                     aarch64 2.37.4-21.el9                 baseos  27 k
+ libxml2                     aarch64 2.9.13-12.el9_6               baseos 729 k
+ libzstd                     aarch64 1.5.5-1.el9                   baseos 273 k
+ ncurses-base                noarch  6.2-10.20210508.el9_6.2       baseos  60 k
+ ncurses-libs                aarch64 6.2-10.20210508.el9_6.2       baseos 310 k
+ nettle                      aarch64 3.10.1-1.el9                  baseos 530 k
+ openldap                    aarch64 2.6.8-4.el9.0.1               baseos 251 k
+ openssl                     aarch64 1:3.2.2-6.el9_5.1             baseos 1.3 M
+ openssl-libs                aarch64 1:3.2.2-6.el9_5.1             baseos 2.2 M
+ p11-kit                     aarch64 0.25.3-3.el9_5                baseos 488 k
+ p11-kit-trust               aarch64 0.25.3-3.el9_5                baseos 138 k
+ pam                         aarch64 1.5.1-26.el9_6                baseos 541 k
+ pcre                        aarch64 8.44-4.el9                    baseos 179 k
+ pcre2                       aarch64 10.40-6.el9                   baseos 217 k
+ pcre2-syntax                noarch  10.40-6.el9                   baseos 140 k
+ python3                     aarch64 3.9.21-2.el9_6.2              baseos  26 k
+ python3-dnf                 noarch  4.14.0-25.el9                 baseos 410 k
+ python3-hawkey              aarch64 0.69.0-13.el9                 baseos  92 k
+ python3-libdnf              aarch64 0.69.0-13.el9                 baseos 715 k
+ python3-libs                aarch64 3.9.21-2.el9_6.2              baseos 7.5 M
+ python3-pip-wheel           noarch  21.3.1-1.el9                  baseos 1.1 M
+ python3-rpm                 aarch64 4.16.1.3-37.el9               baseos  64 k
+ python3-setuptools-wheel    noarch  53.0.0-13.el9_6.1             baseos 467 k
+ rocky-gpg-keys              noarch  9.6-1.3.el9                   baseos  12 k
+ rocky-release               noarch  9.6-1.3.el9                   baseos  22 k
+ rocky-repos                 noarch  9.6-1.3.el9                   baseos  12 k
+ rootfiles                   noarch  8.1-34.el9                    baseos 9.2 k
+ rpm                         aarch64 4.16.1.3-37.el9               baseos 481 k
+ rpm-build-libs              aarch64 4.16.1.3-37.el9               baseos  85 k
+ rpm-libs                    aarch64 4.16.1.3-37.el9               baseos 300 k
+ rpm-sign-libs               aarch64 4.16.1.3-37.el9               baseos  19 k
+ setup                       noarch  2.13.7-10.el9                 baseos 140 k
+ shadow-utils                aarch64 2:4.9-12.el9                  baseos 1.1 M
+ sqlite-libs                 aarch64 3.34.1-8.el9_6                baseos 613 k
+ systemd-libs                aarch64 252-51.el9_6.2                baseos 633 k
+ tar                         aarch64 2:1.34-7.el9                  baseos 866 k
+ tpm2-tss                    aarch64 3.2.3-1.el9                   baseos 546 k
+ tzdata                      noarch  2025b-1.el9                   baseos 430 k
+ usermode                    aarch64 1.114-6.el9                   baseos 173 k
+ util-linux                  aarch64 2.37.4-21.el9                 baseos 2.2 M
+ util-linux-core             aarch64 2.37.4-21.el9                 baseos 430 k
+ vim-minimal                 aarch64 2:8.2.2637-22.el9_6.1         baseos 645 k
+ yum                         noarch  4.14.0-25.el9                 baseos  88 k
+Installing dependencies:
+ attr                        aarch64 2.5.1-3.el9                   baseos  58 k
+ keyutils                    aarch64 1.6.3-1.el9                   baseos  70 k
+ libtool-ltdl                aarch64 2.4.6-46.el9                  baseos  34 k
+
+Transaction Summary
+================================================================================
+Install    3 Packages
+Upgrade  100 Packages
+
+Total download size: 51 M
+Downloading Packages:
+(1/103): libtool-ltdl-2.4.6-46.el9.aarch64.rpm  146 kB/s |  34 kB     00:00    
+(2/103): keyutils-1.6.3-1.el9.aarch64.rpm       227 kB/s |  70 kB     00:00    
+(3/103): attr-2.5.1-3.el9.aarch64.rpm           183 kB/s |  58 kB     00:00    
+(4/103): rpm-build-libs-4.16.1.3-37.el9.aarch64 274 kB/s |  85 kB     00:00    
+(5/103): glibc-minimal-langpack-2.34-168.el9_6.  93 kB/s |  22 kB     00:00    
+(6/103): ca-certificates-2024.2.69_v8.0.303-91. 1.4 MB/s | 911 kB     00:00    
+(7/103): expat-2.5.0-5.el9_6.aarch64.rpm        263 kB/s | 109 kB     00:00    
+(8/103): nettle-3.10.1-1.el9.aarch64.rpm        937 kB/s | 530 kB     00:00    
+(9/103): audit-libs-3.1.5-4.el9.aarch64.rpm     321 kB/s | 119 kB     00:00    
+(10/103): usermode-1.114-6.el9.aarch64.rpm      439 kB/s | 173 kB     00:00    
+(11/103): libblkid-2.37.4-21.el9.aarch64.rpm    285 kB/s | 106 kB     00:00    
+(12/103): p11-kit-trust-0.25.3-3.el9_5.aarch64. 371 kB/s | 138 kB     00:00    
+(13/103): elfutils-libelf-0.192-6.el9_6.aarch64 457 kB/s | 202 kB     00:00    
+(14/103): libatomic-11.5.0-5.el9_5.aarch64.rpm  124 kB/s |  28 kB     00:00    
+(15/103): libeconf-0.4.1-4.el9.aarch64.rpm      111 kB/s |  25 kB     00:00    
+(16/103): systemd-libs-252-51.el9_6.2.aarch64.r 1.1 MB/s | 633 kB     00:00    
+(17/103): libcom_err-1.46.5-7.el9.aarch64.rpm   111 kB/s |  25 kB     00:00    
+(18/103): rocky-gpg-keys-9.6-1.3.el9.noarch.rpm  76 kB/s |  12 kB     00:00    
+(19/103): libzstd-1.5.5-1.el9.aarch64.rpm       554 kB/s | 273 kB     00:00    
+(20/103): gnutls-3.8.3-6.el9_6.2.aarch64.rpm    1.6 MB/s | 1.0 MB     00:00    
+(21/103): rootfiles-8.1-34.el9.noarch.rpm        64 kB/s | 9.2 kB     00:00    
+(22/103): curl-minimal-7.76.1-31.el9_6.1.aarch6 319 kB/s | 123 kB     00:00    
+(23/103): python3-hawkey-0.69.0-13.el9.aarch64. 293 kB/s |  92 kB     00:00    
+(24/103): glibc-2.34-168.el9_6.23.aarch64.rpm   2.2 MB/s | 1.7 MB     00:00    
+(25/103): filesystem-3.16-5.el9.aarch64.rpm     1.6 MB/s | 1.1 MB     00:00    
+(26/103): elfutils-debuginfod-client-0.192-6.el 123 kB/s |  41 kB     00:00    
+(27/103): libgcrypt-1.10.0-11.el9.aarch64.rpm   818 kB/s | 454 kB     00:00    
+(28/103): dnf-data-4.14.0-25.el9.noarch.rpm     156 kB/s |  35 kB     00:00    
+(29/103): openssl-libs-3.2.2-6.el9_5.1.aarch64. 2.5 MB/s | 2.2 MB     00:00    
+(30/103): openssl-3.2.2-6.el9_5.1.aarch64.rpm   1.7 MB/s | 1.3 MB     00:00    
+(31/103): libuser-0.63-16.el9.aarch64.rpm       738 kB/s | 384 kB     00:00    
+(32/103): sqlite-libs-3.34.1-8.el9_6.aarch64.rp 1.1 MB/s | 613 kB     00:00    
+(33/103): libarchive-3.5.3-6.el9_6.aarch64.rpm  826 kB/s | 385 kB     00:00    
+(34/103): tzdata-2025b-1.el9.noarch.rpm         800 kB/s | 430 kB     00:00    
+(35/103): python3-3.9.21-2.el9_6.2.aarch64.rpm  113 kB/s |  26 kB     00:00    
+(36/103): ncurses-base-6.2-10.20210508.el9_6.2. 200 kB/s |  60 kB     00:00    
+(37/103): elfutils-libs-0.192-6.el9_6.aarch64.r 565 kB/s | 258 kB     00:00    
+(38/103): libxml2-2.9.13-12.el9_6.aarch64.rpm   1.2 MB/s | 729 kB     00:00    
+(39/103): libnghttp2-1.43.0-6.el9.aarch64.rpm   206 kB/s |  72 kB     00:00    
+(40/103): file-libs-5.39-16.el9.aarch64.rpm     1.0 MB/s | 586 kB     00:00    
+(41/103): pcre2-10.40-6.el9.aarch64.rpm         450 kB/s | 217 kB     00:00    
+(42/103): util-linux-2.37.4-21.el9.aarch64.rpm  2.4 MB/s | 2.2 MB     00:00    
+(43/103): coreutils-single-8.32-39.el9.aarch64. 1.0 MB/s | 602 kB     00:00    
+(44/103): libsolv-0.7.24-3.el9.aarch64.rpm      819 kB/s | 387 kB     00:00    
+(45/103): ima-evm-utils-1.5-3.el9.rocky.0.1.aar 220 kB/s |  68 kB     00:00    
+(46/103): python3-libs-3.9.21-2.el9_6.2.aarch64 4.5 MB/s | 7.5 MB     00:01    
+(47/103): setup-2.13.7-10.el9.noarch.rpm        335 kB/s | 140 kB     00:00    
+(48/103): openldap-2.6.8-4.el9.0.1.aarch64.rpm  542 kB/s | 251 kB     00:00    
+(49/103): yum-4.14.0-25.el9.noarch.rpm          297 kB/s |  88 kB     00:00    
+(50/103): libksba-1.5.1-7.el9.aarch64.rpm       408 kB/s | 150 kB     00:00    
+(51/103): rpm-4.16.1.3-37.el9.aarch64.rpm       936 kB/s | 481 kB     00:00    
+(52/103): elfutils-default-yama-scope-0.192-6.e  54 kB/s | 8.5 kB     00:00    
+(53/103): gdbm-libs-1.23-1.el9.aarch64.rpm      183 kB/s |  55 kB     00:00    
+(54/103): crypto-policies-20250128-1.git5269e22 184 kB/s |  55 kB     00:00    
+(55/103): pcre2-syntax-10.40-6.el9.noarch.rpm   363 kB/s | 140 kB     00:00    
+(56/103): tpm2-tss-3.2.3-1.el9.aarch64.rpm      949 kB/s | 546 kB     00:00    
+(57/103): libgcc-11.5.0-5.el9_5.aarch64.rpm     222 kB/s |  78 kB     00:00    
+(58/103): krb5-libs-1.21.1-8.el9_6.aarch64.rpm  1.1 MB/s | 757 kB     00:00    
+(59/103): libselinux-3.6-3.el9.aarch64.rpm      247 kB/s |  85 kB     00:00    
+(60/103): ncurses-libs-6.2-10.20210508.el9_6.2. 555 kB/s | 310 kB     00:00    
+(61/103): libsmartcols-2.37.4-21.el9.aarch64.rp 153 kB/s |  61 kB     00:00    
+(62/103): alternatives-1.24-2.el9.aarch64.rpm   138 kB/s |  37 kB     00:00    
+(63/103): basesystem-11-13.el9.0.1.noarch.rpm    41 kB/s | 6.4 kB     00:00    
+(64/103): rpm-sign-libs-4.16.1.3-37.el9.aarch64  88 kB/s |  19 kB     00:00    
+(65/103): crypto-policies-scripts-20250128-1.gi 279 kB/s |  83 kB     00:00    
+(66/103): glibc-common-2.34-168.el9_6.23.aarch6 616 kB/s | 285 kB     00:00    
+(67/103): libdb-5.3.28-57.el9_6.aarch64.rpm     1.1 MB/s | 707 kB     00:00    
+(68/103): rocky-repos-9.6-1.3.el9.noarch.rpm     79 kB/s |  12 kB     00:00    
+(69/103): pam-1.5.1-26.el9_6.aarch64.rpm        1.0 MB/s | 541 kB     00:00    
+(70/103): libgomp-11.5.0-5.el9_5.aarch64.rpm    577 kB/s | 258 kB     00:00    
+(71/103): bzip2-libs-1.0.8-10.el9_5.aarch64.rpm 173 kB/s |  40 kB     00:00    
+(72/103): findutils-4.8.0-7.el9.aarch64.rpm     993 kB/s | 537 kB     00:00    
+(73/103): python3-libdnf-0.69.0-13.el9.aarch64. 1.2 MB/s | 715 kB     00:00    
+(74/103): python3-pip-wheel-21.3.1-1.el9.noarch 1.3 MB/s | 1.1 MB     00:00    
+(75/103): libcurl-minimal-7.76.1-31.el9_6.1.aar 480 kB/s | 220 kB     00:00    
+(76/103): glib2-2.68.4-16.el9_6.2.aarch64.rpm   2.3 MB/s | 2.6 MB     00:01    
+(77/103): libtasn1-4.16.0-9.el9.aarch64.rpm     232 kB/s |  72 kB     00:00    
+(78/103): libsepol-3.6-2.el9.aarch64.rpm        672 kB/s | 317 kB     00:00    
+(79/103): libdnf-0.69.0-13.el9.aarch64.rpm      1.1 MB/s | 599 kB     00:00    
+(80/103): libfdisk-2.37.4-21.el9.aarch64.rpm    362 kB/s | 148 kB     00:00    
+(81/103): python3-dnf-4.14.0-25.el9.noarch.rpm  816 kB/s | 410 kB     00:00    
+(82/103): util-linux-core-2.37.4-21.el9.aarch64 801 kB/s | 430 kB     00:00    
+(83/103): python3-rpm-4.16.1.3-37.el9.aarch64.r 200 kB/s |  64 kB     00:00    
+(84/103): shadow-utils-4.9-12.el9.aarch64.rpm   1.6 MB/s | 1.1 MB     00:00    
+(85/103): libacl-2.3.1-4.el9.aarch64.rpm         93 kB/s |  22 kB     00:00    
+(86/103): pcre-8.44-4.el9.aarch64.rpm           336 kB/s | 179 kB     00:00    
+(87/103): rocky-release-9.6-1.3.el9.noarch.rpm   95 kB/s |  22 kB     00:00    
+(88/103): less-590-5.el9.aarch64.rpm            153 kB/s | 160 kB     00:01    
+(89/103): libstdc++-11.5.0-5.el9_5.aarch64.rpm  678 kB/s | 695 kB     00:01    
+(90/103): librepo-1.14.5-2.el9.aarch64.rpm      255 kB/s |  84 kB     00:00    
+(91/103): p11-kit-0.25.3-3.el9_5.aarch64.rpm    371 kB/s | 488 kB     00:01    
+(92/103): libmount-2.37.4-21.el9.aarch64.rpm    342 kB/s | 131 kB     00:00    
+(93/103): rpm-libs-4.16.1.3-37.el9.aarch64.rpm  488 kB/s | 300 kB     00:00    
+(94/103): dnf-4.14.0-25.el9.noarch.rpm          755 kB/s | 466 kB     00:00    
+(95/103): binutils-2.35.2-63.el9.aarch64.rpm    1.6 MB/s | 4.7 MB     00:02    
+(96/103): libsemanage-3.6-5.el9_6.aarch64.rpm   312 kB/s | 114 kB     00:00    
+(97/103): tar-1.34-7.el9.aarch64.rpm            1.0 MB/s | 866 kB     00:00    
+(98/103): python3-setuptools-wheel-53.0.0-13.el 733 kB/s | 467 kB     00:00    
+(99/103): binutils-gold-2.35.2-63.el9.aarch64.r 728 kB/s | 881 kB     00:01    
+(100/103): libuuid-2.37.4-21.el9.aarch64.rpm    118 kB/s |  27 kB     00:00    
+(101/103): libevent-2.1.12-8.el9_4.aarch64.rpm  468 kB/s | 253 kB     00:00    
+(102/103): vim-minimal-8.2.2637-22.el9_6.1.aarc 616 kB/s | 645 kB     00:01    
+(103/103): bash-5.1.8-9.el9.aarch64.rpm         1.2 MB/s | 1.6 MB     00:01    
+--------------------------------------------------------------------------------
+Total                                           2.8 MB/s |  51 MB     00:18     
+Rocky Linux 9 - BaseOS                          1.7 MB/s | 1.7 kB     00:00    
+Importing GPG key 0x350D275D:
+ Userid     : "Rocky Enterprise Software Foundation - Release key 2022 <releng@rockylinux.org>"
+ Fingerprint: 21CB 256A E16F C54C 6E65 2949 702D 426D 350D 275D
+ From       : /etc/pki/rpm-gpg/RPM-GPG-KEY-Rocky-9
+Key imported successfully
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Running scriptlet: filesystem-3.16-5.el9.aarch64                          1/1 
+  Preparing        :                                                        1/1 
+  Upgrading        : libgcc-11.5.0-5.el9_5.aarch64                        1/203 
+  Running scriptlet: libgcc-11.5.0-5.el9_5.aarch64                        1/203 
+  Upgrading        : tzdata-2025b-1.el9.noarch                            2/203 
+  Upgrading        : python3-setuptools-wheel-53.0.0-13.el9_6.1.noarc     3/203 
+  Upgrading        : pcre2-syntax-10.40-6.el9.noarch                      4/203 
+  Upgrading        : ncurses-base-6.2-10.20210508.el9_6.2.noarch          5/203 
+  Upgrading        : dnf-data-4.14.0-25.el9.noarch                        6/203 
+  Upgrading        : rocky-gpg-keys-9.6-1.3.el9.noarch                    7/203 
+  Upgrading        : rocky-release-9.6-1.3.el9.noarch                     8/203 
+  Upgrading        : rocky-repos-9.6-1.3.el9.noarch                       9/203 
+  Upgrading        : setup-2.13.7-10.el9.noarch                          10/203 
+warning: /etc/shadow created as /etc/shadow.rpmnew
+
+  Running scriptlet: setup-2.13.7-10.el9.noarch                          10/203 
+  Upgrading        : filesystem-3.16-5.el9.aarch64                       11/203 
+  Upgrading        : basesystem-11-13.el9.0.1.noarch                     12/203 
+  Upgrading        : ncurses-libs-6.2-10.20210508.el9_6.2.aarch64        13/203 
+  Upgrading        : glibc-common-2.34-168.el9_6.23.aarch64              14/203 
+  Upgrading        : bash-5.1.8-9.el9.aarch64                            15/203 
+  Running scriptlet: bash-5.1.8-9.el9.aarch64                            15/203 
+  Running scriptlet: glibc-2.34-168.el9_6.23.aarch64                     16/203 
+  Upgrading        : glibc-2.34-168.el9_6.23.aarch64                     16/203 
+  Running scriptlet: glibc-2.34-168.el9_6.23.aarch64                     16/203 
+  Upgrading        : glibc-minimal-langpack-2.34-168.el9_6.23.aarch64    17/203 
+  Upgrading        : audit-libs-3.1.5-4.el9.aarch64                      18/203 
+  Upgrading        : libzstd-1.5.5-1.el9.aarch64                         19/203 
+  Upgrading        : bzip2-libs-1.0.8-10.el9_5.aarch64                   20/203 
+  Upgrading        : libacl-2.3.1-4.el9.aarch64                          21/203 
+  Upgrading        : libuuid-2.37.4-21.el9.aarch64                       22/203 
+  Upgrading        : sqlite-libs-3.34.1-8.el9_6.aarch64                  23/203 
+  Upgrading        : libstdc++-11.5.0-5.el9_5.aarch64                    24/203 
+  Upgrading        : libsmartcols-2.37.4-21.el9.aarch64                  25/203 
+  Upgrading        : crypto-policies-20250128-1.git5269e22.el9.noarch    26/203 
+  Running scriptlet: crypto-policies-20250128-1.git5269e22.el9.noarch    26/203 
+  Upgrading        : elfutils-libelf-0.192-6.el9_6.aarch64               27/203 
+  Upgrading        : libxml2-2.9.13-12.el9_6.aarch64                     28/203 
+  Upgrading        : libtasn1-4.16.0-9.el9.aarch64                       29/203 
+  Upgrading        : p11-kit-0.25.3-3.el9_5.aarch64                      30/203 
+  Upgrading        : libcom_err-1.46.5-7.el9.aarch64                     31/203 
+  Upgrading        : alternatives-1.24-2.el9.aarch64                     32/203 
+  Upgrading        : p11-kit-trust-0.25.3-3.el9_5.aarch64                33/203 
+  Running scriptlet: p11-kit-trust-0.25.3-3.el9_5.aarch64                33/203 
+  Upgrading        : libsepol-3.6-2.el9.aarch64                          34/203 
+  Installing       : libtool-ltdl-2.4.6-46.el9.aarch64                   35/203 
+  Installing       : attr-2.5.1-3.el9.aarch64                            36/203 
+  Installing       : keyutils-1.6.3-1.el9.aarch64                        37/203 
+  Upgrading        : expat-2.5.0-5.el9_6.aarch64                         38/203 
+  Upgrading        : nettle-3.10.1-1.el9.aarch64                         39/203 
+  Upgrading        : gnutls-3.8.3-6.el9_6.2.aarch64                      40/203 
+  Upgrading        : libeconf-0.4.1-4.el9.aarch64                        41/203 
+  Upgrading        : libgcrypt-1.10.0-11.el9.aarch64                     42/203 
+  Upgrading        : file-libs-5.39-16.el9.aarch64                       43/203 
+  Upgrading        : libnghttp2-1.43.0-6.el9.aarch64                     44/203 
+  Upgrading        : pcre2-10.40-6.el9.aarch64                           45/203 
+  Upgrading        : libselinux-3.6-3.el9.aarch64                        46/203 
+  Upgrading        : coreutils-single-8.32-39.el9.aarch64                47/203 
+  Upgrading        : libblkid-2.37.4-21.el9.aarch64                      48/203 
+  Running scriptlet: libblkid-2.37.4-21.el9.aarch64                      48/203 
+  Upgrading        : libmount-2.37.4-21.el9.aarch64                      49/203 
+  Running scriptlet: ca-certificates-2024.2.69_v8.0.303-91.4.el9_4.no    50/203 
+  Upgrading        : ca-certificates-2024.2.69_v8.0.303-91.4.el9_4.no    50/203 
+  Running scriptlet: ca-certificates-2024.2.69_v8.0.303-91.4.el9_4.no    50/203 
+  Upgrading        : openssl-libs-1:3.2.2-6.el9_5.1.aarch64              51/203 
+  Upgrading        : systemd-libs-252-51.el9_6.2.aarch64                 52/203 
+  Running scriptlet: systemd-libs-252-51.el9_6.2.aarch64                 52/203 
+  Upgrading        : util-linux-core-2.37.4-21.el9.aarch64               53/203 
+  Running scriptlet: util-linux-core-2.37.4-21.el9.aarch64               53/203 
+  Upgrading        : openssl-1:3.2.2-6.el9_5.1.aarch64                   54/203 
+  Upgrading        : libarchive-3.5.3-6.el9_6.aarch64                    55/203 
+  Upgrading        : krb5-libs-1.21.1-8.el9_6.aarch64                    56/203 
+  Upgrading        : libcurl-minimal-7.76.1-31.el9_6.1.aarch64           57/203 
+  Upgrading        : curl-minimal-7.76.1-31.el9_6.1.aarch64              58/203 
+  Upgrading        : rpm-4.16.1.3-37.el9.aarch64                         59/203 
+  Upgrading        : rpm-libs-4.16.1.3-37.el9.aarch64                    60/203 
+  Upgrading        : libsolv-0.7.24-3.el9.aarch64                        61/203 
+  Upgrading        : libevent-2.1.12-8.el9_4.aarch64                     62/203 
+  Upgrading        : python3-pip-wheel-21.3.1-1.el9.noarch               63/203 
+  Upgrading        : libfdisk-2.37.4-21.el9.aarch64                      64/203 
+  Upgrading        : libsemanage-3.6-5.el9_6.aarch64                     65/203 
+  Upgrading        : shadow-utils-2:4.9-12.el9.aarch64                   66/203 
+  Upgrading        : openldap-2.6.8-4.el9.0.1.aarch64                    67/203 
+  Running scriptlet: tpm2-tss-3.2.3-1.el9.aarch64                        68/203 
+  Upgrading        : tpm2-tss-3.2.3-1.el9.aarch64                        68/203 
+  Upgrading        : ima-evm-utils-1.5-3.el9.rocky.0.1.aarch64           69/203 
+  Upgrading        : rpm-sign-libs-4.16.1.3-37.el9.aarch64               70/203 
+  Upgrading        : gdbm-libs-1:1.23-1.el9.aarch64                      71/203 
+  Upgrading        : python3-3.9.21-2.el9_6.2.aarch64                    72/203 
+  Upgrading        : python3-libs-3.9.21-2.el9_6.2.aarch64               73/203 
+  Upgrading        : libdb-5.3.28-57.el9_6.aarch64                       74/203 
+  Upgrading        : pam-1.5.1-26.el9_6.aarch64                          75/203 
+  Upgrading        : util-linux-2.37.4-21.el9.aarch64                    76/203 
+  Upgrading        : libgomp-11.5.0-5.el9_5.aarch64                      77/203 
+  Upgrading        : pcre-8.44-4.el9.aarch64                             78/203 
+  Upgrading        : glib2-2.68.4-16.el9_6.2.aarch64                     79/203 
+  Upgrading        : libuser-0.63-16.el9.aarch64                         80/203 
+  Upgrading        : librepo-1.14.5-2.el9.aarch64                        81/203 
+  Upgrading        : libdnf-0.69.0-13.el9.aarch64                        82/203 
+  Upgrading        : python3-libdnf-0.69.0-13.el9.aarch64                83/203 
+  Upgrading        : python3-hawkey-0.69.0-13.el9.aarch64                84/203 
+  Upgrading        : elfutils-default-yama-scope-0.192-6.el9_6.noarch    85/203 
+  Running scriptlet: elfutils-default-yama-scope-0.192-6.el9_6.noarch    85/203 
+  Upgrading        : elfutils-libs-0.192-6.el9_6.aarch64                 86/203 
+  Upgrading        : rpm-build-libs-4.16.1.3-37.el9.aarch64              87/203 
+  Upgrading        : python3-rpm-4.16.1.3-37.el9.aarch64                 88/203 
+  Upgrading        : python3-dnf-4.14.0-25.el9.noarch                    89/203 
+  Upgrading        : dnf-4.14.0-25.el9.noarch                            90/203 
+  Running scriptlet: dnf-4.14.0-25.el9.noarch                            90/203 
+  Upgrading        : elfutils-debuginfod-client-0.192-6.el9_6.aarch64    91/203 
+  Upgrading        : binutils-gold-2.35.2-63.el9.aarch64                 92/203 
+  Upgrading        : binutils-2.35.2-63.el9.aarch64                      93/203 
+  Running scriptlet: binutils-2.35.2-63.el9.aarch64                      93/203 
+  Upgrading        : yum-4.14.0-25.el9.noarch                            94/203 
+  Upgrading        : usermode-1.114-6.el9.aarch64                        95/203 
+  Upgrading        : crypto-policies-scripts-20250128-1.git5269e22.el    96/203 
+  Upgrading        : findutils-1:4.8.0-7.el9.aarch64                     97/203 
+  Upgrading        : tar-2:1.34-7.el9.aarch64                            98/203 
+  Upgrading        : vim-minimal-2:8.2.2637-22.el9_6.1.aarch64           99/203 
+  Upgrading        : libatomic-11.5.0-5.el9_5.aarch64                   100/203 
+  Upgrading        : libksba-1.5.1-7.el9.aarch64                        101/203 
+  Upgrading        : less-590-5.el9.aarch64                             102/203 
+  Upgrading        : rootfiles-8.1-34.el9.noarch                        103/203 
+  Running scriptlet: binutils-2.35.2-42.el9.aarch64                     104/203 
+  Cleanup          : binutils-2.35.2-42.el9.aarch64                     104/203 
+  Running scriptlet: binutils-2.35.2-42.el9.aarch64                     104/203 
+  Cleanup          : binutils-gold-2.35.2-42.el9.aarch64                105/203 
+  Cleanup          : elfutils-debuginfod-client-0.189-3.el9.aarch64     106/203 
+  Cleanup          : usermode-1.114-4.el9.aarch64                       107/203 
+  Cleanup          : util-linux-2.37.4-15.el9.aarch64                   108/203 
+  Cleanup          : util-linux-core-2.37.4-15.el9.aarch64              109/203 
+  Cleanup          : systemd-libs-252-18.el9.aarch64                    110/203 
+  Cleanup          : libuser-0.63-13.el9.aarch64                        111/203 
+  Cleanup          : pam-1.5.1-15.el9.aarch64                           112/203 
+  Cleanup          : openssl-1:3.0.7-24.el9.aarch64                     113/203 
+  Cleanup          : libfdisk-2.37.4-15.el9.aarch64                     114/203 
+  Cleanup          : vim-minimal-2:8.2.2637-20.el9_1.aarch64            115/203 
+  Cleanup          : openldap-2.6.3-1.el9.aarch64                       116/203 
+  Cleanup          : libevent-2.1.12-6.el9.aarch64                      117/203 
+  Cleanup          : tar-2:1.34-6.el9_1.aarch64                         118/203 
+  Cleanup          : less-590-2.el9_2.aarch64                           119/203 
+  Cleanup          : findutils-1:4.8.0-6.el9.aarch64                    120/203 
+  Cleanup          : libgcrypt-1.10.0-10.el9_2.aarch64                  121/203 
+  Cleanup          : libdb-5.3.28-53.el9.aarch64                        122/203 
+  Cleanup          : libeconf-0.4.1-3.el9_2.aarch64                     123/203 
+  Cleanup          : libksba-1.5.1-6.el9_1.aarch64                      124/203 
+  Cleanup          : libatomic-11.4.1-2.1.el9.aarch64                   125/203 
+  Cleanup          : crypto-policies-scripts-20230731-1.git94f0e2c.el   126/203 
+  Cleanup          : rocky-repos-9.3-1.1.el9.noarch                     127/203 
+  Cleanup          : yum-4.14.0-8.el9.noarch                            128/203 
+  Running scriptlet: dnf-4.14.0-8.el9.noarch                            129/203 
+  Cleanup          : dnf-4.14.0-8.el9.noarch                            129/203 
+  Running scriptlet: dnf-4.14.0-8.el9.noarch                            129/203 
+  Cleanup          : python3-dnf-4.14.0-8.el9.noarch                    130/203 
+  Cleanup          : dnf-data-4.14.0-8.el9.noarch                       131/203 
+  Cleanup          : rocky-gpg-keys-9.3-1.1.el9.noarch                  132/203 
+  Cleanup          : rootfiles-8.1-31.el9.noarch                        133/203 
+  Cleanup          : python3-hawkey-0.69.0-6.el9_3.aarch64              134/203 
+  Cleanup          : python3-libdnf-0.69.0-6.el9_3.aarch64              135/203 
+  Cleanup          : libdnf-0.69.0-6.el9_3.aarch64                      136/203 
+  Cleanup          : librepo-1.14.5-1.el9.aarch64                       137/203 
+  Cleanup          : glib2-2.68.4-11.el9.aarch64                        138/203 
+  Cleanup          : gnutls-3.7.6-23.el9.aarch64                        139/203 
+  Cleanup          : libstdc++-11.4.1-2.1.el9.aarch64                   140/203 
+  Cleanup          : libsolv-0.7.24-2.el9.aarch64                       141/203 
+  Cleanup          : libmount-2.37.4-15.el9.aarch64                     142/203 
+  Cleanup          : python3-rpm-4.16.1.3-25.el9.aarch64                143/203 
+  Cleanup          : rpm-build-libs-4.16.1.3-25.el9.aarch64             144/203 
+  Cleanup          : elfutils-libs-0.189-3.el9.aarch64                  145/203 
+  Cleanup          : rpm-sign-libs-4.16.1.3-25.el9.aarch64              146/203 
+  Cleanup          : rpm-4.16.1.3-25.el9.aarch64                        147/203 
+  Cleanup          : rpm-libs-4.16.1.3-25.el9.aarch64                   148/203 
+  Cleanup          : libarchive-3.5.3-4.el9.aarch64                     149/203 
+  Cleanup          : libxml2-2.9.13-4.el9.aarch64                       150/203 
+  Cleanup          : ima-evm-utils-1.4-4.el9.aarch64                    151/203 
+  Cleanup          : tpm2-tss-3.2.2-2.el9.aarch64                       152/203 
+  Cleanup          : shadow-utils-2:4.9-8.el9.aarch64                   153/203 
+  Cleanup          : libsemanage-3.5-2.el9.aarch64                      154/203 
+  Cleanup          : libblkid-2.37.4-15.el9.aarch64                     155/203 
+  Cleanup          : curl-minimal-7.76.1-26.el9_3.2.0.1.aarch64         156/203 
+  Cleanup          : libcurl-minimal-7.76.1-26.el9_3.2.0.1.aarch64      157/203 
+  Cleanup          : krb5-libs-1.21.1-1.el9.aarch64                     158/203 
+  Cleanup          : file-libs-5.39-14.el9.aarch64                      159/203 
+  Cleanup          : elfutils-libelf-0.189-3.el9.aarch64                160/203 
+  Cleanup          : libgomp-11.4.1-2.1.el9.aarch64                     161/203 
+  Cleanup          : libzstd-1.5.1-2.el9.aarch64                        162/203 
+  Cleanup          : audit-libs-3.0.7-104.el9.aarch64                   163/203 
+  Cleanup          : python3-3.9.18-1.el9_3.aarch64                     164/203 
+  Cleanup          : python3-libs-3.9.18-1.el9_3.aarch64                165/203 
+  Cleanup          : openssl-libs-1:3.0.7-24.el9.aarch64                166/203 
+  Cleanup          : sqlite-libs-3.34.1-6.el9_1.aarch64                 167/203 
+  Cleanup          : expat-2.5.0-1.el9.aarch64                          168/203 
+  Cleanup          : libuuid-2.37.4-15.el9.aarch64                      169/203 
+  Cleanup          : gdbm-libs-1:1.19-4.el9.aarch64                     170/203 
+  Cleanup          : nettle-3.8-3.el9_0.aarch64                         171/203 
+  Cleanup          : bzip2-libs-1.0.8-8.el9.aarch64                     172/203 
+  Cleanup          : libcom_err-1.46.5-3.el9.aarch64                    173/203 
+  Cleanup          : libnghttp2-1.43.0-5.el9_3.1.aarch64                174/203 
+  Cleanup          : pcre-8.44-3.el9.3.aarch64                          175/203 
+  Cleanup          : libsmartcols-2.37.4-15.el9.aarch64                 176/203 
+  Cleanup          : python3-pip-wheel-21.2.3-7.el9.noarch              177/203 
+  Cleanup          : ca-certificates-2023.2.60_v7.0.306-90.1.el9_2.no   178/203 
+  Cleanup          : elfutils-default-yama-scope-0.189-3.el9.noarch     179/203 
+  Cleanup          : crypto-policies-20230731-1.git94f0e2c.el9_3.1.no   180/203 
+  Cleanup          : python3-setuptools-wheel-53.0.0-12.el9.noarch      181/203 
+  Cleanup          : p11-kit-trust-0.24.1-2.el9.aarch64                 182/203 
+  Running scriptlet: p11-kit-trust-0.24.1-2.el9.aarch64                 182/203 
+  Cleanup          : coreutils-single-8.32-34.el9.aarch64               183/203 
+  Cleanup          : libselinux-3.5-1.el9.aarch64                       184/203 
+  Cleanup          : p11-kit-0.24.1-2.el9.aarch64                       185/203 
+  Cleanup          : libsepol-3.5-1.el9.aarch64                         186/203 
+  Cleanup          : alternatives-1.24-1.el9.aarch64                    187/203 
+  Cleanup          : pcre2-10.40-2.el9.aarch64                          188/203 
+  Cleanup          : libacl-2.3.1-3.el9.aarch64                         189/203 
+  Cleanup          : libtasn1-4.16.0-8.el9_1.aarch64                    190/203 
+  Cleanup          : pcre2-syntax-10.40-2.el9.noarch                    191/203 
+  Cleanup          : ncurses-libs-6.2-10.20210508.el9.aarch64           192/203 
+  Cleanup          : bash-5.1.8-6.el9_1.aarch64                         193/203 
+  Running scriptlet: bash-5.1.8-6.el9_1.aarch64                         193/203 
+  Cleanup          : glibc-common-2.34-83.el9.7.aarch64                 194/203 
+  Cleanup          : glibc-minimal-langpack-2.34-83.el9.7.aarch64       195/203 
+  Cleanup          : glibc-2.34-83.el9.7.aarch64                        196/203 
+  Cleanup          : basesystem-11-13.el9.noarch                        197/203 
+  Cleanup          : filesystem-3.16-2.el9.aarch64                      198/203 
+  Cleanup          : setup-2.13.7-9.el9.noarch                          199/203 
+  Cleanup          : rocky-release-9.3-1.1.el9.noarch                   200/203 
+  Cleanup          : tzdata-2023c-1.el9.noarch                          201/203 
+  Cleanup          : ncurses-base-6.2-10.20210508.el9.noarch            202/203 
+  Cleanup          : libgcc-11.4.1-2.1.el9.aarch64                      203/203 
+  Running scriptlet: libgcc-11.4.1-2.1.el9.aarch64                      203/203 
+  Running scriptlet: filesystem-3.16-5.el9.aarch64                      203/203 
+  Running scriptlet: ca-certificates-2024.2.69_v8.0.303-91.4.el9_4.no   203/203 
+  Running scriptlet: rpm-4.16.1.3-37.el9.aarch64                        203/203 
+  Running scriptlet: crypto-policies-scripts-20250128-1.git5269e22.el   203/203 
+  Running scriptlet: rootfiles-8.1-34.el9.noarch                        203/203 
+  Running scriptlet: libgcc-11.4.1-2.1.el9.aarch64                      203/203 
+  Verifying        : libtool-ltdl-2.4.6-46.el9.aarch64                    1/203 
+  Verifying        : attr-2.5.1-3.el9.aarch64                             2/203 
+  Verifying        : keyutils-1.6.3-1.el9.aarch64                         3/203 
+  Verifying        : rpm-build-libs-4.16.1.3-37.el9.aarch64               4/203 
+  Verifying        : rpm-build-libs-4.16.1.3-25.el9.aarch64               5/203 
+  Verifying        : ca-certificates-2024.2.69_v8.0.303-91.4.el9_4.no     6/203 
+  Verifying        : ca-certificates-2023.2.60_v7.0.306-90.1.el9_2.no     7/203 
+  Verifying        : glibc-minimal-langpack-2.34-168.el9_6.23.aarch64     8/203 
+  Verifying        : glibc-minimal-langpack-2.34-83.el9.7.aarch64         9/203 
+  Verifying        : expat-2.5.0-5.el9_6.aarch64                         10/203 
+  Verifying        : expat-2.5.0-1.el9.aarch64                           11/203 
+  Verifying        : nettle-3.10.1-1.el9.aarch64                         12/203 
+  Verifying        : nettle-3.8-3.el9_0.aarch64                          13/203 
+  Verifying        : usermode-1.114-6.el9.aarch64                        14/203 
+  Verifying        : usermode-1.114-4.el9.aarch64                        15/203 
+  Verifying        : audit-libs-3.1.5-4.el9.aarch64                      16/203 
+  Verifying        : audit-libs-3.0.7-104.el9.aarch64                    17/203 
+  Verifying        : libblkid-2.37.4-21.el9.aarch64                      18/203 
+  Verifying        : libblkid-2.37.4-15.el9.aarch64                      19/203 
+  Verifying        : p11-kit-trust-0.25.3-3.el9_5.aarch64                20/203 
+  Verifying        : p11-kit-trust-0.24.1-2.el9.aarch64                  21/203 
+  Verifying        : elfutils-libelf-0.192-6.el9_6.aarch64               22/203 
+  Verifying        : elfutils-libelf-0.189-3.el9.aarch64                 23/203 
+  Verifying        : systemd-libs-252-51.el9_6.2.aarch64                 24/203 
+  Verifying        : systemd-libs-252-18.el9.aarch64                     25/203 
+  Verifying        : libatomic-11.5.0-5.el9_5.aarch64                    26/203 
+  Verifying        : libatomic-11.4.1-2.1.el9.aarch64                    27/203 
+  Verifying        : libeconf-0.4.1-4.el9.aarch64                        28/203 
+  Verifying        : libeconf-0.4.1-3.el9_2.aarch64                      29/203 
+  Verifying        : gnutls-3.8.3-6.el9_6.2.aarch64                      30/203 
+  Verifying        : gnutls-3.7.6-23.el9.aarch64                         31/203 
+  Verifying        : libzstd-1.5.5-1.el9.aarch64                         32/203 
+  Verifying        : libzstd-1.5.1-2.el9.aarch64                         33/203 
+  Verifying        : libcom_err-1.46.5-7.el9.aarch64                     34/203 
+  Verifying        : libcom_err-1.46.5-3.el9.aarch64                     35/203 
+  Verifying        : rocky-gpg-keys-9.6-1.3.el9.noarch                   36/203 
+  Verifying        : rocky-gpg-keys-9.3-1.1.el9.noarch                   37/203 
+  Verifying        : curl-minimal-7.76.1-31.el9_6.1.aarch64              38/203 
+  Verifying        : curl-minimal-7.76.1-26.el9_3.2.0.1.aarch64          39/203 
+  Verifying        : glibc-2.34-168.el9_6.23.aarch64                     40/203 
+  Verifying        : glibc-2.34-83.el9.7.aarch64                         41/203 
+  Verifying        : rootfiles-8.1-34.el9.noarch                         42/203 
+  Verifying        : rootfiles-8.1-31.el9.noarch                         43/203 
+  Verifying        : filesystem-3.16-5.el9.aarch64                       44/203 
+  Verifying        : filesystem-3.16-2.el9.aarch64                       45/203 
+  Verifying        : python3-hawkey-0.69.0-13.el9.aarch64                46/203 
+  Verifying        : python3-hawkey-0.69.0-6.el9_3.aarch64               47/203 
+  Verifying        : libgcrypt-1.10.0-11.el9.aarch64                     48/203 
+  Verifying        : libgcrypt-1.10.0-10.el9_2.aarch64                   49/203 
+  Verifying        : elfutils-debuginfod-client-0.192-6.el9_6.aarch64    50/203 
+  Verifying        : elfutils-debuginfod-client-0.189-3.el9.aarch64      51/203 
+  Verifying        : openssl-libs-1:3.2.2-6.el9_5.1.aarch64              52/203 
+  Verifying        : openssl-libs-1:3.0.7-24.el9.aarch64                 53/203 
+  Verifying        : openssl-1:3.2.2-6.el9_5.1.aarch64                   54/203 
+  Verifying        : openssl-1:3.0.7-24.el9.aarch64                      55/203 
+  Verifying        : dnf-data-4.14.0-25.el9.noarch                       56/203 
+  Verifying        : dnf-data-4.14.0-8.el9.noarch                        57/203 
+  Verifying        : libuser-0.63-16.el9.aarch64                         58/203 
+  Verifying        : libuser-0.63-13.el9.aarch64                         59/203 
+  Verifying        : sqlite-libs-3.34.1-8.el9_6.aarch64                  60/203 
+  Verifying        : sqlite-libs-3.34.1-6.el9_1.aarch64                  61/203 
+  Verifying        : tzdata-2025b-1.el9.noarch                           62/203 
+  Verifying        : tzdata-2023c-1.el9.noarch                           63/203 
+  Verifying        : libarchive-3.5.3-6.el9_6.aarch64                    64/203 
+  Verifying        : libarchive-3.5.3-4.el9.aarch64                      65/203 
+  Verifying        : python3-3.9.21-2.el9_6.2.aarch64                    66/203 
+  Verifying        : python3-3.9.18-1.el9_3.aarch64                      67/203 
+  Verifying        : ncurses-base-6.2-10.20210508.el9_6.2.noarch         68/203 
+  Verifying        : ncurses-base-6.2-10.20210508.el9.noarch             69/203 
+  Verifying        : elfutils-libs-0.192-6.el9_6.aarch64                 70/203 
+  Verifying        : elfutils-libs-0.189-3.el9.aarch64                   71/203 
+  Verifying        : libxml2-2.9.13-12.el9_6.aarch64                     72/203 
+  Verifying        : libxml2-2.9.13-4.el9.aarch64                        73/203 
+  Verifying        : file-libs-5.39-16.el9.aarch64                       74/203 
+  Verifying        : file-libs-5.39-14.el9.aarch64                       75/203 
+  Verifying        : libnghttp2-1.43.0-6.el9.aarch64                     76/203 
+  Verifying        : libnghttp2-1.43.0-5.el9_3.1.aarch64                 77/203 
+  Verifying        : util-linux-2.37.4-21.el9.aarch64                    78/203 
+  Verifying        : util-linux-2.37.4-15.el9.aarch64                    79/203 
+  Verifying        : pcre2-10.40-6.el9.aarch64                           80/203 
+  Verifying        : pcre2-10.40-2.el9.aarch64                           81/203 
+  Verifying        : python3-libs-3.9.21-2.el9_6.2.aarch64               82/203 
+  Verifying        : python3-libs-3.9.18-1.el9_3.aarch64                 83/203 
+  Verifying        : coreutils-single-8.32-39.el9.aarch64                84/203 
+  Verifying        : coreutils-single-8.32-34.el9.aarch64                85/203 
+  Verifying        : libsolv-0.7.24-3.el9.aarch64                        86/203 
+  Verifying        : libsolv-0.7.24-2.el9.aarch64                        87/203 
+  Verifying        : ima-evm-utils-1.5-3.el9.rocky.0.1.aarch64           88/203 
+  Verifying        : ima-evm-utils-1.4-4.el9.aarch64                     89/203 
+  Verifying        : openldap-2.6.8-4.el9.0.1.aarch64                    90/203 
+  Verifying        : openldap-2.6.3-1.el9.aarch64                        91/203 
+  Verifying        : setup-2.13.7-10.el9.noarch                          92/203 
+  Verifying        : setup-2.13.7-9.el9.noarch                           93/203 
+  Verifying        : rpm-4.16.1.3-37.el9.aarch64                         94/203 
+  Verifying        : rpm-4.16.1.3-25.el9.aarch64                         95/203 
+  Verifying        : libksba-1.5.1-7.el9.aarch64                         96/203 
+  Verifying        : libksba-1.5.1-6.el9_1.aarch64                       97/203 
+  Verifying        : yum-4.14.0-25.el9.noarch                            98/203 
+  Verifying        : yum-4.14.0-8.el9.noarch                             99/203 
+  Verifying        : gdbm-libs-1:1.23-1.el9.aarch64                     100/203 
+  Verifying        : gdbm-libs-1:1.19-4.el9.aarch64                     101/203 
+  Verifying        : elfutils-default-yama-scope-0.192-6.el9_6.noarch   102/203 
+  Verifying        : elfutils-default-yama-scope-0.189-3.el9.noarch     103/203 
+  Verifying        : crypto-policies-20250128-1.git5269e22.el9.noarch   104/203 
+  Verifying        : crypto-policies-20230731-1.git94f0e2c.el9_3.1.no   105/203 
+  Verifying        : pcre2-syntax-10.40-6.el9.noarch                    106/203 
+  Verifying        : pcre2-syntax-10.40-2.el9.noarch                    107/203 
+  Verifying        : tpm2-tss-3.2.3-1.el9.aarch64                       108/203 
+  Verifying        : tpm2-tss-3.2.2-2.el9.aarch64                       109/203 
+  Verifying        : krb5-libs-1.21.1-8.el9_6.aarch64                   110/203 
+  Verifying        : krb5-libs-1.21.1-1.el9.aarch64                     111/203 
+  Verifying        : libgcc-11.5.0-5.el9_5.aarch64                      112/203 
+  Verifying        : libgcc-11.4.1-2.1.el9.aarch64                      113/203 
+  Verifying        : ncurses-libs-6.2-10.20210508.el9_6.2.aarch64       114/203 
+  Verifying        : ncurses-libs-6.2-10.20210508.el9.aarch64           115/203 
+  Verifying        : libselinux-3.6-3.el9.aarch64                       116/203 
+  Verifying        : libselinux-3.5-1.el9.aarch64                       117/203 
+  Verifying        : libsmartcols-2.37.4-21.el9.aarch64                 118/203 
+  Verifying        : libsmartcols-2.37.4-15.el9.aarch64                 119/203 
+  Verifying        : alternatives-1.24-2.el9.aarch64                    120/203 
+  Verifying        : alternatives-1.24-1.el9.aarch64                    121/203 
+  Verifying        : rpm-sign-libs-4.16.1.3-37.el9.aarch64              122/203 
+  Verifying        : rpm-sign-libs-4.16.1.3-25.el9.aarch64              123/203 
+  Verifying        : basesystem-11-13.el9.0.1.noarch                    124/203 
+  Verifying        : basesystem-11-13.el9.noarch                        125/203 
+  Verifying        : libdb-5.3.28-57.el9_6.aarch64                      126/203 
+  Verifying        : libdb-5.3.28-53.el9.aarch64                        127/203 
+  Verifying        : crypto-policies-scripts-20250128-1.git5269e22.el   128/203 
+  Verifying        : crypto-policies-scripts-20230731-1.git94f0e2c.el   129/203 
+  Verifying        : glibc-common-2.34-168.el9_6.23.aarch64             130/203 
+  Verifying        : glibc-common-2.34-83.el9.7.aarch64                 131/203 
+  Verifying        : pam-1.5.1-26.el9_6.aarch64                         132/203 
+  Verifying        : pam-1.5.1-15.el9.aarch64                           133/203 
+  Verifying        : rocky-repos-9.6-1.3.el9.noarch                     134/203 
+  Verifying        : rocky-repos-9.3-1.1.el9.noarch                     135/203 
+  Verifying        : libgomp-11.5.0-5.el9_5.aarch64                     136/203 
+  Verifying        : libgomp-11.4.1-2.1.el9.aarch64                     137/203 
+  Verifying        : findutils-1:4.8.0-7.el9.aarch64                    138/203 
+  Verifying        : findutils-1:4.8.0-6.el9.aarch64                    139/203 
+  Verifying        : bzip2-libs-1.0.8-10.el9_5.aarch64                  140/203 
+  Verifying        : bzip2-libs-1.0.8-8.el9.aarch64                     141/203 
+  Verifying        : python3-libdnf-0.69.0-13.el9.aarch64               142/203 
+  Verifying        : python3-libdnf-0.69.0-6.el9_3.aarch64              143/203 
+  Verifying        : glib2-2.68.4-16.el9_6.2.aarch64                    144/203 
+  Verifying        : glib2-2.68.4-11.el9.aarch64                        145/203 
+  Verifying        : python3-pip-wheel-21.3.1-1.el9.noarch              146/203 
+  Verifying        : python3-pip-wheel-21.2.3-7.el9.noarch              147/203 
+  Verifying        : libcurl-minimal-7.76.1-31.el9_6.1.aarch64          148/203 
+  Verifying        : libcurl-minimal-7.76.1-26.el9_3.2.0.1.aarch64      149/203 
+  Verifying        : libsepol-3.6-2.el9.aarch64                         150/203 
+  Verifying        : libsepol-3.5-1.el9.aarch64                         151/203 
+  Verifying        : libtasn1-4.16.0-9.el9.aarch64                      152/203 
+  Verifying        : libtasn1-4.16.0-8.el9_1.aarch64                    153/203 
+  Verifying        : libdnf-0.69.0-13.el9.aarch64                       154/203 
+  Verifying        : libdnf-0.69.0-6.el9_3.aarch64                      155/203 
+  Verifying        : libfdisk-2.37.4-21.el9.aarch64                     156/203 
+  Verifying        : libfdisk-2.37.4-15.el9.aarch64                     157/203 
+  Verifying        : python3-dnf-4.14.0-25.el9.noarch                   158/203 
+  Verifying        : python3-dnf-4.14.0-8.el9.noarch                    159/203 
+  Verifying        : shadow-utils-2:4.9-12.el9.aarch64                  160/203 
+  Verifying        : shadow-utils-2:4.9-8.el9.aarch64                   161/203 
+  Verifying        : util-linux-core-2.37.4-21.el9.aarch64              162/203 
+  Verifying        : util-linux-core-2.37.4-15.el9.aarch64              163/203 
+  Verifying        : python3-rpm-4.16.1.3-37.el9.aarch64                164/203 
+  Verifying        : python3-rpm-4.16.1.3-25.el9.aarch64                165/203 
+  Verifying        : less-590-5.el9.aarch64                             166/203 
+  Verifying        : less-590-2.el9_2.aarch64                           167/203 
+  Verifying        : pcre-8.44-4.el9.aarch64                            168/203 
+  Verifying        : pcre-8.44-3.el9.3.aarch64                          169/203 
+  Verifying        : libacl-2.3.1-4.el9.aarch64                         170/203 
+  Verifying        : libacl-2.3.1-3.el9.aarch64                         171/203 
+  Verifying        : binutils-2.35.2-63.el9.aarch64                     172/203 
+  Verifying        : binutils-2.35.2-42.el9.aarch64                     173/203 
+  Verifying        : rocky-release-9.6-1.3.el9.noarch                   174/203 
+  Verifying        : rocky-release-9.3-1.1.el9.noarch                   175/203 
+  Verifying        : libstdc++-11.5.0-5.el9_5.aarch64                   176/203 
+  Verifying        : libstdc++-11.4.1-2.1.el9.aarch64                   177/203 
+  Verifying        : p11-kit-0.25.3-3.el9_5.aarch64                     178/203 
+  Verifying        : p11-kit-0.24.1-2.el9.aarch64                       179/203 
+  Verifying        : librepo-1.14.5-2.el9.aarch64                       180/203 
+  Verifying        : librepo-1.14.5-1.el9.aarch64                       181/203 
+  Verifying        : libmount-2.37.4-21.el9.aarch64                     182/203 
+  Verifying        : libmount-2.37.4-15.el9.aarch64                     183/203 
+  Verifying        : rpm-libs-4.16.1.3-37.el9.aarch64                   184/203 
+  Verifying        : rpm-libs-4.16.1.3-25.el9.aarch64                   185/203 
+  Verifying        : dnf-4.14.0-25.el9.noarch                           186/203 
+  Verifying        : dnf-4.14.0-8.el9.noarch                            187/203 
+  Verifying        : binutils-gold-2.35.2-63.el9.aarch64                188/203 
+  Verifying        : binutils-gold-2.35.2-42.el9.aarch64                189/203 
+  Verifying        : libsemanage-3.6-5.el9_6.aarch64                    190/203 
+  Verifying        : libsemanage-3.5-2.el9.aarch64                      191/203 
+  Verifying        : tar-2:1.34-7.el9.aarch64                           192/203 
+  Verifying        : tar-2:1.34-6.el9_1.aarch64                         193/203 
+  Verifying        : python3-setuptools-wheel-53.0.0-13.el9_6.1.noarc   194/203 
+  Verifying        : python3-setuptools-wheel-53.0.0-12.el9.noarch      195/203 
+  Verifying        : bash-5.1.8-9.el9.aarch64                           196/203 
+  Verifying        : bash-5.1.8-6.el9_1.aarch64                         197/203 
+  Verifying        : libuuid-2.37.4-21.el9.aarch64                      198/203 
+  Verifying        : libuuid-2.37.4-15.el9.aarch64                      199/203 
+  Verifying        : vim-minimal-2:8.2.2637-22.el9_6.1.aarch64          200/203 
+  Verifying        : vim-minimal-2:8.2.2637-20.el9_1.aarch64            201/203 
+  Verifying        : libevent-2.1.12-8.el9_4.aarch64                    202/203 
+  Verifying        : libevent-2.1.12-6.el9.aarch64                      203/203 
+
+Upgraded:
+  alternatives-1.24-2.el9.aarch64                                               
+  audit-libs-3.1.5-4.el9.aarch64                                                
+  basesystem-11-13.el9.0.1.noarch                                               
+  bash-5.1.8-9.el9.aarch64                                                      
+  binutils-2.35.2-63.el9.aarch64                                                
+  binutils-gold-2.35.2-63.el9.aarch64                                           
+  bzip2-libs-1.0.8-10.el9_5.aarch64                                             
+  ca-certificates-2024.2.69_v8.0.303-91.4.el9_4.noarch                          
+  coreutils-single-8.32-39.el9.aarch64                                          
+  crypto-policies-20250128-1.git5269e22.el9.noarch                              
+  crypto-policies-scripts-20250128-1.git5269e22.el9.noarch                      
+  curl-minimal-7.76.1-31.el9_6.1.aarch64                                        
+  dnf-4.14.0-25.el9.noarch                                                      
+  dnf-data-4.14.0-25.el9.noarch                                                 
+  elfutils-debuginfod-client-0.192-6.el9_6.aarch64                              
+  elfutils-default-yama-scope-0.192-6.el9_6.noarch                              
+  elfutils-libelf-0.192-6.el9_6.aarch64                                         
+  elfutils-libs-0.192-6.el9_6.aarch64                                           
+  expat-2.5.0-5.el9_6.aarch64                                                   
+  file-libs-5.39-16.el9.aarch64                                                 
+  filesystem-3.16-5.el9.aarch64                                                 
+  findutils-1:4.8.0-7.el9.aarch64                                               
+  gdbm-libs-1:1.23-1.el9.aarch64                                                
+  glib2-2.68.4-16.el9_6.2.aarch64                                               
+  glibc-2.34-168.el9_6.23.aarch64                                               
+  glibc-common-2.34-168.el9_6.23.aarch64                                        
+  glibc-minimal-langpack-2.34-168.el9_6.23.aarch64                              
+  gnutls-3.8.3-6.el9_6.2.aarch64                                                
+  ima-evm-utils-1.5-3.el9.rocky.0.1.aarch64                                     
+  krb5-libs-1.21.1-8.el9_6.aarch64                                              
+  less-590-5.el9.aarch64                                                        
+  libacl-2.3.1-4.el9.aarch64                                                    
+  libarchive-3.5.3-6.el9_6.aarch64                                              
+  libatomic-11.5.0-5.el9_5.aarch64                                              
+  libblkid-2.37.4-21.el9.aarch64                                                
+  libcom_err-1.46.5-7.el9.aarch64                                               
+  libcurl-minimal-7.76.1-31.el9_6.1.aarch64                                     
+  libdb-5.3.28-57.el9_6.aarch64                                                 
+  libdnf-0.69.0-13.el9.aarch64                                                  
+  libeconf-0.4.1-4.el9.aarch64                                                  
+  libevent-2.1.12-8.el9_4.aarch64                                               
+  libfdisk-2.37.4-21.el9.aarch64                                                
+  libgcc-11.5.0-5.el9_5.aarch64                                                 
+  libgcrypt-1.10.0-11.el9.aarch64                                               
+  libgomp-11.5.0-5.el9_5.aarch64                                                
+  libksba-1.5.1-7.el9.aarch64                                                   
+  libmount-2.37.4-21.el9.aarch64                                                
+  libnghttp2-1.43.0-6.el9.aarch64                                               
+  librepo-1.14.5-2.el9.aarch64                                                  
+  libselinux-3.6-3.el9.aarch64                                                  
+  libsemanage-3.6-5.el9_6.aarch64                                               
+  libsepol-3.6-2.el9.aarch64                                                    
+  libsmartcols-2.37.4-21.el9.aarch64                                            
+  libsolv-0.7.24-3.el9.aarch64                                                  
+  libstdc++-11.5.0-5.el9_5.aarch64                                              
+  libtasn1-4.16.0-9.el9.aarch64                                                 
+  libuser-0.63-16.el9.aarch64                                                   
+  libuuid-2.37.4-21.el9.aarch64                                                 
+  libxml2-2.9.13-12.el9_6.aarch64                                               
+  libzstd-1.5.5-1.el9.aarch64                                                   
+  ncurses-base-6.2-10.20210508.el9_6.2.noarch                                   
+  ncurses-libs-6.2-10.20210508.el9_6.2.aarch64                                  
+  nettle-3.10.1-1.el9.aarch64                                                   
+  openldap-2.6.8-4.el9.0.1.aarch64                                              
+  openssl-1:3.2.2-6.el9_5.1.aarch64                                             
+  openssl-libs-1:3.2.2-6.el9_5.1.aarch64                                        
+  p11-kit-0.25.3-3.el9_5.aarch64                                                
+  p11-kit-trust-0.25.3-3.el9_5.aarch64                                          
+  pam-1.5.1-26.el9_6.aarch64                                                    
+  pcre-8.44-4.el9.aarch64                                                       
+  pcre2-10.40-6.el9.aarch64                                                     
+  pcre2-syntax-10.40-6.el9.noarch                                               
+  python3-3.9.21-2.el9_6.2.aarch64                                              
+  python3-dnf-4.14.0-25.el9.noarch                                              
+  python3-hawkey-0.69.0-13.el9.aarch64                                          
+  python3-libdnf-0.69.0-13.el9.aarch64                                          
+  python3-libs-3.9.21-2.el9_6.2.aarch64                                         
+  python3-pip-wheel-21.3.1-1.el9.noarch                                         
+  python3-rpm-4.16.1.3-37.el9.aarch64                                           
+  python3-setuptools-wheel-53.0.0-13.el9_6.1.noarch                             
+  rocky-gpg-keys-9.6-1.3.el9.noarch                                             
+  rocky-release-9.6-1.3.el9.noarch                                              
+  rocky-repos-9.6-1.3.el9.noarch                                                
+  rootfiles-8.1-34.el9.noarch                                                   
+  rpm-4.16.1.3-37.el9.aarch64                                                   
+  rpm-build-libs-4.16.1.3-37.el9.aarch64                                        
+  rpm-libs-4.16.1.3-37.el9.aarch64                                              
+  rpm-sign-libs-4.16.1.3-37.el9.aarch64                                         
+  setup-2.13.7-10.el9.noarch                                                    
+  shadow-utils-2:4.9-12.el9.aarch64                                             
+  sqlite-libs-3.34.1-8.el9_6.aarch64                                            
+  systemd-libs-252-51.el9_6.2.aarch64                                           
+  tar-2:1.34-7.el9.aarch64                                                      
+  tpm2-tss-3.2.3-1.el9.aarch64                                                  
+  tzdata-2025b-1.el9.noarch                                                     
+  usermode-1.114-6.el9.aarch64                                                  
+  util-linux-2.37.4-21.el9.aarch64                                              
+  util-linux-core-2.37.4-21.el9.aarch64                                         
+  vim-minimal-2:8.2.2637-22.el9_6.1.aarch64                                     
+  yum-4.14.0-25.el9.noarch                                                      
+Installed:
+  attr-2.5.1-3.el9.aarch64                  keyutils-1.6.3-1.el9.aarch64        
+  libtool-ltdl-2.4.6-46.el9.aarch64        
+
+Complete!
+Last metadata expiration check: 0:00:23 ago on Wed Oct 22 22:44:56 2025.
+Package python3-3.9.21-2.el9_6.2.aarch64 is already installed.
+Dependencies resolved.
+================================================================================
+ Package                  Arch     Version                     Repository  Size
+================================================================================
+Installing:
+ autoconf                 noarch   2.69-39.el9                 appstream  665 k
+ automake                 noarch   1.16.2-8.el9                appstream  662 k
+ cmake                    aarch64  3.26.5-2.el9                appstream  7.0 M
+ curl                     aarch64  7.76.1-31.el9_6.1           baseos     289 k
+ file                     aarch64  5.39-16.el9                 baseos      48 k
+ gcc                      aarch64  11.5.0-5.el9_5              appstream   30 M
+ gcc-c++                  aarch64  11.5.0-5.el9_5              appstream   12 M
+ gcc-gfortran             aarch64  11.5.0-5.el9_5              appstream   12 M
+ gdb                      aarch64  14.2-4.1.el9_6              appstream  139 k
+ git                      aarch64  2.47.3-1.el9_6              appstream   50 k
+ hwloc-devel              aarch64  2.4.1-5.el9                 appstream  251 k
+ libtool                  aarch64  2.4.6-46.el9                appstream  577 k
+ make                     aarch64  1:4.3-8.el9                 baseos     526 k
+ numactl                  aarch64  2.0.19-1.el9                baseos      67 k
+ openmpi                  aarch64  2:4.1.1-7.el9               appstream  2.6 M
+ openmpi-devel            aarch64  2:4.1.1-7.el9               appstream  1.2 M
+ procps-ng                aarch64  3.3.17-14.el9               baseos     333 k
+ python3-devel            aarch64  3.9.21-2.el9_6.2            appstream  204 k
+ python3-pip              noarch   21.3.1-1.el9                appstream  1.7 M
+ strace                   aarch64  6.12-1.el9                  baseos     1.4 M
+ valgrind                 aarch64  1:3.24.0-3.el9              appstream  4.2 M
+ vim-enhanced             aarch64  2:8.2.2637-22.el9_6.1       appstream  1.7 M
+ wget                     aarch64  1.21.1-8.el9_4              appstream  762 k
+ which                    aarch64  2.21-30.el9_6               baseos      40 k
+Installing dependencies:
+ boost-regex              aarch64  1.75.0-10.el9               appstream  256 k
+ cmake-data               noarch   3.26.5-2.el9                appstream  1.7 M
+ cmake-filesystem         aarch64  3.26.5-2.el9                appstream   11 k
+ cmake-rpm-macros         noarch   3.26.5-2.el9                appstream   10 k
+ cpp                      aarch64  11.5.0-5.el9_5              appstream   10 M
+ emacs-filesystem         noarch   1:27.2-14.el9_6.2           appstream  7.9 k
+ environment-modules      aarch64  5.3.0-1.el9                 baseos     576 k
+ gdb-headless             aarch64  14.2-4.1.el9_6              appstream  4.3 M
+ git-core                 aarch64  2.47.3-1.el9_6              appstream  4.7 M
+ git-core-doc             noarch   2.47.3-1.el9_6              appstream  2.8 M
+ glibc-devel              aarch64  2.34-168.el9_6.23           appstream  443 k
+ gpm-libs                 aarch64  1.20.7-29.el9               appstream   20 k
+ groff-base               aarch64  1.22.4-10.el9               baseos     1.0 M
+ hwloc-libs               aarch64  2.4.1-5.el9                 baseos     2.1 M
+ infiniband-diags         aarch64  54.0-1.el9                  appstream  310 k
+ kernel-headers           aarch64  5.14.0-570.52.1.el9_6       appstream  3.3 M
+ libasan                  aarch64  11.5.0-5.el9_5              appstream  402 k
+ libbabeltrace            aarch64  1.5.8-10.el9                appstream  180 k
+ libcbor                  aarch64  0.7.0-5.el9                 baseos      55 k
+ libedit                  aarch64  3.1-38.20210216cvs.el9      baseos     101 k
+ libfabric                aarch64  1.22.0-1.el9                appstream  625 k
+ libfido2                 aarch64  1.13.0-2.el9                baseos      95 k
+ libgfortran              aarch64  11.5.0-5.el9_5              baseos     427 k
+ libibumad                aarch64  54.0-1.el9                  baseos      25 k
+ libibverbs               aarch64  54.0-1.el9                  baseos     428 k
+ libicu                   aarch64  67.1-10.el9_6               baseos     9.5 M
+ libmpc                   aarch64  1.2.1-4.el9                 appstream   62 k
+ libnl3                   aarch64  3.11.0-1.el9                baseos     346 k
+ libpipeline              aarch64  1.5.3-4.el9                 baseos      47 k
+ libpkgconf               aarch64  1.7.3-10.el9                baseos      35 k
+ libpsl                   aarch64  0.21.1-5.el9                baseos      63 k
+ librdmacm                aarch64  54.0-1.el9                  baseos      70 k
+ libstdc++-devel          aarch64  11.5.0-5.el9_5              appstream  2.2 M
+ libubsan                 aarch64  11.5.0-5.el9_5              appstream  177 k
+ libuv                    aarch64  1:1.42.0-2.el9_4            appstream  142 k
+ libxcrypt-devel          aarch64  4.4.18-3.el9                appstream   28 k
+ m4                       aarch64  1.4.19-1.el9                appstream  291 k
+ man-db                   aarch64  2.9.3-7.el9                 baseos     1.1 M
+ munge-libs               aarch64  0.5.13-13.el9               appstream   20 k
+ ncurses                  aarch64  6.2-10.20210508.el9_6.2     baseos     398 k
+ numactl-libs             aarch64  2.0.19-1.el9                baseos      30 k
+ opensm-libs              aarch64  3.3.24-2.el9                baseos      72 k
+ openssh                  aarch64  8.7p1-45.el9.rocky.0.1      baseos     442 k
+ openssh-clients          aarch64  8.7p1-45.el9.rocky.0.1      baseos     675 k
+ perl-AutoLoader          noarch   5.74-481.1.el9_6            appstream   20 k
+ perl-B                   aarch64  1.80-481.1.el9_6            appstream  178 k
+ perl-Carp                noarch   1.50-460.el9                appstream   29 k
+ perl-Class-Struct        noarch   0.66-481.1.el9_6            appstream   21 k
+ perl-Data-Dumper         aarch64  2.174-462.el9               appstream   54 k
+ perl-Digest              noarch   1.19-4.el9                  appstream   25 k
+ perl-Digest-MD5          aarch64  2.58-4.el9                  appstream   36 k
+ perl-DynaLoader          aarch64  1.47-481.1.el9_6            appstream   24 k
+ perl-Encode              aarch64  4:3.08-462.el9              appstream  1.7 M
+ perl-Errno               aarch64  1.30-481.1.el9_6            appstream   13 k
+ perl-Error               noarch   1:0.17029-7.el9             appstream   41 k
+ perl-Exporter            noarch   5.74-461.el9                appstream   31 k
+ perl-Fcntl               aarch64  1.13-481.1.el9_6            appstream   19 k
+ perl-File-Basename       noarch   2.85-481.1.el9_6            appstream   16 k
+ perl-File-Compare        noarch   1.100.600-481.1.el9_6       appstream   12 k
+ perl-File-Copy           noarch   2.34-481.1.el9_6            appstream   19 k
+ perl-File-Find           noarch   1.37-481.1.el9_6            appstream   24 k
+ perl-File-Path           noarch   2.18-4.el9                  appstream   35 k
+ perl-File-Temp           noarch   1:0.231.100-4.el9           appstream   59 k
+ perl-File-stat           noarch   1.09-481.1.el9_6            appstream   16 k
+ perl-FileHandle          noarch   2.03-481.1.el9_6            appstream   14 k
+ perl-Getopt-Long         noarch   1:2.52-4.el9                appstream   60 k
+ perl-Getopt-Std          noarch   1.12-481.1.el9_6            appstream   14 k
+ perl-Git                 noarch   2.47.3-1.el9_6              appstream   37 k
+ perl-HTTP-Tiny           noarch   0.076-462.el9               appstream   53 k
+ perl-IO                  aarch64  1.43-481.1.el9_6            appstream   85 k
+ perl-IO-Socket-IP        noarch   0.41-5.el9                  appstream   42 k
+ perl-IO-Socket-SSL       noarch   2.073-2.el9                 appstream  214 k
+ perl-IPC-Open3           noarch   1.21-481.1.el9_6            appstream   21 k
+ perl-MIME-Base64         aarch64  3.16-4.el9                  appstream   30 k
+ perl-Mozilla-CA          noarch   20200520-6.el9              appstream   12 k
+ perl-Net-SSLeay          aarch64  1.94-1.el9                  appstream  391 k
+ perl-POSIX               aarch64  1.94-481.1.el9_6            appstream   95 k
+ perl-PathTools           aarch64  3.78-461.el9                appstream   85 k
+ perl-Pod-Escapes         noarch   1:1.07-460.el9              appstream   20 k
+ perl-Pod-Perldoc         noarch   3.28.01-461.el9             appstream   83 k
+ perl-Pod-Simple          noarch   1:3.42-4.el9                appstream  215 k
+ perl-Pod-Usage           noarch   4:2.01-4.el9                appstream   40 k
+ perl-Scalar-List-Utils   aarch64  4:1.56-462.el9              appstream   68 k
+ perl-SelectSaver         noarch   1.02-481.1.el9_6            appstream   10 k
+ perl-Socket              aarch64  4:2.031-4.el9               appstream   54 k
+ perl-Storable            aarch64  1:3.21-460.el9              appstream   93 k
+ perl-Symbol              noarch   1.08-481.1.el9_6            appstream   13 k
+ perl-Term-ANSIColor      noarch   5.01-461.el9                appstream   48 k
+ perl-Term-Cap            noarch   1.17-460.el9                appstream   22 k
+ perl-TermReadKey         aarch64  2.38-11.el9                 appstream   35 k
+ perl-Text-ParseWords     noarch   3.30-460.el9                appstream   16 k
+ perl-Text-Tabs+Wrap      noarch   2013.0523-460.el9           appstream   23 k
+ perl-Thread-Queue        noarch   3.14-460.el9                appstream   21 k
+ perl-Time-Local          noarch   2:1.300-7.el9               appstream   33 k
+ perl-URI                 noarch   5.09-3.el9                  appstream  108 k
+ perl-base                noarch   2.27-481.1.el9_6            appstream   15 k
+ perl-constant            noarch   1.33-461.el9                appstream   23 k
+ perl-if                  noarch   0.60.800-481.1.el9_6        appstream   13 k
+ perl-interpreter         aarch64  4:5.32.1-481.1.el9_6        appstream   69 k
+ perl-lib                 aarch64  0.65-481.1.el9_6            appstream   13 k
+ perl-libnet              noarch   3.13-4.el9                  appstream  125 k
+ perl-libs                aarch64  4:5.32.1-481.1.el9_6        appstream  2.0 M
+ perl-mro                 aarch64  1.23-481.1.el9_6            appstream   26 k
+ perl-overload            noarch   1.31-481.1.el9_6            appstream   44 k
+ perl-overloading         noarch   0.02-481.1.el9_6            appstream   11 k
+ perl-parent              noarch   1:0.238-460.el9             appstream   14 k
+ perl-podlators           noarch   1:4.14-460.el9              appstream  111 k
+ perl-subs                noarch   1.03-481.1.el9_6            appstream   10 k
+ perl-threads             aarch64  1:2.25-460.el9              appstream   56 k
+ perl-threads-shared      aarch64  1.61-460.el9.0.1            appstream   43 k
+ perl-vars                noarch   1.05-481.1.el9_6            appstream   12 k
+ pkgconf                  aarch64  1.7.3-10.el9                baseos      39 k
+ pkgconf-m4               noarch   1.7.3-10.el9                baseos      14 k
+ pkgconf-pkg-config       aarch64  1.7.3-10.el9                baseos      10 k
+ pmix                     aarch64  3.2.3-5.el9                 appstream  557 k
+ publicsuffix-list-dafsa  noarch   20210518-3.el9              baseos      58 k
+ rdma-core-devel          aarch64  54.0-1.el9                  appstream  381 k
+ rpm-mpi-hooks            noarch   8-3.el9                     appstream   11 k
+ source-highlight         aarch64  3.1.9-12.el9                appstream  589 k
+ tcl                      aarch64  1:8.6.10-7.el9              baseos     1.0 M
+ ucx                      aarch64  1.17.0-2.el9                appstream  790 k
+ vim-common               aarch64  2:8.2.2637-22.el9_6.1       appstream  6.6 M
+ vim-filesystem           noarch   2:8.2.2637-22.el9_6.1       baseos     9.4 k
+Installing weak dependencies:
+ perl-NDBM_File           aarch64  1.15-481.1.el9_6            appstream   20 k
+ python3-setuptools       noarch   53.0.0-13.el9_6.1           baseos     837 k
+Removing dependent packages:
+ curl-minimal             aarch64  7.76.1-31.el9_6.1           @baseos    243 k
+
+Transaction Summary
+================================================================================
+Install  149 Packages
+Remove     1 Package
+
+Total download size: 146 M
+Downloading Packages:
+(1/149): libgfortran-11.5.0-5.el9_5.aarch64.rpm 677 kB/s | 427 kB     00:00    
+(2/149): make-4.3-8.el9.aarch64.rpm             747 kB/s | 526 kB     00:00    
+(3/149): which-2.21-30.el9_6.aarch64.rpm        176 kB/s |  40 kB     00:00    
+(4/149): groff-base-1.22.4-10.el9.aarch64.rpm   1.0 MB/s | 1.0 MB     00:00    
+(5/149): file-5.39-16.el9.aarch64.rpm           159 kB/s |  48 kB     00:00    
+(6/149): procps-ng-3.3.17-14.el9.aarch64.rpm    622 kB/s | 333 kB     00:00    
+(7/149): libpsl-0.21.1-5.el9.aarch64.rpm        214 kB/s |  63 kB     00:00    
+(8/149): vim-filesystem-8.2.2637-22.el9_6.1.noa  67 kB/s | 9.4 kB     00:00    
+(9/149): libpkgconf-1.7.3-10.el9.aarch64.rpm    140 kB/s |  35 kB     00:00    
+(10/149): curl-7.76.1-31.el9_6.1.aarch64.rpm    549 kB/s | 289 kB     00:00    
+(11/149): numactl-libs-2.0.19-1.el9.aarch64.rpm 128 kB/s |  30 kB     00:00    
+(12/149): openssh-8.7p1-45.el9.rocky.0.1.aarch6 660 kB/s | 442 kB     00:00    
+(13/149): librdmacm-54.0-1.el9.aarch64.rpm      224 kB/s |  70 kB     00:00    
+(14/149): pkgconf-1.7.3-10.el9.aarch64.rpm      161 kB/s |  39 kB     00:00    
+(15/149): man-db-2.9.3-7.el9.aarch64.rpm        1.0 MB/s | 1.1 MB     00:01    
+(16/149): libedit-3.1-38.20210216cvs.el9.aarch6 261 kB/s | 101 kB     00:00    
+(17/149): tcl-8.6.10-7.el9.aarch64.rpm          993 kB/s | 1.0 MB     00:01    
+(18/149): libibverbs-54.0-1.el9.aarch64.rpm     698 kB/s | 428 kB     00:00    
+(19/149): libpipeline-1.5.3-4.el9.aarch64.rpm   152 kB/s |  47 kB     00:00    
+(20/149): hwloc-libs-2.4.1-5.el9.aarch64.rpm    1.3 MB/s | 2.1 MB     00:01    
+(21/149): ncurses-6.2-10.20210508.el9_6.2.aarch 589 kB/s | 398 kB     00:00    
+(22/149): pkgconf-m4-1.7.3-10.el9.noarch.rpm     78 kB/s |  14 kB     00:00    
+(23/149): opensm-libs-3.3.24-2.el9.aarch64.rpm  238 kB/s |  72 kB     00:00    
+(24/149): environment-modules-5.3.0-1.el9.aarch 782 kB/s | 576 kB     00:00    
+(25/149): libnl3-3.11.0-1.el9.aarch64.rpm       612 kB/s | 346 kB     00:00    
+(26/149): python3-setuptools-53.0.0-13.el9_6.1. 953 kB/s | 837 kB     00:00    
+(27/149): openssh-clients-8.7p1-45.el9.rocky.0. 877 kB/s | 675 kB     00:00    
+(28/149): libibumad-54.0-1.el9.aarch64.rpm      109 kB/s |  25 kB     00:00    
+(29/149): libcbor-0.7.0-5.el9.aarch64.rpm       183 kB/s |  55 kB     00:00    
+(30/149): publicsuffix-list-dafsa-20210518-3.el 189 kB/s |  58 kB     00:00    
+(31/149): numactl-2.0.19-1.el9.aarch64.rpm      215 kB/s |  67 kB     00:00    
+(32/149): pkgconf-pkg-config-1.7.3-10.el9.aarch  67 kB/s |  10 kB     00:00    
+(33/149): libfido2-1.13.0-2.el9.aarch64.rpm     247 kB/s |  95 kB     00:00    
+(34/149): strace-6.12-1.el9.aarch64.rpm         1.2 MB/s | 1.4 MB     00:01    
+(35/149): libbabeltrace-1.5.8-10.el9.aarch64.rp 452 kB/s | 180 kB     00:00    
+(36/149): libicu-67.1-10.el9_6.aarch64.rpm      1.5 MB/s | 9.5 MB     00:06    
+(37/149): perl-Error-0.17029-7.el9.noarch.rpm   182 kB/s |  41 kB     00:00    
+(38/149): git-core-2.47.3-1.el9_6.aarch64.rpm   2.0 MB/s | 4.7 MB     00:02    
+(39/149): perl-Getopt-Long-2.52-4.el9.noarch.rp 200 kB/s |  60 kB     00:00    
+(40/149): perl-libs-5.32.1-481.1.el9_6.aarch64. 1.4 MB/s | 2.0 MB     00:01    
+(41/149): libubsan-11.5.0-5.el9_5.aarch64.rpm   465 kB/s | 177 kB     00:00    
+(42/149): glibc-devel-2.34-168.el9_6.23.aarch64 811 kB/s | 443 kB     00:00    
+(43/149): cmake-data-3.26.5-2.el9.noarch.rpm    1.7 MB/s | 1.7 MB     00:01    
+(44/149): perl-TermReadKey-2.38-11.el9.aarch64. 159 kB/s |  35 kB     00:00    
+(45/149): perl-vars-1.05-481.1.el9_6.noarch.rpm  77 kB/s |  12 kB     00:00    
+(46/149): perl-File-Copy-2.34-481.1.el9_6.noarc  83 kB/s |  19 kB     00:00    
+(47/149): libfabric-1.22.0-1.el9.aarch64.rpm    1.0 MB/s | 625 kB     00:00    
+(48/149): perl-Scalar-List-Utils-1.56-462.el9.a 205 kB/s |  68 kB     00:00    
+(49/149): source-highlight-3.1.9-12.el9.aarch64 991 kB/s | 589 kB     00:00    
+(50/149): libuv-1.42.0-2.el9_4.aarch64.rpm      355 kB/s | 142 kB     00:00    
+(51/149): perl-Digest-MD5-2.58-4.el9.aarch64.rp 142 kB/s |  36 kB     00:00    
+(52/149): openmpi-devel-4.1.1-7.el9.aarch64.rpm 1.3 MB/s | 1.2 MB     00:00    
+(53/149): perl-PathTools-3.78-461.el9.aarch64.r 266 kB/s |  85 kB     00:00    
+(54/149): gdb-headless-14.2-4.1.el9_6.aarch64.r 2.5 MB/s | 4.3 MB     00:01    
+(55/149): pmix-3.2.3-5.el9.aarch64.rpm          936 kB/s | 557 kB     00:00    
+(56/149): boost-regex-1.75.0-10.el9.aarch64.rpm 543 kB/s | 256 kB     00:00    
+(57/149): perl-parent-0.238-460.el9.noarch.rpm   96 kB/s |  14 kB     00:00    
+(58/149): perl-base-2.27-481.1.el9_6.noarch.rpm  64 kB/s |  15 kB     00:00    
+(59/149): perl-Thread-Queue-3.14-460.el9.noarch  89 kB/s |  21 kB     00:00    
+(60/149): perl-Getopt-Std-1.12-481.1.el9_6.noar  85 kB/s |  14 kB     00:00    
+(61/149): git-2.47.3-1.el9_6.aarch64.rpm        158 kB/s |  50 kB     00:00    
+(62/149): perl-Pod-Perldoc-3.28.01-461.el9.noar 259 kB/s |  83 kB     00:00    
+(63/149): wget-1.21.1-8.el9_4.aarch64.rpm       1.2 MB/s | 762 kB     00:00    
+(64/149): valgrind-3.24.0-3.el9.aarch64.rpm     2.6 MB/s | 4.2 MB     00:01    
+(65/149): cmake-filesystem-3.26.5-2.el9.aarch64  74 kB/s |  11 kB     00:00    
+(66/149): perl-podlators-4.14-460.el9.noarch.rp 284 kB/s | 111 kB     00:00    
+(67/149): perl-HTTP-Tiny-0.076-462.el9.noarch.r 184 kB/s |  53 kB     00:00    
+(68/149): perl-File-Basename-2.85-481.1.el9_6.n  73 kB/s |  16 kB     00:00    
+(69/149): libmpc-1.2.1-4.el9.aarch64.rpm        213 kB/s |  62 kB     00:00    
+(70/149): perl-Storable-3.21-460.el9.aarch64.rp 320 kB/s |  93 kB     00:00    
+(71/149): perl-Exporter-5.74-461.el9.noarch.rpm 145 kB/s |  31 kB     00:00    
+(72/149): perl-subs-1.03-481.1.el9_6.noarch.rpm  68 kB/s |  10 kB     00:00    
+(73/149): perl-AutoLoader-5.74-481.1.el9_6.noar  92 kB/s |  20 kB     00:00    
+(74/149): perl-Socket-2.031-4.el9.aarch64.rpm   182 kB/s |  54 kB     00:00    
+(75/149): hwloc-devel-2.4.1-5.el9.aarch64.rpm   557 kB/s | 251 kB     00:00    
+(76/149): perl-SelectSaver-1.02-481.1.el9_6.noa  67 kB/s |  10 kB     00:00    
+(77/149): rdma-core-devel-54.0-1.el9.aarch64.rp 794 kB/s | 381 kB     00:00    
+(78/149): perl-overload-1.31-481.1.el9_6.noarch 144 kB/s |  44 kB     00:00    
+(79/149): m4-1.4.19-1.el9.aarch64.rpm           576 kB/s | 291 kB     00:00    
+(80/149): openmpi-4.1.1-7.el9.aarch64.rpm       2.1 MB/s | 2.6 MB     00:01    
+(81/149): emacs-filesystem-27.2-14.el9_6.2.noar  52 kB/s | 7.9 kB     00:00    
+(82/149): perl-if-0.60.800-481.1.el9_6.noarch.r  86 kB/s |  13 kB     00:00    
+(83/149): git-core-doc-2.47.3-1.el9_6.noarch.rp 2.2 MB/s | 2.8 MB     00:01    
+(84/149): python3-pip-21.3.1-1.el9.noarch.rpm   1.8 MB/s | 1.7 MB     00:00    
+(85/149): libtool-2.4.6-46.el9.aarch64.rpm      1.0 MB/s | 577 kB     00:00    
+(86/149): perl-FileHandle-2.03-481.1.el9_6.noar  96 kB/s |  14 kB     00:00    
+(87/149): perl-Term-ANSIColor-5.01-461.el9.noar 166 kB/s |  48 kB     00:00    
+(88/149): perl-MIME-Base64-3.16-4.el9.aarch64.r 136 kB/s |  30 kB     00:00    
+(89/149): perl-DynaLoader-1.47-481.1.el9_6.aarc 106 kB/s |  24 kB     00:00    
+(90/149): python3-devel-3.9.21-2.el9_6.2.aarch6 420 kB/s | 204 kB     00:00    
+(91/149): perl-NDBM_File-1.15-481.1.el9_6.aarch  82 kB/s |  20 kB     00:00    
+(92/149): vim-common-8.2.2637-22.el9_6.1.aarch6 3.2 MB/s | 6.6 MB     00:02    
+(93/149): perl-File-Path-2.18-4.el9.noarch.rpm  141 kB/s |  35 kB     00:00    
+(94/149): perl-mro-1.23-481.1.el9_6.aarch64.rpm 118 kB/s |  26 kB     00:00    
+(95/149): libasan-11.5.0-5.el9_5.aarch64.rpm    852 kB/s | 402 kB     00:00    
+(96/149): gpm-libs-1.20.7-29.el9.aarch64.rpm     91 kB/s |  20 kB     00:00    
+(97/149): perl-File-Find-1.37-481.1.el9_6.noarc 109 kB/s |  24 kB     00:00    
+(98/149): perl-File-stat-1.09-481.1.el9_6.noarc  64 kB/s |  16 kB     00:00    
+(99/149): infiniband-diags-54.0-1.el9.aarch64.r 639 kB/s | 310 kB     00:00    
+(100/149): perl-threads-shared-1.61-460.el9.0.1 136 kB/s |  43 kB     00:00    
+(101/149): perl-Symbol-1.08-481.1.el9_6.noarch.  77 kB/s |  13 kB     00:00    
+(102/149): perl-lib-0.65-481.1.el9_6.aarch64.rp  72 kB/s |  13 kB     00:00    
+(103/149): cpp-11.5.0-5.el9_5.aarch64.rpm       4.0 MB/s |  10 MB     00:02    
+(104/149): perl-Errno-1.30-481.1.el9_6.aarch64.  85 kB/s |  13 kB     00:00    
+(105/149): perl-POSIX-1.94-481.1.el9_6.aarch64. 252 kB/s |  95 kB     00:00    
+(106/149): perl-Pod-Simple-3.42-4.el9.noarch.rp 481 kB/s | 215 kB     00:00    
+(107/149): automake-1.16.2-8.el9.noarch.rpm     1.2 MB/s | 662 kB     00:00    
+(108/149): perl-File-Temp-0.231.100-4.el9.noarc 196 kB/s |  59 kB     00:00    
+(109/149): cmake-rpm-macros-3.26.5-2.el9.noarch  69 kB/s |  10 kB     00:00    
+(110/149): perl-Digest-1.19-4.el9.noarch.rpm    103 kB/s |  25 kB     00:00    
+(111/149): perl-IO-1.43-481.1.el9_6.aarch64.rpm 276 kB/s |  85 kB     00:00    
+(112/149): munge-libs-0.5.13-13.el9.aarch64.rpm  88 kB/s |  20 kB     00:00    
+(113/149): perl-Net-SSLeay-1.94-1.el9.aarch64.r 778 kB/s | 391 kB     00:00    
+(114/149): libstdc++-devel-11.5.0-5.el9_5.aarch 2.4 MB/s | 2.2 MB     00:00    
+(115/149): perl-interpreter-5.32.1-481.1.el9_6. 206 kB/s |  69 kB     00:00    
+(116/149): perl-Mozilla-CA-20200520-6.el9.noarc  76 kB/s |  12 kB     00:00    
+(117/149): perl-Pod-Escapes-1.07-460.el9.noarch  86 kB/s |  20 kB     00:00    
+(118/149): rpm-mpi-hooks-8-3.el9.noarch.rpm      69 kB/s |  11 kB     00:00    
+(119/149): perl-Data-Dumper-2.174-462.el9.aarch 171 kB/s |  54 kB     00:00    
+(120/149): cmake-3.26.5-2.el9.aarch64.rpm       4.3 MB/s | 7.0 MB     00:01    
+(121/149): perl-Pod-Usage-2.01-4.el9.noarch.rpm 176 kB/s |  40 kB     00:00    
+(122/149): perl-Encode-3.08-462.el9.aarch64.rpm 2.1 MB/s | 1.7 MB     00:00    
+(123/149): gdb-14.2-4.1.el9_6.aarch64.rpm       355 kB/s | 139 kB     00:00    
+(124/149): perl-Carp-1.50-460.el9.noarch.rpm    123 kB/s |  29 kB     00:00    
+(125/149): perl-constant-1.33-461.el9.noarch.rp  96 kB/s |  23 kB     00:00    
+(126/149): perl-Class-Struct-0.66-481.1.el9_6.n  91 kB/s |  21 kB     00:00    
+(127/149): perl-IO-Socket-SSL-2.073-2.el9.noarc 488 kB/s | 214 kB     00:00    
+(128/149): perl-Time-Local-1.300-7.el9.noarch.r 147 kB/s |  33 kB     00:00    
+(129/149): perl-IPC-Open3-1.21-481.1.el9_6.noar  98 kB/s |  21 kB     00:00    
+(130/149): perl-Term-Cap-1.17-460.el9.noarch.rp  87 kB/s |  22 kB     00:00    
+(131/149): perl-libnet-3.13-4.el9.noarch.rpm    309 kB/s | 125 kB     00:00    
+(132/149): perl-threads-2.25-460.el9.aarch64.rp 164 kB/s |  56 kB     00:00    
+(133/149): perl-overloading-0.02-481.1.el9_6.no  55 kB/s |  11 kB     00:00    
+(134/149): perl-URI-5.09-3.el9.noarch.rpm       251 kB/s | 108 kB     00:00    
+(135/149): perl-B-1.80-481.1.el9_6.aarch64.rpm  429 kB/s | 178 kB     00:00    
+(136/149): gcc-gfortran-11.5.0-5.el9_5.aarch64. 4.8 MB/s |  12 MB     00:02    
+(137/149): ucx-1.17.0-2.el9.aarch64.rpm         1.2 MB/s | 790 kB     00:00    
+(138/149): libxcrypt-devel-4.4.18-3.el9.aarch64 101 kB/s |  28 kB     00:00    
+(139/149): kernel-headers-5.14.0-570.52.1.el9_6 3.2 MB/s | 3.3 MB     00:01    
+(140/149): perl-Fcntl-1.13-481.1.el9_6.aarch64.  77 kB/s |  19 kB     00:00    
+(141/149): perl-Git-2.47.3-1.el9_6.noarch.rpm   146 kB/s |  37 kB     00:00    
+(142/149): perl-File-Compare-1.100.600-481.1.el  76 kB/s |  12 kB     00:00    
+(143/149): vim-enhanced-8.2.2637-22.el9_6.1.aar 2.2 MB/s | 1.7 MB     00:00    
+(144/149): perl-Text-ParseWords-3.30-460.el9.no  58 kB/s |  16 kB     00:00    
+(145/149): perl-Text-Tabs+Wrap-2013.0523-460.el  55 kB/s |  23 kB     00:00    
+(146/149): autoconf-2.69-39.el9.noarch.rpm      854 kB/s | 665 kB     00:00    
+(147/149): gcc-c++-11.5.0-5.el9_5.aarch64.rpm   2.9 MB/s |  12 MB     00:04    
+(148/149): perl-IO-Socket-IP-0.41-5.el9.noarch. 136 kB/s |  42 kB     00:00    
+(149/149): gcc-11.5.0-5.el9_5.aarch64.rpm       7.1 MB/s |  30 MB     00:04    
+--------------------------------------------------------------------------------
+Total                                           4.6 MB/s | 146 MB     00:31     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1 
+  Installing       : libmpc-1.2.1-4.el9.aarch64                           1/150 
+  Installing       : hwloc-libs-2.4.1-5.el9.aarch64                       2/150 
+  Installing       : emacs-filesystem-1:27.2-14.el9_6.2.noarch            3/150 
+  Installing       : libibumad-54.0-1.el9.aarch64                         4/150 
+  Installing       : libnl3-3.11.0-1.el9.aarch64                          5/150 
+  Installing       : libibverbs-54.0-1.el9.aarch64                        6/150 
+  Installing       : librdmacm-54.0-1.el9.aarch64                         7/150 
+  Installing       : vim-filesystem-2:8.2.2637-22.el9_6.1.noarch          8/150 
+  Installing       : cmake-rpm-macros-3.26.5-2.el9.noarch                 9/150 
+  Installing       : cmake-filesystem-3.26.5-2.el9.aarch64               10/150 
+  Installing       : python3-setuptools-53.0.0-13.el9_6.1.noarch         11/150 
+  Running scriptlet: groff-base-1.22.4-10.el9.aarch64                    12/150 
+  Installing       : groff-base-1.22.4-10.el9.aarch64                    12/150 
+  Running scriptlet: groff-base-1.22.4-10.el9.aarch64                    12/150 
+  Installing       : make-1:4.3-8.el9.aarch64                            13/150 
+  Installing       : libgfortran-11.5.0-5.el9_5.aarch64                  14/150 
+  Installing       : python3-pip-21.3.1-1.el9.noarch                     15/150 
+  Installing       : vim-common-2:8.2.2637-22.el9_6.1.aarch64            16/150 
+  Installing       : libfabric-1.22.0-1.el9.aarch64                      17/150 
+  Installing       : opensm-libs-3.3.24-2.el9.aarch64                    18/150 
+  Installing       : cpp-11.5.0-5.el9_5.aarch64                          19/150 
+  Installing       : kernel-headers-5.14.0-570.52.1.el9_6.aarch64        20/150 
+  Installing       : ucx-1.17.0-2.el9.aarch64                            21/150 
+  Running scriptlet: ucx-1.17.0-2.el9.aarch64                            21/150 
+  Installing       : libstdc++-devel-11.5.0-5.el9_5.aarch64              22/150 
+  Installing       : munge-libs-0.5.13-13.el9.aarch64                    23/150 
+  Installing       : pmix-3.2.3-5.el9.aarch64                            24/150 
+  Installing       : gpm-libs-1.20.7-29.el9.aarch64                      25/150 
+  Installing       : libasan-11.5.0-5.el9_5.aarch64                      26/150 
+  Installing       : m4-1.4.19-1.el9.aarch64                             27/150 
+  Installing       : libuv-1:1.42.0-2.el9_4.aarch64                      28/150 
+  Installing       : cmake-data-3.26.5-2.el9.noarch                      29/150 
+  Installing       : cmake-3.26.5-2.el9.aarch64                          30/150 
+  Installing       : libubsan-11.5.0-5.el9_5.aarch64                     31/150 
+  Installing       : libbabeltrace-1.5.8-10.el9.aarch64                  32/150 
+  Installing       : publicsuffix-list-dafsa-20210518-3.el9.noarch       33/150 
+  Installing       : libpsl-0.21.1-5.el9.aarch64                         34/150 
+  Installing       : libcbor-0.7.0-5.el9.aarch64                         35/150 
+  Installing       : libfido2-1.13.0-2.el9.aarch64                       36/150 
+  Installing       : pkgconf-m4-1.7.3-10.el9.noarch                      37/150 
+  Installing       : ncurses-6.2-10.20210508.el9_6.2.aarch64             38/150 
+  Installing       : perl-Digest-1.19-4.el9.noarch                       39/150 
+  Installing       : perl-Digest-MD5-2.58-4.el9.aarch64                  40/150 
+  Installing       : perl-B-1.80-481.1.el9_6.aarch64                     41/150 
+  Installing       : perl-FileHandle-2.03-481.1.el9_6.noarch             42/150 
+  Installing       : perl-Data-Dumper-2.174-462.el9.aarch64              43/150 
+  Installing       : perl-libnet-3.13-4.el9.noarch                       44/150 
+  Installing       : perl-base-2.27-481.1.el9_6.noarch                   45/150 
+  Installing       : perl-AutoLoader-5.74-481.1.el9_6.noarch             46/150 
+  Installing       : perl-URI-5.09-3.el9.noarch                          47/150 
+  Installing       : perl-if-0.60.800-481.1.el9_6.noarch                 48/150 
+  Installing       : perl-Pod-Escapes-1:1.07-460.el9.noarch              49/150 
+  Installing       : perl-Net-SSLeay-1.94-1.el9.aarch64                  50/150 
+  Installing       : perl-File-Path-2.18-4.el9.noarch                    51/150 
+  Installing       : perl-Mozilla-CA-20200520-6.el9.noarch               52/150 
+  Installing       : perl-Time-Local-2:1.300-7.el9.noarch                53/150 
+  Installing       : perl-Text-Tabs+Wrap-2013.0523-460.el9.noarch        54/150 
+  Installing       : perl-IO-Socket-IP-0.41-5.el9.noarch                 55/150 
+  Installing       : perl-IO-Socket-SSL-2.073-2.el9.noarch               56/150 
+  Installing       : perl-subs-1.03-481.1.el9_6.noarch                   57/150 
+  Installing       : perl-Term-ANSIColor-5.01-461.el9.noarch             58/150 
+  Installing       : perl-Class-Struct-0.66-481.1.el9_6.noarch           59/150 
+  Installing       : perl-Term-Cap-1.17-460.el9.noarch                   60/150 
+  Installing       : perl-POSIX-1.94-481.1.el9_6.aarch64                 61/150 
+  Installing       : perl-File-Temp-1:0.231.100-4.el9.noarch             62/150 
+  Installing       : perl-IPC-Open3-1.21-481.1.el9_6.noarch              63/150 
+  Installing       : perl-Pod-Simple-1:3.42-4.el9.noarch                 64/150 
+  Installing       : perl-HTTP-Tiny-0.076-462.el9.noarch                 65/150 
+  Installing       : perl-Symbol-1.08-481.1.el9_6.noarch                 66/150 
+  Installing       : perl-Socket-4:2.031-4.el9.aarch64                   67/150 
+  Installing       : perl-SelectSaver-1.02-481.1.el9_6.noarch            68/150 
+  Installing       : perl-File-stat-1.09-481.1.el9_6.noarch              69/150 
+  Installing       : perl-podlators-1:4.14-460.el9.noarch                70/150 
+  Installing       : perl-Pod-Perldoc-3.28.01-461.el9.noarch             71/150 
+  Installing       : perl-mro-1.23-481.1.el9_6.aarch64                   72/150 
+  Installing       : perl-overloading-0.02-481.1.el9_6.noarch            73/150 
+  Installing       : perl-IO-1.43-481.1.el9_6.aarch64                    74/150 
+  Installing       : perl-Fcntl-1.13-481.1.el9_6.aarch64                 75/150 
+  Installing       : perl-Text-ParseWords-3.30-460.el9.noarch            76/150 
+  Installing       : perl-Pod-Usage-4:2.01-4.el9.noarch                  77/150 
+  Installing       : perl-parent-1:0.238-460.el9.noarch                  78/150 
+  Installing       : perl-vars-1.05-481.1.el9_6.noarch                   79/150 
+  Installing       : perl-Scalar-List-Utils-4:1.56-462.el9.aarch64       80/150 
+  Installing       : perl-Getopt-Std-1.12-481.1.el9_6.noarch             81/150 
+  Installing       : perl-File-Basename-2.85-481.1.el9_6.noarch          82/150 
+  Installing       : perl-MIME-Base64-3.16-4.el9.aarch64                 83/150 
+  Installing       : perl-Errno-1.30-481.1.el9_6.aarch64                 84/150 
+  Installing       : perl-constant-1.33-461.el9.noarch                   85/150 
+  Installing       : perl-overload-1.31-481.1.el9_6.noarch               86/150 
+  Installing       : perl-Storable-1:3.21-460.el9.aarch64                87/150 
+  Installing       : perl-Getopt-Long-1:2.52-4.el9.noarch                88/150 
+  Installing       : perl-NDBM_File-1.15-481.1.el9_6.aarch64             89/150 
+  Installing       : perl-Exporter-5.74-461.el9.noarch                   90/150 
+  Installing       : perl-Carp-1.50-460.el9.noarch                       91/150 
+  Installing       : perl-PathTools-3.78-461.el9.aarch64                 92/150 
+  Installing       : perl-Encode-4:3.08-462.el9.aarch64                  93/150 
+  Installing       : perl-libs-4:5.32.1-481.1.el9_6.aarch64              94/150 
+  Installing       : perl-interpreter-4:5.32.1-481.1.el9_6.aarch64       95/150 
+  Installing       : perl-DynaLoader-1.47-481.1.el9_6.aarch64            96/150 
+  Installing       : perl-File-Copy-2.34-481.1.el9_6.noarch              97/150 
+  Installing       : perl-File-Find-1.37-481.1.el9_6.noarch              98/150 
+  Installing       : perl-threads-1:2.25-460.el9.aarch64                 99/150 
+  Installing       : perl-File-Compare-1.100.600-481.1.el9_6.noarch     100/150 
+  Installing       : autoconf-2.69-39.el9.noarch                        101/150 
+  Installing       : perl-threads-shared-1.61-460.el9.0.1.aarch64       102/150 
+  Installing       : perl-Thread-Queue-3.14-460.el9.noarch              103/150 
+  Installing       : automake-1.16.2-8.el9.noarch                       104/150 
+  Installing       : perl-TermReadKey-2.38-11.el9.aarch64               105/150 
+  Installing       : infiniband-diags-54.0-1.el9.aarch64                106/150 
+  Installing       : perl-Error-1:0.17029-7.el9.noarch                  107/150 
+  Installing       : perl-lib-0.65-481.1.el9_6.aarch64                  108/150 
+  Installing       : libpipeline-1.5.3-4.el9.aarch64                    109/150 
+  Running scriptlet: man-db-2.9.3-7.el9.aarch64                         110/150 
+  Installing       : man-db-2.9.3-7.el9.aarch64                         110/150 
+  Running scriptlet: man-db-2.9.3-7.el9.aarch64                         110/150 
+  Installing       : libicu-67.1-10.el9_6.aarch64                       111/150 
+  Installing       : boost-regex-1.75.0-10.el9.aarch64                  112/150 
+  Installing       : source-highlight-3.1.9-12.el9.aarch64              113/150 
+  Installing       : gdb-headless-14.2-4.1.el9_6.aarch64                114/150 
+  Installing       : libedit-3.1-38.20210216cvs.el9.aarch64             115/150 
+  Installing       : tcl-1:8.6.10-7.el9.aarch64                         116/150 
+  Installing       : numactl-libs-2.0.19-1.el9.aarch64                  117/150 
+  Installing       : libpkgconf-1.7.3-10.el9.aarch64                    118/150 
+  Installing       : pkgconf-1.7.3-10.el9.aarch64                       119/150 
+  Installing       : pkgconf-pkg-config-1.7.3-10.el9.aarch64            120/150 
+  Installing       : rdma-core-devel-54.0-1.el9.aarch64                 121/150 
+  Installing       : glibc-devel-2.34-168.el9_6.23.aarch64              122/150 
+  Installing       : libxcrypt-devel-4.4.18-3.el9.aarch64               123/150 
+  Installing       : gcc-11.5.0-5.el9_5.aarch64                         124/150 
+  Installing       : gcc-gfortran-11.5.0-5.el9_5.aarch64                125/150 
+  Running scriptlet: openssh-8.7p1-45.el9.rocky.0.1.aarch64             126/150 
+  Installing       : openssh-8.7p1-45.el9.rocky.0.1.aarch64             126/150 
+  Installing       : openssh-clients-8.7p1-45.el9.rocky.0.1.aarch64     127/150 
+  Running scriptlet: openssh-clients-8.7p1-45.el9.rocky.0.1.aarch64     127/150 
+  Installing       : git-core-2.47.3-1.el9_6.aarch64                    128/150 
+  Installing       : git-core-doc-2.47.3-1.el9_6.noarch                 129/150 
+  Installing       : git-2.47.3-1.el9_6.aarch64                         130/150 
+  Installing       : perl-Git-2.47.3-1.el9_6.noarch                     131/150 
+  Installing       : procps-ng-3.3.17-14.el9.aarch64                    132/150 
+  Installing       : environment-modules-5.3.0-1.el9.aarch64            133/150 
+  Running scriptlet: environment-modules-5.3.0-1.el9.aarch64            133/150 
+  Installing       : rpm-mpi-hooks-8-3.el9.noarch                       134/150 
+  Installing       : openmpi-2:4.1.1-7.el9.aarch64                      135/150 
+  Installing       : openmpi-devel-2:4.1.1-7.el9.aarch64                136/150 
+  Installing       : which-2.21-30.el9_6.aarch64                        137/150 
+  Installing       : vim-enhanced-2:8.2.2637-22.el9_6.1.aarch64         138/150 
+  Installing       : libtool-2.4.6-46.el9.aarch64                       139/150 
+  Installing       : gcc-c++-11.5.0-5.el9_5.aarch64                     140/150 
+  Installing       : hwloc-devel-2.4.1-5.el9.aarch64                    141/150 
+  Installing       : python3-devel-3.9.21-2.el9_6.2.aarch64             142/150 
+  Installing       : numactl-2.0.19-1.el9.aarch64                       143/150 
+  Installing       : gdb-14.2-4.1.el9_6.aarch64                         144/150 
+  Installing       : valgrind-1:3.24.0-3.el9.aarch64                    145/150 
+  Installing       : wget-1.21.1-8.el9_4.aarch64                        146/150 
+  Installing       : strace-6.12-1.el9.aarch64                          147/150 
+  Installing       : curl-7.76.1-31.el9_6.1.aarch64                     148/150 
+  Installing       : file-5.39-16.el9.aarch64                           149/150 
+  Erasing          : curl-minimal-7.76.1-31.el9_6.1.aarch64             150/150 
+  Running scriptlet: curl-minimal-7.76.1-31.el9_6.1.aarch64             150/150 
+  Verifying        : libgfortran-11.5.0-5.el9_5.aarch64                   1/150 
+  Verifying        : make-1:4.3-8.el9.aarch64                             2/150 
+  Verifying        : groff-base-1.22.4-10.el9.aarch64                     3/150 
+  Verifying        : which-2.21-30.el9_6.aarch64                          4/150 
+  Verifying        : procps-ng-3.3.17-14.el9.aarch64                      5/150 
+  Verifying        : file-5.39-16.el9.aarch64                             6/150 
+  Verifying        : libpsl-0.21.1-5.el9.aarch64                          7/150 
+  Verifying        : curl-7.76.1-31.el9_6.1.aarch64                       8/150 
+  Verifying        : vim-filesystem-2:8.2.2637-22.el9_6.1.noarch          9/150 
+  Verifying        : openssh-8.7p1-45.el9.rocky.0.1.aarch64              10/150 
+  Verifying        : libpkgconf-1.7.3-10.el9.aarch64                     11/150 
+  Verifying        : man-db-2.9.3-7.el9.aarch64                          12/150 
+  Verifying        : numactl-libs-2.0.19-1.el9.aarch64                   13/150 
+  Verifying        : librdmacm-54.0-1.el9.aarch64                        14/150 
+  Verifying        : tcl-1:8.6.10-7.el9.aarch64                          15/150 
+  Verifying        : pkgconf-1.7.3-10.el9.aarch64                        16/150 
+  Verifying        : libedit-3.1-38.20210216cvs.el9.aarch64              17/150 
+  Verifying        : hwloc-libs-2.4.1-5.el9.aarch64                      18/150 
+  Verifying        : libibverbs-54.0-1.el9.aarch64                       19/150 
+  Verifying        : libicu-67.1-10.el9_6.aarch64                        20/150 
+  Verifying        : libpipeline-1.5.3-4.el9.aarch64                     21/150 
+  Verifying        : ncurses-6.2-10.20210508.el9_6.2.aarch64             22/150 
+  Verifying        : pkgconf-m4-1.7.3-10.el9.noarch                      23/150 
+  Verifying        : environment-modules-5.3.0-1.el9.aarch64             24/150 
+  Verifying        : opensm-libs-3.3.24-2.el9.aarch64                    25/150 
+  Verifying        : libnl3-3.11.0-1.el9.aarch64                         26/150 
+  Verifying        : python3-setuptools-53.0.0-13.el9_6.1.noarch         27/150 
+  Verifying        : openssh-clients-8.7p1-45.el9.rocky.0.1.aarch64      28/150 
+  Verifying        : libcbor-0.7.0-5.el9.aarch64                         29/150 
+  Verifying        : libibumad-54.0-1.el9.aarch64                        30/150 
+  Verifying        : publicsuffix-list-dafsa-20210518-3.el9.noarch       31/150 
+  Verifying        : numactl-2.0.19-1.el9.aarch64                        32/150 
+  Verifying        : pkgconf-pkg-config-1.7.3-10.el9.aarch64             33/150 
+  Verifying        : libfido2-1.13.0-2.el9.aarch64                       34/150 
+  Verifying        : strace-6.12-1.el9.aarch64                           35/150 
+  Verifying        : git-core-2.47.3-1.el9_6.aarch64                     36/150 
+  Verifying        : libbabeltrace-1.5.8-10.el9.aarch64                  37/150 
+  Verifying        : perl-libs-4:5.32.1-481.1.el9_6.aarch64              38/150 
+  Verifying        : perl-Error-1:0.17029-7.el9.noarch                   39/150 
+  Verifying        : perl-Getopt-Long-1:2.52-4.el9.noarch                40/150 
+  Verifying        : cmake-data-3.26.5-2.el9.noarch                      41/150 
+  Verifying        : glibc-devel-2.34-168.el9_6.23.aarch64               42/150 
+  Verifying        : libubsan-11.5.0-5.el9_5.aarch64                     43/150 
+  Verifying        : perl-TermReadKey-2.38-11.el9.aarch64                44/150 
+  Verifying        : libfabric-1.22.0-1.el9.aarch64                      45/150 
+  Verifying        : perl-vars-1.05-481.1.el9_6.noarch                   46/150 
+  Verifying        : perl-File-Copy-2.34-481.1.el9_6.noarch              47/150 
+  Verifying        : gdb-headless-14.2-4.1.el9_6.aarch64                 48/150 
+  Verifying        : source-highlight-3.1.9-12.el9.aarch64               49/150 
+  Verifying        : perl-Scalar-List-Utils-4:1.56-462.el9.aarch64       50/150 
+  Verifying        : openmpi-devel-2:4.1.1-7.el9.aarch64                 51/150 
+  Verifying        : libuv-1:1.42.0-2.el9_4.aarch64                      52/150 
+  Verifying        : perl-Digest-MD5-2.58-4.el9.aarch64                  53/150 
+  Verifying        : perl-PathTools-3.78-461.el9.aarch64                 54/150 
+  Verifying        : pmix-3.2.3-5.el9.aarch64                            55/150 
+  Verifying        : valgrind-1:3.24.0-3.el9.aarch64                     56/150 
+  Verifying        : boost-regex-1.75.0-10.el9.aarch64                   57/150 
+  Verifying        : perl-parent-1:0.238-460.el9.noarch                  58/150 
+  Verifying        : perl-Thread-Queue-3.14-460.el9.noarch               59/150 
+  Verifying        : perl-base-2.27-481.1.el9_6.noarch                   60/150 
+  Verifying        : git-2.47.3-1.el9_6.aarch64                          61/150 
+  Verifying        : perl-Getopt-Std-1.12-481.1.el9_6.noarch             62/150 
+  Verifying        : wget-1.21.1-8.el9_4.aarch64                         63/150 
+  Verifying        : perl-Pod-Perldoc-3.28.01-461.el9.noarch             64/150 
+  Verifying        : perl-podlators-1:4.14-460.el9.noarch                65/150 
+  Verifying        : perl-HTTP-Tiny-0.076-462.el9.noarch                 66/150 
+  Verifying        : cmake-filesystem-3.26.5-2.el9.aarch64               67/150 
+  Verifying        : perl-File-Basename-2.85-481.1.el9_6.noarch          68/150 
+  Verifying        : libmpc-1.2.1-4.el9.aarch64                          69/150 
+  Verifying        : perl-Storable-1:3.21-460.el9.aarch64                70/150 
+  Verifying        : perl-Exporter-5.74-461.el9.noarch                   71/150 
+  Verifying        : perl-subs-1.03-481.1.el9_6.noarch                   72/150 
+  Verifying        : perl-Socket-4:2.031-4.el9.aarch64                   73/150 
+  Verifying        : perl-AutoLoader-5.74-481.1.el9_6.noarch             74/150 
+  Verifying        : hwloc-devel-2.4.1-5.el9.aarch64                     75/150 
+  Verifying        : rdma-core-devel-54.0-1.el9.aarch64                  76/150 
+  Verifying        : openmpi-2:4.1.1-7.el9.aarch64                       77/150 
+  Verifying        : perl-SelectSaver-1.02-481.1.el9_6.noarch            78/150 
+  Verifying        : git-core-doc-2.47.3-1.el9_6.noarch                  79/150 
+  Verifying        : perl-overload-1.31-481.1.el9_6.noarch               80/150 
+  Verifying        : m4-1.4.19-1.el9.aarch64                             81/150 
+  Verifying        : python3-pip-21.3.1-1.el9.noarch                     82/150 
+  Verifying        : emacs-filesystem-1:27.2-14.el9_6.2.noarch           83/150 
+  Verifying        : perl-if-0.60.800-481.1.el9_6.noarch                 84/150 
+  Verifying        : vim-common-2:8.2.2637-22.el9_6.1.aarch64            85/150 
+  Verifying        : libtool-2.4.6-46.el9.aarch64                        86/150 
+  Verifying        : perl-FileHandle-2.03-481.1.el9_6.noarch             87/150 
+  Verifying        : perl-Term-ANSIColor-5.01-461.el9.noarch             88/150 
+  Verifying        : perl-MIME-Base64-3.16-4.el9.aarch64                 89/150 
+  Verifying        : cpp-11.5.0-5.el9_5.aarch64                          90/150 
+  Verifying        : perl-DynaLoader-1.47-481.1.el9_6.aarch64            91/150 
+  Verifying        : python3-devel-3.9.21-2.el9_6.2.aarch64              92/150 
+  Verifying        : perl-NDBM_File-1.15-481.1.el9_6.aarch64             93/150 
+  Verifying        : perl-File-Path-2.18-4.el9.noarch                    94/150 
+  Verifying        : libasan-11.5.0-5.el9_5.aarch64                      95/150 
+  Verifying        : perl-mro-1.23-481.1.el9_6.aarch64                   96/150 
+  Verifying        : gpm-libs-1.20.7-29.el9.aarch64                      97/150 
+  Verifying        : perl-File-Find-1.37-481.1.el9_6.noarch              98/150 
+  Verifying        : perl-File-stat-1.09-481.1.el9_6.noarch              99/150 
+  Verifying        : infiniband-diags-54.0-1.el9.aarch64                100/150 
+  Verifying        : perl-threads-shared-1.61-460.el9.0.1.aarch64       101/150 
+  Verifying        : perl-Symbol-1.08-481.1.el9_6.noarch                102/150 
+  Verifying        : perl-lib-0.65-481.1.el9_6.aarch64                  103/150 
+  Verifying        : perl-POSIX-1.94-481.1.el9_6.aarch64                104/150 
+  Verifying        : perl-Errno-1.30-481.1.el9_6.aarch64                105/150 
+  Verifying        : automake-1.16.2-8.el9.noarch                       106/150 
+  Verifying        : perl-Pod-Simple-1:3.42-4.el9.noarch                107/150 
+  Verifying        : perl-File-Temp-1:0.231.100-4.el9.noarch            108/150 
+  Verifying        : perl-IO-1.43-481.1.el9_6.aarch64                   109/150 
+  Verifying        : cmake-rpm-macros-3.26.5-2.el9.noarch               110/150 
+  Verifying        : perl-Digest-1.19-4.el9.noarch                      111/150 
+  Verifying        : munge-libs-0.5.13-13.el9.aarch64                   112/150 
+  Verifying        : cmake-3.26.5-2.el9.aarch64                         113/150 
+  Verifying        : libstdc++-devel-11.5.0-5.el9_5.aarch64             114/150 
+  Verifying        : perl-Net-SSLeay-1.94-1.el9.aarch64                 115/150 
+  Verifying        : perl-interpreter-4:5.32.1-481.1.el9_6.aarch64      116/150 
+  Verifying        : perl-Pod-Escapes-1:1.07-460.el9.noarch             117/150 
+  Verifying        : perl-Mozilla-CA-20200520-6.el9.noarch              118/150 
+  Verifying        : rpm-mpi-hooks-8-3.el9.noarch                       119/150 
+  Verifying        : perl-Encode-4:3.08-462.el9.aarch64                 120/150 
+  Verifying        : perl-Data-Dumper-2.174-462.el9.aarch64             121/150 
+  Verifying        : gdb-14.2-4.1.el9_6.aarch64                         122/150 
+  Verifying        : perl-Pod-Usage-4:2.01-4.el9.noarch                 123/150 
+  Verifying        : perl-Carp-1.50-460.el9.noarch                      124/150 
+  Verifying        : gcc-gfortran-11.5.0-5.el9_5.aarch64                125/150 
+  Verifying        : perl-constant-1.33-461.el9.noarch                  126/150 
+  Verifying        : perl-IO-Socket-SSL-2.073-2.el9.noarch              127/150 
+  Verifying        : perl-Class-Struct-0.66-481.1.el9_6.noarch          128/150 
+  Verifying        : perl-Time-Local-2:1.300-7.el9.noarch               129/150 
+  Verifying        : perl-IPC-Open3-1.21-481.1.el9_6.noarch             130/150 
+  Verifying        : perl-libnet-3.13-4.el9.noarch                      131/150 
+  Verifying        : perl-Term-Cap-1.17-460.el9.noarch                  132/150 
+  Verifying        : gcc-c++-11.5.0-5.el9_5.aarch64                     133/150 
+  Verifying        : perl-threads-1:2.25-460.el9.aarch64                134/150 
+  Verifying        : perl-overloading-0.02-481.1.el9_6.noarch           135/150 
+  Verifying        : perl-URI-5.09-3.el9.noarch                         136/150 
+  Verifying        : perl-B-1.80-481.1.el9_6.aarch64                    137/150 
+  Verifying        : ucx-1.17.0-2.el9.aarch64                           138/150 
+  Verifying        : kernel-headers-5.14.0-570.52.1.el9_6.aarch64       139/150 
+  Verifying        : libxcrypt-devel-4.4.18-3.el9.aarch64               140/150 
+  Verifying        : perl-Fcntl-1.13-481.1.el9_6.aarch64                141/150 
+  Verifying        : vim-enhanced-2:8.2.2637-22.el9_6.1.aarch64         142/150 
+  Verifying        : perl-Git-2.47.3-1.el9_6.noarch                     143/150 
+  Verifying        : perl-File-Compare-1.100.600-481.1.el9_6.noarch     144/150 
+  Verifying        : perl-Text-ParseWords-3.30-460.el9.noarch           145/150 
+  Verifying        : autoconf-2.69-39.el9.noarch                        146/150 
+  Verifying        : perl-Text-Tabs+Wrap-2013.0523-460.el9.noarch       147/150 
+  Verifying        : gcc-11.5.0-5.el9_5.aarch64                         148/150 
+  Verifying        : perl-IO-Socket-IP-0.41-5.el9.noarch                149/150 
+  Verifying        : curl-minimal-7.76.1-31.el9_6.1.aarch64             150/150 
+
+Installed:
+  autoconf-2.69-39.el9.noarch                                                   
+  automake-1.16.2-8.el9.noarch                                                  
+  boost-regex-1.75.0-10.el9.aarch64                                             
+  cmake-3.26.5-2.el9.aarch64                                                    
+  cmake-data-3.26.5-2.el9.noarch                                                
+  cmake-filesystem-3.26.5-2.el9.aarch64                                         
+  cmake-rpm-macros-3.26.5-2.el9.noarch                                          
+  cpp-11.5.0-5.el9_5.aarch64                                                    
+  curl-7.76.1-31.el9_6.1.aarch64                                                
+  emacs-filesystem-1:27.2-14.el9_6.2.noarch                                     
+  environment-modules-5.3.0-1.el9.aarch64                                       
+  file-5.39-16.el9.aarch64                                                      
+  gcc-11.5.0-5.el9_5.aarch64                                                    
+  gcc-c++-11.5.0-5.el9_5.aarch64                                                
+  gcc-gfortran-11.5.0-5.el9_5.aarch64                                           
+  gdb-14.2-4.1.el9_6.aarch64                                                    
+  gdb-headless-14.2-4.1.el9_6.aarch64                                           
+  git-2.47.3-1.el9_6.aarch64                                                    
+  git-core-2.47.3-1.el9_6.aarch64                                               
+  git-core-doc-2.47.3-1.el9_6.noarch                                            
+  glibc-devel-2.34-168.el9_6.23.aarch64                                         
+  gpm-libs-1.20.7-29.el9.aarch64                                                
+  groff-base-1.22.4-10.el9.aarch64                                              
+  hwloc-devel-2.4.1-5.el9.aarch64                                               
+  hwloc-libs-2.4.1-5.el9.aarch64                                                
+  infiniband-diags-54.0-1.el9.aarch64                                           
+  kernel-headers-5.14.0-570.52.1.el9_6.aarch64                                  
+  libasan-11.5.0-5.el9_5.aarch64                                                
+  libbabeltrace-1.5.8-10.el9.aarch64                                            
+  libcbor-0.7.0-5.el9.aarch64                                                   
+  libedit-3.1-38.20210216cvs.el9.aarch64                                        
+  libfabric-1.22.0-1.el9.aarch64                                                
+  libfido2-1.13.0-2.el9.aarch64                                                 
+  libgfortran-11.5.0-5.el9_5.aarch64                                            
+  libibumad-54.0-1.el9.aarch64                                                  
+  libibverbs-54.0-1.el9.aarch64                                                 
+  libicu-67.1-10.el9_6.aarch64                                                  
+  libmpc-1.2.1-4.el9.aarch64                                                    
+  libnl3-3.11.0-1.el9.aarch64                                                   
+  libpipeline-1.5.3-4.el9.aarch64                                               
+  libpkgconf-1.7.3-10.el9.aarch64                                               
+  libpsl-0.21.1-5.el9.aarch64                                                   
+  librdmacm-54.0-1.el9.aarch64                                                  
+  libstdc++-devel-11.5.0-5.el9_5.aarch64                                        
+  libtool-2.4.6-46.el9.aarch64                                                  
+  libubsan-11.5.0-5.el9_5.aarch64                                               
+  libuv-1:1.42.0-2.el9_4.aarch64                                                
+  libxcrypt-devel-4.4.18-3.el9.aarch64                                          
+  m4-1.4.19-1.el9.aarch64                                                       
+  make-1:4.3-8.el9.aarch64                                                      
+  man-db-2.9.3-7.el9.aarch64                                                    
+  munge-libs-0.5.13-13.el9.aarch64                                              
+  ncurses-6.2-10.20210508.el9_6.2.aarch64                                       
+  numactl-2.0.19-1.el9.aarch64                                                  
+  numactl-libs-2.0.19-1.el9.aarch64                                             
+  openmpi-2:4.1.1-7.el9.aarch64                                                 
+  openmpi-devel-2:4.1.1-7.el9.aarch64                                           
+  opensm-libs-3.3.24-2.el9.aarch64                                              
+  openssh-8.7p1-45.el9.rocky.0.1.aarch64                                        
+  openssh-clients-8.7p1-45.el9.rocky.0.1.aarch64                                
+  perl-AutoLoader-5.74-481.1.el9_6.noarch                                       
+  perl-B-1.80-481.1.el9_6.aarch64                                               
+  perl-Carp-1.50-460.el9.noarch                                                 
+  perl-Class-Struct-0.66-481.1.el9_6.noarch                                     
+  perl-Data-Dumper-2.174-462.el9.aarch64                                        
+  perl-Digest-1.19-4.el9.noarch                                                 
+  perl-Digest-MD5-2.58-4.el9.aarch64                                            
+  perl-DynaLoader-1.47-481.1.el9_6.aarch64                                      
+  perl-Encode-4:3.08-462.el9.aarch64                                            
+  perl-Errno-1.30-481.1.el9_6.aarch64                                           
+  perl-Error-1:0.17029-7.el9.noarch                                             
+  perl-Exporter-5.74-461.el9.noarch                                             
+  perl-Fcntl-1.13-481.1.el9_6.aarch64                                           
+  perl-File-Basename-2.85-481.1.el9_6.noarch                                    
+  perl-File-Compare-1.100.600-481.1.el9_6.noarch                                
+  perl-File-Copy-2.34-481.1.el9_6.noarch                                        
+  perl-File-Find-1.37-481.1.el9_6.noarch                                        
+  perl-File-Path-2.18-4.el9.noarch                                              
+  perl-File-Temp-1:0.231.100-4.el9.noarch                                       
+  perl-File-stat-1.09-481.1.el9_6.noarch                                        
+  perl-FileHandle-2.03-481.1.el9_6.noarch                                       
+  perl-Getopt-Long-1:2.52-4.el9.noarch                                          
+  perl-Getopt-Std-1.12-481.1.el9_6.noarch                                       
+  perl-Git-2.47.3-1.el9_6.noarch                                                
+  perl-HTTP-Tiny-0.076-462.el9.noarch                                           
+  perl-IO-1.43-481.1.el9_6.aarch64                                              
+  perl-IO-Socket-IP-0.41-5.el9.noarch                                           
+  perl-IO-Socket-SSL-2.073-2.el9.noarch                                         
+  perl-IPC-Open3-1.21-481.1.el9_6.noarch                                        
+  perl-MIME-Base64-3.16-4.el9.aarch64                                           
+  perl-Mozilla-CA-20200520-6.el9.noarch                                         
+  perl-NDBM_File-1.15-481.1.el9_6.aarch64                                       
+  perl-Net-SSLeay-1.94-1.el9.aarch64                                            
+  perl-POSIX-1.94-481.1.el9_6.aarch64                                           
+  perl-PathTools-3.78-461.el9.aarch64                                           
+  perl-Pod-Escapes-1:1.07-460.el9.noarch                                        
+  perl-Pod-Perldoc-3.28.01-461.el9.noarch                                       
+  perl-Pod-Simple-1:3.42-4.el9.noarch                                           
+  perl-Pod-Usage-4:2.01-4.el9.noarch                                            
+  perl-Scalar-List-Utils-4:1.56-462.el9.aarch64                                 
+  perl-SelectSaver-1.02-481.1.el9_6.noarch                                      
+  perl-Socket-4:2.031-4.el9.aarch64                                             
+  perl-Storable-1:3.21-460.el9.aarch64                                          
+  perl-Symbol-1.08-481.1.el9_6.noarch                                           
+  perl-Term-ANSIColor-5.01-461.el9.noarch                                       
+  perl-Term-Cap-1.17-460.el9.noarch                                             
+  perl-TermReadKey-2.38-11.el9.aarch64                                          
+  perl-Text-ParseWords-3.30-460.el9.noarch                                      
+  perl-Text-Tabs+Wrap-2013.0523-460.el9.noarch                                  
+  perl-Thread-Queue-3.14-460.el9.noarch                                         
+  perl-Time-Local-2:1.300-7.el9.noarch                                          
+  perl-URI-5.09-3.el9.noarch                                                    
+  perl-base-2.27-481.1.el9_6.noarch                                             
+  perl-constant-1.33-461.el9.noarch                                             
+  perl-if-0.60.800-481.1.el9_6.noarch                                           
+  perl-interpreter-4:5.32.1-481.1.el9_6.aarch64                                 
+  perl-lib-0.65-481.1.el9_6.aarch64                                             
+  perl-libnet-3.13-4.el9.noarch                                                 
+  perl-libs-4:5.32.1-481.1.el9_6.aarch64                                        
+  perl-mro-1.23-481.1.el9_6.aarch64                                             
+  perl-overload-1.31-481.1.el9_6.noarch                                         
+  perl-overloading-0.02-481.1.el9_6.noarch                                      
+  perl-parent-1:0.238-460.el9.noarch                                            
+  perl-podlators-1:4.14-460.el9.noarch                                          
+  perl-subs-1.03-481.1.el9_6.noarch                                             
+  perl-threads-1:2.25-460.el9.aarch64                                           
+  perl-threads-shared-1.61-460.el9.0.1.aarch64                                  
+  perl-vars-1.05-481.1.el9_6.noarch                                             
+  pkgconf-1.7.3-10.el9.aarch64                                                  
+  pkgconf-m4-1.7.3-10.el9.noarch                                                
+  pkgconf-pkg-config-1.7.3-10.el9.aarch64                                       
+  pmix-3.2.3-5.el9.aarch64                                                      
+  procps-ng-3.3.17-14.el9.aarch64                                               
+  publicsuffix-list-dafsa-20210518-3.el9.noarch                                 
+  python3-devel-3.9.21-2.el9_6.2.aarch64                                        
+  python3-pip-21.3.1-1.el9.noarch                                               
+  python3-setuptools-53.0.0-13.el9_6.1.noarch                                   
+  rdma-core-devel-54.0-1.el9.aarch64                                            
+  rpm-mpi-hooks-8-3.el9.noarch                                                  
+  source-highlight-3.1.9-12.el9.aarch64                                         
+  strace-6.12-1.el9.aarch64                                                     
+  tcl-1:8.6.10-7.el9.aarch64                                                    
+  ucx-1.17.0-2.el9.aarch64                                                      
+  valgrind-1:3.24.0-3.el9.aarch64                                               
+  vim-common-2:8.2.2637-22.el9_6.1.aarch64                                      
+  vim-enhanced-2:8.2.2637-22.el9_6.1.aarch64                                    
+  vim-filesystem-2:8.2.2637-22.el9_6.1.noarch                                   
+  wget-1.21.1-8.el9_4.aarch64                                                   
+  which-2.21-30.el9_6.aarch64                                                   
+Removed:
+  curl-minimal-7.76.1-31.el9_6.1.aarch64                                        
+
+Complete!
+25 files removed
+--> 95806e3ff76c
+STEP 6/17: ENV MPI_ROOT=/usr/lib64/openmpi
+--> 0b22c8f6ab62
+STEP 7/17: ENV PATH=$MPI_ROOT/bin:$PATH
+--> 393aa7e67fdb
+STEP 8/17: ENV LD_LIBRARY_PATH=$MPI_ROOT/lib:$LD_LIBRARY_PATH
+--> bba58f28faad
+STEP 9/17: ENV MANPATH=$MPI_ROOT/share/man:$MANPATH
+--> 13bda74fefa7
+STEP 10/17: RUN pip3 install --no-cache-dir     numpy     matplotlib     pandas     jupyter     ipython
+Collecting numpy
+  Downloading numpy-2.0.2-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (13.9 MB)
+Collecting matplotlib
+  Downloading matplotlib-3.9.4-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (8.2 MB)
+Collecting pandas
+  Downloading pandas-2.3.3-cp39-cp39-manylinux_2_24_aarch64.manylinux_2_28_aarch64.whl (12.2 MB)
+Collecting jupyter
+  Downloading jupyter-1.1.1-py2.py3-none-any.whl (2.7 kB)
+Collecting ipython
+  Downloading ipython-8.18.1-py3-none-any.whl (808 kB)
+Collecting pyparsing>=2.3.1
+  Downloading pyparsing-3.2.5-py3-none-any.whl (113 kB)
+Collecting fonttools>=4.22.0
+  Downloading fonttools-4.60.1-cp39-cp39-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (4.8 MB)
+Collecting importlib-resources>=3.2.0
+  Downloading importlib_resources-6.5.2-py3-none-any.whl (37 kB)
+Collecting contourpy>=1.0.1
+  Downloading contourpy-1.3.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (309 kB)
+Collecting pillow>=8
+  Downloading pillow-11.3.0-cp39-cp39-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (6.0 MB)
+Collecting cycler>=0.10
+  Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Collecting python-dateutil>=2.7
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Collecting kiwisolver>=1.3.1
+  Downloading kiwisolver-1.4.7-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (1.4 MB)
+Collecting packaging>=20.0
+  Downloading packaging-25.0-py3-none-any.whl (66 kB)
+Collecting tzdata>=2022.7
+  Downloading tzdata-2025.2-py2.py3-none-any.whl (347 kB)
+Collecting pytz>=2020.1
+  Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
+Collecting ipykernel
+  Downloading ipykernel-6.31.0-py3-none-any.whl (117 kB)
+Collecting jupyter-console
+  Downloading jupyter_console-6.6.3-py3-none-any.whl (24 kB)
+Collecting jupyterlab
+  Downloading jupyterlab-4.4.10-py3-none-any.whl (12.3 MB)
+Collecting ipywidgets
+  Downloading ipywidgets-8.1.7-py3-none-any.whl (139 kB)
+Collecting notebook
+  Downloading notebook-7.4.7-py3-none-any.whl (14.3 MB)
+Collecting nbconvert
+  Downloading nbconvert-7.16.6-py3-none-any.whl (258 kB)
+Collecting pexpect>4.3
+  Downloading pexpect-4.9.0-py2.py3-none-any.whl (63 kB)
+Collecting decorator
+  Downloading decorator-5.2.1-py3-none-any.whl (9.2 kB)
+Collecting prompt-toolkit<3.1.0,>=3.0.41
+  Downloading prompt_toolkit-3.0.52-py3-none-any.whl (391 kB)
+Collecting traitlets>=5
+  Downloading traitlets-5.14.3-py3-none-any.whl (85 kB)
+Collecting matplotlib-inline
+  Downloading matplotlib_inline-0.1.7-py3-none-any.whl (9.9 kB)
+Collecting stack-data
+  Downloading stack_data-0.6.3-py3-none-any.whl (24 kB)
+Collecting exceptiongroup
+  Downloading exceptiongroup-1.3.0-py3-none-any.whl (16 kB)
+Collecting typing-extensions
+  Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Collecting jedi>=0.16
+  Downloading jedi-0.19.2-py2.py3-none-any.whl (1.6 MB)
+Collecting pygments>=2.4.0
+  Downloading pygments-2.19.2-py3-none-any.whl (1.2 MB)
+Collecting zipp>=3.1.0
+  Downloading zipp-3.23.0-py3-none-any.whl (10 kB)
+Collecting parso<0.9.0,>=0.8.4
+  Downloading parso-0.8.5-py2.py3-none-any.whl (106 kB)
+Collecting ptyprocess>=0.5
+  Downloading ptyprocess-0.7.0-py2.py3-none-any.whl (13 kB)
+Collecting wcwidth
+  Downloading wcwidth-0.2.14-py2.py3-none-any.whl (37 kB)
+Collecting six>=1.5
+  Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Collecting debugpy>=1.6.5
+  Downloading debugpy-1.8.17-py2.py3-none-any.whl (5.3 MB)
+Collecting pyzmq>=25
+  Downloading pyzmq-27.1.0-cp39-cp39-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl (666 kB)
+Collecting jupyter-core!=5.0.*,>=4.12
+  Downloading jupyter_core-5.8.1-py3-none-any.whl (28 kB)
+Collecting nest-asyncio>=1.4
+  Downloading nest_asyncio-1.6.0-py3-none-any.whl (5.2 kB)
+Collecting psutil>=5.7
+  Downloading psutil-7.1.1-cp36-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (292 kB)
+Collecting jupyter-client>=8.0.0
+  Downloading jupyter_client-8.6.3-py3-none-any.whl (106 kB)
+Collecting comm>=0.1.1
+  Downloading comm-0.2.3-py3-none-any.whl (7.3 kB)
+Collecting tornado>=6.2
+  Downloading tornado-6.5.2-cp39-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (444 kB)
+Collecting widgetsnbextension~=4.0.14
+  Downloading widgetsnbextension-4.0.14-py3-none-any.whl (2.2 MB)
+Collecting jupyterlab_widgets~=3.0.15
+  Downloading jupyterlab_widgets-3.0.15-py3-none-any.whl (216 kB)
+Collecting jupyter-server<3,>=2.4.0
+  Downloading jupyter_server-2.17.0-py3-none-any.whl (388 kB)
+Requirement already satisfied: setuptools>=41.1.0 in /usr/lib/python3.9/site-packages (from jupyterlab->jupyter) (53.0.0)
+Collecting notebook-shim>=0.2
+  Downloading notebook_shim-0.2.4-py3-none-any.whl (13 kB)
+Collecting jupyter-lsp>=2.0.0
+  Downloading jupyter_lsp-2.3.0-py3-none-any.whl (76 kB)
+Collecting jinja2>=3.0.3
+  Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Collecting httpx<1,>=0.25.0
+  Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+Collecting jupyterlab-server<3,>=2.27.1
+  Downloading jupyterlab_server-2.28.0-py3-none-any.whl (59 kB)
+Collecting tomli>=1.2.2
+  Downloading tomli-2.3.0-py3-none-any.whl (14 kB)
+Collecting async-lru>=1.0.0
+  Downloading async_lru-2.0.5-py3-none-any.whl (6.1 kB)
+Collecting importlib-metadata>=4.8.3
+  Downloading importlib_metadata-8.7.0-py3-none-any.whl (27 kB)
+Collecting defusedxml
+  Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)
+Collecting nbclient>=0.5.0
+  Downloading nbclient-0.10.2-py3-none-any.whl (25 kB)
+Collecting bleach[css]!=5.0.0
+  Downloading bleach-6.2.0-py3-none-any.whl (163 kB)
+Collecting nbformat>=5.7
+  Downloading nbformat-5.10.4-py3-none-any.whl (78 kB)
+Collecting beautifulsoup4
+  Downloading beautifulsoup4-4.14.2-py3-none-any.whl (106 kB)
+Collecting markupsafe>=2.0
+  Downloading markupsafe-3.0.3-cp39-cp39-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (21 kB)
+Collecting mistune<4,>=2.0.3
+  Downloading mistune-3.1.4-py3-none-any.whl (53 kB)
+Collecting pandocfilters>=1.4.1
+  Downloading pandocfilters-1.5.1-py2.py3-none-any.whl (8.7 kB)
+Collecting jupyterlab-pygments
+  Downloading jupyterlab_pygments-0.3.0-py3-none-any.whl (15 kB)
+Collecting asttokens>=2.1.0
+  Downloading asttokens-3.0.0-py3-none-any.whl (26 kB)
+Collecting pure-eval
+  Downloading pure_eval-0.2.3-py3-none-any.whl (11 kB)
+Collecting executing>=1.2.0
+  Downloading executing-2.2.1-py2.py3-none-any.whl (28 kB)
+Collecting webencodings
+  Downloading webencodings-0.5.1-py2.py3-none-any.whl (11 kB)
+Collecting tinycss2<1.5,>=1.1.0
+  Downloading tinycss2-1.4.0-py3-none-any.whl (26 kB)
+Collecting certifi
+  Downloading certifi-2025.10.5-py3-none-any.whl (163 kB)
+Collecting httpcore==1.*
+  Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+Collecting anyio
+  Downloading anyio-4.11.0-py3-none-any.whl (109 kB)
+Collecting idna
+  Downloading idna-3.11-py3-none-any.whl (71 kB)
+Collecting h11>=0.16
+  Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Collecting platformdirs>=2.5
+  Downloading platformdirs-4.4.0-py3-none-any.whl (18 kB)
+Collecting argon2-cffi>=21.1
+  Downloading argon2_cffi-25.1.0-py3-none-any.whl (14 kB)
+Collecting jupyter-events>=0.11.0
+  Downloading jupyter_events-0.12.0-py3-none-any.whl (19 kB)
+Collecting send2trash>=1.8.2
+  Downloading Send2Trash-1.8.3-py3-none-any.whl (18 kB)
+Collecting terminado>=0.8.3
+  Downloading terminado-0.18.1-py3-none-any.whl (14 kB)
+Collecting websocket-client>=1.7
+  Downloading websocket_client-1.9.0-py3-none-any.whl (82 kB)
+Collecting overrides>=5.0
+  Downloading overrides-7.7.0-py3-none-any.whl (17 kB)
+Collecting prometheus-client>=0.9
+  Downloading prometheus_client-0.23.1-py3-none-any.whl (61 kB)
+Collecting jupyter-server-terminals>=0.4.4
+  Downloading jupyter_server_terminals-0.5.3-py3-none-any.whl (13 kB)
+Collecting jsonschema>=4.18.0
+  Downloading jsonschema-4.25.1-py3-none-any.whl (90 kB)
+Collecting json5>=0.9.0
+  Downloading json5-0.12.1-py3-none-any.whl (36 kB)
+Collecting requests>=2.31
+  Downloading requests-2.32.5-py3-none-any.whl (64 kB)
+Collecting babel>=2.10
+  Downloading babel-2.17.0-py3-none-any.whl (10.2 MB)
+Collecting fastjsonschema>=2.15
+  Downloading fastjsonschema-2.21.2-py3-none-any.whl (24 kB)
+Collecting soupsieve>1.2
+  Downloading soupsieve-2.8-py3-none-any.whl (36 kB)
+Collecting sniffio>=1.1
+  Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+Collecting argon2-cffi-bindings
+  Downloading argon2_cffi_bindings-25.1.0-cp39-abi3-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl (81 kB)
+Collecting jsonschema-specifications>=2023.03.6
+  Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+Collecting referencing>=0.28.4
+  Downloading referencing-0.36.2-py3-none-any.whl (26 kB)
+Collecting rpds-py>=0.7.1
+  Downloading rpds_py-0.27.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (382 kB)
+Collecting attrs>=22.2.0
+  Downloading attrs-25.4.0-py3-none-any.whl (67 kB)
+Collecting pyyaml>=5.3
+  Downloading pyyaml-6.0.3-cp39-cp39-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (737 kB)
+Collecting python-json-logger>=2.0.4
+  Downloading python_json_logger-4.0.0-py3-none-any.whl (15 kB)
+Collecting rfc3339-validator
+  Downloading rfc3339_validator-0.1.4-py2.py3-none-any.whl (3.5 kB)
+Collecting rfc3986-validator>=0.1.1
+  Downloading rfc3986_validator-0.1.1-py2.py3-none-any.whl (4.2 kB)
+Collecting urllib3<3,>=1.21.1
+  Downloading urllib3-2.5.0-py3-none-any.whl (129 kB)
+Collecting charset_normalizer<4,>=2
+  Downloading charset_normalizer-3.4.4-cp39-cp39-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (149 kB)
+Collecting uri-template
+  Downloading uri_template-1.3.0-py3-none-any.whl (11 kB)
+Collecting webcolors>=24.6.0
+  Downloading webcolors-24.11.1-py3-none-any.whl (14 kB)
+Collecting fqdn
+  Downloading fqdn-1.5.1-py3-none-any.whl (9.1 kB)
+Collecting rfc3987-syntax>=1.1.0
+  Downloading rfc3987_syntax-1.1.0-py3-none-any.whl (8.0 kB)
+Collecting jsonpointer>1.13
+  Downloading jsonpointer-3.0.0-py2.py3-none-any.whl (7.6 kB)
+Collecting isoduration
+  Downloading isoduration-20.11.0-py3-none-any.whl (11 kB)
+Collecting cffi>=1.0.1
+  Downloading cffi-2.0.0-cp39-cp39-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (216 kB)
+Collecting pycparser
+  Downloading pycparser-2.23-py3-none-any.whl (118 kB)
+Collecting lark>=1.2.2
+  Downloading lark-1.3.0-py3-none-any.whl (113 kB)
+Collecting arrow>=0.15.0
+  Downloading arrow-1.4.0-py3-none-any.whl (68 kB)
+Installing collected packages: typing-extensions, rpds-py, attrs, six, referencing, zipp, tzdata, traitlets, python-dateutil, platformdirs, jsonschema-specifications, webencodings, tornado, pyzmq, pycparser, lark, jupyter-core, jsonschema, importlib-metadata, fastjsonschema, arrow, webcolors, uri-template, tinycss2, soupsieve, rfc3987-syntax, rfc3986-validator, rfc3339-validator, ptyprocess, nbformat, markupsafe, jupyter-client, jsonpointer, isoduration, idna, fqdn, cffi, bleach, wcwidth, terminado, sniffio, pyyaml, python-json-logger, pygments, pure-eval, parso, pandocfilters, packaging, nbclient, mistune, jupyterlab-pygments, jinja2, executing, exceptiongroup, defusedxml, beautifulsoup4, asttokens, argon2-cffi-bindings, websocket-client, urllib3, stack-data, send2trash, prompt-toolkit, prometheus-client, pexpect, overrides, nbconvert, matplotlib-inline, jupyter-server-terminals, jupyter-events, jedi, h11, decorator, charset-normalizer, certifi, argon2-cffi, anyio, requests, psutil, nest-asyncio, jupyter-server, json5, ipython, httpcore, debugpy, comm, babel, tomli, notebook-shim, jupyterlab-server, jupyter-lsp, ipykernel, httpx, async-lru, widgetsnbextension, numpy, jupyterlab-widgets, jupyterlab, pytz, pyparsing, pillow, notebook, kiwisolver, jupyter-console, ipywidgets, importlib-resources, fonttools, cycler, contourpy, pandas, matplotlib, jupyter
+Successfully installed anyio-4.11.0 argon2-cffi-25.1.0 argon2-cffi-bindings-25.1.0 arrow-1.4.0 asttokens-3.0.0 async-lru-2.0.5 attrs-25.4.0 babel-2.17.0 beautifulsoup4-4.14.2 bleach-6.2.0 certifi-2025.10.5 cffi-2.0.0 charset-normalizer-3.4.4 comm-0.2.3 contourpy-1.3.0 cycler-0.12.1 debugpy-1.8.17 decorator-5.2.1 defusedxml-0.7.1 exceptiongroup-1.3.0 executing-2.2.1 fastjsonschema-2.21.2 fonttools-4.60.1 fqdn-1.5.1 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.11 importlib-metadata-8.7.0 importlib-resources-6.5.2 ipykernel-6.31.0 ipython-8.18.1 ipywidgets-8.1.7 isoduration-20.11.0 jedi-0.19.2 jinja2-3.1.6 json5-0.12.1 jsonpointer-3.0.0 jsonschema-4.25.1 jsonschema-specifications-2025.9.1 jupyter-1.1.1 jupyter-client-8.6.3 jupyter-console-6.6.3 jupyter-core-5.8.1 jupyter-events-0.12.0 jupyter-lsp-2.3.0 jupyter-server-2.17.0 jupyter-server-terminals-0.5.3 jupyterlab-4.4.10 jupyterlab-pygments-0.3.0 jupyterlab-server-2.28.0 jupyterlab-widgets-3.0.15 kiwisolver-1.4.7 lark-1.3.0 markupsafe-3.0.3 matplotlib-3.9.4 matplotlib-inline-0.1.7 mistune-3.1.4 nbclient-0.10.2 nbconvert-7.16.6 nbformat-5.10.4 nest-asyncio-1.6.0 notebook-7.4.7 notebook-shim-0.2.4 numpy-2.0.2 overrides-7.7.0 packaging-25.0 pandas-2.3.3 pandocfilters-1.5.1 parso-0.8.5 pexpect-4.9.0 pillow-11.3.0 platformdirs-4.4.0 prometheus-client-0.23.1 prompt-toolkit-3.0.52 psutil-7.1.1 ptyprocess-0.7.0 pure-eval-0.2.3 pycparser-2.23 pygments-2.19.2 pyparsing-3.2.5 python-dateutil-2.9.0.post0 python-json-logger-4.0.0 pytz-2025.2 pyyaml-6.0.3 pyzmq-27.1.0 referencing-0.36.2 requests-2.32.5 rfc3339-validator-0.1.4 rfc3986-validator-0.1.1 rfc3987-syntax-1.1.0 rpds-py-0.27.1 send2trash-1.8.3 six-1.17.0 sniffio-1.3.1 soupsieve-2.8 stack-data-0.6.3 terminado-0.18.1 tinycss2-1.4.0 tomli-2.3.0 tornado-6.5.2 traitlets-5.14.3 typing-extensions-4.15.0 tzdata-2025.2 uri-template-1.3.0 urllib3-2.5.0 wcwidth-0.2.14 webcolors-24.11.1 webencodings-0.5.1 websocket-client-1.9.0 widgetsnbextension-4.0.14 zipp-3.23.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+--> 5aa639715ca8
+STEP 11/17: RUN useradd -m -s /bin/bash hpcuser &&     mkdir -p /home/hpcuser/workspace &&     chown -R hpcuser:hpcuser /home/hpcuser
+--> 48c9ce5e5b03
+STEP 12/17: COPY --chown=hpcuser:hpcuser . /home/hpcuser/workspace/
+--> 2df5e6c2a7e0
+STEP 13/17: WORKDIR /home/hpcuser/workspace
+--> ee250ab1213b
+STEP 14/17: USER hpcuser
+--> 9360a9ed7e4a
+STEP 15/17: CMD ["/bin/bash"]
+--> 7564e90d7bfe
+STEP 16/17: ENV "OPENSHIFT_BUILD_NAME"="hpc-base-1" "OPENSHIFT_BUILD_NAMESPACE"="hpc-interview"
+--> 69c8f0a4b7be
+STEP 17/17: LABEL "io.openshift.build.name"="hpc-base-1" "io.openshift.build.namespace"="hpc-interview"
+COMMIT temp.builder.openshift.io/hpc-interview/hpc-base-1:dbf06d05
+--> d917a684bf0e
+Successfully tagged temp.builder.openshift.io/hpc-interview/hpc-base-1:dbf06d05
+d917a684bf0e9b204e75606a8d44baf3241b7d42ed2cfea9262a1f7f721f766b
+
+Pushing image image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest ...
+Getting image source signatures
+Copying blob sha256:2dc9a7bcbe17f8bde995bd7ad94d1c6bb52db6442f4a2afffbff4ec113d1243b
+Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
+Copying blob sha256:8896e6a20d33cb7b7f7c1df1ab7bbd192a59f0e261e4077f2227759b42863aba
+Copying blob sha256:b650a368f3ee226407714ab45851483a4889ed70755e11d24252b4f9fa661629
+Copying blob sha256:dec43b54694bbd62a2b2db091ebf9d005bc8faf4a61f4ed6d579dc2f566f7791
+Copying config sha256:d917a684bf0e9b204e75606a8d44baf3241b7d42ed2cfea9262a1f7f721f766b
+Writing manifest to image destination
+Successfully pushed image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base@sha256:29bf5e35dc70ca9128714e718ab1d11fefaf5e320cc224dbee1b1a6d6eca8666
+Push successful

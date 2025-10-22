@@ -1,5 +1,276 @@
 STEP 1/13: FROM hpc-base:latest
-Resolving "hpc-base" using unqualified-search registries (/etc/containers/registries.conf.d/999-podman-machine.conf)
-Trying to pull docker.io/library/hpc-base:latest...
-Error: creating build container: initializing source docker://hpc-base:latest: reading manifest latest in docker.io/library/hpc-base: requested access to the resource is denied
+STEP 2/13: USER root
+--> e102a09c4762
+STEP 3/13: RUN dnf install -y         gdb-gdbserver         elfutils         binutils         ltrace         perf         systemtap         && dnf clean all
+Rocky Linux 9 - BaseOS                          2.3 MB/s | 2.6 MB     00:01    
+Rocky Linux 9 - AppStream                       4.6 MB/s | 8.1 MB     00:01    
+Rocky Linux 9 - Extras                           38 kB/s |  18 kB     00:00    
+Package binutils-2.35.2-63.el9.aarch64 is already installed.
+Dependencies resolved.
+================================================================================
+ Package                 Arch      Version                    Repository   Size
+================================================================================
+Installing:
+ elfutils                aarch64   0.192-6.el9_6              baseos      553 k
+ gdb-gdbserver           aarch64   14.2-4.1.el9_6             appstream   298 k
+ ltrace                  aarch64   0.7.91-43.el9              appstream   131 k
+ perf                    aarch64   5.14.0-570.52.1.el9_6      appstream   3.5 M
+ systemtap               aarch64   5.2-2.el9                  appstream   8.4 k
+Installing dependencies:
+ avahi-libs              aarch64   0.8-22.el9_6.1             baseos       65 k
+ boost-filesystem        aarch64   1.75.0-10.el9              appstream    52 k
+ boost-system            aarch64   1.75.0-10.el9              appstream    11 k
+ boost-thread            aarch64   1.75.0-10.el9              appstream    51 k
+ bzip2                   aarch64   1.0.8-10.el9_5             baseos       51 k
+ dbus-libs               aarch64   1:1.12.20-8.el9            baseos      149 k
+ dyninst                 aarch64   12.1.0-1.el9               appstream   3.3 M
+ elfutils-devel          aarch64   0.192-6.el9_6              appstream    46 k
+ elfutils-libelf-devel   aarch64   0.192-6.el9_6              appstream    37 k
+ libbpf                  aarch64   2:1.5.0-1.el9              baseos      184 k
+ libtraceevent           aarch64   1.5.3-3.el9                baseos      212 k
+ libzstd-devel           aarch64   1.5.5-1.el9                appstream    50 k
+ nspr                    aarch64   4.36.0-4.el9_4             appstream   130 k
+ nss                     aarch64   3.112.0-4.el9_4            appstream   698 k
+ nss-softokn             aarch64   3.112.0-4.el9_4            appstream   388 k
+ nss-softokn-freebl      aarch64   3.112.0-4.el9_4            appstream   414 k
+ nss-sysinit             aarch64   3.112.0-4.el9_4            appstream    17 k
+ nss-util                aarch64   3.112.0-4.el9_4            appstream    86 k
+ opencsd                 aarch64   1.2.1-1.el9                appstream   256 k
+ slang                   aarch64   2.3.2-11.el9               baseos      364 k
+ systemtap-client        aarch64   5.2-2.el9                  appstream   3.6 M
+ systemtap-devel         aarch64   5.2-2.el9                  appstream   2.1 M
+ systemtap-runtime       aarch64   5.2-2.el9                  appstream   431 k
+ tbb                     aarch64   2020.3-9.el9               appstream   137 k
+ unzip                   aarch64   6.0-58.el9_5               baseos      176 k
+ xz-devel                aarch64   5.2.5-8.el9_0              appstream    52 k
+ zip                     aarch64   3.0-35.el9                 baseos      257 k
+ zlib-devel              aarch64   1.2.11-40.el9              appstream    44 k
 
+Transaction Summary
+================================================================================
+Install  33 Packages
+
+Total download size: 18 M
+Installed size: 57 M
+Downloading Packages:
+(1/33): dbus-libs-1.12.20-8.el9.aarch64.rpm     383 kB/s | 149 kB     00:00    
+(2/33): libbpf-1.5.0-1.el9.aarch64.rpm          470 kB/s | 184 kB     00:00    
+(3/33): elfutils-0.192-6.el9_6.aarch64.rpm      1.0 MB/s | 553 kB     00:00    
+(4/33): zip-3.0-35.el9.aarch64.rpm              571 kB/s | 257 kB     00:00    
+(5/33): slang-2.3.2-11.el9.aarch64.rpm          796 kB/s | 364 kB     00:00    
+(6/33): bzip2-1.0.8-10.el9_5.aarch64.rpm        158 kB/s |  51 kB     00:00    
+(7/33): avahi-libs-0.8-22.el9_6.1.aarch64.rpm   217 kB/s |  65 kB     00:00    
+(8/33): unzip-6.0-58.el9_5.aarch64.rpm          461 kB/s | 176 kB     00:00    
+(9/33): libtraceevent-1.5.3-3.el9.aarch64.rpm   486 kB/s | 212 kB     00:00    
+(10/33): gdb-gdbserver-14.2-4.1.el9_6.aarch64.r 639 kB/s | 298 kB     00:00    
+(11/33): nss-3.112.0-4.el9_4.aarch64.rpm        1.2 MB/s | 698 kB     00:00    
+(12/33): opencsd-1.2.1-1.el9.aarch64.rpm        590 kB/s | 256 kB     00:00    
+(13/33): systemtap-5.2-2.el9.aarch64.rpm         58 kB/s | 8.4 kB     00:00    
+(14/33): tbb-2020.3-9.el9.aarch64.rpm           357 kB/s | 137 kB     00:00    
+(15/33): nss-softokn-freebl-3.112.0-4.el9_4.aar 912 kB/s | 414 kB     00:00    
+(16/33): boost-system-1.75.0-10.el9.aarch64.rpm  71 kB/s |  11 kB     00:00    
+(17/33): boost-filesystem-1.75.0-10.el9.aarch64 161 kB/s |  52 kB     00:00    
+(18/33): libzstd-devel-1.5.5-1.el9.aarch64.rpm  153 kB/s |  50 kB     00:00    
+(19/33): ltrace-0.7.91-43.el9.aarch64.rpm       312 kB/s | 131 kB     00:00    
+(20/33): dyninst-12.1.0-1.el9.aarch64.rpm       3.3 MB/s | 3.3 MB     00:01    
+(21/33): elfutils-libelf-devel-0.192-6.el9_6.aa 166 kB/s |  37 kB     00:00    
+(22/33): xz-devel-5.2.5-8.el9_0.aarch64.rpm     181 kB/s |  52 kB     00:00    
+(23/33): nss-sysinit-3.112.0-4.el9_4.aarch64.rp  69 kB/s |  17 kB     00:00    
+(24/33): boost-thread-1.75.0-10.el9.aarch64.rpm 113 kB/s |  51 kB     00:00    
+(25/33): perf-5.14.0-570.52.1.el9_6.aarch64.rpm 2.9 MB/s | 3.5 MB     00:01    
+(26/33): systemtap-devel-5.2-2.el9.aarch64.rpm  2.1 MB/s | 2.1 MB     00:01    
+(27/33): nss-util-3.112.0-4.el9_4.aarch64.rpm   231 kB/s |  86 kB     00:00    
+(28/33): nspr-4.36.0-4.el9_4.aarch64.rpm        340 kB/s | 130 kB     00:00    
+(29/33): systemtap-runtime-5.2-2.el9.aarch64.rp 768 kB/s | 431 kB     00:00    
+(30/33): elfutils-devel-0.192-6.el9_6.aarch64.r 134 kB/s |  46 kB     00:00    
+(31/33): zlib-devel-1.2.11-40.el9.aarch64.rpm   145 kB/s |  44 kB     00:00    
+(32/33): nss-softokn-3.112.0-4.el9_4.aarch64.rp 413 kB/s | 388 kB     00:00    
+(33/33): systemtap-client-5.2-2.el9.aarch64.rpm 3.0 MB/s | 3.6 MB     00:01    
+--------------------------------------------------------------------------------
+Total                                           2.9 MB/s |  18 MB     00:06     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1 
+  Installing       : nspr-4.36.0-4.el9_4.aarch64                           1/33 
+  Installing       : boost-system-1.75.0-10.el9.aarch64                    2/33 
+  Installing       : nss-util-3.112.0-4.el9_4.aarch64                      3/33 
+  Installing       : zlib-devel-1.2.11-40.el9.aarch64                      4/33 
+  Installing       : libzstd-devel-1.5.5-1.el9.aarch64                     5/33 
+  Installing       : unzip-6.0-58.el9_5.aarch64                            6/33 
+  Installing       : zip-3.0-35.el9.aarch64                                7/33 
+  Installing       : elfutils-libelf-devel-0.192-6.el9_6.aarch64           8/33 
+  Installing       : nss-softokn-freebl-3.112.0-4.el9_4.aarch64            9/33 
+  Installing       : nss-softokn-3.112.0-4.el9_4.aarch64                  10/33 
+  Installing       : nss-sysinit-3.112.0-4.el9_4.aarch64                  11/33 
+  Installing       : nss-3.112.0-4.el9_4.aarch64                          12/33 
+  Running scriptlet: nss-3.112.0-4.el9_4.aarch64                          12/33 
+  Installing       : boost-filesystem-1.75.0-10.el9.aarch64               13/33 
+  Installing       : boost-thread-1.75.0-10.el9.aarch64                   14/33 
+  Installing       : xz-devel-5.2.5-8.el9_0.aarch64                       15/33 
+  Installing       : elfutils-devel-0.192-6.el9_6.aarch64                 16/33 
+  Installing       : tbb-2020.3-9.el9.aarch64                             17/33 
+  Installing       : dyninst-12.1.0-1.el9.aarch64                         18/33 
+  Running scriptlet: dyninst-12.1.0-1.el9.aarch64                         18/33 
+  Running scriptlet: systemtap-runtime-5.2-2.el9.aarch64                  19/33 
+/var/tmp/rpm-tmp.4191yW: line 9: systemd-sysusers: command not found
+
+  Installing       : systemtap-runtime-5.2-2.el9.aarch64                  19/33 
+warning: group stapusr does not exist - using root
+
+  Installing       : opencsd-1.2.1-1.el9.aarch64                          20/33 
+  Installing       : libtraceevent-1.5.3-3.el9.aarch64                    21/33 
+  Installing       : bzip2-1.0.8-10.el9_5.aarch64                         22/33 
+  Installing       : slang-2.3.2-11.el9.aarch64                           23/33 
+  Installing       : dbus-libs-1:1.12.20-8.el9.aarch64                    24/33 
+  Installing       : avahi-libs-0.8-22.el9_6.1.aarch64                    25/33 
+  Installing       : systemtap-devel-5.2-2.el9.aarch64                    26/33 
+  Installing       : systemtap-client-5.2-2.el9.aarch64                   27/33 
+  Installing       : libbpf-2:1.5.0-1.el9.aarch64                         28/33 
+  Installing       : perf-5.14.0-570.52.1.el9_6.aarch64                   29/33 
+  Installing       : systemtap-5.2-2.el9.aarch64                          30/33 
+  Running scriptlet: systemtap-5.2-2.el9.aarch64                          30/33 
+  Installing       : ltrace-0.7.91-43.el9.aarch64                         31/33 
+  Installing       : gdb-gdbserver-14.2-4.1.el9_6.aarch64                 32/33 
+  Installing       : elfutils-0.192-6.el9_6.aarch64                       33/33 
+  Running scriptlet: nss-3.112.0-4.el9_4.aarch64                          33/33 
+  Running scriptlet: elfutils-0.192-6.el9_6.aarch64                       33/33 
+  Verifying        : libbpf-2:1.5.0-1.el9.aarch64                          1/33 
+  Verifying        : elfutils-0.192-6.el9_6.aarch64                        2/33 
+  Verifying        : dbus-libs-1:1.12.20-8.el9.aarch64                     3/33 
+  Verifying        : slang-2.3.2-11.el9.aarch64                            4/33 
+  Verifying        : zip-3.0-35.el9.aarch64                                5/33 
+  Verifying        : bzip2-1.0.8-10.el9_5.aarch64                          6/33 
+  Verifying        : avahi-libs-0.8-22.el9_6.1.aarch64                     7/33 
+  Verifying        : unzip-6.0-58.el9_5.aarch64                            8/33 
+  Verifying        : libtraceevent-1.5.3-3.el9.aarch64                     9/33 
+  Verifying        : nss-3.112.0-4.el9_4.aarch64                          10/33 
+  Verifying        : gdb-gdbserver-14.2-4.1.el9_6.aarch64                 11/33 
+  Verifying        : opencsd-1.2.1-1.el9.aarch64                          12/33 
+  Verifying        : systemtap-5.2-2.el9.aarch64                          13/33 
+  Verifying        : tbb-2020.3-9.el9.aarch64                             14/33 
+  Verifying        : nss-softokn-freebl-3.112.0-4.el9_4.aarch64           15/33 
+  Verifying        : dyninst-12.1.0-1.el9.aarch64                         16/33 
+  Verifying        : boost-filesystem-1.75.0-10.el9.aarch64               17/33 
+  Verifying        : boost-system-1.75.0-10.el9.aarch64                   18/33 
+  Verifying        : ltrace-0.7.91-43.el9.aarch64                         19/33 
+  Verifying        : libzstd-devel-1.5.5-1.el9.aarch64                    20/33 
+  Verifying        : perf-5.14.0-570.52.1.el9_6.aarch64                   21/33 
+  Verifying        : elfutils-libelf-devel-0.192-6.el9_6.aarch64          22/33 
+  Verifying        : xz-devel-5.2.5-8.el9_0.aarch64                       23/33 
+  Verifying        : systemtap-devel-5.2-2.el9.aarch64                    24/33 
+  Verifying        : nss-sysinit-3.112.0-4.el9_4.aarch64                  25/33 
+  Verifying        : boost-thread-1.75.0-10.el9.aarch64                   26/33 
+  Verifying        : nss-util-3.112.0-4.el9_4.aarch64                     27/33 
+  Verifying        : nspr-4.36.0-4.el9_4.aarch64                          28/33 
+  Verifying        : systemtap-runtime-5.2-2.el9.aarch64                  29/33 
+  Verifying        : nss-softokn-3.112.0-4.el9_4.aarch64                  30/33 
+  Verifying        : elfutils-devel-0.192-6.el9_6.aarch64                 31/33 
+  Verifying        : systemtap-client-5.2-2.el9.aarch64                   32/33 
+  Verifying        : zlib-devel-1.2.11-40.el9.aarch64                     33/33 
+
+Installed:
+  avahi-libs-0.8-22.el9_6.1.aarch64                                             
+  boost-filesystem-1.75.0-10.el9.aarch64                                        
+  boost-system-1.75.0-10.el9.aarch64                                            
+  boost-thread-1.75.0-10.el9.aarch64                                            
+  bzip2-1.0.8-10.el9_5.aarch64                                                  
+  dbus-libs-1:1.12.20-8.el9.aarch64                                             
+  dyninst-12.1.0-1.el9.aarch64                                                  
+  elfutils-0.192-6.el9_6.aarch64                                                
+  elfutils-devel-0.192-6.el9_6.aarch64                                          
+  elfutils-libelf-devel-0.192-6.el9_6.aarch64                                   
+  gdb-gdbserver-14.2-4.1.el9_6.aarch64                                          
+  libbpf-2:1.5.0-1.el9.aarch64                                                  
+  libtraceevent-1.5.3-3.el9.aarch64                                             
+  libzstd-devel-1.5.5-1.el9.aarch64                                             
+  ltrace-0.7.91-43.el9.aarch64                                                  
+  nspr-4.36.0-4.el9_4.aarch64                                                   
+  nss-3.112.0-4.el9_4.aarch64                                                   
+  nss-softokn-3.112.0-4.el9_4.aarch64                                           
+  nss-softokn-freebl-3.112.0-4.el9_4.aarch64                                    
+  nss-sysinit-3.112.0-4.el9_4.aarch64                                           
+  nss-util-3.112.0-4.el9_4.aarch64                                              
+  opencsd-1.2.1-1.el9.aarch64                                                   
+  perf-5.14.0-570.52.1.el9_6.aarch64                                            
+  slang-2.3.2-11.el9.aarch64                                                    
+  systemtap-5.2-2.el9.aarch64                                                   
+  systemtap-client-5.2-2.el9.aarch64                                            
+  systemtap-devel-5.2-2.el9.aarch64                                             
+  systemtap-runtime-5.2-2.el9.aarch64                                           
+  tbb-2020.3-9.el9.aarch64                                                      
+  unzip-6.0-58.el9_5.aarch64                                                    
+  xz-devel-5.2.5-8.el9_0.aarch64                                                
+  zip-3.0-35.el9.aarch64                                                        
+  zlib-devel-1.2.11-40.el9.aarch64                                              
+
+Complete!
+25 files removed
+--> 60d2b614e9fb
+STEP 4/13: RUN pip3 install --no-cache-dir     psutil     memory-profiler     line-profiler
+Requirement already satisfied: psutil in /usr/local/lib64/python3.9/site-packages (7.1.1)
+Collecting memory-profiler
+  Downloading memory_profiler-0.61.0-py3-none-any.whl (31 kB)
+Collecting line-profiler
+  Downloading line_profiler-5.0.0.tar.gz (376 kB)
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: tomli in /usr/local/lib/python3.9/site-packages (from line-profiler) (2.3.0)
+Building wheels for collected packages: line-profiler
+  Building wheel for line-profiler (pyproject.toml): started
+  Building wheel for line-profiler (pyproject.toml): finished with status 'done'
+  Created wheel for line-profiler: filename=line_profiler-5.0.0-cp39-cp39-linux_aarch64.whl size=1278064 sha256=9219d8f165bcb30f23ee9c7c02c818bc797a023f97cd1fb22a6db2b3273cda76
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ottlxrb_/wheels/c9/06/ee/ed45c78ce8cdba1a605f35337bb02b8172472aff70f9e06873
+Successfully built line-profiler
+Installing collected packages: memory-profiler, line-profiler
+Successfully installed line-profiler-5.0.0 memory-profiler-0.61.0
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+--> 4ecdee4baa9f
+STEP 5/13: USER hpcuser
+--> 37735112b123
+STEP 6/13: WORKDIR /home/hpcuser/workspace
+--> 49f56146251e
+STEP 7/13: RUN cd examples/mpi_debugging &&     mkdir -p build &&     cd build &&     cmake -DCMAKE_BUILD_TYPE=Debug .. &&     make
+-- The C compiler identification is GNU 11.5.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Found MPI_C: /usr/lib64/openmpi/lib/libmpi.so (found version "3.1") 
+-- Found MPI: TRUE (found version "3.1")  
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/hpcuser/workspace/examples/mpi_debugging/build
+[ 25%] Building C object CMakeFiles/mpi_deadlock.dir/mpi_deadlock.c.o
+[ 50%] Linking C executable mpi_deadlock
+[ 50%] Built target mpi_deadlock
+[ 75%] Building C object CMakeFiles/mpi_race_condition.dir/mpi_race_condition.c.o
+/home/hpcuser/workspace/examples/mpi_debugging/mpi_race_condition.c: In function 'main':
+/home/hpcuser/workspace/examples/mpi_debugging/mpi_race_condition.c:29:25: warning: unused variable 'result' [-Wunused-variable]
+   29 |     int i, local_value, result;
+      |                         ^~~~~~
+[100%] Linking C executable mpi_race_condition
+[100%] Built target mpi_race_condition
+--> 4a4806dfc6eb
+STEP 8/13: ENV OMPI_MCA_mpi_show_handle_leaks=1
+--> 693d5431696f
+STEP 9/13: ENV OMPI_MCA_mpi_abort_print_stack=1
+--> f09dfa6a8e27
+STEP 10/13: ENV MALLOC_CHECK_=2
+--> 82846c9046bb
+STEP 11/13: ENV MALLOC_PERTURB_=42
+--> c38d6afa4413
+STEP 12/13: RUN echo '#!/bin/bash' > /home/hpcuser/debug_mpi.sh &&     echo 'echo "🐛 MPI Debugging Environment Ready"' >> /home/hpcuser/debug_mpi.sh &&     echo 'echo "Available examples:"' >> /home/hpcuser/debug_mpi.sh &&     echo 'echo "  - Deadlock demonstration: mpirun -np 2 examples/mpi_debugging/build/mpi_deadlock"' >> /home/hpcuser/debug_mpi.sh &&     echo 'echo "  - Race condition demo: mpirun -np 4 examples/mpi_debugging/build/mpi_race_condition"' >> /home/hpcuser/debug_mpi.sh &&     echo 'echo "  - Debug with GDB: mpirun -np 2 xterm -e gdb examples/mpi_debugging/build/mpi_deadlock"' >> /home/hpcuser/debug_mpi.sh &&     echo 'echo "  - Valgrind analysis: mpirun -np 2 valgrind --tool=helgrind examples/mpi_debugging/build/mpi_race_condition"' >> /home/hpcuser/debug_mpi.sh &&     chmod +x /home/hpcuser/debug_mpi.sh
+--> b21807d0d549
+STEP 13/13: CMD ["/home/hpcuser/debug_mpi.sh"]
+COMMIT hpc-mpi-debug:latest
+--> c413ba69fcd1
+Successfully tagged localhost/hpc-mpi-debug:latest
+c413ba69fcd1c0adc1d0c08498e48cf2d498a545551c57d833a9d1a2f8e8b43e

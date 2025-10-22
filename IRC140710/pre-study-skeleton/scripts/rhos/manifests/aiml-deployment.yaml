@@ -17,8 +17,8 @@ spec:
     spec:
       containers:
       - name: aiml-container
-        image: hpc-aiml:latest
-        imagePullPolicy: Never
+        image: image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-aiml:latest
+        imagePullPolicy: Always
         command: ["/bin/bash"]
         args: ["-c", "while true; do sleep 30; done"]
         ports:
@@ -50,9 +50,6 @@ spec:
         emptyDir: {}
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
 ---
 apiVersion: v1
 kind: Service

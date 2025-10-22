@@ -1,42 +1,43 @@
-=== HPC Interview Environment Setup - Tue Oct 21 23:26:28 MDT 2025 ===
-2025-10-21 23:26:28 - Starting HPC Interview Environment Setup
-2025-10-21 23:26:28 - Starting prerequisites check
-2025-10-21 23:26:28 - podman found at /opt/homebrew/bin/podman
-2025-10-21 23:26:28 - oc found at /Users/jrgochan/.crc/bin/oc/oc
-2025-10-21 23:26:28 - ERROR: docker not found
-2025-10-21 23:26:28 - git found at /usr/bin/git
-2025-10-21 23:26:28 - Podman connectivity verified
-2025-10-21 23:26:28 - OpenShift connectivity verified
-2025-10-21 23:26:28 - Prerequisites check completed successfully
-2025-10-21 23:26:28 - Creating namespace: hpc-interview
-2025-10-21 23:26:28 - Created new namespace: hpc-interview
-2025-10-21 23:26:28 - Namespace configured successfully
-2025-10-21 23:26:28 - Starting container image builds
-2025-10-21 23:26:28 - Building image: hpc-base
-2025-10-21 23:26:31 - ERROR: Failed to build hpc-base
-2025-10-21 23:26:33 - Building image: hpc-mpi-debug
-2025-10-21 23:26:34 - ERROR: Failed to build hpc-mpi-debug
-2025-10-21 23:26:36 - Building image: hpc-reframe
-2025-10-21 23:26:37 - ERROR: Failed to build hpc-reframe
-2025-10-21 23:26:38 - Building image: hpc-aiml
-2025-10-21 23:26:39 - ERROR: Failed to build hpc-aiml
-2025-10-21 23:26:39 - Building image: hpc-simple
-2025-10-21 23:26:40 - Successfully built hpc-simple
-2025-10-21 23:26:40 - Image verified: hpc-simple
-2025-10-21 23:26:40 - All container builds completed
-2025-10-21 23:26:40 - Starting OpenShift resource deployment
-2025-10-21 23:26:40 - Found        2 manifest files
-2025-10-21 23:36:40 - WARNING: deployment.apps/aiml-workspace not ready within timeout
-2025-10-21 23:46:40 - WARNING: deployment.apps/hpc-workspace not ready within timeout
-2025-10-21 23:46:40 - OpenShift resource deployment completed
-2025-10-21 23:46:40 - Setting up all HPC examples
-2025-10-21 23:46:40 - WARNING: HPC workspace pod not found
-2025-10-21 23:46:40 - CUDA examples prepared
-2025-10-21 23:46:40 - All HPC examples setup completed
-2025-10-21 23:46:40 - Setting up monitoring
-2025-10-21 23:46:40 - Monitoring setup completed
-2025-10-21 23:46:40 - Starting health checks
-2025-10-21 23:46:41 - Health checks completed
-2025-10-21 23:46:41 - Starting deployment validation
-2025-10-21 23:51:45 - Deployment validation completed
-2025-10-21 23:51:46 - Setup completed successfully
+=== HPC Interview Environment Setup - Wed Oct 22 16:42:54 MDT 2025 ===
+2025-10-22 16:42:54 - Starting HPC Interview Environment Setup
+2025-10-22 16:42:54 - Starting prerequisites check
+2025-10-22 16:42:54 - podman found at /Users/jrgochan/.crc/bin/podman/podman
+2025-10-22 16:42:54 - oc found at /opt/homebrew/bin/oc
+2025-10-22 16:42:54 - ERROR: docker not found
+2025-10-22 16:42:54 - git found at /usr/bin/git
+2025-10-22 16:42:54 - Podman connectivity verified
+2025-10-22 16:42:54 - OpenShift connectivity verified
+2025-10-22 16:42:54 - Prerequisites check completed successfully
+2025-10-22 16:42:54 - Creating namespace: hpc-interview
+2025-10-22 16:43:01 - Deleted existing namespace
+2025-10-22 16:43:01 - Created new namespace: hpc-interview
+2025-10-22 16:43:01 - Namespace configured successfully
+2025-10-22 16:43:01 - Starting container image builds using OpenShift BuildConfigs
+2025-10-22 16:43:01 - Creating BuildConfig for image: hpc-base
+2025-10-22 16:47:34 - Successfully built hpc-base
+2025-10-22 16:47:34 - Creating BuildConfig for dependent image: hpc-aiml
+2025-10-22 16:51:00 - Successfully built hpc-aiml
+2025-10-22 16:51:00 - All container builds completed in OpenShift
+2025-10-22 16:51:00 - Starting OpenShift resource deployment
+2025-10-22 16:51:00 - Found        2 manifest files
+2025-10-22 16:51:32 - deployment.apps/aiml-workspace ready
+2025-10-22 16:51:32 - deployment.apps/hpc-workspace ready
+2025-10-22 16:51:32 - OpenShift resource deployment completed
+2025-10-22 16:51:32 - Setting up all HPC examples
+2025-10-22 16:51:32 - MPI examples setup completed
+2025-10-22 16:51:32 - CUDA examples prepared
+2025-10-22 16:51:33 - AI/ML examples setup completed
+2025-10-22 16:51:33 - All HPC examples setup completed
+2025-10-22 16:51:33 - Setting up monitoring
+2025-10-22 16:51:34 - Monitoring setup completed
+2025-10-22 16:51:34 - Starting health checks
+2025-10-22 16:51:34 - Pod aiml-workspace-5b7bb74895-rpjpr: Running
+2025-10-22 16:51:34 - WARNING: Pod hpc-aiml-1-build: Succeeded
+2025-10-22 16:51:34 - WARNING: Pod hpc-base-1-build: Succeeded
+2025-10-22 16:51:34 - Pod hpc-workspace-6cf46df46f-hh24g: Running
+2025-10-22 16:51:34 - MPI functionality verified
+2025-10-22 16:51:35 - Python environment verified
+2025-10-22 16:51:35 - Health checks completed
+2025-10-22 16:51:35 - Starting deployment validation
+2025-10-22 16:56:40 - Deployment validation completed
+2025-10-22 16:56:41 - Setup completed successfully

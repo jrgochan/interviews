@@ -67,10 +67,3 @@ if(VALGRIND_EXECUTABLE)
         COMMENT "Run race condition example under Valgrind Helgrind"
     )
 endif()
-
-# Documentation
-configure_file(
-    ${CMAKE_SOURCE_DIR}/README.md.in
-    ${CMAKE_BINARY_DIR}/README.md
-    @ONLY
-)

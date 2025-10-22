@@ -49,6 +49,8 @@ get_shell() {
     echo -e "  - Documentation: cd docs && ls"
     echo
     
+    # Execute directly into the pod - let it start from current working directory
+    # The container WORKDIR is set to /home/hpcuser/workspace in the Containerfile
     oc exec -it $pod_name -n ${NAMESPACE} -- /bin/bash
 }
 
