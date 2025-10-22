@@ -1,29 +1,14 @@
 # Jason R. Gochanour
 
-[jrgochan@proton.me](jrgochan@proton.me)
+## IT Support Engineer & Systems Architect
 
-(505) 699-1586
+📧 <jrgochan@gmail.com> | 📱 (505) 699-1586 | 💻 GitHub: <https://github.com/jrgochan>  
+📍 Los Alamos, NM 87544
 
-[https://github.com/jrgochan](https://github.com/jrgochan)
-
-Los Alamos, NM 87544
-
-Hiring Manager,
-
-I am writing to express my enthusiastic interest in the HPC/AI Linux Administrator position within the High Performance Computing Operations Group (HPC-OPS), as advertised on the Los Alamos National Laboratory careers page. With over a decade of progressive experience in systems engineering and development at LANL, I have a proven track record of designing, building, and maintaining complex computing environments that align closely with the requirements of this role.
-
-My extensive background in Linux administration, configuration management, and large-scale infrastructure projects at LANSCE makes me a strong candidate for this position. The job description emphasizes the need for an expert Linux Administrator to help design and run production NVIDIA DGX/HGX pods for LANL's AI/ML infrastructure. In my previous role as a Computer Systems Professional at LANSCE, I led the migration of over 100 machines from RHEL6 to Ubuntu 20 LTS, utilizing Ansible for configuration management—a tool I transitioned our team to from SaltStack, which I had set up years prior to migrating to Ansible. This experience in managing the full lifecycle of critical systems, from initial design and migration to ongoing maintenance and security patching, has prepared me to tackle the challenges of operating some of the world's fastest supercomputers.
-
-I am particularly drawn to the opportunity to build on-premise, cloud-like infrastructure to support the laboratory's AI/ML/LLM needs. My work on the LANL Integrative Science Digital Infrastructure project involved significant engagement with RedHat OpenShift and close collaboration with the HPC team, demonstrating my commitment to integrating advanced computing capabilities across the laboratory; back then, I went so far as to say it was the future of scientific computing at LANL. Furthermore, I have a track record of researching emerging technologies for use at LANSCE, as well as untold hours debugging most aspects of the computing side of our experimental physics instruments at the Lujan Center. This has given me a deep appreciation of very low level debugging, as well as many ideas on how scientific computing can integrate with institutional computing.
-
-My efforts in designing and leading the development of a universal proposal management web application showcase my ability to manage complex projects from conception to deployment. My resume details my experience mentoring junior staff, a responsibility I value and would be eager to continue at HPC-OPS. I have experience managing my own GitLab instance, and monitoring solutions such as Nagios. I also have some experience with HPC scheduling systems and have spent a fair amount of time building software with Spack, and exploring aspects of the Exascale Computing Project.
-
-My entire professional career, from my start as a Post Baccalaureate to a Systems Engineer, has been dedicated to supporting scientific missions. I am confident that my technical skills and deep institutional knowledge would allow me to make immediate and valuable contributions to your team.
-
-Thank you for your time and consideration. I look forward to discussing how I can positively contribute to your team.
-
-Sincerely,
-Jason R. Gochanour
+- [jrgochan@gmail.com](jrgochan@gmail.com)
+- 505-699-1586
+- [https://github.com/jrgochan](https://github.com/jrgochan)
+- Los Alamos, NM 87544
 
 ---
 
