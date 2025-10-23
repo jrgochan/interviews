@@ -39,8 +39,12 @@ check_prerequisites() {
     echo -e "${BLUE}📋 Comprehensive Prerequisites Check...${NC}"
     log "Starting prerequisites check"
     
-    # Check for required commands
-    local required_commands=("podman" "oc" "docker" "git")
+    local has_errors=false
+    
+    # Check for required commands (docker is optional if podman is available)
+    local required_commands=("podman" "oc" "git")
+    local optional_commands=("docker")
+    
     for cmd in "${required_commands[@]}"; do
         if command -v "$cmd" &> /dev/null; then
             echo -e "${GREEN}✅ $cmd found: $(command -v $cmd)${NC}"
@@ -48,6 +52,17 @@ check_prerequisites() {
         else
             echo -e "${RED}❌ $cmd not found${NC}"
             log "ERROR: $cmd not found"
+            has_errors=true
+        fi
+    done
+    
+    for cmd in "${optional_commands[@]}"; do
+        if command -v "$cmd" &> /dev/null; then
+            echo -e "${GREEN}✅ $cmd found: $(command -v $cmd)${NC}"
+            log "$cmd found at $(command -v $cmd)"
+        else
+            echo -e "${YELLOW}⚠️  $cmd not found (optional - using podman)${NC}"
+            log "WARNING: $cmd not found (optional)"
         fi
     done
     
@@ -61,7 +76,7 @@ check_prerequisites() {
         echo -e "${RED}❌ Cannot connect to Podman${NC}"
         echo -e "Run: podman machine start"
         log "ERROR: Podman connectivity failed"
-        exit 1
+        has_errors=true
     fi
     
     # Check OpenShift connectivity with detailed info
@@ -75,12 +90,22 @@ check_prerequisites() {
         log "OpenShift connectivity verified"
     else
         echo -e "${RED}❌ Cannot connect to OpenShift cluster${NC}"
-        echo -e "Please ensure:"
-        echo -e "  1. CRC cluster is running: crc status"
-        echo -e "  2. You're logged in: oc login -u developer"
-        echo -e "  3. Try: ./start-openshift.sh"
-        log "ERROR: OpenShift connectivity failed"
-        exit 1
+        echo -e "${CYAN}Recovery options:${NC}"
+        echo -e "  1. Start CRC cluster: ${YELLOW}crc start${NC}"
+        echo -e "  2. Check cluster status: ${YELLOW}crc status${NC}"
+        echo -e "  3. Login to cluster: ${YELLOW}oc login -u developer -p developer${NC}"
+        echo -e "  4. Use start script: ${YELLOW}./start-openshift.sh${NC}"
+        echo
+        read -p "Would you like to continue setup after fixing OpenShift? [y/N]: " -n 1 -r
+        echo
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo -e "${YELLOW}⚠️  Continuing setup - ensure OpenShift is available before proceeding${NC}"
+            log "WARNING: OpenShift connectivity failed - user chose to continue"
+        else
+            echo -e "${RED}Setup cancelled. Fix OpenShift connectivity and try again.${NC}"
+            log "ERROR: OpenShift connectivity failed - user cancelled"
+            exit 1
+        fi
     fi
     
     # Check system resources
@@ -90,6 +115,13 @@ check_prerequisites() {
     elif command -v vm_stat &> /dev/null; then
         echo "macOS memory info:"
         vm_stat | head -5
+    fi
+    
+    if [ "$has_errors" = true ]; then
+        echo -e "${RED}❌ Prerequisites check found critical errors${NC}"
+        echo -e "${CYAN}Please fix the above errors and run the script again${NC}"
+        log "ERROR: Prerequisites check failed"
+        exit 1
     fi
     
     echo -e "${GREEN}✅ Prerequisites check completed successfully${NC}"
@@ -164,17 +196,75 @@ EOF
 
 # Function to build container images using OpenShift BuildConfigs
 build_images() {
+    local modules_to_build="${1:-all}"
     echo -e "${BLUE}🔨 Building container images using OpenShift BuildConfigs...${NC}"
     log "Starting container image builds using OpenShift BuildConfigs"
     
-    # Build base image first
-    build_single_image "hpc-base" "${SCRIPT_DIR}/containers/Containerfile.hpc-base"
+    # Parse modules to build
+    if [ "$modules_to_build" = "all" ]; then
+        local build_base=true
+        local build_aiml=true
+        local build_milk=true
+        echo -e "${CYAN}Building all modules: hpc-base, hpc-aiml, hpc-milk${NC}"
+    else
+        local build_base=false
+        local build_aiml=false
+        local build_milk=false
+        
+        IFS=',' read -ra MODULES <<< "$modules_to_build"
+        for module in "${MODULES[@]}"; do
+            case "$module" in
+                base|hpc-base)
+                    build_base=true
+                    echo -e "${CYAN}Will build: hpc-base${NC}"
+                    ;;
+                aiml|hpc-aiml|ai)
+                    build_aiml=true
+                    echo -e "${CYAN}Will build: hpc-aiml${NC}"
+                    ;;
+                milk|hpc-milk)
+                    build_milk=true
+                    echo -e "${CYAN}Will build: hpc-milk${NC}"
+                    ;;
+                *)
+                    echo -e "${RED}❌ Unknown module: $module${NC}"
+                    echo -e "Available modules: base, aiml, milk"
+                    exit 1
+                    ;;
+            esac
+        done
+        
+        # If building dependent images, ensure base is built first
+        if [ "$build_aiml" = true ] || [ "$build_milk" = true ]; then
+            if [ "$build_base" = false ]; then
+                echo -e "${YELLOW}⚠️  Dependent modules require hpc-base. Adding hpc-base to build list.${NC}"
+                build_base=true
+            fi
+        fi
+    fi
     
-    # Build dependent images (need to update their Containerfiles to use internal registry)
-    build_dependent_image "hpc-aiml" "${SCRIPT_DIR}/containers/Containerfile.aiml"
+    # Build base image first (if selected)
+    if [ "$build_base" = true ]; then
+        build_single_image "hpc-base" "${SCRIPT_DIR}/containers/Containerfile.hpc-base"
+    else
+        echo -e "${YELLOW}⏭️  Skipping hpc-base build${NC}"
+    fi
+    
+    # Build dependent images (if selected)
+    if [ "$build_aiml" = true ]; then
+        build_dependent_image "hpc-aiml" "${SCRIPT_DIR}/containers/Containerfile.aiml"
+    else
+        echo -e "${YELLOW}⏭️  Skipping hpc-aiml build${NC}"
+    fi
+    
+    if [ "$build_milk" = true ]; then
+        build_dependent_image "hpc-milk" "${SCRIPT_DIR}/containers/Containerfile.milk"
+    else
+        echo -e "${YELLOW}⏭️  Skipping hpc-milk build${NC}"
+    fi
     
     echo -e "${GREEN}✅ Container image builds completed in OpenShift${NC}"
-    log "All container builds completed in OpenShift"
+    log "Container builds completed in OpenShift"
 }
 
 # Function to build a single base image
@@ -620,9 +710,15 @@ display_usage() {
     echo -e "  ${SCRIPT_DIR}/examples/run-aiml-demo.sh           # Distributed training demo"
     echo -e "  ${SCRIPT_DIR}/examples/run-aiml-demo.sh jupyter   # Start Jupyter notebook"
     echo
+    echo -e "${YELLOW}🔬 Diffraction Analysis:${NC}"
+    echo -e "  ${SCRIPT_DIR}/examples/run-milk-demo.sh           # MILK Rietveld analysis"
+    echo -e "  ${SCRIPT_DIR}/examples/run-milk-demo.sh interactive # Interactive MILK session"
+    echo -e "  ${SCRIPT_DIR}/examples/run-milk-demo.sh analysis  # Sample analysis workflow"
+    echo
     echo -e "${YELLOW}🔧 Interactive Access:${NC}"
     echo -e "  ${SCRIPT_DIR}/examples/shell.sh                  # HPC environment shell"
     echo -e "  ${SCRIPT_DIR}/examples/shell.sh aiml             # AI/ML environment shell"
+    echo -e "  ${SCRIPT_DIR}/examples/shell.sh milk             # MILK analysis environment"
     echo -e "  ${SCRIPT_DIR}/examples/simple-podman-test.sh     # Simple Podman testing"
     echo
     echo -e "${YELLOW}📈 Monitoring:${NC}"
@@ -690,6 +786,7 @@ trap cleanup_on_error ERR
 
 # Main execution function
 main() {
+    local modules_to_build="${1:-all}"
     log "Starting HPC Interview Environment Setup"
     
     echo -e "${CYAN}===== Phase 1: Prerequisites =====>${NC}"
@@ -699,7 +796,7 @@ main() {
     create_namespace
     
     echo -e "${CYAN}===== Phase 3: Container Images =====${NC}" 
-    build_images
+    build_images "$modules_to_build"
     
     echo -e "${CYAN}===== Phase 4: OpenShift Resources =====${NC}"
     deploy_resources
@@ -720,29 +817,69 @@ main() {
     display_usage
 }
 
-# Handle command line arguments
-case "${1:-}" in
-    --help|-h)
-        echo "Usage: $0 [--help|--force|--quick]"
-        echo "Sets up comprehensive HPC interview environment in RHOS/OpenShift"
-        echo ""
-        echo "Options:"
-        echo "  --help    Show this help message"
-        echo "  --force   Force recreation of namespace and resources"
-        echo "  --quick   Skip health checks and validation"
-        exit 0
-        ;;
-    --force)
-        echo -e "${YELLOW}Force mode: Will delete existing namespace${NC}"
-        export FORCE_RECREATE=true
-        main
-        ;;
-    --quick)
-        echo -e "${YELLOW}Quick mode: Minimal validation${NC}"
-        export QUICK_MODE=true
-        main
-        ;;
-    *)
-        main
-        ;;
-esac
+# Parse command line arguments
+modules_to_build="all"
+force_mode=false
+quick_mode=false
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --help|-h)
+            echo "Usage: $0 [OPTIONS]"
+            echo "Sets up comprehensive HPC interview environment in RHOS/OpenShift"
+            echo ""
+            echo "Options:"
+            echo "  --help, -h              Show this help message"
+            echo "  --modules <modules>     Comma-separated list of modules to build"
+            echo "                          Available: base, aiml, milk, all (default: all)"
+            echo "  --force                 Force recreation of namespace and resources"
+            echo "  --quick                 Skip health checks and validation"
+            echo ""
+            echo "Module Examples:"
+            echo "  $0                                    # Build all modules (default)"
+            echo "  $0 --modules milk                    # Build only MILK module"
+            echo "  $0 --modules base,milk               # Build base and MILK modules"
+            echo "  $0 --modules aiml --force            # Rebuild only AI/ML module"
+            echo ""
+            echo "Available Modules:"
+            echo "  base     - HPC base environment (GCC, MPI, Python, tools)"
+            echo "  aiml     - AI/ML environment (PyTorch, ReFrame, Jupyter)"
+            echo "  milk     - MILK diffraction analysis (MAUD, Java, MILK library)"
+            echo ""
+            echo "Note: Dependent modules automatically include their dependencies."
+            echo "      For example, 'milk' will also build 'base' if not already built."
+            exit 0
+            ;;
+        --modules)
+            modules_to_build="$2"
+            shift 2
+            ;;
+        --force)
+            force_mode=true
+            shift
+            ;;
+        --quick)
+            quick_mode=true
+            shift
+            ;;
+        *)
+            echo -e "${RED}❌ Unknown option: $1${NC}"
+            echo "Use --help for usage information"
+            exit 1
+            ;;
+    esac
+done
+
+# Set environment variables for legacy support
+if [ "$force_mode" = true ]; then
+    echo -e "${YELLOW}Force mode: Will delete existing namespace${NC}"
+    export FORCE_RECREATE=true
+fi
+
+if [ "$quick_mode" = true ]; then
+    echo -e "${YELLOW}Quick mode: Minimal validation${NC}"
+    export QUICK_MODE=true
+fi
+
+# Execute main function with module selection
+main "$modules_to_build"

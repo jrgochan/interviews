@@ -27,9 +27,12 @@ get_shell() {
         aiml|ai)
             pod_label="app=aiml-workspace"
             ;;
+        milk)
+            pod_label="app=milk-workspace"
+            ;;
         *)
             echo -e "${RED}❌ Unknown workspace type: $workspace_type${NC}"
-            echo "Available types: hpc, aiml"
+            echo "Available types: hpc, aiml, milk"
             exit 1
             ;;
     esac
@@ -46,6 +49,7 @@ get_shell() {
     echo -e "  - Debugging: cd examples/mpi_debugging && ls"
     echo -e "  - AI/ML: cd examples/ai_ml && ls"
     echo -e "  - ReFrame tests: cd reframe/tests && ls"
+    echo -e "  - MILK analysis: cd milk && source milk_env.sh"
     echo -e "  - Documentation: cd docs && ls"
     echo
     
@@ -62,10 +66,14 @@ case "${1:-hpc}" in
     aiml|ai)
         get_shell "aiml"
         ;;
+    milk)
+        get_shell "milk"
+        ;;
     *)
-        echo "Usage: $0 [hpc|aiml]"
+        echo "Usage: $0 [hpc|aiml|milk]"
         echo "  hpc   - Interactive shell in HPC base environment (default)"
         echo "  aiml  - Interactive shell in AI/ML environment"
+        echo "  milk  - Interactive shell in MILK diffraction analysis environment"
         exit 1
         ;;
 esac

@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: milk-workspace
+  labels:
+    app: milk-workspace
+    component: interview-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: milk-workspace
+  template:
+    metadata:
+      labels:
+        app: milk-workspace
+    spec:
+      containers:
+      - name: hpc-milk
+        image: image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-milk:latest
+        imagePullPolicy: Always
+        command: ["/bin/bash"]
+        args: ["-c", "while true; do sleep 30; done"]
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "1000m"
+          limits:
+            memory: "4Gi"
+            cpu: "4000m"
+        volumeMounts:
+        - name: shared-data
+          mountPath: /shared
+        env:
+        - name: WORKSPACE_TYPE
+          value: "hpc-milk"
+        - name: MAUD_PATH
+          value: "/opt/maud"
+        - name: JAVA_HOME
+          value: "/usr/lib/jvm/java-11-openjdk"
+      volumes:
+      - name: shared-data
+        emptyDir: {}
+      securityContext:
+        runAsNonRoot: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: milk-workspace-svc
+  labels:
+    app: milk-workspace
+spec:
+  selector:
+    app: milk-workspace
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+  type: ClusterIP

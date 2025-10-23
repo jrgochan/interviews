@@ -1,0 +1,127 @@
+# MILK (MAUD Interface Language Kit) Container
+# Scientific computing container for Rietveld diffraction analysis
+FROM hpc-base:latest
+
+# Metadata
+LABEL maintainer="HPC Interview Preparation"
+LABEL description="MILK - MAUD Interface Language Kit for diffraction analysis"
+LABEL version="1.0"
+
+# Switch to root for installation
+USER root
+
+# Install Java runtime (required for MAUD)
+RUN dnf update -y && \
+    dnf install -y \
+        java-11-openjdk \
+        java-11-openjdk-devel \
+        wget \
+        unzip \
+        && dnf clean all
+
+# Set Java environment
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
+ENV PATH=$JAVA_HOME/bin:$PATH
+
+# Install additional Python packages for MILK
+RUN pip3 install --no-cache-dir \
+    multiprocess \
+    scipy \
+    scikit-learn \
+    h5py \
+    tqdm \
+    click
+
+# Clone and setup MAUD from GitHub repository
+RUN mkdir -p /opt && \
+    cd /opt && \
+    git clone https://github.com/luttero/maud.git && \
+    cd maud && \
+    # Make the maud script executable if it exists
+    find . -name "maud*" -type f -exec chmod +x {} \; 2>/dev/null || true && \
+    # Create both wrapper script and maud executable link
+    echo '#!/bin/bash' > /opt/maud/maud_wrapper.sh && \
+    echo 'java -jar /opt/maud/Maud.jar "$@"' >> /opt/maud/maud_wrapper.sh && \
+    chmod +x /opt/maud/maud_wrapper.sh && \
+    # Create maud executable that the script expects
+    ln -sf /opt/maud/maud_wrapper.sh /opt/maud/maud && \
+    chmod +x /opt/maud/maud
+
+# Set MAUD environment
+ENV MAUD_PATH=/opt/maud
+ENV PATH=$MAUD_PATH:$PATH
+
+# Clone MILK repository
+RUN cd /tmp && \
+    git clone https://github.com/lanl/MILK.git && \
+    cd MILK && \
+    python3 setup.py install
+
+# Create workspace directories for MILK
+RUN mkdir -p /home/hpcuser/workspace/milk/examples && \
+    mkdir -p /home/hpcuser/workspace/milk/data && \
+    mkdir -p /home/hpcuser/workspace/milk/results
+
+# Copy MILK examples to workspace
+RUN if [ -d /tmp/MILK/examples ]; then \
+        cp -r /tmp/MILK/examples/* /home/hpcuser/workspace/milk/examples/ 2>/dev/null || true; \
+    fi
+
+# Create MILK startup script
+RUN echo '#!/bin/bash' > /home/hpcuser/workspace/milk/milk_env.sh && \
+    echo '# MILK Environment Setup' >> /home/hpcuser/workspace/milk/milk_env.sh && \
+    echo '' >> /home/hpcuser/workspace/milk/milk_env.sh && \
+    echo 'export MAUD_PATH=/opt/maud' >> /home/hpcuser/workspace/milk/milk_env.sh && \
+    echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk' >> /home/hpcuser/workspace/milk/milk_env.sh && \
+    echo 'export PATH=$MAUD_PATH:$JAVA_HOME/bin:$PATH' >> /home/hpcuser/workspace/milk/milk_env.sh && \
+    echo 'export PYTHONPATH=/home/hpcuser/workspace:$PYTHONPATH' >> /home/hpcuser/workspace/milk/milk_env.sh && \
+    echo '' >> /home/hpcuser/workspace/milk/milk_env.sh && \
+    echo 'echo "MILK Environment Loaded"' >> /home/hpcuser/workspace/milk/milk_env.sh && \
+    echo 'echo "MAUD Path: $MAUD_PATH"' >> /home/hpcuser/workspace/milk/milk_env.sh && \
+    echo 'echo "Java Version: $(java -version 2>&1 | head -1)"' >> /home/hpcuser/workspace/milk/milk_env.sh && \
+    echo 'echo "Python Version: $(python3 --version)"' >> /home/hpcuser/workspace/milk/milk_env.sh
+
+# Create sample MILK workflow script
+RUN echo '#!/usr/bin/env python3' > /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '"""' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo 'Sample MILK workflow for diffraction analysis' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo 'Demonstrates basic MILK functionality' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '"""' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo 'import os' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo 'import sys' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo 'def main():' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '    print("MILK Sample Workflow")' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '    print("=" * 50)' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '    ' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '    try:' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '        import MILK' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '        print("✅ MILK module available")' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '    except ImportError as e:' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '        print(f"❌ Failed to import MILK: {e}")' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '        return 1' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '    ' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '    print("📊 MILK Environment Ready!")' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '    return 0' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo 'if __name__ == "__main__":' >> /home/hpcuser/workspace/milk/run_sample.py && \
+    echo '    sys.exit(main())' >> /home/hpcuser/workspace/milk/run_sample.py
+
+# Fix ownership and permissions
+RUN chown -R hpcuser:hpcuser /home/hpcuser/workspace/milk && \
+    chmod +x /home/hpcuser/workspace/milk/milk_env.sh && \
+    chmod +x /home/hpcuser/workspace/milk/run_sample.py && \
+    # Ensure MAUD executables have proper permissions
+    chmod +x /opt/maud/maud_wrapper.sh && \
+    chmod +x /opt/maud/maud 2>/dev/null || true && \
+    rm -rf /tmp/MILK
+
+# Switch back to hpcuser
+USER hpcuser
+
+# Set working directory
+WORKDIR /home/hpcuser/workspace
+
+# Default command
+CMD ["/bin/bash"]
