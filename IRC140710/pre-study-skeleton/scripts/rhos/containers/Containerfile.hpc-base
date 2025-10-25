@@ -35,8 +35,9 @@ RUN pip3 install --no-cache-dir \
     jupyter \
     ipython
 
-# Create non-root user
-RUN useradd -m -s /bin/bash hpcuser && \
+# Create non-root user with specific UID/GID for OpenShift compatibility
+RUN groupadd -g 1000 hpcuser && \
+    useradd -u 1000 -g 1000 -m -s /bin/bash hpcuser && \
     mkdir -p /home/hpcuser/workspace && \
     chown -R hpcuser:hpcuser /home/hpcuser
 

@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hpc-shared-workspace
+  namespace: hpc-interview
+  labels:
+    app: hpc-shared-storage
+    component: interview-demo
+spec:
+  accessModes:
+    - ReadWriteMany  # Allows multiple pods to mount simultaneously
+  resources:
+    requests:
+      storage: 10Gi
+  # Use default storage class - will work with CRC's csi-hostpath-provisioner
+  # storageClassName: ""  # Empty string uses default storage class
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: hpc-shared-data
+  namespace: hpc-interview
+  labels:
+    app: hpc-shared-storage
+    component: interview-demo
+spec:
+  accessModes:
+    - ReadWriteMany  # Allows multiple pods to mount simultaneously
+  resources:
+    requests:
+      storage: 5Gi
+  # Use default storage class
+  # storageClassName: ""  # Empty string uses default storage class

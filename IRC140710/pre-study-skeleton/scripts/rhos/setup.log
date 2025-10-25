@@ -1,48 +1,10 @@
-=== HPC Interview Environment Setup - Wed Oct 22 18:16:38 MDT 2025 ===
-2025-10-22 18:16:39 - Starting HPC Interview Environment Setup
-2025-10-22 18:16:39 - Starting prerequisites check
-2025-10-22 18:16:39 - podman found at /Users/jrgochan/.crc/bin/podman/podman
-2025-10-22 18:16:39 - oc found at /opt/homebrew/bin/oc
-2025-10-22 18:16:39 - git found at /usr/bin/git
-2025-10-22 18:16:39 - WARNING: docker not found (optional)
-2025-10-22 18:16:39 - Podman connectivity verified
-2025-10-22 18:16:39 - OpenShift connectivity verified
-2025-10-22 18:16:39 - Prerequisites check completed successfully
-2025-10-22 18:16:39 - Creating namespace: hpc-interview
-2025-10-22 18:17:20 - Deleted existing namespace
-2025-10-22 18:17:20 - Created new namespace: hpc-interview
-2025-10-22 18:17:20 - Namespace configured successfully
-2025-10-22 18:17:20 - Starting container image builds using OpenShift BuildConfigs
-2025-10-22 18:17:20 - Creating BuildConfig for image: hpc-base
-2025-10-22 18:22:31 - Successfully built hpc-base
-2025-10-22 18:22:31 - Creating BuildConfig for dependent image: hpc-aiml
-2025-10-22 18:26:13 - Successfully built hpc-aiml
-2025-10-22 18:26:13 - Creating BuildConfig for dependent image: hpc-milk
-2025-10-22 18:47:20 - Successfully built hpc-milk
-2025-10-22 18:47:20 - Container builds completed in OpenShift
-2025-10-22 18:47:20 - Starting OpenShift resource deployment
-2025-10-22 18:47:20 - Found        3 manifest files
-2025-10-22 18:48:02 - deployment.apps/aiml-workspace ready
-2025-10-22 18:48:03 - deployment.apps/hpc-workspace ready
-2025-10-22 18:48:03 - deployment.apps/milk-workspace ready
-2025-10-22 18:48:03 - OpenShift resource deployment completed
-2025-10-22 18:48:03 - Setting up all HPC examples
-2025-10-22 18:48:03 - MPI examples setup completed
-2025-10-22 18:48:03 - CUDA examples prepared
-2025-10-22 18:48:04 - AI/ML examples setup completed
-2025-10-22 18:48:04 - All HPC examples setup completed
-2025-10-22 18:48:04 - Setting up monitoring
-2025-10-22 18:48:04 - Monitoring setup completed
-2025-10-22 18:48:04 - Starting health checks
-2025-10-22 18:48:05 - Pod aiml-workspace-5b7bb74895-md8z4: Running
-2025-10-22 18:48:05 - WARNING: Pod hpc-aiml-1-build: Succeeded
-2025-10-22 18:48:05 - WARNING: Pod hpc-base-1-build: Succeeded
-2025-10-22 18:48:05 - WARNING: Pod hpc-milk-1-build: Succeeded
-2025-10-22 18:48:05 - Pod hpc-workspace-5d87b866bd-m48nr: Running
-2025-10-22 18:48:05 - Pod milk-workspace-7984d5449f-5z5ws: Running
-2025-10-22 18:48:05 - MPI functionality verified
-2025-10-22 18:48:05 - Python environment verified
-2025-10-22 18:48:05 - Health checks completed
-2025-10-22 18:48:05 - Starting deployment validation
-2025-10-22 18:53:11 - Deployment validation completed
-2025-10-22 18:53:12 - Setup completed successfully
+=== HPC Interview Environment Setup - Sat Oct 25 14:08:27 MDT 2025 ===
+2025-10-25 14:08:27 - Starting HPC Interview Environment Setup
+2025-10-25 14:08:27 - Starting prerequisites check
+2025-10-25 14:08:27 - podman found at /opt/homebrew/bin/podman
+2025-10-25 14:08:27 - oc found at /Users/jrgochan/.crc/bin/oc/oc
+2025-10-25 14:08:27 - git found at /usr/bin/git
+2025-10-25 14:08:27 - WARNING: docker not found (optional)
+2025-10-25 14:08:27 - ERROR: Podman connectivity failed
+2025-10-25 14:08:27 - OpenShift connectivity verified
+2025-10-25 14:08:28 - ERROR: Prerequisites check failed

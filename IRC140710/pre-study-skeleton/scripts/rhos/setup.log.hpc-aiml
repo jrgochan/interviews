@@ -1,30 +1,30 @@
 Uploading directory "/Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton" as binary input for the build ...
-...................
+
 Uploading finished
 build.build.openshift.io/hpc-aiml-1 started
 Receiving source from STDIN as archive ...
-time="2025-10-23T00:24:12Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
-I1023 00:24:12.339653       1 defaults.go:112] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
+time="2025-10-25T19:23:50Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
+I1025 19:23:50.673458       1 defaults.go:112] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
 Caching blobs under "/var/cache/blobs".
 
 Pulling image image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest ...
 Trying to pull image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest...
 Getting image source signatures
-Copying blob sha256:68b8d1e15dfabe917a454aca57443a7f8297da6542546375e2e486827e3e5ab0
+Copying blob sha256:5fd717430853804efab9a6d0d56d945a63e180fa582d8152d6c885036e1d69ff
 Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
-Copying blob sha256:1f44041d5f9c5cad2092d33dc40b948821d6b43bb6a4099364e7db489828daab
-Copying blob sha256:263fe93d745c6eb48e1e27ed234f4e1349d8615b543a72011b7a45311116031f
-Copying blob sha256:301709cf3f6026d114c0288d14cd561ffd2cc659db3aef9ff54c034fc933ee04
-Copying config sha256:2fd16b5c7079d1b115407db683ba93c97f0644273b738107e66f7ca8da4bcf3e
+Copying blob sha256:6917003e5212ab1d558557226cbbc300ef9898d276b49e1f2f486e4b4395976d
+Copying blob sha256:0e7aebc2c598f0d4217a839d5c4e0aa8eb84fafaa9d7a1f0441a5e14864b5569
+Copying blob sha256:004b0f170cbbcbe881f28ce1a2ed2fec8cf6fe7067c7195f6341a5ea60624aad
+Copying config sha256:bb832831ff054876c3f3e08583ca2cb836ef0d334b0d2b59a8c71eeae1a14c4a
 Writing manifest to image destination
 Adding transient rw bind mount for /run/secrets/rhsm
 STEP 1/13: FROM image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest
 STEP 2/13: USER root
---> ad7147fd4c54
+--> 1ad8c2cc6d82
 STEP 3/13: RUN dnf install -y         libjpeg-turbo-devel         libpng-devel         && dnf clean all
-Rocky Linux 9 - BaseOS                          1.5 MB/s | 2.6 MB     00:01    
-Rocky Linux 9 - AppStream                       1.0 MB/s | 8.1 MB     00:07    
-Rocky Linux 9 - Extras                           33 kB/s |  18 kB     00:00    
+Rocky Linux 9 - BaseOS                          1.9 MB/s | 2.6 MB     00:01    
+Rocky Linux 9 - AppStream                       2.5 MB/s | 8.1 MB     00:03    
+Rocky Linux 9 - Extras                           40 kB/s |  18 kB     00:00    
 Dependencies resolved.
 ================================================================================
  Package                 Arch        Version                Repository     Size
@@ -44,13 +44,13 @@ Install  5 Packages
 Total download size: 714 k
 Installed size: 2.1 M
 Downloading Packages:
-(1/5): libjpeg-turbo-devel-2.0.90-7.el9.aarch64 191 kB/s |  98 kB     00:00    
-(2/5): libpng-1.6.37-12.el9.aarch64.rpm         194 kB/s | 114 kB     00:00    
-(3/5): libpng-devel-1.6.37-12.el9.aarch64.rpm   308 kB/s | 291 kB     00:00    
-(4/5): zlib-devel-1.2.11-40.el9.aarch64.rpm     116 kB/s |  44 kB     00:00    
-(5/5): libjpeg-turbo-2.0.90-7.el9.aarch64.rpm   235 kB/s | 168 kB     00:00    
+(1/5): libpng-1.6.37-12.el9.aarch64.rpm         301 kB/s | 114 kB     00:00    
+(2/5): libjpeg-turbo-devel-2.0.90-7.el9.aarch64 252 kB/s |  98 kB     00:00    
+(3/5): libpng-devel-1.6.37-12.el9.aarch64.rpm   602 kB/s | 291 kB     00:00    
+(4/5): zlib-devel-1.2.11-40.el9.aarch64.rpm     119 kB/s |  44 kB     00:00    
+(5/5): libjpeg-turbo-2.0.90-7.el9.aarch64.rpm   434 kB/s | 168 kB     00:00    
 --------------------------------------------------------------------------------
-Total                                           464 kB/s | 714 kB     00:01     
+Total                                           684 kB/s | 714 kB     00:01     
 Running transaction check
 Transaction check succeeded.
 Running transaction test
@@ -76,7 +76,7 @@ Installed:
 
 Complete!
 25 files removed
---> 38b760c3d106
+--> b17f82a02500
 STEP 4/13: RUN pip3 install --no-cache-dir     torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 Looking in indexes: https://download.pytorch.org/whl/cpu
 Collecting torch
@@ -85,18 +85,18 @@ Collecting torchvision
   Downloading https://download.pytorch.org/whl/cpu/torchvision-0.23.0-cp39-cp39-manylinux_2_28_aarch64.whl (2.4 MB)
 Collecting torchaudio
   Downloading https://download.pytorch.org/whl/cpu/torchaudio-2.8.0-cp39-cp39-manylinux_2_28_aarch64.whl (1.7 MB)
-Requirement already satisfied: typing-extensions>=4.10.0 in /usr/local/lib/python3.9/site-packages (from torch) (4.15.0)
-Collecting sympy>=1.13.3
-  Downloading https://download.pytorch.org/whl/sympy-1.14.0-py3-none-any.whl (6.3 MB)
 Collecting fsspec
   Downloading https://download.pytorch.org/whl/fsspec-2025.9.0-py3-none-any.whl (199 kB)
+Requirement already satisfied: typing-extensions>=4.10.0 in /usr/local/lib/python3.9/site-packages (from torch) (4.15.0)
+Collecting filelock
+  Downloading https://download.pytorch.org/whl/filelock-3.19.1-py3-none-any.whl (15 kB)
 Collecting networkx
   Downloading https://download.pytorch.org/whl/networkx-3.5-py3-none-any.whl (2.0 MB)
 Requirement already satisfied: jinja2 in /usr/local/lib/python3.9/site-packages (from torch) (3.1.6)
-Collecting filelock
-  Downloading https://download.pytorch.org/whl/filelock-3.19.1-py3-none-any.whl (15 kB)
-Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /usr/local/lib64/python3.9/site-packages (from torchvision) (11.3.0)
+Collecting sympy>=1.13.3
+  Downloading https://download.pytorch.org/whl/sympy-1.14.0-py3-none-any.whl (6.3 MB)
 Requirement already satisfied: numpy in /usr/local/lib64/python3.9/site-packages (from torchvision) (2.0.2)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /usr/local/lib64/python3.9/site-packages (from torchvision) (11.3.0)
 Collecting mpmath<1.4,>=1.1.0
   Downloading https://download.pytorch.org/whl/mpmath-1.3.0-py3-none-any.whl (536 kB)
 Requirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib64/python3.9/site-packages (from jinja2->torch) (3.0.3)
@@ -105,7 +105,7 @@ Collecting networkx
 Installing collected packages: mpmath, sympy, networkx, fsspec, filelock, torch, torchvision, torchaudio
 Successfully installed filelock-3.19.1 fsspec-2025.9.0 mpmath-1.3.0 networkx-3.2.1 sympy-1.14.0 torch-2.8.0+cpu torchaudio-2.8.0 torchvision-0.23.0
 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
---> 3f92f755ae76
+--> 2b7aaa78001f
 STEP 5/13: RUN pip3 install --no-cache-dir     tensorboard     scikit-learn     scipy     seaborn     jupyter     notebook     ipykernel
 Collecting tensorboard
   Downloading tensorboard-2.20.0-py3-none-any.whl (5.5 MB)
@@ -118,94 +118,94 @@ Collecting seaborn
 Requirement already satisfied: jupyter in /usr/local/lib/python3.9/site-packages (1.1.1)
 Requirement already satisfied: notebook in /usr/local/lib/python3.9/site-packages (7.4.7)
 Requirement already satisfied: ipykernel in /usr/local/lib/python3.9/site-packages (6.31.0)
+Collecting markdown>=2.6.8
+  Downloading markdown-3.9-py3-none-any.whl (107 kB)
 Collecting absl-py>=0.4
   Downloading absl_py-2.3.1-py3-none-any.whl (135 kB)
 Collecting grpcio>=1.48.2
   Downloading grpcio-1.76.0-cp39-cp39-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (6.4 MB)
-Requirement already satisfied: numpy>=1.12.0 in /usr/local/lib64/python3.9/site-packages (from tensorboard) (2.0.2)
-Collecting protobuf!=4.24.0,>=3.19.6
-  Downloading protobuf-6.33.0-cp39-abi3-manylinux2014_aarch64.whl (324 kB)
 Requirement already satisfied: packaging in /usr/local/lib/python3.9/site-packages (from tensorboard) (25.0)
 Collecting tensorboard-data-server<0.8.0,>=0.7.0
   Downloading tensorboard_data_server-0.7.2-py3-none-any.whl (2.4 kB)
+Requirement already satisfied: pillow in /usr/local/lib64/python3.9/site-packages (from tensorboard) (11.3.0)
+Requirement already satisfied: setuptools>=41.0.0 in /usr/lib/python3.9/site-packages (from tensorboard) (53.0.0)
+Requirement already satisfied: numpy>=1.12.0 in /usr/local/lib64/python3.9/site-packages (from tensorboard) (2.0.2)
 Collecting werkzeug>=1.0.1
   Downloading werkzeug-3.1.3-py3-none-any.whl (224 kB)
-Requirement already satisfied: setuptools>=41.0.0 in /usr/lib/python3.9/site-packages (from tensorboard) (53.0.0)
-Requirement already satisfied: pillow in /usr/local/lib64/python3.9/site-packages (from tensorboard) (11.3.0)
-Collecting markdown>=2.6.8
-  Downloading markdown-3.9-py3-none-any.whl (107 kB)
-Collecting joblib>=1.2.0
-  Downloading joblib-1.5.2-py3-none-any.whl (308 kB)
+Collecting protobuf!=4.24.0,>=3.19.6
+  Downloading protobuf-6.33.0-cp39-abi3-manylinux2014_aarch64.whl (324 kB)
 Collecting threadpoolctl>=3.1.0
   Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
-Requirement already satisfied: pandas>=1.2 in /usr/local/lib64/python3.9/site-packages (from seaborn) (2.3.3)
+Collecting joblib>=1.2.0
+  Downloading joblib-1.5.2-py3-none-any.whl (308 kB)
 Requirement already satisfied: matplotlib!=3.6.1,>=3.4 in /usr/local/lib64/python3.9/site-packages (from seaborn) (3.9.4)
-Requirement already satisfied: jupyter-console in /usr/local/lib/python3.9/site-packages (from jupyter) (6.6.3)
+Requirement already satisfied: pandas>=1.2 in /usr/local/lib64/python3.9/site-packages (from seaborn) (2.3.3)
 Requirement already satisfied: jupyterlab in /usr/local/lib/python3.9/site-packages (from jupyter) (4.4.10)
+Requirement already satisfied: jupyter-console in /usr/local/lib/python3.9/site-packages (from jupyter) (6.6.3)
 Requirement already satisfied: ipywidgets in /usr/local/lib/python3.9/site-packages (from jupyter) (8.1.7)
 Requirement already satisfied: nbconvert in /usr/local/lib/python3.9/site-packages (from jupyter) (7.16.6)
-Requirement already satisfied: notebook-shim<0.3,>=0.2 in /usr/local/lib/python3.9/site-packages (from notebook) (0.2.4)
-Requirement already satisfied: jupyterlab-server<3,>=2.27.1 in /usr/local/lib/python3.9/site-packages (from notebook) (2.28.0)
-Requirement already satisfied: jupyter-server<3,>=2.4.0 in /usr/local/lib/python3.9/site-packages (from notebook) (2.17.0)
 Requirement already satisfied: tornado>=6.2.0 in /usr/local/lib64/python3.9/site-packages (from notebook) (6.5.2)
-Requirement already satisfied: matplotlib-inline>=0.1 in /usr/local/lib/python3.9/site-packages (from ipykernel) (0.1.7)
-Requirement already satisfied: psutil>=5.7 in /usr/local/lib64/python3.9/site-packages (from ipykernel) (7.1.1)
+Requirement already satisfied: jupyterlab-server<3,>=2.27.1 in /usr/local/lib/python3.9/site-packages (from notebook) (2.28.0)
+Requirement already satisfied: notebook-shim<0.3,>=0.2 in /usr/local/lib/python3.9/site-packages (from notebook) (0.2.4)
+Requirement already satisfied: jupyter-server<3,>=2.4.0 in /usr/local/lib/python3.9/site-packages (from notebook) (2.17.0)
+Requirement already satisfied: psutil>=5.7 in /usr/local/lib64/python3.9/site-packages (from ipykernel) (7.1.2)
+Requirement already satisfied: ipython>=7.23.1 in /usr/local/lib/python3.9/site-packages (from ipykernel) (8.18.1)
+Requirement already satisfied: pyzmq>=25 in /usr/local/lib64/python3.9/site-packages (from ipykernel) (27.1.0)
 Requirement already satisfied: traitlets>=5.4.0 in /usr/local/lib/python3.9/site-packages (from ipykernel) (5.14.3)
 Requirement already satisfied: nest-asyncio>=1.4 in /usr/local/lib/python3.9/site-packages (from ipykernel) (1.6.0)
 Requirement already satisfied: jupyter-core!=5.0.*,>=4.12 in /usr/local/lib/python3.9/site-packages (from ipykernel) (5.8.1)
-Requirement already satisfied: ipython>=7.23.1 in /usr/local/lib/python3.9/site-packages (from ipykernel) (8.18.1)
-Requirement already satisfied: pyzmq>=25 in /usr/local/lib64/python3.9/site-packages (from ipykernel) (27.1.0)
-Requirement already satisfied: jupyter-client>=8.0.0 in /usr/local/lib/python3.9/site-packages (from ipykernel) (8.6.3)
-Requirement already satisfied: comm>=0.1.1 in /usr/local/lib/python3.9/site-packages (from ipykernel) (0.2.3)
+Requirement already satisfied: matplotlib-inline>=0.1 in /usr/local/lib/python3.9/site-packages (from ipykernel) (0.2.1)
 Requirement already satisfied: debugpy>=1.6.5 in /usr/local/lib/python3.9/site-packages (from ipykernel) (1.8.17)
+Requirement already satisfied: comm>=0.1.1 in /usr/local/lib/python3.9/site-packages (from ipykernel) (0.2.3)
+Requirement already satisfied: jupyter-client>=8.0.0 in /usr/local/lib/python3.9/site-packages (from ipykernel) (8.6.3)
 Requirement already satisfied: typing-extensions~=4.12 in /usr/local/lib/python3.9/site-packages (from grpcio>=1.48.2->tensorboard) (4.15.0)
-Requirement already satisfied: stack-data in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel) (0.6.3)
-Requirement already satisfied: pexpect>4.3 in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel) (4.9.0)
-Requirement already satisfied: exceptiongroup in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel) (1.3.0)
-Requirement already satisfied: prompt-toolkit<3.1.0,>=3.0.41 in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel) (3.0.52)
 Requirement already satisfied: decorator in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel) (5.2.1)
 Requirement already satisfied: pygments>=2.4.0 in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel) (2.19.2)
+Requirement already satisfied: pexpect>4.3 in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel) (4.9.0)
+Requirement already satisfied: prompt-toolkit<3.1.0,>=3.0.41 in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel) (3.0.52)
+Requirement already satisfied: exceptiongroup in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel) (1.3.0)
 Requirement already satisfied: jedi>=0.16 in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel) (0.19.2)
-Requirement already satisfied: importlib-metadata>=4.8.3 in /usr/local/lib/python3.9/site-packages (from jupyter-client>=8.0.0->ipykernel) (8.7.0)
+Requirement already satisfied: stack-data in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel) (0.6.3)
 Requirement already satisfied: python-dateutil>=2.8.2 in /usr/local/lib/python3.9/site-packages (from jupyter-client>=8.0.0->ipykernel) (2.9.0.post0)
+Requirement already satisfied: importlib-metadata>=4.8.3 in /usr/local/lib/python3.9/site-packages (from jupyter-client>=8.0.0->ipykernel) (8.7.0)
 Requirement already satisfied: platformdirs>=2.5 in /usr/local/lib/python3.9/site-packages (from jupyter-core!=5.0.*,>=4.12->ipykernel) (4.4.0)
+Requirement already satisfied: jupyter-server-terminals>=0.4.4 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (0.5.3)
+Requirement already satisfied: jinja2>=3.0.3 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (3.1.6)
+Requirement already satisfied: send2trash>=1.8.2 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (1.8.3)
+Requirement already satisfied: argon2-cffi>=21.1 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (25.1.0)
+Requirement already satisfied: overrides>=5.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (7.7.0)
+Requirement already satisfied: prometheus-client>=0.9 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (0.23.1)
+Requirement already satisfied: websocket-client>=1.7 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (1.9.0)
+Requirement already satisfied: anyio>=3.1.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (4.11.0)
 Requirement already satisfied: terminado>=0.8.3 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (0.18.1)
 Requirement already satisfied: jupyter-events>=0.11.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (0.12.0)
-Requirement already satisfied: jupyter-server-terminals>=0.4.4 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (0.5.3)
-Requirement already satisfied: argon2-cffi>=21.1 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (25.1.0)
-Requirement already satisfied: jinja2>=3.0.3 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (3.1.6)
-Requirement already satisfied: overrides>=5.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (7.7.0)
-Requirement already satisfied: anyio>=3.1.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (4.11.0)
-Requirement already satisfied: send2trash>=1.8.2 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (1.8.3)
-Requirement already satisfied: websocket-client>=1.7 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (1.9.0)
 Requirement already satisfied: nbformat>=5.3.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (5.10.4)
-Requirement already satisfied: prometheus-client>=0.9 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->notebook) (0.23.1)
-Requirement already satisfied: tomli>=1.2.2 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.3.0)
 Requirement already satisfied: httpx<1,>=0.25.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (0.28.1)
+Requirement already satisfied: tomli>=1.2.2 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.3.0)
 Requirement already satisfied: async-lru>=1.0.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.0.5)
 Requirement already satisfied: jupyter-lsp>=2.0.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.3.0)
-Requirement already satisfied: jsonschema>=4.18.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->notebook) (4.25.1)
 Requirement already satisfied: requests>=2.31 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->notebook) (2.32.5)
-Requirement already satisfied: json5>=0.9.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->notebook) (0.12.1)
 Requirement already satisfied: babel>=2.10 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->notebook) (2.17.0)
-Requirement already satisfied: importlib-resources>=3.2.0 in /usr/local/lib/python3.9/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (6.5.2)
-Requirement already satisfied: cycler>=0.10 in /usr/local/lib/python3.9/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (0.12.1)
+Requirement already satisfied: jsonschema>=4.18.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->notebook) (4.25.1)
+Requirement already satisfied: json5>=0.9.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->notebook) (0.12.1)
+Requirement already satisfied: pyparsing>=2.3.1 in /usr/local/lib/python3.9/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (3.2.5)
 Requirement already satisfied: kiwisolver>=1.3.1 in /usr/local/lib64/python3.9/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (1.4.7)
 Requirement already satisfied: contourpy>=1.0.1 in /usr/local/lib64/python3.9/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (1.3.0)
-Requirement already satisfied: pyparsing>=2.3.1 in /usr/local/lib/python3.9/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (3.2.5)
+Requirement already satisfied: importlib-resources>=3.2.0 in /usr/local/lib/python3.9/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (6.5.2)
+Requirement already satisfied: cycler>=0.10 in /usr/local/lib/python3.9/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (0.12.1)
 Requirement already satisfied: fonttools>=4.22.0 in /usr/local/lib64/python3.9/site-packages (from matplotlib!=3.6.1,>=3.4->seaborn) (4.60.1)
-Requirement already satisfied: jupyterlab-pygments in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.3.0)
-Requirement already satisfied: markupsafe>=2.0 in /usr/local/lib64/python3.9/site-packages (from nbconvert->jupyter) (3.0.3)
 Requirement already satisfied: nbclient>=0.5.0 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.10.2)
 Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (4.14.2)
-Requirement already satisfied: defusedxml in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.7.1)
-Requirement already satisfied: bleach[css]!=5.0.0 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (6.2.0)
-Requirement already satisfied: pandocfilters>=1.4.1 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (1.5.1)
 Requirement already satisfied: mistune<4,>=2.0.3 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (3.1.4)
-Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.9/site-packages (from pandas>=1.2->seaborn) (2025.2)
+Requirement already satisfied: defusedxml in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.7.1)
+Requirement already satisfied: markupsafe>=2.0 in /usr/local/lib64/python3.9/site-packages (from nbconvert->jupyter) (3.0.3)
+Requirement already satisfied: pandocfilters>=1.4.1 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (1.5.1)
+Requirement already satisfied: jupyterlab-pygments in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.3.0)
+Requirement already satisfied: bleach[css]!=5.0.0 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (6.2.0)
 Requirement already satisfied: tzdata>=2022.7 in /usr/local/lib/python3.9/site-packages (from pandas>=1.2->seaborn) (2025.2)
-Requirement already satisfied: jupyterlab_widgets~=3.0.15 in /usr/local/lib/python3.9/site-packages (from ipywidgets->jupyter) (3.0.15)
+Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.9/site-packages (from pandas>=1.2->seaborn) (2025.2)
 Requirement already satisfied: widgetsnbextension~=4.0.14 in /usr/local/lib/python3.9/site-packages (from ipywidgets->jupyter) (4.0.14)
+Requirement already satisfied: jupyterlab_widgets~=3.0.15 in /usr/local/lib/python3.9/site-packages (from ipywidgets->jupyter) (3.0.15)
 Requirement already satisfied: idna>=2.8 in /usr/local/lib/python3.9/site-packages (from anyio>=3.1.0->jupyter-server<3,>=2.4.0->notebook) (3.11)
 Requirement already satisfied: sniffio>=1.1 in /usr/local/lib/python3.9/site-packages (from anyio>=3.1.0->jupyter-server<3,>=2.4.0->notebook) (1.3.1)
 Requirement already satisfied: argon2-cffi-bindings in /usr/local/lib64/python3.9/site-packages (from argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->notebook) (25.1.0)
@@ -217,8 +217,8 @@ Requirement already satisfied: h11>=0.16 in /usr/local/lib/python3.9/site-packag
 Requirement already satisfied: zipp>=3.20 in /usr/local/lib/python3.9/site-packages (from importlib-metadata>=4.8.3->jupyter-client>=8.0.0->ipykernel) (3.23.0)
 Requirement already satisfied: parso<0.9.0,>=0.8.4 in /usr/local/lib/python3.9/site-packages (from jedi>=0.16->ipython>=7.23.1->ipykernel) (0.8.5)
 Requirement already satisfied: rpds-py>=0.7.1 in /usr/local/lib64/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (0.27.1)
-Requirement already satisfied: referencing>=0.28.4 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (0.36.2)
 Requirement already satisfied: attrs>=22.2.0 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (25.4.0)
+Requirement already satisfied: referencing>=0.28.4 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (0.36.2)
 Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (2025.9.1)
 Requirement already satisfied: pyyaml>=5.3 in /usr/local/lib64/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook) (6.0.3)
 Requirement already satisfied: rfc3339-validator in /usr/local/lib/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->notebook) (0.1.4)
@@ -231,15 +231,15 @@ Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.9/site-package
 Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib64/python3.9/site-packages (from requests>=2.31->jupyterlab-server<3,>=2.27.1->notebook) (3.4.4)
 Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.9/site-packages (from requests>=2.31->jupyterlab-server<3,>=2.27.1->notebook) (2.5.0)
 Requirement already satisfied: soupsieve>1.2 in /usr/local/lib/python3.9/site-packages (from beautifulsoup4->nbconvert->jupyter) (2.8)
-Requirement already satisfied: asttokens>=2.1.0 in /usr/local/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel) (3.0.0)
-Requirement already satisfied: pure-eval in /usr/local/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel) (0.2.3)
 Requirement already satisfied: executing>=1.2.0 in /usr/local/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel) (2.2.1)
-Requirement already satisfied: jsonpointer>1.13 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (3.0.0)
-Requirement already satisfied: isoduration in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (20.11.0)
-Requirement already satisfied: webcolors>=24.6.0 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (24.11.1)
-Requirement already satisfied: uri-template in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (1.3.0)
+Requirement already satisfied: pure-eval in /usr/local/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel) (0.2.3)
+Requirement already satisfied: asttokens>=2.1.0 in /usr/local/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel) (3.0.0)
 Requirement already satisfied: fqdn in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (1.5.1)
 Requirement already satisfied: rfc3987-syntax>=1.1.0 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (1.1.0)
+Requirement already satisfied: isoduration in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (20.11.0)
+Requirement already satisfied: jsonpointer>1.13 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (3.0.0)
+Requirement already satisfied: uri-template in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (1.3.0)
+Requirement already satisfied: webcolors>=24.6.0 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (24.11.1)
 Requirement already satisfied: cffi>=1.0.1 in /usr/local/lib64/python3.9/site-packages (from argon2-cffi-bindings->argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->notebook) (2.0.0)
 Requirement already satisfied: pycparser in /usr/local/lib/python3.9/site-packages (from cffi>=1.0.1->argon2-cffi-bindings->argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->notebook) (2.23)
 Requirement already satisfied: lark>=1.2.2 in /usr/local/lib/python3.9/site-packages (from rfc3987-syntax>=1.1.0->jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->notebook) (1.3.0)
@@ -247,39 +247,39 @@ Requirement already satisfied: arrow>=0.15.0 in /usr/local/lib/python3.9/site-pa
 Installing collected packages: werkzeug, threadpoolctl, tensorboard-data-server, scipy, protobuf, markdown, joblib, grpcio, absl-py, tensorboard, seaborn, scikit-learn
 Successfully installed absl-py-2.3.1 grpcio-1.76.0 joblib-1.5.2 markdown-3.9 protobuf-6.33.0 scikit-learn-1.6.1 scipy-1.13.1 seaborn-0.13.2 tensorboard-2.20.0 tensorboard-data-server-0.7.2 threadpoolctl-3.6.0 werkzeug-3.1.3
 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
---> 235309a7fabd
+--> adf773f432b4
 STEP 6/13: USER hpcuser
---> 63322e8f131f
+--> df08fa37b3e9
 STEP 7/13: WORKDIR /home/hpcuser/workspace
---> d1fc11f00d8e
+--> 62e6cb06bf8c
 STEP 8/13: ENV PYTHONPATH=/home/hpcuser/workspace:$PYTHONPATH
---> e3c79f0d5b83
+--> 7ae4c86efaee
 STEP 9/13: RUN echo '#!/bin/bash' > /home/hpcuser/demo_aiml.sh &&     echo 'echo "🧠 AI/ML Distributed Training Environment"' >> /home/hpcuser/demo_aiml.sh &&     echo 'echo "Available examples:"' >> /home/hpcuser/demo_aiml.sh &&     echo 'echo "  - Single node training: python examples/ai_ml/distributed_training.py --epochs 5"' >> /home/hpcuser/demo_aiml.sh &&     echo 'echo "  - Multi-process simulation: mpirun -np 2 python examples/ai_ml/distributed_training.py --epochs 5"' >> /home/hpcuser/demo_aiml.sh &&     echo 'echo "  - Jupyter notebook: jupyter notebook --ip=0.0.0.0 --port=8888 --no-browser"' >> /home/hpcuser/demo_aiml.sh &&     echo 'echo "  - TensorBoard: tensorboard --logdir=./logs --host=0.0.0.0 --port=6006"' >> /home/hpcuser/demo_aiml.sh &&     chmod +x /home/hpcuser/demo_aiml.sh
---> 051a837f4e18
+--> 9455a569bc95
 STEP 10/13: EXPOSE 8888 6006
---> 9bcc0bf29045
+--> 949a34c28271
 STEP 11/13: CMD ["/home/hpcuser/demo_aiml.sh"]
---> 6d0f83638f71
+--> 7bc2fbc1deef
 STEP 12/13: ENV "OPENSHIFT_BUILD_NAME"="hpc-aiml-1" "OPENSHIFT_BUILD_NAMESPACE"="hpc-interview"
---> fea1c5ceb8ae
+--> 572ecadb5b0a
 STEP 13/13: LABEL "io.openshift.build.name"="hpc-aiml-1" "io.openshift.build.namespace"="hpc-interview"
-COMMIT temp.builder.openshift.io/hpc-interview/hpc-aiml-1:2e786e69
---> eb66800bb48c
-Successfully tagged temp.builder.openshift.io/hpc-interview/hpc-aiml-1:2e786e69
-eb66800bb48cb2a4c25201b78821ae4dc2c91b2b38271c26496d6492fdfd4c88
+COMMIT temp.builder.openshift.io/hpc-interview/hpc-aiml-1:fd54bdb4
+--> f15d2e161e3f
+Successfully tagged temp.builder.openshift.io/hpc-interview/hpc-aiml-1:fd54bdb4
+f15d2e161e3fd301e68408b80e9472f7025550f4b7ef1c9408f92d3f74257e50
 
 Pushing image image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-aiml:latest ...
 Getting image source signatures
-Copying blob sha256:e658ca79cf75d118432cf163a04d23b9da1d8b9556a33b3001632d7b85ebbb67
-Copying blob sha256:263fe93d745c6eb48e1e27ed234f4e1349d8615b543a72011b7a45311116031f
-Copying blob sha256:301709cf3f6026d114c0288d14cd561ffd2cc659db3aef9ff54c034fc933ee04
+Copying blob sha256:834c945f3e005b74a33589c0aa2c25a923d67fb48f21f9db745abb5e5d014c16
+Copying blob sha256:6917003e5212ab1d558557226cbbc300ef9898d276b49e1f2f486e4b4395976d
+Copying blob sha256:0e7aebc2c598f0d4217a839d5c4e0aa8eb84fafaa9d7a1f0441a5e14864b5569
+Copying blob sha256:5fd717430853804efab9a6d0d56d945a63e180fa582d8152d6c885036e1d69ff
 Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
-Copying blob sha256:68b8d1e15dfabe917a454aca57443a7f8297da6542546375e2e486827e3e5ab0
-Copying blob sha256:1f44041d5f9c5cad2092d33dc40b948821d6b43bb6a4099364e7db489828daab
-Copying blob sha256:776aede61ea1132126a49f5c883293dec38dc814f13c8a4b98851d70f190966a
-Copying blob sha256:420b3fdec5eccc51731a9a523458bbb7e028f7ef17b6390d5b159ed6c52eef2e
-Copying blob sha256:10a2b4aa66746a27b20688c1dfaf28fb6d1bb50720a294405504e8b01ef460ff
-Copying config sha256:eb66800bb48cb2a4c25201b78821ae4dc2c91b2b38271c26496d6492fdfd4c88
+Copying blob sha256:004b0f170cbbcbe881f28ce1a2ed2fec8cf6fe7067c7195f6341a5ea60624aad
+Copying blob sha256:c7fa09f38ad486b91e62bd98ada576194731aef195cb4096a65eef1da66f12bd
+Copying blob sha256:e8cccbe0e0d579973b5bdc2c151c3dff592222f410dcc0580147915a078f9494
+Copying blob sha256:73402c238075bf260ab8aff879cafca50bf99731283caef74497f1b53f2e300e
+Copying config sha256:f15d2e161e3fd301e68408b80e9472f7025550f4b7ef1c9408f92d3f74257e50
 Writing manifest to image destination
-Successfully pushed image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-aiml@sha256:7230600d587b08975a94c628f4850b841b5ea11f1f26c557a0b8eb9bd29d1bb0
+Successfully pushed image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-aiml@sha256:6c856ac8ab8eeb6f6370a6ea08f033261c4871c78d231cd75d6ddecd980b01a9
 Push successful

@@ -29,16 +29,29 @@ spec:
             memory: "2Gi"
             cpu: "2000m"
         volumeMounts:
+        - name: shared-workspace
+          mountPath: /home/hpcuser/workspace
         - name: shared-data
+          mountPath: /home/hpcuser/data
+        - name: legacy-shared
           mountPath: /shared
         env:
         - name: WORKSPACE_TYPE
           value: "hpc-base"
       volumes:
+      - name: shared-workspace
+        persistentVolumeClaim:
+          claimName: hpc-shared-workspace
       - name: shared-data
+        persistentVolumeClaim:
+          claimName: hpc-shared-data
+      - name: legacy-shared
         emptyDir: {}
       securityContext:
         runAsNonRoot: true
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
 ---
 apiVersion: v1
 kind: Service
