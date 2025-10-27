@@ -1,0 +1,18 @@
+apiVersion: v2
+name: hpc-milk
+description: MILK diffraction analysis system with MAUD and Java integration
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - hpc
+  - milk
+  - diffraction
+  - analysis
+  - maud
+  - java
+home: https://github.com/jrgochan/interviews
+maintainers:
+  - name: Jason Gochanour
+    email: jrgochan@example.com
+# Dependencies handled by deployment script

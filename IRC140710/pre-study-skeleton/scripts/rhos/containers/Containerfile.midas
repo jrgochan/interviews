@@ -1,6 +1,6 @@
 # MIDAS (Maximum Integrated Data Acquisition System) Container
 # Data acquisition system from PSI/TRIUMF for physics experiments
-FROM image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest
+FROM hpc-base:latest
 
 # Metadata
 LABEL maintainer="HPC Interview Preparation"

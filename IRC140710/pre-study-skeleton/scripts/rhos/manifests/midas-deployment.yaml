@@ -1,0 +1,247 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: midas-workspace
+  labels:
+    app: midas-workspace
+    component: interview-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: midas-workspace
+  template:
+    metadata:
+      labels:
+        app: midas-workspace
+    spec:
+      initContainers:
+      - name: workspace-init
+        image: image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-midas:latest
+        imagePullPolicy: Always
+        command: ["/bin/bash"]
+        args:
+        - -c
+        - |
+          echo "🚀 Initializing MIDAS workspace..."
+          if [ ! -f /workspace/.initialized ]; then
+            echo "📂 Copying workspace files from container seed..."
+            # Copy MIDAS-specific files
+            cp -r /tmp/workspace-seed/* /workspace/ 2>/dev/null || true
+            
+            # Create project structure directories
+            mkdir -p /workspace/examples /workspace/reframe /workspace/docs /workspace/spack
+            
+            # Create MIDAS experiment directories
+            mkdir -p /workspace/midas/experiments/demo
+            mkdir -p /workspace/midas/data
+            mkdir -p /workspace/midas/logs
+            
+            # Create comprehensive Python demo
+            cat > /workspace/midas/midas_demo.py << 'PYTHON_EOF'
+          #!/usr/bin/env python3
+          """MIDAS Python Demo Script"""
+          import os, sys, time, json, subprocess
+          
+          def check_midas_environment():
+              print("🔍 Checking MIDAS Python environment...")
+              midassys = os.environ.get('MIDASSYS')
+              if not midassys:
+                  print("❌ MIDASSYS environment variable not set")
+                  return False
+              print(f"✅ MIDAS System: {midassys}")
+              return True
+          
+          def test_odb_connection():
+              print("🗄️  Testing ODB connection...")
+              try:
+                  result = subprocess.run(['odbedit', '-c', 'ls /'], 
+                                        capture_output=True, text=True, timeout=10)
+                  if result.returncode == 0:
+                      print("✅ ODB connection successful")
+                      return True
+                  else:
+                      print(f"❌ ODB connection failed: {result.stderr}")
+                      return False
+              except Exception as e:
+                  print(f"❌ ODB test error: {e}")
+                  return False
+          
+          def simulate_data_generation():
+              print("🎲 Simulating data generation...")
+              sample_data = {
+                  'experiment': 'MIDAS Demo',
+                  'timestamp': time.time(),
+                  'events': [{'event_id': i, 'data': i*123} for i in range(10)]
+              }
+              data_dir = os.path.expanduser('~/workspace/midas/data')
+              os.makedirs(data_dir, exist_ok=True)
+              data_file = os.path.join(data_dir, f'demo_data_{int(time.time())}.json')
+              with open(data_file, 'w') as f:
+                  json.dump(sample_data, f, indent=2)
+              print(f"✅ Sample data saved to: {data_file}")
+              return data_file
+          
+          def main():
+              print("🐍 MIDAS Python Demo Starting...")
+              if not check_midas_environment():
+                  sys.exit(1)
+              test_odb_connection()
+              simulate_data_generation()
+              print("🎉 MIDAS Python Demo Completed!")
+          
+          if __name__ == '__main__':
+              main()
+          PYTHON_EOF
+            
+            # Create comprehensive C frontend
+            cat > /workspace/midas/experiments/demo/frontend.c << 'C_EOF'
+          #include <stdio.h>
+          #include <stdlib.h>
+          #include <string.h>
+          #include "midas.h"
+          #include "msystem.h"
+          
+          #ifdef __cplusplus
+          extern "C" {
+          #endif
+          
+          const char *frontend_name = "Demo Frontend";
+          const char *frontend_file_name = __FILE__;
+          BOOL frontend_call_loop = TRUE;
+          INT max_event_size = 10000;
+          INT max_event_size_frag = 5 * 1024 * 1024;
+          INT event_buffer_size = 10 * 10000;
+          
+          INT frontend_init() { printf("Frontend Demo initialized\n"); return SUCCESS; }
+          INT frontend_exit() { return SUCCESS; }
+          INT frontend_loop() { return SUCCESS; }
+          INT begin_of_run(INT run_number, char *error) { printf("Starting run %d\n", run_number); return SUCCESS; }
+          INT end_of_run(INT run_number, char *error) { printf("Ending run %d\n", run_number); return SUCCESS; }
+          INT pause_run(INT run_number, char *error) { return SUCCESS; }
+          INT resume_run(INT run_number, char *error) { return SUCCESS; }
+          INT frontend_early_init() { return SUCCESS; }
+          
+          EQUIPMENT equipment[] = {
+             {"Trigger", {1, 0, "SYSTEM", EQ_PERIODIC, LAM_SOURCE(0, 0xFFFFFF), "MIDAS", TRUE, RO_RUNNING, 500, 0, 0, 0, "", "", ""}, NULL},
+             {""}
+          };
+          
+          INT poll_event(INT source, INT count, BOOL test) { return FALSE; }
+          INT interrupt_configure(INT cmd, INT source, POINTER_T adr) { return SUCCESS; }
+          INT read_trigger_event(char *pevent, INT off) {
+             WORD *pdata;
+             bk_init32(pevent);
+             bk_create(pevent, "ADC0", TID_WORD, (void **)&pdata);
+             *pdata++ = 0x1234; *pdata++ = 0x5678;
+             bk_close(pevent, pdata);
+             return bk_size(pevent);
+          }
+          
+          #ifdef __cplusplus
+          }
+          #endif
+          C_EOF
+            
+            # Fix permissions
+            chmod +x /workspace/midas/midas_env.sh
+            chmod +x /workspace/midas/midas_demo.py
+            
+            # Mark as initialized
+            touch /workspace/.initialized
+            echo "✅ MIDAS workspace initialized with demo files"
+          else
+            echo "✅ Workspace already initialized"
+          fi
+          echo "🏁 InitContainer completed successfully"
+        volumeMounts:
+        - name: shared-workspace
+          mountPath: /workspace
+        - name: shared-data
+          mountPath: /data
+      containers:
+      - name: hpc-midas
+        image: image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-midas:latest
+        imagePullPolicy: Always
+        command: ["/bin/bash"]
+        args: ["-c", "while true; do sleep 30; done"]
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "1000m"
+          limits:
+            memory: "6Gi"
+            cpu: "4000m"
+        volumeMounts:
+        - name: shared-workspace
+          mountPath: /home/hpcuser/workspace
+        - name: shared-data
+          mountPath: /home/hpcuser/data
+        - name: legacy-shared
+          mountPath: /shared
+        env:
+        - name: WORKSPACE_TYPE
+          value: "hpc-midas"
+        - name: MIDASSYS
+          value: "/opt/midas/install"
+        - name: ROOTSYS
+          value: "/usr"
+        - name: MIDAS_EXPT_NAME
+          value: "demo"
+        - name: MIDAS_EXPT_DIR
+          value: "/home/hpcuser/workspace/midas/experiments/demo"
+        ports:
+        - containerPort: 8080
+          name: midas-web
+          protocol: TCP
+        - containerPort: 1175
+          name: midas-odb
+          protocol: TCP
+      volumes:
+      - name: shared-workspace
+        persistentVolumeClaim:
+          claimName: hpc-shared-workspace
+      - name: shared-data
+        persistentVolumeClaim:
+          claimName: hpc-shared-data
+      - name: legacy-shared
+        emptyDir: {}
+      securityContext:
+        runAsNonRoot: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: midas-workspace-svc
+  labels:
+    app: midas-workspace
+spec:
+  selector:
+    app: midas-workspace
+  ports:
+  - name: midas-web
+    port: 8080
+    targetPort: 8080
+    protocol: TCP
+  - name: midas-odb
+    port: 1175
+    targetPort: 1175
+    protocol: TCP
+  type: ClusterIP
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: midas-web-route
+  labels:
+    app: midas-workspace
+spec:
+  to:
+    kind: Service
+    name: midas-workspace-svc
+  port:
+    targetPort: midas-web
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+  wildcardPolicy: None

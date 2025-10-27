@@ -1,10 +1,58 @@
-=== HPC Interview Environment Setup - Sat Oct 25 14:08:27 MDT 2025 ===
-2025-10-25 14:08:27 - Starting HPC Interview Environment Setup
-2025-10-25 14:08:27 - Starting prerequisites check
-2025-10-25 14:08:27 - podman found at /opt/homebrew/bin/podman
-2025-10-25 14:08:27 - oc found at /Users/jrgochan/.crc/bin/oc/oc
-2025-10-25 14:08:27 - git found at /usr/bin/git
-2025-10-25 14:08:27 - WARNING: docker not found (optional)
-2025-10-25 14:08:27 - ERROR: Podman connectivity failed
-2025-10-25 14:08:27 - OpenShift connectivity verified
-2025-10-25 14:08:28 - ERROR: Prerequisites check failed
+=== HPC Interview Environment Setup - Sun Oct 26 17:36:12 MDT 2025 ===
+2025-10-26 17:36:12 - Starting HPC Interview Environment Setup
+2025-10-26 17:36:12 - Starting prerequisites check
+2025-10-26 17:36:12 - podman found at /opt/homebrew/bin/podman
+2025-10-26 17:36:12 - oc found at /opt/homebrew/bin/oc
+2025-10-26 17:36:12 - git found at /usr/bin/git
+2025-10-26 17:36:12 - WARNING: docker not found (optional)
+2025-10-26 17:36:12 - Podman connectivity verified
+2025-10-26 17:36:12 - OpenShift connectivity verified
+2025-10-26 17:36:12 - Prerequisites check completed successfully
+2025-10-26 17:36:12 - Creating namespace: hpc-interview
+2025-10-26 17:36:16 - Namespace configured successfully
+2025-10-26 17:36:16 - Starting container image builds using OpenShift BuildConfigs
+2025-10-26 17:36:16 - Creating BuildConfig for image: hpc-base
+2025-10-26 17:40:06 - Successfully built hpc-base
+2025-10-26 17:40:06 - Creating BuildConfig for dependent image: hpc-midas
+2025-10-26 17:42:57 - Successfully built hpc-midas
+2025-10-26 17:42:57 - Container builds completed in OpenShift
+2025-10-26 17:42:57 - Starting OpenShift resource deployment
+2025-10-26 17:42:57 - Found        5 manifest files
+2025-10-26 17:42:58 - deployment.apps/aiml-workspace ready
+2025-10-26 17:42:58 - deployment.apps/hpc-workspace ready
+2025-10-26 17:42:59 - deployment.apps/midas-workspace ready
+2025-10-26 17:42:59 - deployment.apps/milk-workspace ready
+2025-10-26 17:42:59 - OpenShift resource deployment completed
+2025-10-26 17:42:59 - Setting up all HPC examples
+2025-10-26 17:42:59 - MPI examples setup completed
+2025-10-26 17:42:59 - CUDA examples prepared
+2025-10-26 17:43:00 - AI/ML examples setup completed
+2025-10-26 17:43:00 - All HPC examples setup completed
+2025-10-26 17:43:00 - Setting up monitoring
+2025-10-26 17:43:00 - Monitoring setup completed
+2025-10-26 17:43:00 - Starting health checks
+2025-10-26 17:43:01 - Pod aiml-workspace-bd44bc6c5-876r5: Running
+2025-10-26 17:43:01 - WARNING: Pod hpc-aiml-1-build: Succeeded
+2025-10-26 17:43:01 - WARNING: Pod hpc-base-5-build: Succeeded
+2025-10-26 17:43:01 - WARNING: Pod hpc-base-6-build: Succeeded
+2025-10-26 17:43:01 - WARNING: Pod hpc-base-7-build: Succeeded
+2025-10-26 17:43:02 - WARNING: Pod hpc-base-8-build: Succeeded
+2025-10-26 17:43:02 - WARNING: Pod hpc-base-9-build: Succeeded
+2025-10-26 17:43:02 - WARNING: Pod hpc-midas-2-build: Failed
+2025-10-26 17:43:02 - WARNING: Pod hpc-midas-3-build: Failed
+2025-10-26 17:43:02 - WARNING: Pod hpc-midas-4-build: Failed
+2025-10-26 17:43:02 - WARNING: Pod hpc-midas-5-build: Failed
+2025-10-26 17:43:02 - WARNING: Pod hpc-midas-6-build: Failed
+2025-10-26 17:43:02 - WARNING: Pod hpc-midas-7-build: Succeeded
+2025-10-26 17:43:03 - WARNING: Pod hpc-midas-8-build: Succeeded
+2025-10-26 17:43:03 - WARNING: Pod hpc-milk-1-build: Succeeded
+2025-10-26 17:43:03 - Pod hpc-workspace-55bbf5db8-p2j4x: Running
+2025-10-26 17:43:03 - WARNING: Pod midas-workspace-58c7cdf7cb-f9vlv: Pending
+2025-10-26 17:43:03 - Pod midas-workspace-748d5f6d7-gzjb9: Running
+2025-10-26 17:43:03 - Pod milk-workspace-68b65fff57-5tbmn: Running
+2025-10-26 17:43:04 - MPI functionality verified
+2025-10-26 17:43:04 - Python environment verified
+2025-10-26 17:43:04 - Health checks completed
+2025-10-26 17:43:04 - Starting deployment validation
+2025-10-26 17:48:10 - Deployment validation completed
+2025-10-26 17:48:10 - Setup completed successfully

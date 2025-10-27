@@ -1,0 +1,1693 @@
+Uploading directory "/Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton" as binary input for the build ...
+
+Uploading finished
+build.build.openshift.io/hpc-midas-8 started
+Receiving source from STDIN as archive ...
+time="2025-10-26T07:10:20Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
+I1026 07:10:20.081803       1 defaults.go:112] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
+Caching blobs under "/var/cache/blobs".
+
+Pulling image image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest ...
+Trying to pull image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest...
+Getting image source signatures
+Copying blob sha256:2a2c7f6c0e58222db65021e85201e545733418bb783afbc0a29ec85a39372b85
+Copying blob sha256:eced006eac62b7f1ee4833245ed052d88064b21b6460a2cf8ee2acd08fc89d49
+Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
+Copying blob sha256:dca5cacfa704b598920f18cf3c2375fbc5d12032a1161a3bc10a15e84b2f62d4
+Copying blob sha256:80b7e415809e0a614f4322708c4b0c0963de7cb82608a886e81992e3ff88bf55
+Copying blob sha256:430cbf78efcdb9c9b0bcf8cb598c5b0ebef7be5e66a549cbca50b8533124a891
+Copying config sha256:6bfd320210e312e6f032a2d0a6f91abce071f298c40bbafdb7cd6f8917a09d26
+Writing manifest to image destination
+Adding transient rw bind mount for /run/secrets/rhsm
+STEP 1/25: FROM image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest
+STEP 2/25: LABEL maintainer="HPC Interview Preparation"
+--> 7a594992fbc9
+STEP 3/25: LABEL description="MIDAS - Maximum Integrated Data Acquisition System for physics experiments"
+--> bfaa9da6fb8d
+STEP 4/25: LABEL version="1.0"
+--> 74564d090b1d
+STEP 5/25: USER root
+--> 0d3f34a6b0ce
+STEP 6/25: RUN dnf update -y &&     dnf install -y         cmake         make         gcc-c++         git         wget         curl         sqlite-devel         mariadb-connector-c-devel         zlib-devel         openssl-devel         libxml2-devel         readline-devel         ncurses-devel         httpd-devel         && dnf clean all
+Rocky Linux 9 - BaseOS                          905 kB/s | 2.6 MB     00:02    
+Rocky Linux 9 - AppStream                       1.6 MB/s | 8.1 MB     00:05    
+Rocky Linux 9 - Extras                           29 kB/s |  18 kB     00:00    
+Dependencies resolved.
+Nothing to do.
+Complete!
+Last metadata expiration check: 0:00:01 ago on Sun Oct 26 07:10:45 2025.
+Package cmake-3.26.5-2.el9.aarch64 is already installed.
+Package make-1:4.3-8.el9.aarch64 is already installed.
+Package gcc-c++-11.5.0-5.el9_5.aarch64 is already installed.
+Package git-2.47.3-1.el9_6.aarch64 is already installed.
+Package wget-1.21.1-8.el9_4.aarch64 is already installed.
+Package curl-7.76.1-31.el9_6.1.aarch64 is already installed.
+Dependencies resolved.
+================================================================================
+ Package                     Arch     Version                  Repository  Size
+================================================================================
+Installing:
+ httpd-devel                 aarch64  2.4.62-4.el9_6.4         appstream  192 k
+ libxml2-devel               aarch64  2.9.13-12.el9_6          appstream  828 k
+ mariadb-connector-c-devel   aarch64  3.2.6-1.el9_0            appstream   54 k
+ ncurses-devel               aarch64  6.2-10.20210508.el9_6.2  appstream  517 k
+ openssl-devel               aarch64  1:3.2.2-6.el9_5.1        appstream  3.2 M
+ readline-devel              aarch64  8.1-4.el9                appstream  194 k
+ sqlite-devel                aarch64  3.34.1-8.el9_6           appstream  133 k
+ zlib-devel                  aarch64  1.2.11-40.el9            appstream   44 k
+Installing dependencies:
+ acl                         aarch64  2.3.1-4.el9              baseos      69 k
+ apr                         aarch64  1.7.0-12.el9_3           appstream  118 k
+ apr-devel                   aarch64  1.7.0-12.el9_3           appstream  217 k
+ apr-util                    aarch64  1.6.1-23.el9             appstream   95 k
+ apr-util-bdb                aarch64  1.6.1-23.el9             appstream   12 k
+ apr-util-devel              aarch64  1.6.1-23.el9             appstream   70 k
+ cyrus-sasl                  aarch64  2.1.27-21.el9            baseos      72 k
+ cyrus-sasl-devel            aarch64  2.1.27-21.el9            appstream  102 k
+ dbus                        aarch64  1:1.12.20-8.el9          baseos     6.8 k
+ dbus-broker                 aarch64  28-7.el9                 baseos     165 k
+ dbus-common                 noarch   1:1.12.20-8.el9          baseos      14 k
+ expat-devel                 aarch64  2.5.0-5.el9_6            appstream   51 k
+ httpd-core                  aarch64  2.4.62-4.el9_6.4         appstream  1.4 M
+ httpd-filesystem            noarch   2.4.62-4.el9_6.4         appstream   11 k
+ httpd-tools                 aarch64  2.4.62-4.el9_6.4         appstream   77 k
+ kmod-libs                   aarch64  28-10.el9                baseos      61 k
+ libdb-devel                 aarch64  5.3.28-57.el9_6          appstream   36 k
+ libseccomp                  aarch64  2.5.2-2.el9              baseos      71 k
+ mailcap                     noarch   2.1.49-5.el9             baseos      32 k
+ mariadb-connector-c         aarch64  3.2.6-1.el9_0            appstream  194 k
+ mariadb-connector-c-config  noarch   3.2.6-1.el9_0            appstream  9.8 k
+ ncurses-c++-libs            aarch64  6.2-10.20210508.el9_6.2  appstream   35 k
+ openldap-devel              aarch64  2.6.8-4.el9.0.1          appstream  684 k
+ sqlite                      aarch64  3.34.1-8.el9_6           appstream  737 k
+ systemd                     aarch64  252-51.el9_6.2           baseos     3.8 M
+ systemd-pam                 aarch64  252-51.el9_6.2           baseos     263 k
+ systemd-rpm-macros          noarch   252-51.el9_6.2           baseos      61 k
+ xz-devel                    aarch64  5.2.5-8.el9_0            appstream   52 k
+Installing weak dependencies:
+ apr-util-openssl            aarch64  1.6.1-23.el9             appstream   14 k
+
+Transaction Summary
+================================================================================
+Install  37 Packages
+
+Total download size: 14 M
+Installed size: 51 M
+Downloading Packages:
+(1/37): dbus-common-1.12.20-8.el9.noarch.rpm     60 kB/s |  14 kB     00:00    
+(2/37): acl-2.3.1-4.el9.aarch64.rpm             170 kB/s |  69 kB     00:00    
+(3/37): cyrus-sasl-2.1.27-21.el9.aarch64.rpm    168 kB/s |  72 kB     00:00    
+(4/37): systemd-rpm-macros-252-51.el9_6.2.noarc 148 kB/s |  61 kB     00:00    
+(5/37): mailcap-2.1.49-5.el9.noarch.rpm         116 kB/s |  32 kB     00:00    
+(6/37): kmod-libs-28-10.el9.aarch64.rpm         140 kB/s |  61 kB     00:00    
+(7/37): dbus-1.12.20-8.el9.aarch64.rpm           33 kB/s | 6.8 kB     00:00    
+(8/37): libseccomp-2.5.2-2.el9.aarch64.rpm      142 kB/s |  71 kB     00:00    
+(9/37): systemd-pam-252-51.el9_6.2.aarch64.rpm  263 kB/s | 263 kB     00:01    
+(10/37): apr-util-openssl-1.6.1-23.el9.aarch64.  72 kB/s |  14 kB     00:00    
+(11/37): dbus-broker-28-7.el9.aarch64.rpm       333 kB/s | 165 kB     00:00    
+(12/37): apr-util-bdb-1.6.1-23.el9.aarch64.rpm   50 kB/s |  12 kB     00:00    
+(13/37): apr-util-devel-1.6.1-23.el9.aarch64.rp 169 kB/s |  70 kB     00:00    
+(14/37): mariadb-connector-c-config-3.2.6-1.el9  42 kB/s | 9.8 kB     00:00    
+(15/37): apr-1.7.0-12.el9_3.aarch64.rpm         225 kB/s | 118 kB     00:00    
+(16/37): httpd-devel-2.4.62-4.el9_6.4.aarch64.r 331 kB/s | 192 kB     00:00    
+(17/37): ncurses-devel-6.2-10.20210508.el9_6.2. 542 kB/s | 517 kB     00:00    
+(18/37): systemd-252-51.el9_6.2.aarch64.rpm     1.2 MB/s | 3.8 MB     00:03    
+(19/37): libxml2-devel-2.9.13-12.el9_6.aarch64. 627 kB/s | 828 kB     00:01    
+(20/37): cyrus-sasl-devel-2.1.27-21.el9.aarch64 201 kB/s | 102 kB     00:00    
+(21/37): httpd-tools-2.4.62-4.el9_6.4.aarch64.r 187 kB/s |  77 kB     00:00    
+(22/37): libdb-devel-5.3.28-57.el9_6.aarch64.rp 118 kB/s |  36 kB     00:00    
+(23/37): mariadb-connector-c-3.2.6-1.el9_0.aarc 311 kB/s | 194 kB     00:00    
+(24/37): xz-devel-5.2.5-8.el9_0.aarch64.rpm     120 kB/s |  52 kB     00:00    
+(25/37): httpd-filesystem-2.4.62-4.el9_6.4.noar  60 kB/s |  11 kB     00:00    
+(26/37): sqlite-devel-3.34.1-8.el9_6.aarch64.rp 253 kB/s | 133 kB     00:00    
+(27/37): apr-util-1.6.1-23.el9.aarch64.rpm      175 kB/s |  95 kB     00:00    
+(28/37): expat-devel-2.5.0-5.el9_6.aarch64.rpm  124 kB/s |  51 kB     00:00    
+(29/37): apr-devel-1.7.0-12.el9_3.aarch64.rpm   354 kB/s | 217 kB     00:00    
+(30/37): openldap-devel-2.6.8-4.el9.0.1.aarch64 721 kB/s | 684 kB     00:00    
+(31/37): sqlite-3.34.1-8.el9_6.aarch64.rpm      701 kB/s | 737 kB     00:01    
+(32/37): openssl-devel-3.2.2-6.el9_5.1.aarch64. 1.4 MB/s | 3.2 MB     00:02    
+(33/37): ncurses-c++-libs-6.2-10.20210508.el9_6  61 kB/s |  35 kB     00:00    
+(34/37): mariadb-connector-c-devel-3.2.6-1.el9_ 133 kB/s |  54 kB     00:00    
+(35/37): zlib-devel-1.2.11-40.el9.aarch64.rpm   111 kB/s |  44 kB     00:00    
+(36/37): readline-devel-8.1-4.el9.aarch64.rpm   169 kB/s | 194 kB     00:01    
+(37/37): httpd-core-2.4.62-4.el9_6.4.aarch64.rp 388 kB/s | 1.4 MB     00:03    
+--------------------------------------------------------------------------------
+Total                                           1.2 MB/s |  14 MB     00:11     
+Running transaction check
+Transaction check succeeded.
+Running transaction test
+Transaction test succeeded.
+Running transaction
+  Preparing        :                                                        1/1 
+  Installing       : apr-1.7.0-12.el9_3.aarch64                            1/37 
+  Installing       : apr-util-bdb-1.6.1-23.el9.aarch64                     2/37 
+  Installing       : apr-util-1.6.1-23.el9.aarch64                         3/37 
+  Installing       : apr-util-openssl-1.6.1-23.el9.aarch64                 4/37 
+  Installing       : apr-devel-1.7.0-12.el9_3.aarch64                      5/37 
+  Installing       : zlib-devel-1.2.11-40.el9.aarch64                      6/37 
+  Installing       : httpd-tools-2.4.62-4.el9_6.4.aarch64                  7/37 
+  Installing       : ncurses-c++-libs-6.2-10.20210508.el9_6.2.aarch64      8/37 
+  Installing       : ncurses-devel-6.2-10.20210508.el9_6.2.aarch64         9/37 
+  Installing       : sqlite-3.34.1-8.el9_6.aarch64                        10/37 
+  Installing       : expat-devel-2.5.0-5.el9_6.aarch64                    11/37 
+  Installing       : openssl-devel-1:3.2.2-6.el9_5.1.aarch64              12/37 
+  Running scriptlet: httpd-filesystem-2.4.62-4.el9_6.4.noarch             13/37 
+  Installing       : httpd-filesystem-2.4.62-4.el9_6.4.noarch             13/37 
+  Installing       : libdb-devel-5.3.28-57.el9_6.aarch64                  14/37 
+  Installing       : xz-devel-5.2.5-8.el9_0.aarch64                       15/37 
+  Installing       : mariadb-connector-c-config-3.2.6-1.el9_0.noarch      16/37 
+  Installing       : mariadb-connector-c-3.2.6-1.el9_0.aarch64            17/37 
+  Installing       : libseccomp-2.5.2-2.el9.aarch64                       18/37 
+  Installing       : kmod-libs-28-10.el9.aarch64                          19/37 
+  Installing       : mailcap-2.1.49-5.el9.noarch                          20/37 
+  Installing       : httpd-core-2.4.62-4.el9_6.4.aarch64                  21/37 
+  Installing       : systemd-rpm-macros-252-51.el9_6.2.noarch             22/37 
+  Installing       : acl-2.3.1-4.el9.aarch64                              23/37 
+  Installing       : systemd-pam-252-51.el9_6.2.aarch64                   24/37 
+  Installing       : dbus-1:1.12.20-8.el9.aarch64                         25/37 
+  Running scriptlet: systemd-252-51.el9_6.2.aarch64                       26/37 
+  Installing       : systemd-252-51.el9_6.2.aarch64                       26/37 
+  Running scriptlet: systemd-252-51.el9_6.2.aarch64                       26/37 
+  Installing       : dbus-common-1:1.12.20-8.el9.noarch                   27/37 
+  Running scriptlet: dbus-common-1:1.12.20-8.el9.noarch                   27/37 
+Created symlink /etc/systemd/system/sockets.target.wants/dbus.socket → /usr/lib/systemd/system/dbus.socket.
+Created symlink /etc/systemd/user/sockets.target.wants/dbus.socket → /usr/lib/systemd/user/dbus.socket.
+
+  Running scriptlet: dbus-broker-28-7.el9.aarch64                         28/37 
+  Installing       : dbus-broker-28-7.el9.aarch64                         28/37 
+  Running scriptlet: dbus-broker-28-7.el9.aarch64                         28/37 
+Created symlink /etc/systemd/system/dbus.service → /usr/lib/systemd/system/dbus-broker.service.
+Created symlink /etc/systemd/user/dbus.service → /usr/lib/systemd/user/dbus-broker.service.
+
+  Running scriptlet: cyrus-sasl-2.1.27-21.el9.aarch64                     29/37 
+  Installing       : cyrus-sasl-2.1.27-21.el9.aarch64                     29/37 
+  Running scriptlet: cyrus-sasl-2.1.27-21.el9.aarch64                     29/37 
+  Installing       : cyrus-sasl-devel-2.1.27-21.el9.aarch64               30/37 
+  Installing       : openldap-devel-2.6.8-4.el9.0.1.aarch64               31/37 
+  Installing       : apr-util-devel-1.6.1-23.el9.aarch64                  32/37 
+  Installing       : httpd-devel-2.4.62-4.el9_6.4.aarch64                 33/37 
+  Installing       : mariadb-connector-c-devel-3.2.6-1.el9_0.aarch64      34/37 
+  Installing       : libxml2-devel-2.9.13-12.el9_6.aarch64                35/37 
+  Installing       : sqlite-devel-3.34.1-8.el9_6.aarch64                  36/37 
+  Installing       : readline-devel-8.1-4.el9.aarch64                     37/37 
+  Running scriptlet: readline-devel-8.1-4.el9.aarch64                     37/37 
+  Verifying        : cyrus-sasl-2.1.27-21.el9.aarch64                      1/37 
+  Verifying        : dbus-common-1:1.12.20-8.el9.noarch                    2/37 
+  Verifying        : acl-2.3.1-4.el9.aarch64                               3/37 
+  Verifying        : systemd-rpm-macros-252-51.el9_6.2.noarch              4/37 
+  Verifying        : mailcap-2.1.49-5.el9.noarch                           5/37 
+  Verifying        : kmod-libs-28-10.el9.aarch64                           6/37 
+  Verifying        : systemd-pam-252-51.el9_6.2.aarch64                    7/37 
+  Verifying        : dbus-1:1.12.20-8.el9.aarch64                          8/37 
+  Verifying        : systemd-252-51.el9_6.2.aarch64                        9/37 
+  Verifying        : libseccomp-2.5.2-2.el9.aarch64                       10/37 
+  Verifying        : dbus-broker-28-7.el9.aarch64                         11/37 
+  Verifying        : apr-util-openssl-1.6.1-23.el9.aarch64                12/37 
+  Verifying        : apr-util-bdb-1.6.1-23.el9.aarch64                    13/37 
+  Verifying        : apr-util-devel-1.6.1-23.el9.aarch64                  14/37 
+  Verifying        : mariadb-connector-c-config-3.2.6-1.el9_0.noarch      15/37 
+  Verifying        : apr-1.7.0-12.el9_3.aarch64                           16/37 
+  Verifying        : httpd-devel-2.4.62-4.el9_6.4.aarch64                 17/37 
+  Verifying        : libxml2-devel-2.9.13-12.el9_6.aarch64                18/37 
+  Verifying        : ncurses-devel-6.2-10.20210508.el9_6.2.aarch64        19/37 
+  Verifying        : cyrus-sasl-devel-2.1.27-21.el9.aarch64               20/37 
+  Verifying        : httpd-tools-2.4.62-4.el9_6.4.aarch64                 21/37 
+  Verifying        : mariadb-connector-c-3.2.6-1.el9_0.aarch64            22/37 
+  Verifying        : xz-devel-5.2.5-8.el9_0.aarch64                       23/37 
+  Verifying        : libdb-devel-5.3.28-57.el9_6.aarch64                  24/37 
+  Verifying        : httpd-filesystem-2.4.62-4.el9_6.4.noarch             25/37 
+  Verifying        : apr-util-1.6.1-23.el9.aarch64                        26/37 
+  Verifying        : sqlite-devel-3.34.1-8.el9_6.aarch64                  27/37 
+  Verifying        : openssl-devel-1:3.2.2-6.el9_5.1.aarch64              28/37 
+  Verifying        : expat-devel-2.5.0-5.el9_6.aarch64                    29/37 
+  Verifying        : apr-devel-1.7.0-12.el9_3.aarch64                     30/37 
+  Verifying        : openldap-devel-2.6.8-4.el9.0.1.aarch64               31/37 
+  Verifying        : sqlite-3.34.1-8.el9_6.aarch64                        32/37 
+  Verifying        : ncurses-c++-libs-6.2-10.20210508.el9_6.2.aarch64     33/37 
+  Verifying        : mariadb-connector-c-devel-3.2.6-1.el9_0.aarch64      34/37 
+  Verifying        : httpd-core-2.4.62-4.el9_6.4.aarch64                  35/37 
+  Verifying        : readline-devel-8.1-4.el9.aarch64                     36/37 
+  Verifying        : zlib-devel-1.2.11-40.el9.aarch64                     37/37 
+
+Installed:
+  acl-2.3.1-4.el9.aarch64                                                       
+  apr-1.7.0-12.el9_3.aarch64                                                    
+  apr-devel-1.7.0-12.el9_3.aarch64                                              
+  apr-util-1.6.1-23.el9.aarch64                                                 
+  apr-util-bdb-1.6.1-23.el9.aarch64                                             
+  apr-util-devel-1.6.1-23.el9.aarch64                                           
+  apr-util-openssl-1.6.1-23.el9.aarch64                                         
+  cyrus-sasl-2.1.27-21.el9.aarch64                                              
+  cyrus-sasl-devel-2.1.27-21.el9.aarch64                                        
+  dbus-1:1.12.20-8.el9.aarch64                                                  
+  dbus-broker-28-7.el9.aarch64                                                  
+  dbus-common-1:1.12.20-8.el9.noarch                                            
+  expat-devel-2.5.0-5.el9_6.aarch64                                             
+  httpd-core-2.4.62-4.el9_6.4.aarch64                                           
+  httpd-devel-2.4.62-4.el9_6.4.aarch64                                          
+  httpd-filesystem-2.4.62-4.el9_6.4.noarch                                      
+  httpd-tools-2.4.62-4.el9_6.4.aarch64                                          
+  kmod-libs-28-10.el9.aarch64                                                   
+  libdb-devel-5.3.28-57.el9_6.aarch64                                           
+  libseccomp-2.5.2-2.el9.aarch64                                                
+  libxml2-devel-2.9.13-12.el9_6.aarch64                                         
+  mailcap-2.1.49-5.el9.noarch                                                   
+  mariadb-connector-c-3.2.6-1.el9_0.aarch64                                     
+  mariadb-connector-c-config-3.2.6-1.el9_0.noarch                               
+  mariadb-connector-c-devel-3.2.6-1.el9_0.aarch64                               
+  ncurses-c++-libs-6.2-10.20210508.el9_6.2.aarch64                              
+  ncurses-devel-6.2-10.20210508.el9_6.2.aarch64                                 
+  openldap-devel-2.6.8-4.el9.0.1.aarch64                                        
+  openssl-devel-1:3.2.2-6.el9_5.1.aarch64                                       
+  readline-devel-8.1-4.el9.aarch64                                              
+  sqlite-3.34.1-8.el9_6.aarch64                                                 
+  sqlite-devel-3.34.1-8.el9_6.aarch64                                           
+  systemd-252-51.el9_6.2.aarch64                                                
+  systemd-pam-252-51.el9_6.2.aarch64                                            
+  systemd-rpm-macros-252-51.el9_6.2.noarch                                      
+  xz-devel-5.2.5-8.el9_0.aarch64                                                
+  zlib-devel-1.2.11-40.el9.aarch64                                              
+
+Complete!
+25 files removed
+--> 98bd2a219a91
+STEP 7/25: RUN mkdir -p /opt &&     cd /opt &&     git clone https://bitbucket.org/tmidas/midas.git &&     cd midas &&     git submodule update --init --recursive &&     mkdir -p build && cd build &&     cmake ..         -DCMAKE_INSTALL_PREFIX=/opt/midas/install         -DCMAKE_BUILD_TYPE=Release         -DHAVE_ROOT=OFF         -DHAVE_MYSQL=ON         -DHAVE_SQLITE=ON         &&     make -j$(nproc) &&     make install
+Cloning into 'midas'...
+Submodule 'manalyzer' (https://bitbucket.org/tmidas/manalyzer.git) registered for path 'manalyzer'
+Submodule 'midasio' (https://bitbucket.org/tmidas/midasio.git) registered for path 'midasio'
+Submodule 'mjson' (https://bitbucket.org/tmidas/mjson.git) registered for path 'mjson'
+Submodule 'mscb' (https://bitbucket.org/tmidas/mscb.git) registered for path 'mscb'
+Submodule 'mvodb' (https://bitbucket.org/tmidas/mvodb.git) registered for path 'mvodb'
+Submodule 'mxml' (https://bitbucket.org/tmidas/mxml.git) registered for path 'mxml'
+Cloning into '/opt/midas/manalyzer'...
+Cloning into '/opt/midas/midasio'...
+Cloning into '/opt/midas/mjson'...
+Cloning into '/opt/midas/mscb'...
+Cloning into '/opt/midas/mvodb'...
+Cloning into '/opt/midas/mxml'...
+Submodule path 'manalyzer': checked out '019c65a3684e407bc941cb3085419f97797ca5bc'
+Submodule path 'midasio': checked out '0e3198325737c0b61c98f1714c429dca8704b658'
+Submodule path 'mjson': checked out 'c798c1f0a835f6cea3e505a87bbb4a12b701196c'
+Submodule path 'mscb': checked out '85c208573f4b913e8f1c05997f384522fa63f3dc'
+Submodule 'mxml' (https://bitbucket.org/tmidas/mxml.git) registered for path 'mscb/mxml'
+Cloning into '/opt/midas/mscb/mxml'...
+Submodule path 'mscb/mxml': checked out 'cfce5afcc904f40aa7e8818bb3bfbab2a4c7bfb0'
+Submodule path 'mvodb': checked out 'cd891ab9c359477aa793b8c9264b653639161329'
+Submodule path 'mxml': checked out 'cfce5afcc904f40aa7e8818bb3bfbab2a4c7bfb0'
+-- MIDAS: cmake version: 3.26.5
+-- The C compiler identification is GNU 11.5.0
+-- The CXX compiler identification is GNU 11.5.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- MIDAS: Curent build type is 'Release'
+-- MIDAS: Disabled address sanitizer
+-- MIDAS: CMAKE_INSTALL_PREFIX: /opt/midas/install
+-- MIDAS: ROOT not found: ROOTSYS is not defined
+-- Found ZLIB: /usr/lib64/libz.so (found version "1.2.11")  
+-- MIDAS: Found ZLIB version 1.2.11
+-- Could NOT find CURL (missing: CURL_LIBRARY CURL_INCLUDE_DIR) 
+-- MIDAS: LibCURL not found
+-- MIDAS: MBEDTLS not found
+-- MIDAS: Found MariaDB (MySQL replacement) version 10.6.6
+-- MIDAS: MySQL CFLAGS: -I/usr/include/mysql;-I/usr/include/mysql/mysql and libs: -L/usr/lib64/ -lmariadb
+-- MIDAS: PGSQL not found
+-- MIDAS: ODBC not found
+-- Found SQLite3: /usr/include (found version "3.34.1") 
+-- MIDAS: Found SQLITE: 3.34.1 in /usr/include
+-- MIDAS (msysmon): NVIDIA CUDA libs not found
+-- MIDAS (msysmon): LM_SENSORS libs not found
+-- MIDAS (mlogger): OpenCV not found, (no rtsp camera support))
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found Git: /usr/bin/git (found version "2.47.3") 
+-- MSCB: CMAKE_INSTALL_PREFIX: /opt/midas/install
+-- manalyzer: CMAKE_INSTALL_PREFIX: /opt/midas/install
+-- manalyzer: Building as a subproject of MIDAS
+-- manalyzer: ROOT not found: ROOTSYS is not defined
+-- Found Python3: /usr/bin/python3.9 (found version "3.9.21") found components: Interpreter 
+-- example_experiment: Building as a subproject of MIDAS
+-- example_experiment: MIDASSYS: /opt/midas
+-- example_eventbuilder: Building as a subproject of MIDAS
+-- example_eventbuilder: MIDASSYS: /opt/midas
+-- example_epics: Building as a subproject of MIDAS
+-- example_epics: Building without EPICS
+-- example_epics: MIDASSYS: /opt/midas
+-- example_epics: EPICSSYS: 
+-- Configuring done (0.5s)
+-- Generating done (0.0s)
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    HAVE_SQLITE
+
+
+-- Build files have been written to: /opt/midas/build
+[  0%] Building CXX object CMakeFiles/objlib-c-compat.dir/src/midas_c_compat.cxx.o
+[  0%] Building CXX object mscb/CMakeFiles/msc.dir/src/msc.cxx.o
+[  1%] Building CXX object mscb/CMakeFiles/msc.dir/src/mscbrpc.cxx.o
+[  1%] Building CXX object mscb/CMakeFiles/msc.dir/src/mscb.cxx.o
+[  1%] Building CXX object mscb/CMakeFiles/mscb.dir/src/mscb.cxx.o
+[  2%] Building CXX object mscb/CMakeFiles/msc.dir/src/cmdedit.cxx.o
+[  3%] Building CXX object mscb/CMakeFiles/mscb.dir/src/mscbrpc.cxx.o
+[  4%] Building CXX object mscb/CMakeFiles/msc.dir/src/mstrlcpy.cxx.o
+[  4%] Building CXX object mscb/CMakeFiles/msc.dir/mxml/mxml.cxx.o
+[  4%] Building CXX object mscb/CMakeFiles/mscb.dir/src/mstrlcpy.cxx.o
+[  5%] Building CXX object mscb/CMakeFiles/mscb.dir/mxml/mxml.cxx.o
+[  5%] Built target git_revision_h
+[  6%] Building CXX object CMakeFiles/objlib.dir/src/midas.cxx.o
+[  6%] Building CXX object CMakeFiles/objlib.dir/src/odb.cxx.o
+[  6%] Built target objlib-c-compat
+[  7%] Building CXX object CMakeFiles/objlib.dir/src/odbxx.cxx.o
+[  8%] Building CXX object CMakeFiles/objlib.dir/src/device_driver.cxx.o
+[  8%] Building CXX object CMakeFiles/objlib.dir/src/system.cxx.o
+[  9%] Building CXX object CMakeFiles/objlib.dir/src/alarm.cxx.o
+[  9%] Building CXX object CMakeFiles/objlib.dir/src/elog.cxx.o
+[ 10%] Linking CXX executable msc
+[ 10%] Linking CXX static library libmscb.a
+[ 10%] Built target msc
+[ 11%] Building CXX object CMakeFiles/objlib.dir/src/mrpc.cxx.o
+[ 11%] Built target mscb
+[ 11%] Building CXX object CMakeFiles/objlib.dir/mjson/mjson.cxx.o
+[ 12%] Building CXX object CMakeFiles/objlib.dir/src/tmfe.cxx.o
+[ 12%] Building CXX object CMakeFiles/objlib.dir/mvodb/mvodb.cxx.o
+[ 13%] Building CXX object CMakeFiles/objlib.dir/mvodb/nullodb.cxx.o
+[ 14%] Building CXX object CMakeFiles/objlib.dir/mvodb/midasodb.cxx.o
+[ 14%] Building CXX object CMakeFiles/objlib.dir/mvodb/mxmlodb.cxx.o
+[ 15%] Building CXX object CMakeFiles/objlib.dir/mvodb/mjsonodb.cxx.o
+[ 15%] Building CXX object CMakeFiles/objlib.dir/midasio/midasio.cxx.o
+[ 16%] Building CXX object CMakeFiles/objlib.dir/src/json_paste.cxx.o
+[ 16%] Building CXX object CMakeFiles/objlib.dir/src/mjsonrpc.cxx.o
+[ 17%] Building CXX object CMakeFiles/objlib.dir/src/mjsonrpc_user.cxx.o
+[ 18%] Building CXX object CMakeFiles/objlib.dir/src/history.cxx.o
+[ 18%] Building CXX object CMakeFiles/objlib.dir/src/history_common.cxx.o
+[ 19%] Building CXX object CMakeFiles/objlib.dir/src/history_odbc.cxx.o
+[ 19%] Building CXX object CMakeFiles/objlib.dir/src/history_schema.cxx.o
+[ 20%] Building CXX object CMakeFiles/objlib.dir/src/history_image.cxx.o
+[ 20%] Building CXX object CMakeFiles/objlib.dir/midasio/lz4.cxx.o
+[ 21%] Building CXX object CMakeFiles/objlib.dir/midasio/lz4frame.cxx.o
+[ 21%] Building CXX object CMakeFiles/objlib.dir/midasio/lz4hc.cxx.o
+[ 22%] Building CXX object CMakeFiles/objlib.dir/midasio/xxhash.cxx.o
+[ 23%] Building CXX object CMakeFiles/objlib.dir/src/crc32c.cxx.o
+[ 23%] Building CXX object CMakeFiles/objlib.dir/src/sha256.cxx.o
+/opt/midas/src/crc32c.cxx:401:2: warning: #warning Hardware accelerated CRC32C is not available. [-Wcpp]
+  401 | #warning Hardware accelerated CRC32C is not available.
+      |  ^~~~~~~
+cc1plus: note: unrecognized command-line option '-Wno-vla-cxx-extension' may have been intended to silence earlier diagnostics
+[ 24%] Building CXX object CMakeFiles/objlib.dir/src/sha512.cxx.o
+[ 24%] Building CXX object CMakeFiles/objlib.dir/src/ftplib.cxx.o
+[ 25%] Building CXX object CMakeFiles/objlib.dir/src/mdsupport.cxx.o
+[ 25%] Building CXX object CMakeFiles/objlib.dir/mxml/mxml.cxx.o
+[ 26%] Building CXX object CMakeFiles/objlib.dir/mscb/src/mstrlcpy.cxx.o
+[ 27%] Building C object CMakeFiles/objlib.dir/src/tinyexpr.c.o
+[ 27%] Built target objlib
+[ 28%] Linking CXX shared library libmidas-shared.so
+[ 28%] Linking CXX static library libmidas.a
+[ 28%] Built target midas
+[ 28%] Linking CXX shared library libmidas-c-compat.so
+[ 29%] Building CXX object CMakeFiles/mfe.dir/src/mfe.cxx.o
+[ 30%] Building CXX object CMakeFiles/midas-mfed.dir/src/mfed.cxx.o
+[ 30%] Building CXX object CMakeFiles/mfeo.dir/src/mfe.cxx.o
+[ 31%] Building CXX object manalyzer/CMakeFiles/manalyzer.dir/manalyzer.cxx.o
+[ 32%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/bus/null.cxx.o
+[ 32%] Building CXX object progs/CMakeFiles/mserver.dir/mserver.cxx.o
+[ 32%] Built target midas-shared
+[ 32%] Built target midas-c-compat
+[ 32%] Building CXX object progs/CMakeFiles/mlogger.dir/mlogger.cxx.o
+[ 32%] Building CXX object progs/CMakeFiles/mhist.dir/mhist.cxx.o
+[ 33%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/cd_ivc32.cxx.o
+[ 33%] Building CXX object CMakeFiles/midas-mfed.dir/src/mfe.cxx.o
+[ 34%] Linking CXX executable mserver
+[ 34%] Built target mserver
+[ 35%] Linking CXX executable mhist
+[ 35%] Building CXX object progs/CMakeFiles/mstat.dir/mstat.cxx.o
+[ 35%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/cd_rf.cxx.o
+[ 35%] Built target mhist
+[ 36%] Building CXX object progs/CMakeFiles/mdump.dir/mdump.cxx.o
+[ 36%] Built target mfeo
+[ 37%] Building CXX object progs/CMakeFiles/mtransition.dir/mtransition.cxx.o
+[ 38%] Linking CXX static library libmfe.a
+[ 38%] Built target mfe
+[ 39%] Building CXX object progs/CMakeFiles/mhdump.dir/mhdump.cxx.o
+[ 39%] Linking CXX executable mtransition
+[ 40%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/generic.cxx.o
+[ 40%] Built target mtransition
+[ 41%] Linking CXX static library libmidas-mfed.a
+[ 41%] Building CXX object progs/CMakeFiles/odbhist.dir/odbhist.cxx.o
+[ 42%] Linking CXX executable mstat
+[ 42%] Built target midas-mfed
+[ 43%] Linking CXX executable mdump
+[ 43%] Built target mstat
+[ 43%] Building CXX object progs/CMakeFiles/melog.dir/melog.cxx.o
+[ 44%] Building CXX object progs/CMakeFiles/mh2sql.dir/mh2sql.cxx.o
+[ 45%] Linking CXX executable odbhist
+[ 45%] Built target mdump
+[ 46%] Building CXX object progs/CMakeFiles/hwtest.dir/hwtest.cxx.o
+[ 47%] Linking CXX executable melog
+[ 47%] Linking CXX executable hwtest
+[ 47%] Built target melog
+[ 48%] Building CXX object progs/CMakeFiles/tmfe_example_multithread.dir/tmfe_example_multithread.cxx.o
+[ 48%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/hv.cxx.o
+[ 49%] Linking CXX executable mhdump
+[ 49%] Built target odbhist
+[ 49%] Built target hwtest
+[ 50%] Building CXX object progs/CMakeFiles/tmfe_example_everything.dir/tmfe_example_everything.cxx.o
+[ 51%] Building CXX object progs/CMakeFiles/tmfe_example_frontend.dir/tmfe_example_frontend.cxx.o
+[ 51%] Built target mhdump
+[ 52%] Building CXX object progs/CMakeFiles/tmfe_example_indexed.dir/tmfe_example_indexed.cxx.o
+[ 52%] Linking CXX executable mh2sql
+[ 52%] Built target mh2sql
+[ 53%] Linking CXX executable tmfe_example_multithread
+[ 54%] Linking CXX executable mlogger
+[ 54%] Building CXX object progs/CMakeFiles/fetest.dir/fetest.cxx.o
+[ 54%] Linking CXX executable tmfe_example_frontend
+[ 54%] Linking CXX executable tmfe_example_everything
+[ 54%] Built target mlogger
+[ 54%] Linking CXX executable tmfe_example_indexed
+[ 54%] Building CXX object progs/CMakeFiles/test_sleep.dir/test_sleep.cxx.o
+[ 54%] Built target tmfe_example_multithread
+[ 54%] Building CXX object progs/CMakeFiles/crc32c_sum.dir/crc32c_sum.cxx.o
+[ 55%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/multi.cxx.o
+[ 55%] Built target tmfe_example_frontend
+[ 55%] Built target tmfe_example_everything
+[ 57%] Linking CXX executable crc32c_sum
+[ 57%] Building CXX object progs/CMakeFiles/odbinit.dir/odbinit.cxx.o
+[ 58%] Building CXX object progs/CMakeFiles/lazylogger.dir/lazylogger.cxx.o
+[ 58%] Built target tmfe_example_indexed
+[ 58%] Built target crc32c_sum
+[ 59%] Building CXX object progs/CMakeFiles/mchart.dir/mchart.cxx.o
+[ 60%] Building CXX object progs/CMakeFiles/mjson_test.dir/mjson_test.cxx.o
+[ 61%] Linking CXX static library libmanalyzer.a
+[ 62%] Linking CXX executable test_sleep
+[ 62%] Built target manalyzer
+[ 63%] Building CXX object progs/CMakeFiles/get_record_test.dir/get_record_test.cxx.o
+[ 64%] Linking CXX executable mjson_test
+[ 65%] Linking CXX executable fetest
+[ 65%] Built target test_sleep
+[ 66%] Building CXX object progs/CMakeFiles/odb_lock_test.dir/odb_lock_test.cxx.o
+[ 66%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/slowdev.cxx.o
+[ 66%] Built target mjson_test
+[ 66%] Built target fetest
+[ 66%] Building CXX object progs/CMakeFiles/mfe_link_test.dir/mfe_link_test.cxx.o
+[ 66%] Building CXX object progs/CMakeFiles/mfe_link_test_cxx.dir/mfe_link_test_cxx.cxx.o
+[ 66%] Linking CXX executable mchart
+[ 66%] Linking CXX executable odbinit
+[ 66%] Linking CXX executable get_record_test
+[ 66%] Built target odbinit
+[ 66%] Built target mchart
+[ 66%] Building CXX object progs/CMakeFiles/feudp.dir/feudp.cxx.o
+[ 67%] Linking CXX executable mfe_link_test
+[ 67%] Building CXX object progs/CMakeFiles/msysmon.dir/msysmon.cxx.o
+[ 68%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/device/mscbdev.cxx.o
+[ 68%] Built target get_record_test
+[ 68%] Building CXX object progs/CMakeFiles/msequencer.dir/msequencer.cxx.o
+[ 69%] Linking CXX executable mfe_link_test_cxx
+[ 69%] Linking CXX executable odb_lock_test
+[ 69%] Built target mfe_link_test
+[ 69%] Built target mfe_link_test_cxx
+[ 69%] Building CXX object progs/CMakeFiles/mhttpd.dir/mhttpd.cxx.o
+[ 69%] Building CXX object progs/CMakeFiles/mhttpd6.dir/mhttpd.cxx.o
+[ 69%] Built target odb_lock_test
+[ 70%] Building CXX object progs/CMakeFiles/odbedit.dir/odbedit.cxx.o
+[ 71%] Linking CXX executable feudp
+[ 72%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/device/mscbhv4.cxx.o
+[ 72%] Built target feudp
+[ 73%] Building CXX object examples/experiment/CMakeFiles/frontend.dir/frontend.cxx.o
+[ 74%] Linking CXX executable msysmon
+[ 74%] Linking CXX executable lazylogger
+[ 74%] Built target msysmon
+[ 74%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/device/nulldev.cxx.o
+[ 75%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/mdev/mdev_mscb.cxx.o
+[ 75%] Linking CXX executable frontend
+[ 75%] Built target lazylogger
+[ 75%] Building CXX object examples/eventbuilder/CMakeFiles/mevb.dir/mevb.cxx.o
+[ 75%] Built target frontend
+[ 76%] Building CXX object examples/mtfe/CMakeFiles/mtfe.dir/mtfe.cxx.o
+[ 77%] Building CXX object examples/lowlevel/CMakeFiles/produce.dir/produce.cxx.o
+[ 77%] Linking CXX executable mtfe
+[ 77%] Built target mtfe
+[ 78%] Building CXX object examples/eventbuilder/CMakeFiles/mevb.dir/ebuser.cxx.o
+[ 78%] Building CXX object examples/lowlevel/CMakeFiles/consume.dir/consume.cxx.o
+[ 78%] Linking CXX executable produce
+[ 78%] Building CXX object progs/CMakeFiles/odbedit.dir/cmdedit.cxx.o
+[ 78%] Built target produce
+[ 78%] Building CXX object examples/lowlevel/CMakeFiles/rpc_test.dir/rpc_test.cxx.o
+[ 78%] Linking CXX executable mevb
+[ 79%] Linking CXX executable consume
+[ 79%] Built target mevb
+[ 79%] Built target consume
+[ 80%] Linking CXX executable rpc_test
+[ 81%] Building CXX object examples/lowlevel/CMakeFiles/rpc_clnt.dir/rpc_clnt.cxx.o
+[ 81%] Building CXX object examples/lowlevel/CMakeFiles/rpc_srvr.dir/rpc_srvr.cxx.o
+[ 82%] Linking CXX executable odbedit
+[ 82%] Built target rpc_test
+[ 83%] Building CXX object examples/odbxx/CMakeFiles/odbxx_test.dir/odbxx_test.cxx.o
+[ 83%] Built target odbedit
+[ 84%] Linking CXX executable rpc_clnt
+[ 85%] Building CXX object manalyzer/CMakeFiles/manalyzer_main.dir/manalyzer_main.cxx.o
+[ 86%] Linking CXX executable rpc_srvr
+[ 86%] Built target rpc_clnt
+[ 87%] Building CXX object progs/CMakeFiles/mhttpd6.dir/mongoose6.cxx.o
+[ 87%] Built target rpc_srvr
+[ 87%] Building CXX object progs/CMakeFiles/mhttpd6.dir/mgd.cxx.o
+[ 87%] Linking CXX static library libmanalyzer_main.a
+[ 87%] Built target manalyzer_main
+[ 88%] Building CXX object manalyzer/CMakeFiles/manalyzer_test.exe.dir/manalyzer_main.cxx.o
+[ 88%] Linking CXX static library libmidas-drivers.a
+[ 88%] Built target midas-drivers
+[ 88%] Building CXX object manalyzer/CMakeFiles/manalyzer_example_cxx.exe.dir/manalyzer_example_cxx.cxx.o
+[ 88%] Linking CXX executable manalyzer_test.exe
+[ 89%] Building CXX object progs/CMakeFiles/mhttpd6.dir/__/mscb/src/mscb.cxx.o
+[ 89%] Built target manalyzer_test.exe
+[ 89%] Building CXX object manalyzer/CMakeFiles/manalyzer_example_flow.exe.dir/manalyzer_example_flow.cxx.o
+[ 90%] Linking CXX executable manalyzer_example_cxx.exe
+[ 90%] Built target manalyzer_example_cxx.exe
+[ 90%] Building CXX object manalyzer/CMakeFiles/manalyzer_example_flow_queue.exe.dir/manalyzer_example_flow_queue.cxx.o
+[ 91%] Linking CXX executable manalyzer_example_flow.exe
+[ 91%] Built target manalyzer_example_flow.exe
+[ 92%] Building CXX object manalyzer/CMakeFiles/manalyzer_example_frontend.exe.dir/manalyzer_example_frontend.cxx.o
+[ 92%] Linking CXX executable odbxx_test
+[ 92%] Built target odbxx_test
+[ 93%] Linking CXX executable manalyzer_example_flow_queue.exe
+[ 93%] Building CXX object examples/slowcont/CMakeFiles/scfe.dir/scfe.cxx.o
+[ 93%] Built target manalyzer_example_flow_queue.exe
+[ 94%] Building CXX object examples/slowcont/CMakeFiles/mscb_fe.dir/mscb_fe.cxx.o
+[ 95%] Linking CXX executable msequencer
+[ 96%] Linking CXX executable scfe
+[ 96%] Linking CXX executable manalyzer_example_frontend.exe
+[ 96%] Built target msequencer
+[ 97%] Building CXX object progs/CMakeFiles/mhttpd.dir/mongoose616.cxx.o
+[ 97%] Building CXX object progs/CMakeFiles/mhttpd.dir/mgd.cxx.o
+[ 97%] Built target scfe
+[ 97%] Built target manalyzer_example_frontend.exe
+[ 98%] Building CXX object progs/CMakeFiles/mhttpd.dir/__/mscb/src/mscb.cxx.o
+[ 99%] Linking CXX executable mscb_fe
+[ 99%] Built target mscb_fe
+[ 99%] Linking CXX executable mhttpd6
+[ 99%] Built target mhttpd6
+[100%] Linking CXX executable mhttpd
+[100%] Built target mhttpd
+[  0%] Built target git_revision_h
+[ 21%] Built target objlib
+[ 21%] Built target objlib-c-compat
+[ 22%] Built target midas
+[ 22%] Built target midas-shared
+[ 22%] Built target midas-c-compat
+[ 24%] Built target mfe
+[ 24%] Built target mfeo
+[ 26%] Built target midas-mfed
+[ 30%] Built target msc
+[ 32%] Built target mscb
+[ 34%] Built target manalyzer
+[ 35%] Built target manalyzer_main
+[ 36%] Built target manalyzer_test.exe
+[ 37%] Built target manalyzer_example_cxx.exe
+[ 38%] Built target manalyzer_example_flow.exe
+[ 39%] Built target manalyzer_example_flow_queue.exe
+[ 40%] Built target manalyzer_example_frontend.exe
+[ 47%] Built target midas-drivers
+[ 48%] Built target mserver
+[ 49%] Built target mlogger
+[ 50%] Built target mhist
+[ 51%] Built target mstat
+[ 53%] Built target mdump
+[ 54%] Built target mtransition
+[ 56%] Built target mhdump
+[ 57%] Built target odbhist
+[ 58%] Built target melog
+[ 59%] Built target mh2sql
+[ 60%] Built target hwtest
+[ 62%] Built target tmfe_example_multithread
+[ 63%] Built target tmfe_example_everything
+[ 64%] Built target tmfe_example_frontend
+[ 65%] Built target tmfe_example_indexed
+[ 66%] Built target fetest
+[ 67%] Built target test_sleep
+[ 68%] Built target crc32c_sum
+[ 69%] Built target lazylogger
+[ 70%] Built target odbinit
+[ 71%] Built target mchart
+[ 73%] Built target mjson_test
+[ 74%] Built target get_record_test
+[ 75%] Built target odb_lock_test
+[ 76%] Built target mfe_link_test
+[ 77%] Built target mfe_link_test_cxx
+[ 78%] Built target feudp
+[ 79%] Built target msysmon
+[ 80%] Built target msequencer
+[ 83%] Built target mhttpd
+[ 85%] Built target mhttpd6
+[ 87%] Built target odbedit
+[ 88%] Built target frontend
+[ 89%] Built target mevb
+[ 90%] Built target scfe
+[ 92%] Built target mscb_fe
+[ 93%] Built target mtfe
+[ 94%] Built target produce
+[ 95%] Built target consume
+[ 96%] Built target rpc_test
+[ 98%] Built target rpc_clnt
+[ 99%] Built target rpc_srvr
+[100%] Built target odbxx_test
+Install the project...
+-- Install configuration: "Release"
+-- Installing: /opt/midas/install/lib/mfe.o
+-- Installing: /opt/midas/install/include/cfortran.h
+-- Installing: /opt/midas/install/include/crc32c.h
+-- Installing: /opt/midas/install/include/git-revision.h
+-- Installing: /opt/midas/install/include/ftplib.h
+-- Installing: /opt/midas/install/include/hardware.h
+-- Installing: /opt/midas/install/include/hbook.h
+-- Installing: /opt/midas/install/include/history.h
+-- Installing: /opt/midas/install/include/mcstd.h
+-- Installing: /opt/midas/install/include/mdsupport.h
+-- Installing: /opt/midas/install/include/mexcept.h
+-- Installing: /opt/midas/install/include/mfbstd.h
+-- Installing: /opt/midas/install/include/mfe.h
+-- Installing: /opt/midas/install/include/midas_c_compat.h
+-- Installing: /opt/midas/install/include/midas.h
+-- Installing: /opt/midas/install/include/midasinc.h
+-- Installing: /opt/midas/install/include/midas_macro.h
+-- Installing: /opt/midas/install/include/mleak.h
+-- Installing: /opt/midas/install/include/mrpc.h
+-- Installing: /opt/midas/install/include/msystem.h
+-- Installing: /opt/midas/install/include/musbstd.h
+-- Installing: /opt/midas/install/include/mvmestd.h
+-- Installing: /opt/midas/install/include/odbxx.h
+-- Installing: /opt/midas/install/include/tinyexpr.h
+-- Installing: /opt/midas/install/include/tmfe.h
+-- Installing: /opt/midas/install/include/tmfe_rev0.h
+-- Installing: /opt/midas/install/include/mxml.h
+-- Installing: /opt/midas/install/include/mjson.h
+-- Installing: /opt/midas/install/include/mvodb.h
+-- Installing: /opt/midas/install/include/midasio.h
+-- Installing: /opt/midas/install/include/mscb.h
+-- Installing: /opt/midas/install/include/mscbxx.h
+-- Installing: /opt/midas/install/include/mstrlcpy.h
+-- Installing: /opt/midas/install/lib/libmidas.a
+-- Installing: /opt/midas/install/lib/libmidas-shared.so
+-- Installing: /opt/midas/install/lib/libmidas-c-compat.so
+-- Installing: /opt/midas/install/lib/libmfe.a
+-- Installing: /opt/midas/install/lib/libmidas-mfed.a
+-- Installing: /opt/midas/install/./drivers
+-- Installing: /opt/midas/install/./drivers/CMakeLists.txt
+-- Installing: /opt/midas/install/./drivers/bus
+-- Installing: /opt/midas/install/./drivers/bus/mscbbus.cxx
+-- Installing: /opt/midas/install/./drivers/bus/mscbbus.h
+-- Installing: /opt/midas/install/./drivers/bus/null.cxx
+-- Installing: /opt/midas/install/./drivers/bus/null.h
+-- Installing: /opt/midas/install/./drivers/bus/rs232.cxx
+-- Installing: /opt/midas/install/./drivers/bus/rs232.h
+-- Installing: /opt/midas/install/./drivers/bus/tcpip.cxx
+-- Installing: /opt/midas/install/./drivers/bus/tcpip.h
+-- Installing: /opt/midas/install/./drivers/camac
+-- Installing: /opt/midas/install/./drivers/camac/camaclx.cxx
+-- Installing: /opt/midas/install/./drivers/camac/camacnul.cxx
+-- Installing: /opt/midas/install/./drivers/camac/camacrpc.cxx
+-- Installing: /opt/midas/install/./drivers/camac/cc7700pci.cxx
+-- Installing: /opt/midas/install/./drivers/camac/ccusb
+-- Installing: /opt/midas/install/./drivers/camac/ccusb/Makefile
+-- Installing: /opt/midas/install/./drivers/camac/ccusb/README
+-- Installing: /opt/midas/install/./drivers/camac/ccusb/analyzer.cxx
+-- Installing: /opt/midas/install/./drivers/camac/ccusb/ccusb.cxx
+-- Installing: /opt/midas/install/./drivers/camac/ccusb/ccusb.h
+-- Installing: /opt/midas/install/./drivers/camac/ccusb/ccusb_flash.cxx
+-- Installing: /opt/midas/install/./drivers/camac/ccusb/feccusb.cxx
+-- Installing: /opt/midas/install/./drivers/camac/ccusb/test_ccusb.cxx
+-- Installing: /opt/midas/install/./drivers/camac/ces2117.cxx
+-- Installing: /opt/midas/install/./drivers/camac/ces8210.cxx
+-- Installing: /opt/midas/install/./drivers/camac/ces8210.h
+-- Installing: /opt/midas/install/./drivers/camac/dsp004.cxx
+-- Installing: /opt/midas/install/./drivers/camac/esone.cxx
+-- Installing: /opt/midas/install/./drivers/camac/hyt1331.cxx
+-- Installing: /opt/midas/install/./drivers/camac/hyt1331.h
+-- Installing: /opt/midas/install/./drivers/camac/jorway73a.cxx
+-- Installing: /opt/midas/install/./drivers/camac/jorway73a.h
+-- Installing: /opt/midas/install/./drivers/camac/kcs2926.cxx
+-- Installing: /opt/midas/install/./drivers/camac/kcs2927.cxx
+-- Installing: /opt/midas/install/./drivers/camac/wecc32.cxx
+-- Installing: /opt/midas/install/./drivers/class
+-- Installing: /opt/midas/install/./drivers/class/cd_fdg.cxx
+-- Installing: /opt/midas/install/./drivers/class/cd_fgd.h
+-- Installing: /opt/midas/install/./drivers/class/cd_ivc32.cxx
+-- Installing: /opt/midas/install/./drivers/class/cd_ivc32.h
+-- Installing: /opt/midas/install/./drivers/class/cd_rf.cxx
+-- Installing: /opt/midas/install/./drivers/class/cd_rf.h
+-- Installing: /opt/midas/install/./drivers/class/generic.cxx
+-- Installing: /opt/midas/install/./drivers/class/generic.h
+-- Installing: /opt/midas/install/./drivers/class/hv.cxx
+-- Installing: /opt/midas/install/./drivers/class/hv.h
+-- Installing: /opt/midas/install/./drivers/class/multi.cxx
+-- Installing: /opt/midas/install/./drivers/class/multi.h
+-- Installing: /opt/midas/install/./drivers/class/slowdev.cxx
+-- Installing: /opt/midas/install/./drivers/device
+-- Installing: /opt/midas/install/./drivers/device/WIENER-CRATE-MIB.txt
+-- Installing: /opt/midas/install/./drivers/device/WIENER_SNMP.cpp
+-- Installing: /opt/midas/install/./drivers/device/WIENER_SNMP.h
+-- Installing: /opt/midas/install/./drivers/device/caen170a.cxx
+-- Installing: /opt/midas/install/./drivers/device/das1600.cxx
+-- Installing: /opt/midas/install/./drivers/device/das1600.h
+-- Installing: /opt/midas/install/./drivers/device/dastemp.cxx
+-- Installing: /opt/midas/install/./drivers/device/dastemp.h
+-- Installing: /opt/midas/install/./drivers/device/dd_isegvhs.cxx
+-- Installing: /opt/midas/install/./drivers/device/dd_isegvhs.h
+-- Installing: /opt/midas/install/./drivers/device/dd_mscbfgd.cxx
+-- Installing: /opt/midas/install/./drivers/device/dd_mscbfgd.h
+-- Installing: /opt/midas/install/./drivers/device/dd_mscbivc32.cxx
+-- Installing: /opt/midas/install/./drivers/device/dd_mscbivc32.h
+-- Installing: /opt/midas/install/./drivers/device/dd_mscbrf.cxx
+-- Installing: /opt/midas/install/./drivers/device/dd_mscbrf.h
+-- Installing: /opt/midas/install/./drivers/device/dd_sy2527.cxx
+-- Installing: /opt/midas/install/./drivers/device/dd_sy2527.h
+-- Installing: /opt/midas/install/./drivers/device/dd_sy4527.cxx
+-- Installing: /opt/midas/install/./drivers/device/dd_sy4527.h
+-- Installing: /opt/midas/install/./drivers/device/epics
+-- Installing: /opt/midas/install/./drivers/device/epics/.gitignore
+-- Installing: /opt/midas/install/./drivers/device/epics/Makefile
+-- Installing: /opt/midas/install/./drivers/device/epics/catest.cxx
+-- Installing: /opt/midas/install/./drivers/device/epics_ca.cxx
+-- Installing: /opt/midas/install/./drivers/device/epics_ca.h
+-- Installing: /opt/midas/install/./drivers/device/ip9258.cxx
+-- Installing: /opt/midas/install/./drivers/device/ip9258.h
+-- Installing: /opt/midas/install/./drivers/device/iseg_hv_mpod.cxx
+-- Installing: /opt/midas/install/./drivers/device/iseg_hv_mpod.h
+-- Installing: /opt/midas/install/./drivers/device/lcwp950.cxx
+-- Installing: /opt/midas/install/./drivers/device/lcwp950.h
+-- Installing: /opt/midas/install/./drivers/device/lrs1440.cxx
+-- Installing: /opt/midas/install/./drivers/device/lrs1440.h
+-- Installing: /opt/midas/install/./drivers/device/lrs1445a.cxx
+-- Installing: /opt/midas/install/./drivers/device/lrs1445a.h
+-- Installing: /opt/midas/install/./drivers/device/lrs1454.cxx
+-- Installing: /opt/midas/install/./drivers/device/lrs1454.h
+-- Installing: /opt/midas/install/./drivers/device/lrs2415.cxx
+-- Installing: /opt/midas/install/./drivers/device/lrs2415.h
+-- Installing: /opt/midas/install/./drivers/device/lrs4032.cxx
+-- Installing: /opt/midas/install/./drivers/device/mdevice.h
+-- Installing: /opt/midas/install/./drivers/device/mdevice_mscb.h
+-- Installing: /opt/midas/install/./drivers/device/mscbdev.cxx
+-- Installing: /opt/midas/install/./drivers/device/mscbdev.h
+-- Installing: /opt/midas/install/./drivers/device/mscbhv4.cxx
+-- Installing: /opt/midas/install/./drivers/device/mscbhv4.h
+-- Installing: /opt/midas/install/./drivers/device/mscbhvr.cxx
+-- Installing: /opt/midas/install/./drivers/device/mscbhvr.h
+-- Installing: /opt/midas/install/./drivers/device/nitronic.cxx
+-- Installing: /opt/midas/install/./drivers/device/nitronic.h
+-- Installing: /opt/midas/install/./drivers/device/nulldev.cxx
+-- Installing: /opt/midas/install/./drivers/device/nulldev.h
+-- Installing: /opt/midas/install/./drivers/device/psi_accel.cxx
+-- Installing: /opt/midas/install/./drivers/device/psi_accel.h
+-- Installing: /opt/midas/install/./drivers/device/psi_beamblocker.cxx
+-- Installing: /opt/midas/install/./drivers/device/psi_beamblocker.h
+-- Installing: /opt/midas/install/./drivers/device/psi_beamline.cxx
+-- Installing: /opt/midas/install/./drivers/device/psi_beamline.h
+-- Installing: /opt/midas/install/./drivers/device/psi_cobra.cxx
+-- Installing: /opt/midas/install/./drivers/device/psi_cobra.h
+-- Installing: /opt/midas/install/./drivers/device/psi_epics.cxx
+-- Installing: /opt/midas/install/./drivers/device/psi_epics.h
+-- Installing: /opt/midas/install/./drivers/device/psi_separator.cxx
+-- Installing: /opt/midas/install/./drivers/device/psi_separator.h
+-- Installing: /opt/midas/install/./drivers/device/vxi11
+-- Installing: /opt/midas/install/./drivers/device/vxi11/vxi11.h
+-- Installing: /opt/midas/install/./drivers/device/vxi11/vxi11_clnt.cxx
+-- Installing: /opt/midas/install/./drivers/device/vxi11/vxi11_user.cxx
+-- Installing: /opt/midas/install/./drivers/device/vxi11/vxi11_user.h
+-- Installing: /opt/midas/install/./drivers/device/vxi11/vxi11_xdr.cxx
+-- Installing: /opt/midas/install/./drivers/device/vxi11dev.cxx
+-- Installing: /opt/midas/install/./drivers/device/vxi11dev.h
+-- Installing: /opt/midas/install/./drivers/divers
+-- Installing: /opt/midas/install/./drivers/divers/ModbusTcp.cxx
+-- Installing: /opt/midas/install/./drivers/divers/ModbusTcp.h
+-- Installing: /opt/midas/install/./drivers/divers/caenv1190B.c
+-- Installing: /opt/midas/install/./drivers/divers/caenv1190B.h
+-- Installing: /opt/midas/install/./drivers/divers/caenv488.c
+-- Installing: /opt/midas/install/./drivers/divers/caenv792.c
+-- Installing: /opt/midas/install/./drivers/divers/caenv792.h
+-- Installing: /opt/midas/install/./drivers/divers/lrs1151.c
+-- Installing: /opt/midas/install/./drivers/divers/lrs1151.h
+-- Installing: /opt/midas/install/./drivers/divers/lrs1190.c
+-- Installing: /opt/midas/install/./drivers/divers/lrs1190.h
+-- Installing: /opt/midas/install/./drivers/divers/lrs2365.c
+-- Installing: /opt/midas/install/./drivers/divers/lrs2365.h
+-- Installing: /opt/midas/install/./drivers/divers/lrs2373.c
+-- Installing: /opt/midas/install/./drivers/divers/lrs2373.h
+-- Installing: /opt/midas/install/./drivers/divers/ps7106.c
+-- Installing: /opt/midas/install/./drivers/divers/ps7106.h
+-- Installing: /opt/midas/install/./drivers/divers/vmeio.c
+-- Installing: /opt/midas/install/./drivers/divers/vmeio.h
+-- Installing: /opt/midas/install/./drivers/fastbus
+-- Installing: /opt/midas/install/./drivers/fastbus/lrs1821.c.c
+-- Installing: /opt/midas/install/./drivers/fastbus/lrs1821.h
+-- Installing: /opt/midas/install/./drivers/fastbus/sis4100.c
+-- Installing: /opt/midas/install/./drivers/fastbus/str340.c
+-- Installing: /opt/midas/install/./drivers/kernel
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_24
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_24/Makefile
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_24/README
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_24/camac.c
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_24/camactest.c
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_24/esone.c
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_24/esonetest.c
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_24/khyt1331.c
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_24/khyt1331.h
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_26
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_26/Makefile
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_26/README
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_26/camac.c
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_26/camactest.c
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_26/esone.c
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_26/esonetest.c
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_26/khyt1331.c
+-- Installing: /opt/midas/install/./drivers/kernel/khyt1331_26/khyt1331.h
+-- Installing: /opt/midas/install/./drivers/mdev
+-- Installing: /opt/midas/install/./drivers/mdev/CMakeLists.txt
+-- Installing: /opt/midas/install/./drivers/mdev/mdev.h
+-- Installing: /opt/midas/install/./drivers/mdev/mdev_fe.cxx
+-- Installing: /opt/midas/install/./drivers/mdev/mdev_mscb.cxx
+-- Installing: /opt/midas/install/./drivers/mdev/mdev_mscb.h
+-- Installing: /opt/midas/install/./drivers/pci
+-- Installing: /opt/midas/install/./drivers/pci/pmcda816
+-- Installing: /opt/midas/install/./drivers/pci/pmcda816/Makefile
+-- Installing: /opt/midas/install/./drivers/pci/pmcda816/da816.cxx
+-- Installing: /opt/midas/install/./drivers/pci/pmcda816/da816.h
+-- Installing: /opt/midas/install/./drivers/pci/pmcda816/pmcda816.cxx
+-- Installing: /opt/midas/install/./drivers/pci/pmcda816/pmcda816.pdf
+-- Installing: /opt/midas/install/./drivers/pci/pmcda816/pmcda816_module.c
+-- Installing: /opt/midas/install/./drivers/pci/pmcsoftdacm
+-- Installing: /opt/midas/install/./drivers/pci/pmcsoftdacm/Makefile
+-- Installing: /opt/midas/install/./drivers/pci/pmcsoftdacm/PLX9080.pdf
+-- Installing: /opt/midas/install/./drivers/pci/pmcsoftdacm/PMC_SOFTDAC_M.pdf
+-- Installing: /opt/midas/install/./drivers/pci/pmcsoftdacm/ipsoftdacm.pdf
+-- Installing: /opt/midas/install/./drivers/pci/pmcsoftdacm/pmcsoftdacm_module.c
+-- Installing: /opt/midas/install/./drivers/pci/pmcsoftdacm/softdac.cxx
+-- Installing: /opt/midas/install/./drivers/pci/pmcsoftdacm/softdac.h
+-- Installing: /opt/midas/install/./drivers/usb
+-- Installing: /opt/midas/install/./drivers/usb/musbstd.c
+-- Installing: /opt/midas/install/./drivers/vme
+-- Installing: /opt/midas/install/./drivers/vme/bt617
+-- Installing: /opt/midas/install/./drivers/vme/bt617/bt617.c
+-- Installing: /opt/midas/install/./drivers/vme/bt617/btapi.h
+-- Installing: /opt/midas/install/./drivers/vme/bt617/btdef.h
+-- Installing: /opt/midas/install/./drivers/vme/bt617/btngpci.h
+-- Installing: /opt/midas/install/./drivers/vme/bt617/btwapi.h
+-- Installing: /opt/midas/install/./drivers/vme/bt617/btwdef.h
+-- Installing: /opt/midas/install/./drivers/vme/isegvhs.c
+-- Installing: /opt/midas/install/./drivers/vme/isegvhs.h
+-- Installing: /opt/midas/install/./drivers/vme/isegvhsdrv.h
+-- Installing: /opt/midas/install/./drivers/vme/lrs1151.c
+-- Installing: /opt/midas/install/./drivers/vme/lrs1151.h
+-- Installing: /opt/midas/install/./drivers/vme/lrs1190.c
+-- Installing: /opt/midas/install/./drivers/vme/lrs1190.h
+-- Installing: /opt/midas/install/./drivers/vme/mesadc32.c
+-- Installing: /opt/midas/install/./drivers/vme/mesadc32.h
+-- Installing: /opt/midas/install/./drivers/vme/mesadc32drv.h
+-- Installing: /opt/midas/install/./drivers/vme/ov1720.c
+-- Installing: /opt/midas/install/./drivers/vme/ov1720drv.h
+-- Installing: /opt/midas/install/./drivers/vme/ov1725drv.h
+-- Installing: /opt/midas/install/./drivers/vme/ov1740.c
+-- Installing: /opt/midas/install/./drivers/vme/ov1740drv.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/linux
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/linux/sis1100_var.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/linux/sis3100_vme_calls.c
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/linux/sis3100_vme_calls.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/sis3100.c
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/PciTypes.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/PexApi.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/Plx.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/PlxApi.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/PlxDefCk.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/PlxStat.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/PlxTypes.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/Reg9054.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/sis1100w.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/sis3100.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/sis3100_vme_calls.c
+-- Installing: /opt/midas/install/./drivers/vme/sis3100/windows/sis3100_vme_calls.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3320.c
+-- Installing: /opt/midas/install/./drivers/vme/sis3320.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3320drv.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3801.c
+-- Installing: /opt/midas/install/./drivers/vme/sis3801.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3803.c
+-- Installing: /opt/midas/install/./drivers/vme/sis3803.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3820.c
+-- Installing: /opt/midas/install/./drivers/vme/sis3820.h
+-- Installing: /opt/midas/install/./drivers/vme/sis3820drv.h
+-- Installing: /opt/midas/install/./drivers/vme/uov1740.c
+-- Installing: /opt/midas/install/./drivers/vme/uov1740drv.h
+-- Installing: /opt/midas/install/./drivers/vme/v1190B.c
+-- Installing: /opt/midas/install/./drivers/vme/v1190B.h
+-- Installing: /opt/midas/install/./drivers/vme/v1720.c
+-- Installing: /opt/midas/install/./drivers/vme/v1720.h
+-- Installing: /opt/midas/install/./drivers/vme/v1720drv.h
+-- Installing: /opt/midas/install/./drivers/vme/v1725Raw.h
+-- Installing: /opt/midas/install/./drivers/vme/v1729.c
+-- Installing: /opt/midas/install/./drivers/vme/v1729.h
+-- Installing: /opt/midas/install/./drivers/vme/v1740.c
+-- Installing: /opt/midas/install/./drivers/vme/v1740.h
+-- Installing: /opt/midas/install/./drivers/vme/v1740drv.h
+-- Installing: /opt/midas/install/./drivers/vme/v513.c
+-- Installing: /opt/midas/install/./drivers/vme/v513.h
+-- Installing: /opt/midas/install/./drivers/vme/v560.c
+-- Installing: /opt/midas/install/./drivers/vme/v560.h
+-- Installing: /opt/midas/install/./drivers/vme/v792.c
+-- Installing: /opt/midas/install/./drivers/vme/v792.h
+-- Installing: /opt/midas/install/./drivers/vme/v895.h
+-- Installing: /opt/midas/install/./drivers/vme/vmeio.c
+-- Installing: /opt/midas/install/./drivers/vme/vmeio.h
+-- Installing: /opt/midas/install/./drivers/vme/vmic
+-- Installing: /opt/midas/install/./drivers/vme/vmic/gefvme.c
+-- Installing: /opt/midas/install/./drivers/vme/vmic/gefvme.h
+-- Installing: /opt/midas/install/./drivers/vme/vmic/vmedrv.h
+-- Installing: /opt/midas/install/./drivers/vme/vmic/vmicvme.c
+-- Installing: /opt/midas/install/./drivers/vme/vmic/vmicvme.h
+-- Installing: /opt/midas/install/./drivers/vme/vpc6.c
+-- Installing: /opt/midas/install/./drivers/vme/vpc6.h
+-- Installing: /opt/midas/install/./drivers/vme/vppg.c
+-- Installing: /opt/midas/install/./drivers/vme/vppg.h
+-- Installing: /opt/midas/install/./drivers/vme/vt2.c
+-- Installing: /opt/midas/install/./drivers/vme/vt2.h
+-- Installing: /opt/midas/install/./drivers/vme/vt48.c
+-- Installing: /opt/midas/install/./drivers/vme/vt48.h
+-- Installing: /opt/midas/install/./drivers/vme/vxworks
+-- Installing: /opt/midas/install/./drivers/vme/vxworks/vxVME.c
+-- Installing: /opt/midas/install/./drivers/vme/vxworks/vxVME.h
+-- Installing: /opt/midas/install/./resources
+-- Installing: /opt/midas/install/./resources/alarms.html
+-- Installing: /opt/midas/install/./resources/apple-touch-icon-precomposed.png
+-- Installing: /opt/midas/install/./resources/apple-touch-icon.png
+-- Installing: /opt/midas/install/./resources/beep.mp3
+-- Installing: /opt/midas/install/./resources/bell.mp3
+-- Installing: /opt/midas/install/./resources/bleep.mp3
+-- Installing: /opt/midas/install/./resources/buffers.html
+-- Installing: /opt/midas/install/./resources/chat.html
+-- Installing: /opt/midas/install/./resources/chime.mp3
+-- Installing: /opt/midas/install/./resources/config.html
+-- Installing: /opt/midas/install/./resources/controls.js
+-- Installing: /opt/midas/install/./resources/custom_example.html
+-- Installing: /opt/midas/install/./resources/custom_template.html
+-- Installing: /opt/midas/install/./resources/dialog.html
+-- Installing: /opt/midas/install/./resources/dlgHistory.html
+-- Installing: /opt/midas/install/./resources/dlgIHistory.html
+-- Installing: /opt/midas/install/./resources/edit_script.html
+-- Installing: /opt/midas/install/./resources/elog_edit.html
+-- Installing: /opt/midas/install/./resources/elog_query.html
+-- Installing: /opt/midas/install/./resources/elog_query_form.html
+-- Installing: /opt/midas/install/./resources/elog_show.html
+-- Installing: /opt/midas/install/./resources/eqtable.html
+-- Installing: /opt/midas/install/./resources/eqtable.js
+-- Installing: /opt/midas/install/./resources/event_dump.html
+-- Installing: /opt/midas/install/./resources/example.html
+-- Installing: /opt/midas/install/./resources/favicon.png
+-- Installing: /opt/midas/install/./resources/filesrw.js
+-- Installing: /opt/midas/install/./resources/history.html
+-- Installing: /opt/midas/install/./resources/hs_edit.html
+-- Installing: /opt/midas/install/./resources/icons
+-- Installing: /opt/midas/install/./resources/icons/_source.txt
+-- Installing: /opt/midas/install/./resources/icons/activity.svg
+-- Installing: /opt/midas/install/./resources/icons/alert-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/alert-triangle.svg
+-- Installing: /opt/midas/install/./resources/icons/archive.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-down-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-down-left.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-down-right.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-down.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-left-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-left.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-right-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-right.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-up-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-up-left.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-up-right.svg
+-- Installing: /opt/midas/install/./resources/icons/arrow-up.svg
+-- Installing: /opt/midas/install/./resources/icons/bar-chart-2.svg
+-- Installing: /opt/midas/install/./resources/icons/bar-chart.svg
+-- Installing: /opt/midas/install/./resources/icons/bell-off.svg
+-- Installing: /opt/midas/install/./resources/icons/bell.svg
+-- Installing: /opt/midas/install/./resources/icons/book-open.svg
+-- Installing: /opt/midas/install/./resources/icons/book.svg
+-- Installing: /opt/midas/install/./resources/icons/bookmark.svg
+-- Installing: /opt/midas/install/./resources/icons/box.svg
+-- Installing: /opt/midas/install/./resources/icons/calendar.svg
+-- Installing: /opt/midas/install/./resources/icons/camera-off.svg
+-- Installing: /opt/midas/install/./resources/icons/camera.svg
+-- Installing: /opt/midas/install/./resources/icons/cancel-stop-at-end.svg
+-- Installing: /opt/midas/install/./resources/icons/cast.svg
+-- Installing: /opt/midas/install/./resources/icons/check-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/check-square.svg
+-- Installing: /opt/midas/install/./resources/icons/check.svg
+-- Installing: /opt/midas/install/./resources/icons/chevron-down.svg
+-- Installing: /opt/midas/install/./resources/icons/chevron-left.svg
+-- Installing: /opt/midas/install/./resources/icons/chevron-right.svg
+-- Installing: /opt/midas/install/./resources/icons/chevron-up.svg
+-- Installing: /opt/midas/install/./resources/icons/chevrons-down.svg
+-- Installing: /opt/midas/install/./resources/icons/chevrons-left.svg
+-- Installing: /opt/midas/install/./resources/icons/chevrons-right.svg
+-- Installing: /opt/midas/install/./resources/icons/chevrons-up.svg
+-- Installing: /opt/midas/install/./resources/icons/chrome.svg
+-- Installing: /opt/midas/install/./resources/icons/circle.svg
+-- Installing: /opt/midas/install/./resources/icons/clipboard.svg
+-- Installing: /opt/midas/install/./resources/icons/clock.svg
+-- Installing: /opt/midas/install/./resources/icons/cloud.svg
+-- Installing: /opt/midas/install/./resources/icons/code.svg
+-- Installing: /opt/midas/install/./resources/icons/coffee.svg
+-- Installing: /opt/midas/install/./resources/icons/columns.svg
+-- Installing: /opt/midas/install/./resources/icons/command.svg
+-- Installing: /opt/midas/install/./resources/icons/compass.svg
+-- Installing: /opt/midas/install/./resources/icons/copy.svg
+-- Installing: /opt/midas/install/./resources/icons/corner-down-left.svg
+-- Installing: /opt/midas/install/./resources/icons/corner-down-right.svg
+-- Installing: /opt/midas/install/./resources/icons/corner-left-down.svg
+-- Installing: /opt/midas/install/./resources/icons/corner-left-up.svg
+-- Installing: /opt/midas/install/./resources/icons/corner-right-down.svg
+-- Installing: /opt/midas/install/./resources/icons/corner-right-up.svg
+-- Installing: /opt/midas/install/./resources/icons/corner-up-left.svg
+-- Installing: /opt/midas/install/./resources/icons/corner-up-right.svg
+-- Installing: /opt/midas/install/./resources/icons/credit-card.svg
+-- Installing: /opt/midas/install/./resources/icons/crosshair.svg
+-- Installing: /opt/midas/install/./resources/icons/database.svg
+-- Installing: /opt/midas/install/./resources/icons/debug.svg
+-- Installing: /opt/midas/install/./resources/icons/delete.svg
+-- Installing: /opt/midas/install/./resources/icons/disc.svg
+-- Installing: /opt/midas/install/./resources/icons/divide-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/divide-square.svg
+-- Installing: /opt/midas/install/./resources/icons/divide.svg
+-- Installing: /opt/midas/install/./resources/icons/download-cloud.svg
+-- Installing: /opt/midas/install/./resources/icons/download.svg
+-- Installing: /opt/midas/install/./resources/icons/droplet.svg
+-- Installing: /opt/midas/install/./resources/icons/edit-2.svg
+-- Installing: /opt/midas/install/./resources/icons/edit-3.svg
+-- Installing: /opt/midas/install/./resources/icons/edit.svg
+-- Installing: /opt/midas/install/./resources/icons/external-link.svg
+-- Installing: /opt/midas/install/./resources/icons/eye-off.svg
+-- Installing: /opt/midas/install/./resources/icons/eye.svg
+-- Installing: /opt/midas/install/./resources/icons/fast-forward.svg
+-- Installing: /opt/midas/install/./resources/icons/feather.svg
+-- Installing: /opt/midas/install/./resources/icons/feather.zip
+-- Installing: /opt/midas/install/./resources/icons/file-minus.svg
+-- Installing: /opt/midas/install/./resources/icons/file-plus.svg
+-- Installing: /opt/midas/install/./resources/icons/file-text.svg
+-- Installing: /opt/midas/install/./resources/icons/file.svg
+-- Installing: /opt/midas/install/./resources/icons/film.svg
+-- Installing: /opt/midas/install/./resources/icons/filter.svg
+-- Installing: /opt/midas/install/./resources/icons/flag.svg
+-- Installing: /opt/midas/install/./resources/icons/folder-minus.svg
+-- Installing: /opt/midas/install/./resources/icons/folder-open.svg
+-- Installing: /opt/midas/install/./resources/icons/folder-plus.svg
+-- Installing: /opt/midas/install/./resources/icons/folder.svg
+-- Installing: /opt/midas/install/./resources/icons/frown.svg
+-- Installing: /opt/midas/install/./resources/icons/grid.svg
+-- Installing: /opt/midas/install/./resources/icons/hard-drive.svg
+-- Installing: /opt/midas/install/./resources/icons/hash.svg
+-- Installing: /opt/midas/install/./resources/icons/headphones.svg
+-- Installing: /opt/midas/install/./resources/icons/heart.svg
+-- Installing: /opt/midas/install/./resources/icons/help-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/hexagon.svg
+-- Installing: /opt/midas/install/./resources/icons/home.svg
+-- Installing: /opt/midas/install/./resources/icons/image.svg
+-- Installing: /opt/midas/install/./resources/icons/inbox.svg
+-- Installing: /opt/midas/install/./resources/icons/info.svg
+-- Installing: /opt/midas/install/./resources/icons/layers.svg
+-- Installing: /opt/midas/install/./resources/icons/layout.svg
+-- Installing: /opt/midas/install/./resources/icons/link.svg
+-- Installing: /opt/midas/install/./resources/icons/list-add.svg
+-- Installing: /opt/midas/install/./resources/icons/list.svg
+-- Installing: /opt/midas/install/./resources/icons/loader.svg
+-- Installing: /opt/midas/install/./resources/icons/lock.svg
+-- Installing: /opt/midas/install/./resources/icons/log-in.svg
+-- Installing: /opt/midas/install/./resources/icons/log-out.svg
+-- Installing: /opt/midas/install/./resources/icons/mail.svg
+-- Installing: /opt/midas/install/./resources/icons/map-pin.svg
+-- Installing: /opt/midas/install/./resources/icons/map.svg
+-- Installing: /opt/midas/install/./resources/icons/maximize-2.svg
+-- Installing: /opt/midas/install/./resources/icons/maximize.svg
+-- Installing: /opt/midas/install/./resources/icons/menu.svg
+-- Installing: /opt/midas/install/./resources/icons/message-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/message-square.svg
+-- Installing: /opt/midas/install/./resources/icons/mic-off.svg
+-- Installing: /opt/midas/install/./resources/icons/mic.svg
+-- Installing: /opt/midas/install/./resources/icons/minimize-2.svg
+-- Installing: /opt/midas/install/./resources/icons/minimize.svg
+-- Installing: /opt/midas/install/./resources/icons/minus-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/minus-square.svg
+-- Installing: /opt/midas/install/./resources/icons/minus.svg
+-- Installing: /opt/midas/install/./resources/icons/monitor.svg
+-- Installing: /opt/midas/install/./resources/icons/more-horizontal.svg
+-- Installing: /opt/midas/install/./resources/icons/more-vertical.svg
+-- Installing: /opt/midas/install/./resources/icons/mouse-pointer.svg
+-- Installing: /opt/midas/install/./resources/icons/move.svg
+-- Installing: /opt/midas/install/./resources/icons/music.svg
+-- Installing: /opt/midas/install/./resources/icons/navigation-2.svg
+-- Installing: /opt/midas/install/./resources/icons/navigation.svg
+-- Installing: /opt/midas/install/./resources/icons/octagon.svg
+-- Installing: /opt/midas/install/./resources/icons/paperclip.svg
+-- Installing: /opt/midas/install/./resources/icons/pause-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/pause.svg
+-- Installing: /opt/midas/install/./resources/icons/pen-tool.svg
+-- Installing: /opt/midas/install/./resources/icons/percent.svg
+-- Installing: /opt/midas/install/./resources/icons/phone-call.svg
+-- Installing: /opt/midas/install/./resources/icons/phone-forwarded.svg
+-- Installing: /opt/midas/install/./resources/icons/phone-incoming.svg
+-- Installing: /opt/midas/install/./resources/icons/phone-missed.svg
+-- Installing: /opt/midas/install/./resources/icons/phone-off.svg
+-- Installing: /opt/midas/install/./resources/icons/phone-outgoing.svg
+-- Installing: /opt/midas/install/./resources/icons/phone.svg
+-- Installing: /opt/midas/install/./resources/icons/play-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/play.svg
+-- Installing: /opt/midas/install/./resources/icons/plus-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/plus-square.svg
+-- Installing: /opt/midas/install/./resources/icons/plus.svg
+-- Installing: /opt/midas/install/./resources/icons/power.svg
+-- Installing: /opt/midas/install/./resources/icons/printer.svg
+-- Installing: /opt/midas/install/./resources/icons/radio.svg
+-- Installing: /opt/midas/install/./resources/icons/refresh-ccw.svg
+-- Installing: /opt/midas/install/./resources/icons/refresh-cw.svg
+-- Installing: /opt/midas/install/./resources/icons/repeat.svg
+-- Installing: /opt/midas/install/./resources/icons/resume.svg
+-- Installing: /opt/midas/install/./resources/icons/rewind.svg
+-- Installing: /opt/midas/install/./resources/icons/rotate-ccw.svg
+-- Installing: /opt/midas/install/./resources/icons/rotate-cw.svg
+-- Installing: /opt/midas/install/./resources/icons/rss.svg
+-- Installing: /opt/midas/install/./resources/icons/save.svg
+-- Installing: /opt/midas/install/./resources/icons/scissors.svg
+-- Installing: /opt/midas/install/./resources/icons/search.svg
+-- Installing: /opt/midas/install/./resources/icons/send.svg
+-- Installing: /opt/midas/install/./resources/icons/server.svg
+-- Installing: /opt/midas/install/./resources/icons/settings.svg
+-- Installing: /opt/midas/install/./resources/icons/share-2.svg
+-- Installing: /opt/midas/install/./resources/icons/share.svg
+-- Installing: /opt/midas/install/./resources/icons/shield-off.svg
+-- Installing: /opt/midas/install/./resources/icons/shield.svg
+-- Installing: /opt/midas/install/./resources/icons/shuffle.svg
+-- Installing: /opt/midas/install/./resources/icons/sidebar.svg
+-- Installing: /opt/midas/install/./resources/icons/skip-back.svg
+-- Installing: /opt/midas/install/./resources/icons/skip-forward.svg
+-- Installing: /opt/midas/install/./resources/icons/slash-square.svg
+-- Installing: /opt/midas/install/./resources/icons/sliders.svg
+-- Installing: /opt/midas/install/./resources/icons/smartphone.svg
+-- Installing: /opt/midas/install/./resources/icons/smile.svg
+-- Installing: /opt/midas/install/./resources/icons/square.svg
+-- Installing: /opt/midas/install/./resources/icons/star.svg
+-- Installing: /opt/midas/install/./resources/icons/step-over.svg
+-- Installing: /opt/midas/install/./resources/icons/stop-at-end.svg
+-- Installing: /opt/midas/install/./resources/icons/stop-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/sun.svg
+-- Installing: /opt/midas/install/./resources/icons/sunrise.svg
+-- Installing: /opt/midas/install/./resources/icons/sunset.svg
+-- Installing: /opt/midas/install/./resources/icons/tag.svg
+-- Installing: /opt/midas/install/./resources/icons/target.svg
+-- Installing: /opt/midas/install/./resources/icons/terminal.svg
+-- Installing: /opt/midas/install/./resources/icons/thermometer.svg
+-- Installing: /opt/midas/install/./resources/icons/thumbs-down.svg
+-- Installing: /opt/midas/install/./resources/icons/thumbs-up.svg
+-- Installing: /opt/midas/install/./resources/icons/toggle-left.svg
+-- Installing: /opt/midas/install/./resources/icons/toggle-right.svg
+-- Installing: /opt/midas/install/./resources/icons/tool.svg
+-- Installing: /opt/midas/install/./resources/icons/trash-2.svg
+-- Installing: /opt/midas/install/./resources/icons/trending-down.svg
+-- Installing: /opt/midas/install/./resources/icons/trending-up.svg
+-- Installing: /opt/midas/install/./resources/icons/triangle.svg
+-- Installing: /opt/midas/install/./resources/icons/umbrella.svg
+-- Installing: /opt/midas/install/./resources/icons/unlock.svg
+-- Installing: /opt/midas/install/./resources/icons/upload-cloud.svg
+-- Installing: /opt/midas/install/./resources/icons/upload.svg
+-- Installing: /opt/midas/install/./resources/icons/user-check.svg
+-- Installing: /opt/midas/install/./resources/icons/user-minus.svg
+-- Installing: /opt/midas/install/./resources/icons/user-plus.svg
+-- Installing: /opt/midas/install/./resources/icons/user-x.svg
+-- Installing: /opt/midas/install/./resources/icons/user.svg
+-- Installing: /opt/midas/install/./resources/icons/users.svg
+-- Installing: /opt/midas/install/./resources/icons/validate-syntax-green.svg
+-- Installing: /opt/midas/install/./resources/icons/validate-syntax-red.svg
+-- Installing: /opt/midas/install/./resources/icons/validate-syntax.svg
+-- Installing: /opt/midas/install/./resources/icons/video-off.svg
+-- Installing: /opt/midas/install/./resources/icons/video.svg
+-- Installing: /opt/midas/install/./resources/icons/voicemail.svg
+-- Installing: /opt/midas/install/./resources/icons/volume-1.svg
+-- Installing: /opt/midas/install/./resources/icons/volume-2.svg
+-- Installing: /opt/midas/install/./resources/icons/volume-x.svg
+-- Installing: /opt/midas/install/./resources/icons/volume.svg
+-- Installing: /opt/midas/install/./resources/icons/watch.svg
+-- Installing: /opt/midas/install/./resources/icons/wifi-off.svg
+-- Installing: /opt/midas/install/./resources/icons/wifi.svg
+-- Installing: /opt/midas/install/./resources/icons/wind.svg
+-- Installing: /opt/midas/install/./resources/icons/x-circle.svg
+-- Installing: /opt/midas/install/./resources/icons/x-octagon.svg
+-- Installing: /opt/midas/install/./resources/icons/x-square.svg
+-- Installing: /opt/midas/install/./resources/icons/x.svg
+-- Installing: /opt/midas/install/./resources/icons/zoom-in.svg
+-- Installing: /opt/midas/install/./resources/icons/zoom-out.svg
+-- Installing: /opt/midas/install/./resources/mdump.html
+-- Installing: /opt/midas/install/./resources/messages.html
+-- Installing: /opt/midas/install/./resources/messages.js
+-- Installing: /opt/midas/install/./resources/mhistory.js
+-- Installing: /opt/midas/install/./resources/mhttpd.css
+-- Installing: /opt/midas/install/./resources/mhttpd.js
+-- Installing: /opt/midas/install/./resources/midas.css
+-- Installing: /opt/midas/install/./resources/midas.js
+-- Installing: /opt/midas/install/./resources/mihistory.js
+-- Installing: /opt/midas/install/./resources/mplot.js
+-- Installing: /opt/midas/install/./resources/obsolete.js
+-- Installing: /opt/midas/install/./resources/odb.html
+-- Installing: /opt/midas/install/./resources/odb_scl.html
+-- Installing: /opt/midas/install/./resources/odb_sor.html
+-- Installing: /opt/midas/install/./resources/odbbrowser.js
+-- Installing: /opt/midas/install/./resources/plot_example.html
+-- Installing: /opt/midas/install/./resources/programs.html
+-- Installing: /opt/midas/install/./resources/sequencer.html
+-- Installing: /opt/midas/install/./resources/sequencer.js
+-- Installing: /opt/midas/install/./resources/sequencer2.html
+-- Installing: /opt/midas/install/./resources/sequencer2.js
+-- Installing: /opt/midas/install/./resources/sequencer_v1.html
+-- Installing: /opt/midas/install/./resources/sequencer_v1.js
+-- Installing: /opt/midas/install/./resources/spinning-wheel.gif
+-- Installing: /opt/midas/install/./resources/start.html
+-- Installing: /opt/midas/install/./resources/status.html
+-- Installing: /opt/midas/install/./resources/tank.gif
+-- Installing: /opt/midas/install/./resources/temple.mp3
+-- Installing: /opt/midas/install/./resources/transition.html
+-- Installing: /opt/midas/install/./resources/watch.mp3
+-- Installing: /opt/midas/install/./resources/woop.mp3
+-- Installing: /opt/midas/install/python/midas
+-- Installing: /opt/midas/install/python/midas/__init__.py
+-- Installing: /opt/midas/install/python/midas/callbacks.py
+-- Installing: /opt/midas/install/python/midas/client.py
+-- Installing: /opt/midas/install/python/midas/event.py
+-- Installing: /opt/midas/install/python/midas/file_reader.py
+-- Installing: /opt/midas/install/python/midas/frontend.py
+-- Installing: /opt/midas/install/python/midas/sequencer.py
+-- Installing: /opt/midas/install/python/midas/structs.py
+-- Installing: /opt/midas/install/python/midas/utils
+-- Installing: /opt/midas/install/python/midas/utils/__init__.py
+-- Installing: /opt/midas/install/python/midas/utils/helper_test_brpc.py
+-- Installing: /opt/midas/install/python/midas/utils/helper_test_rpc.py
+-- Installing: /opt/midas/install/python/midas/utils/lecroy_tcp.py
+-- Installing: /opt/midas/install/src/mfe.cxx
+-- Installing: /opt/midas/install/src/mfed.cxx
+-- Installing: /opt/midas/install/src/tmfe.cxx
+-- Installing: /opt/midas/install/bin/msc
+-- Installing: /opt/midas/install/lib/libmscb.a
+-- Installing: /opt/midas/install/include/mscb/
+-- Installing: /opt/midas/install/include/mscb//libusb-1.0
+-- Installing: /opt/midas/install/include/mscb//libusb-1.0/libusb.h
+-- Installing: /opt/midas/install/include/mscb//mexcept.h
+-- Installing: /opt/midas/install/include/mscb//mscb.h
+-- Installing: /opt/midas/install/include/mscb//mscbrpc.h
+-- Installing: /opt/midas/install/include/mscb//mscbxx.h
+-- Installing: /opt/midas/install/include/mscb//mstrlcpy.h
+-- Installing: /opt/midas/install/include/mscb//musbstd.h
+-- Installing: /opt/midas/install/include/manalyzer.h
+-- Installing: /opt/midas/install/lib/libmanalyzer.a
+-- Installing: /opt/midas/install/lib/libmanalyzer_main.a
+-- Installing: /opt/midas/install/bin/manalyzer_test.exe
+-- Installing: /opt/midas/install/bin/manalyzer_example_cxx.exe
+-- Installing: /opt/midas/install/bin/manalyzer_example_flow.exe
+-- Installing: /opt/midas/install/bin/manalyzer_example_flow_queue.exe
+-- Installing: /opt/midas/install/bin/manalyzer_example_frontend.exe
+-- Installing: /opt/midas/install/lib/manalyzer-targets.cmake
+-- Installing: /opt/midas/install/lib/manalyzer-targets-release.cmake
+-- Up-to-date: /opt/midas/install/lib/libmscb.a
+-- Installing: /opt/midas/install/include/drivers/
+-- Installing: /opt/midas/install/include/drivers//bus
+-- Installing: /opt/midas/install/include/drivers//bus/mscbbus.h
+-- Installing: /opt/midas/install/include/drivers//bus/null.h
+-- Installing: /opt/midas/install/include/drivers//bus/rs232.h
+-- Installing: /opt/midas/install/include/drivers//bus/tcpip.h
+-- Installing: /opt/midas/install/include/drivers//camac
+-- Installing: /opt/midas/install/include/drivers//camac/ccusb
+-- Installing: /opt/midas/install/include/drivers//camac/ccusb/ccusb.h
+-- Installing: /opt/midas/install/include/drivers//camac/ces8210.h
+-- Installing: /opt/midas/install/include/drivers//camac/hyt1331.h
+-- Installing: /opt/midas/install/include/drivers//camac/jorway73a.h
+-- Installing: /opt/midas/install/include/drivers//class
+-- Installing: /opt/midas/install/include/drivers//class/cd_fgd.h
+-- Installing: /opt/midas/install/include/drivers//class/cd_ivc32.h
+-- Installing: /opt/midas/install/include/drivers//class/cd_rf.h
+-- Installing: /opt/midas/install/include/drivers//class/generic.h
+-- Installing: /opt/midas/install/include/drivers//class/hv.h
+-- Installing: /opt/midas/install/include/drivers//class/multi.h
+-- Installing: /opt/midas/install/include/drivers//device
+-- Installing: /opt/midas/install/include/drivers//device/WIENER_SNMP.h
+-- Installing: /opt/midas/install/include/drivers//device/das1600.h
+-- Installing: /opt/midas/install/include/drivers//device/dastemp.h
+-- Installing: /opt/midas/install/include/drivers//device/dd_isegvhs.h
+-- Installing: /opt/midas/install/include/drivers//device/dd_mscbfgd.h
+-- Installing: /opt/midas/install/include/drivers//device/dd_mscbivc32.h
+-- Installing: /opt/midas/install/include/drivers//device/dd_mscbrf.h
+-- Installing: /opt/midas/install/include/drivers//device/dd_sy2527.h
+-- Installing: /opt/midas/install/include/drivers//device/dd_sy4527.h
+-- Installing: /opt/midas/install/include/drivers//device/epics
+-- Installing: /opt/midas/install/include/drivers//device/epics_ca.h
+-- Installing: /opt/midas/install/include/drivers//device/ip9258.h
+-- Installing: /opt/midas/install/include/drivers//device/iseg_hv_mpod.h
+-- Installing: /opt/midas/install/include/drivers//device/lcwp950.h
+-- Installing: /opt/midas/install/include/drivers//device/lrs1440.h
+-- Installing: /opt/midas/install/include/drivers//device/lrs1445a.h
+-- Installing: /opt/midas/install/include/drivers//device/lrs1454.h
+-- Installing: /opt/midas/install/include/drivers//device/lrs2415.h
+-- Installing: /opt/midas/install/include/drivers//device/mdevice.h
+-- Installing: /opt/midas/install/include/drivers//device/mdevice_mscb.h
+-- Installing: /opt/midas/install/include/drivers//device/mscbdev.h
+-- Installing: /opt/midas/install/include/drivers//device/mscbhv4.h
+-- Installing: /opt/midas/install/include/drivers//device/mscbhvr.h
+-- Installing: /opt/midas/install/include/drivers//device/nitronic.h
+-- Installing: /opt/midas/install/include/drivers//device/nulldev.h
+-- Installing: /opt/midas/install/include/drivers//device/psi_accel.h
+-- Installing: /opt/midas/install/include/drivers//device/psi_beamblocker.h
+-- Installing: /opt/midas/install/include/drivers//device/psi_beamline.h
+-- Installing: /opt/midas/install/include/drivers//device/psi_cobra.h
+-- Installing: /opt/midas/install/include/drivers//device/psi_epics.h
+-- Installing: /opt/midas/install/include/drivers//device/psi_separator.h
+-- Installing: /opt/midas/install/include/drivers//device/vxi11
+-- Installing: /opt/midas/install/include/drivers//device/vxi11/vxi11.h
+-- Installing: /opt/midas/install/include/drivers//device/vxi11/vxi11_user.h
+-- Installing: /opt/midas/install/include/drivers//device/vxi11dev.h
+-- Installing: /opt/midas/install/include/drivers//divers
+-- Installing: /opt/midas/install/include/drivers//divers/ModbusTcp.h
+-- Installing: /opt/midas/install/include/drivers//divers/caenv1190B.h
+-- Installing: /opt/midas/install/include/drivers//divers/caenv792.h
+-- Installing: /opt/midas/install/include/drivers//divers/lrs1151.h
+-- Installing: /opt/midas/install/include/drivers//divers/lrs1190.h
+-- Installing: /opt/midas/install/include/drivers//divers/lrs2365.h
+-- Installing: /opt/midas/install/include/drivers//divers/lrs2373.h
+-- Installing: /opt/midas/install/include/drivers//divers/ps7106.h
+-- Installing: /opt/midas/install/include/drivers//divers/vmeio.h
+-- Installing: /opt/midas/install/include/drivers//fastbus
+-- Installing: /opt/midas/install/include/drivers//fastbus/lrs1821.h
+-- Installing: /opt/midas/install/include/drivers//kernel
+-- Installing: /opt/midas/install/include/drivers//kernel/khyt1331_24
+-- Installing: /opt/midas/install/include/drivers//kernel/khyt1331_24/khyt1331.h
+-- Installing: /opt/midas/install/include/drivers//kernel/khyt1331_26
+-- Installing: /opt/midas/install/include/drivers//kernel/khyt1331_26/khyt1331.h
+-- Installing: /opt/midas/install/include/drivers//mdev
+-- Installing: /opt/midas/install/include/drivers//mdev/mdev.h
+-- Installing: /opt/midas/install/include/drivers//mdev/mdev_mscb.h
+-- Installing: /opt/midas/install/include/drivers//pci
+-- Installing: /opt/midas/install/include/drivers//pci/pmcda816
+-- Installing: /opt/midas/install/include/drivers//pci/pmcda816/da816.h
+-- Installing: /opt/midas/install/include/drivers//pci/pmcsoftdacm
+-- Installing: /opt/midas/install/include/drivers//pci/pmcsoftdacm/softdac.h
+-- Installing: /opt/midas/install/include/drivers//usb
+-- Installing: /opt/midas/install/include/drivers//vme
+-- Installing: /opt/midas/install/include/drivers//vme/bt617
+-- Installing: /opt/midas/install/include/drivers//vme/bt617/btapi.h
+-- Installing: /opt/midas/install/include/drivers//vme/bt617/btdef.h
+-- Installing: /opt/midas/install/include/drivers//vme/bt617/btngpci.h
+-- Installing: /opt/midas/install/include/drivers//vme/bt617/btwapi.h
+-- Installing: /opt/midas/install/include/drivers//vme/bt617/btwdef.h
+-- Installing: /opt/midas/install/include/drivers//vme/isegvhs.h
+-- Installing: /opt/midas/install/include/drivers//vme/isegvhsdrv.h
+-- Installing: /opt/midas/install/include/drivers//vme/lrs1151.h
+-- Installing: /opt/midas/install/include/drivers//vme/lrs1190.h
+-- Installing: /opt/midas/install/include/drivers//vme/mesadc32.h
+-- Installing: /opt/midas/install/include/drivers//vme/mesadc32drv.h
+-- Installing: /opt/midas/install/include/drivers//vme/ov1720drv.h
+-- Installing: /opt/midas/install/include/drivers//vme/ov1725drv.h
+-- Installing: /opt/midas/install/include/drivers//vme/ov1740drv.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/linux
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/linux/sis1100_var.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/linux/sis3100_vme_calls.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows/PciTypes.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows/PexApi.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows/Plx.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows/PlxApi.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows/PlxDefCk.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows/PlxStat.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows/PlxTypes.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows/Reg9054.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows/sis1100w.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows/sis3100.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3100/windows/sis3100_vme_calls.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3320.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3320drv.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3801.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3803.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3820.h
+-- Installing: /opt/midas/install/include/drivers//vme/sis3820drv.h
+-- Installing: /opt/midas/install/include/drivers//vme/uov1740drv.h
+-- Installing: /opt/midas/install/include/drivers//vme/v1190B.h
+-- Installing: /opt/midas/install/include/drivers//vme/v1720.h
+-- Installing: /opt/midas/install/include/drivers//vme/v1720drv.h
+-- Installing: /opt/midas/install/include/drivers//vme/v1725Raw.h
+-- Installing: /opt/midas/install/include/drivers//vme/v1729.h
+-- Installing: /opt/midas/install/include/drivers//vme/v1740.h
+-- Installing: /opt/midas/install/include/drivers//vme/v1740drv.h
+-- Installing: /opt/midas/install/include/drivers//vme/v513.h
+-- Installing: /opt/midas/install/include/drivers//vme/v560.h
+-- Installing: /opt/midas/install/include/drivers//vme/v792.h
+-- Installing: /opt/midas/install/include/drivers//vme/v895.h
+-- Installing: /opt/midas/install/include/drivers//vme/vmeio.h
+-- Installing: /opt/midas/install/include/drivers//vme/vmic
+-- Installing: /opt/midas/install/include/drivers//vme/vmic/gefvme.h
+-- Installing: /opt/midas/install/include/drivers//vme/vmic/vmedrv.h
+-- Installing: /opt/midas/install/include/drivers//vme/vmic/vmicvme.h
+-- Installing: /opt/midas/install/include/drivers//vme/vpc6.h
+-- Installing: /opt/midas/install/include/drivers//vme/vppg.h
+-- Installing: /opt/midas/install/include/drivers//vme/vt2.h
+-- Installing: /opt/midas/install/include/drivers//vme/vt48.h
+-- Installing: /opt/midas/install/include/drivers//vme/vxworks
+-- Installing: /opt/midas/install/include/drivers//vme/vxworks/vxVME.h
+-- Installing: /opt/midas/install/lib64/libmidas-drivers.a
+-- Installing: /opt/midas/install/lib/cmake/midas/midas-drivers-targets.cmake
+-- Installing: /opt/midas/install/lib/cmake/midas/midas-drivers-targets-release.cmake
+-- Installing: /opt/midas/install/bin/mmessenger
+-- Installing: /opt/midas/install/bin/mserver
+-- Installing: /opt/midas/install/bin/mlogger
+-- Installing: /opt/midas/install/bin/mhist
+-- Installing: /opt/midas/install/bin/mstat
+-- Installing: /opt/midas/install/bin/mdump
+-- Installing: /opt/midas/install/bin/mtransition
+-- Installing: /opt/midas/install/bin/mhdump
+-- Installing: /opt/midas/install/bin/odbhist
+-- Installing: /opt/midas/install/bin/melog
+-- Installing: /opt/midas/install/bin/mh2sql
+-- Installing: /opt/midas/install/bin/hwtest
+-- Installing: /opt/midas/install/bin/tmfe_example_multithread
+-- Installing: /opt/midas/install/bin/tmfe_example_everything
+-- Installing: /opt/midas/install/bin/tmfe_example_frontend
+-- Installing: /opt/midas/install/bin/tmfe_example_indexed
+-- Installing: /opt/midas/install/bin/fetest
+-- Installing: /opt/midas/install/bin/test_sleep
+-- Installing: /opt/midas/install/bin/crc32c_sum
+-- Installing: /opt/midas/install/bin/lazylogger
+-- Installing: /opt/midas/install/bin/odbinit
+-- Installing: /opt/midas/install/bin/mchart
+-- Installing: /opt/midas/install/bin/mfe_link_test
+-- Installing: /opt/midas/install/bin/mfe_link_test_cxx
+-- Installing: /opt/midas/install/bin/feudp
+-- Installing: /opt/midas/install/bin/msysmon
+-- Installing: /opt/midas/install/bin/mhttpd
+-- Installing: /opt/midas/install/bin/mhttpd6
+-- Installing: /opt/midas/install/bin/odbedit
+-- Installing: /opt/midas/install/bin/msequencer
+-- Installing: /opt/midas/install/lib/midas-targets.cmake
+-- Installing: /opt/midas/install/lib/midas-targets-release.cmake
+-- Installing: /opt/midas/install/lib/cmake/midas/MidasConfig.cmake
+--> c28891e6870b
+STEP 8/25: ENV MIDASSYS=/opt/midas/install
+--> 34cc4763e084
+STEP 9/25: ENV PATH=$MIDASSYS/bin:$PATH
+--> da3dae0e81d1
+STEP 10/25: ENV LD_LIBRARY_PATH=$MIDASSYS/lib:$LD_LIBRARY_PATH
+--> 8fca2ac2c127
+STEP 11/25: RUN mkdir -p /opt/midas/experiments/demo &&     cd /opt/midas/experiments/demo
+--> f47d7effc788
+STEP 12/25: RUN pip3 install --no-cache-dir     requests     flask     pymongo     sqlalchemy     matplotlib     jupyter
+Requirement already satisfied: requests in /usr/local/lib/python3.9/site-packages (2.32.5)
+Collecting flask
+  Downloading flask-3.1.2-py3-none-any.whl (103 kB)
+Collecting pymongo
+  Downloading pymongo-4.15.3-cp39-cp39-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (952 kB)
+Collecting sqlalchemy
+  Downloading sqlalchemy-2.0.44-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (3.2 MB)
+Requirement already satisfied: matplotlib in /usr/local/lib64/python3.9/site-packages (3.9.4)
+Requirement already satisfied: jupyter in /usr/local/lib/python3.9/site-packages (1.1.1)
+Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.9/site-packages (from requests) (2025.10.5)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.9/site-packages (from requests) (2.5.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib64/python3.9/site-packages (from requests) (3.4.4)
+Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.9/site-packages (from requests) (3.11)
+Collecting werkzeug>=3.1.0
+  Downloading werkzeug-3.1.3-py3-none-any.whl (224 kB)
+Collecting blinker>=1.9.0
+  Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+Requirement already satisfied: jinja2>=3.1.2 in /usr/local/lib/python3.9/site-packages (from flask) (3.1.6)
+Collecting click>=8.1.3
+  Downloading click-8.1.8-py3-none-any.whl (98 kB)
+Requirement already satisfied: markupsafe>=2.1.1 in /usr/local/lib64/python3.9/site-packages (from flask) (3.0.3)
+Requirement already satisfied: importlib-metadata>=3.6.0 in /usr/local/lib/python3.9/site-packages (from flask) (8.7.0)
+Collecting itsdangerous>=2.2.0
+  Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Collecting dnspython<3.0.0,>=1.16.0
+  Downloading dnspython-2.7.0-py3-none-any.whl (313 kB)
+Requirement already satisfied: typing-extensions>=4.6.0 in /usr/local/lib/python3.9/site-packages (from sqlalchemy) (4.15.0)
+Collecting greenlet>=1
+  Downloading greenlet-3.2.4-cp39-cp39-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (627 kB)
+Requirement already satisfied: pyparsing>=2.3.1 in /usr/local/lib/python3.9/site-packages (from matplotlib) (3.2.5)
+Requirement already satisfied: contourpy>=1.0.1 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (1.3.0)
+Requirement already satisfied: numpy>=1.23 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (2.0.2)
+Requirement already satisfied: cycler>=0.10 in /usr/local/lib/python3.9/site-packages (from matplotlib) (0.12.1)
+Requirement already satisfied: python-dateutil>=2.7 in /usr/local/lib/python3.9/site-packages (from matplotlib) (2.9.0.post0)
+Requirement already satisfied: kiwisolver>=1.3.1 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (1.4.7)
+Requirement already satisfied: fonttools>=4.22.0 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (4.60.1)
+Requirement already satisfied: pillow>=8 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (11.3.0)
+Requirement already satisfied: packaging>=20.0 in /usr/local/lib/python3.9/site-packages (from matplotlib) (25.0)
+Requirement already satisfied: importlib-resources>=3.2.0 in /usr/local/lib/python3.9/site-packages (from matplotlib) (6.5.2)
+Requirement already satisfied: ipykernel in /usr/local/lib/python3.9/site-packages (from jupyter) (6.31.0)
+Requirement already satisfied: ipywidgets in /usr/local/lib/python3.9/site-packages (from jupyter) (8.1.7)
+Requirement already satisfied: nbconvert in /usr/local/lib/python3.9/site-packages (from jupyter) (7.16.6)
+Requirement already satisfied: jupyter-console in /usr/local/lib/python3.9/site-packages (from jupyter) (6.6.3)
+Requirement already satisfied: jupyterlab in /usr/local/lib/python3.9/site-packages (from jupyter) (4.4.10)
+Requirement already satisfied: notebook in /usr/local/lib/python3.9/site-packages (from jupyter) (7.4.7)
+Requirement already satisfied: zipp>=3.20 in /usr/local/lib/python3.9/site-packages (from importlib-metadata>=3.6.0->flask) (3.23.0)
+Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.9/site-packages (from python-dateutil>=2.7->matplotlib) (1.17.0)
+Requirement already satisfied: ipython>=7.23.1 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (8.18.1)
+Requirement already satisfied: comm>=0.1.1 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (0.2.3)
+Requirement already satisfied: jupyter-client>=8.0.0 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (8.6.3)
+Requirement already satisfied: psutil>=5.7 in /usr/local/lib64/python3.9/site-packages (from ipykernel->jupyter) (7.1.2)
+Requirement already satisfied: matplotlib-inline>=0.1 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (0.2.1)
+Requirement already satisfied: traitlets>=5.4.0 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (5.14.3)
+Requirement already satisfied: debugpy>=1.6.5 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (1.8.17)
+Requirement already satisfied: nest-asyncio>=1.4 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (1.6.0)
+Requirement already satisfied: tornado>=6.2 in /usr/local/lib64/python3.9/site-packages (from ipykernel->jupyter) (6.5.2)
+Requirement already satisfied: pyzmq>=25 in /usr/local/lib64/python3.9/site-packages (from ipykernel->jupyter) (27.1.0)
+Requirement already satisfied: jupyter-core!=5.0.*,>=4.12 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (5.8.1)
+Requirement already satisfied: jupyterlab_widgets~=3.0.15 in /usr/local/lib/python3.9/site-packages (from ipywidgets->jupyter) (3.0.15)
+Requirement already satisfied: widgetsnbextension~=4.0.14 in /usr/local/lib/python3.9/site-packages (from ipywidgets->jupyter) (4.0.14)
+Requirement already satisfied: pygments in /usr/local/lib/python3.9/site-packages (from jupyter-console->jupyter) (2.19.2)
+Requirement already satisfied: prompt-toolkit>=3.0.30 in /usr/local/lib/python3.9/site-packages (from jupyter-console->jupyter) (3.0.52)
+Requirement already satisfied: tomli>=1.2.2 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.3.0)
+Requirement already satisfied: notebook-shim>=0.2 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (0.2.4)
+Requirement already satisfied: async-lru>=1.0.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.0.5)
+Requirement already satisfied: setuptools>=41.1.0 in /usr/lib/python3.9/site-packages (from jupyterlab->jupyter) (53.0.0)
+Requirement already satisfied: jupyterlab-server<3,>=2.27.1 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.28.0)
+Requirement already satisfied: httpx<1,>=0.25.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (0.28.1)
+Requirement already satisfied: jupyter-lsp>=2.0.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.3.0)
+Requirement already satisfied: jupyter-server<3,>=2.4.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.17.0)
+Requirement already satisfied: pandocfilters>=1.4.1 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (1.5.1)
+Requirement already satisfied: nbclient>=0.5.0 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.10.2)
+Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (4.14.2)
+Requirement already satisfied: defusedxml in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.7.1)
+Requirement already satisfied: nbformat>=5.7 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (5.10.4)
+Requirement already satisfied: bleach[css]!=5.0.0 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (6.2.0)
+Requirement already satisfied: mistune<4,>=2.0.3 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (3.1.4)
+Requirement already satisfied: jupyterlab-pygments in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.3.0)
+Requirement already satisfied: webencodings in /usr/local/lib/python3.9/site-packages (from bleach[css]!=5.0.0->nbconvert->jupyter) (0.5.1)
+Requirement already satisfied: tinycss2<1.5,>=1.1.0 in /usr/local/lib/python3.9/site-packages (from bleach[css]!=5.0.0->nbconvert->jupyter) (1.4.0)
+Requirement already satisfied: anyio in /usr/local/lib/python3.9/site-packages (from httpx<1,>=0.25.0->jupyterlab->jupyter) (4.11.0)
+Requirement already satisfied: httpcore==1.* in /usr/local/lib/python3.9/site-packages (from httpx<1,>=0.25.0->jupyterlab->jupyter) (1.0.9)
+Requirement already satisfied: h11>=0.16 in /usr/local/lib/python3.9/site-packages (from httpcore==1.*->httpx<1,>=0.25.0->jupyterlab->jupyter) (0.16.0)
+Requirement already satisfied: jedi>=0.16 in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (0.19.2)
+Requirement already satisfied: exceptiongroup in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (1.3.0)
+Requirement already satisfied: stack-data in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (0.6.3)
+Requirement already satisfied: decorator in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (5.2.1)
+Requirement already satisfied: pexpect>4.3 in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (4.9.0)
+Requirement already satisfied: platformdirs>=2.5 in /usr/local/lib/python3.9/site-packages (from jupyter-core!=5.0.*,>=4.12->ipykernel->jupyter) (4.4.0)
+Requirement already satisfied: argon2-cffi>=21.1 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (25.1.0)
+Requirement already satisfied: overrides>=5.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (7.7.0)
+Requirement already satisfied: jupyter-events>=0.11.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.12.0)
+Requirement already satisfied: terminado>=0.8.3 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.18.1)
+Requirement already satisfied: websocket-client>=1.7 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (1.9.0)
+Requirement already satisfied: send2trash>=1.8.2 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (1.8.3)
+Requirement already satisfied: jupyter-server-terminals>=0.4.4 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.5.3)
+Requirement already satisfied: prometheus-client>=0.9 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.23.1)
+Requirement already satisfied: jsonschema>=4.18.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (4.25.1)
+Requirement already satisfied: babel>=2.10 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (2.17.0)
+Requirement already satisfied: json5>=0.9.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (0.12.1)
+Requirement already satisfied: fastjsonschema>=2.15 in /usr/local/lib/python3.9/site-packages (from nbformat>=5.7->nbconvert->jupyter) (2.21.2)
+Requirement already satisfied: wcwidth in /usr/local/lib/python3.9/site-packages (from prompt-toolkit>=3.0.30->jupyter-console->jupyter) (0.2.14)
+Requirement already satisfied: soupsieve>1.2 in /usr/local/lib/python3.9/site-packages (from beautifulsoup4->nbconvert->jupyter) (2.8)
+Requirement already satisfied: sniffio>=1.1 in /usr/local/lib/python3.9/site-packages (from anyio->httpx<1,>=0.25.0->jupyterlab->jupyter) (1.3.1)
+Requirement already satisfied: argon2-cffi-bindings in /usr/local/lib64/python3.9/site-packages (from argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (25.1.0)
+Requirement already satisfied: parso<0.9.0,>=0.8.4 in /usr/local/lib/python3.9/site-packages (from jedi>=0.16->ipython>=7.23.1->ipykernel->jupyter) (0.8.5)
+Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (2025.9.1)
+Requirement already satisfied: rpds-py>=0.7.1 in /usr/local/lib64/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (0.27.1)
+Requirement already satisfied: attrs>=22.2.0 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (25.4.0)
+Requirement already satisfied: referencing>=0.28.4 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (0.36.2)
+Requirement already satisfied: rfc3986-validator>=0.1.1 in /usr/local/lib/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.1.1)
+Requirement already satisfied: pyyaml>=5.3 in /usr/local/lib64/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (6.0.3)
+Requirement already satisfied: rfc3339-validator in /usr/local/lib/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.1.4)
+Requirement already satisfied: python-json-logger>=2.0.4 in /usr/local/lib/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (4.0.0)
+Requirement already satisfied: ptyprocess>=0.5 in /usr/local/lib/python3.9/site-packages (from pexpect>4.3->ipython>=7.23.1->ipykernel->jupyter) (0.7.0)
+Requirement already satisfied: asttokens>=2.1.0 in /usr/local/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel->jupyter) (3.0.0)
+Requirement already satisfied: executing>=1.2.0 in /usr/local/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel->jupyter) (2.2.1)
+Requirement already satisfied: pure-eval in /usr/local/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel->jupyter) (0.2.3)
+Requirement already satisfied: fqdn in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.5.1)
+Requirement already satisfied: uri-template in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.3.0)
+Requirement already satisfied: isoduration in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (20.11.0)
+Requirement already satisfied: jsonpointer>1.13 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (3.0.0)
+Requirement already satisfied: webcolors>=24.6.0 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (24.11.1)
+Requirement already satisfied: rfc3987-syntax>=1.1.0 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.1.0)
+Requirement already satisfied: cffi>=1.0.1 in /usr/local/lib64/python3.9/site-packages (from argon2-cffi-bindings->argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (2.0.0)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.9/site-packages (from cffi>=1.0.1->argon2-cffi-bindings->argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (2.23)
+Requirement already satisfied: lark>=1.2.2 in /usr/local/lib/python3.9/site-packages (from rfc3987-syntax>=1.1.0->jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.3.0)
+Requirement already satisfied: arrow>=0.15.0 in /usr/local/lib/python3.9/site-packages (from isoduration->jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.4.0)
+Requirement already satisfied: tzdata in /usr/local/lib/python3.9/site-packages (from arrow>=0.15.0->isoduration->jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (2025.2)
+Installing collected packages: werkzeug, itsdangerous, greenlet, dnspython, click, blinker, sqlalchemy, pymongo, flask
+Successfully installed blinker-1.9.0 click-8.1.8 dnspython-2.7.0 flask-3.1.2 greenlet-3.2.4 itsdangerous-2.2.0 pymongo-4.15.3 sqlalchemy-2.0.44 werkzeug-3.1.3
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
+--> 577e6137808e
+STEP 13/25: RUN mkdir -p /home/hpcuser/workspace/midas/experiments &&     mkdir -p /home/hpcuser/workspace/midas/data &&     mkdir -p /home/hpcuser/workspace/midas/config &&     mkdir -p /home/hpcuser/workspace/midas/logs
+--> e66d4e0b6ae6
+STEP 14/25: RUN echo '#!/bin/bash' > /home/hpcuser/workspace/midas/midas_env.sh &&     echo '# MIDAS Environment Setup (ROOT disabled)' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo '' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'export MIDASSYS=/opt/midas/install' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'export PATH=$MIDASSYS/bin:$PATH' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'export LD_LIBRARY_PATH=$MIDASSYS/lib:$LD_LIBRARY_PATH' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'export MIDAS_EXPT_NAME=demo' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'export MIDAS_EXPT_DIR=/home/hpcuser/workspace/midas/experiments/demo' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo '' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'echo "MIDAS Environment Loaded"' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'echo "MIDAS System: $MIDASSYS"' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'echo "ROOT Support: Disabled"' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'echo "Experiment: $MIDAS_EXPT_NAME"' >> /home/hpcuser/workspace/midas/midas_env.sh
+--> 94c76cc90c06
+STEP 15/25: RUN mkdir -p /home/hpcuser/workspace/midas/experiments/demo &&     cd /home/hpcuser/workspace/midas/experiments/demo &&     echo '[/Experiment]' > demo.odb &&     echo 'Name = STRING : [32] Demo Experiment' >> demo.odb &&     echo 'Security = BOOL : n' >> demo.odb &&     echo 'Max sub run = DWORD : 0' >> demo.odb &&     echo '' >> demo.odb &&     echo '[/Logger/Channels/0]' >> demo.odb &&     echo 'Settings/Filename = STRING : [256] run%05d.mid' >> demo.odb &&     echo 'Settings/Format = STRING : [8] MIDAS' >> demo.odb &&     echo 'Settings/ODB dump = BOOL : y' >> demo.odb &&     echo 'Settings/Log messages = DWORD : 1' >> demo.odb &&     echo '' >> demo.odb &&     echo '[/Equipment/Trigger/Common]' >> demo.odb &&     echo 'Event ID = WORD : 1' >> demo.odb &&     echo 'Trigger mask = WORD : 0' >> demo.odb &&     echo 'Buffer = STRING : [32] SYSTEM' >> demo.odb &&     echo 'Type = INT : 2' >> demo.odb &&     echo 'Source = INT : 0' >> demo.odb &&     echo 'Format = STRING : [8] MIDAS' >> demo.odb &&     echo 'Enabled = BOOL : y' >> demo.odb &&     echo 'Read on = INT : 257' >> demo.odb &&     echo 'Period = INT : 500' >> demo.odb &&     echo 'Event limit = DOUBLE : 0' >> demo.odb &&     echo 'Num subevents = DWORD : 0' >> demo.odb &&     echo 'Log history = INT : 0' >> demo.odb &&     echo 'Frontend host = STRING : [32] localhost' >> demo.odb &&     echo 'Frontend name = STRING : [32] Demo Frontend' >> demo.odb &&     echo 'Frontend file name = STRING : [256]' >> demo.odb
+--> d45e352cf785
+STEP 16/25: RUN echo '#!/usr/bin/env python3' > /home/hpcuser/workspace/midas/midas_demo.py &&     echo 'import os, sys, time, json, subprocess' >> /home/hpcuser/workspace/midas/midas_demo.py &&     echo 'print("🐍 MIDAS Python Demo Starting...")' >> /home/hpcuser/workspace/midas/midas_demo.py &&     echo 'print("✅ MIDAS Environment:", os.environ.get("MIDASSYS", "Not set"))' >> /home/hpcuser/workspace/midas/midas_demo.py &&     echo 'print("🎉 MIDAS Python Demo Completed!")' >> /home/hpcuser/workspace/midas/midas_demo.py
+--> cbe729c15089
+STEP 17/25: RUN echo '#include <stdio.h>' > /home/hpcuser/workspace/midas/experiments/demo/frontend.c &&     echo 'int main() { printf("Demo frontend placeholder\\n"); return 0; }' >> /home/hpcuser/workspace/midas/experiments/demo/frontend.c
+--> 1842624c8f8f
+STEP 18/25: RUN echo 'CC = gcc' > /home/hpcuser/workspace/midas/experiments/demo/Makefile &&     echo 'CFLAGS = -I$(MIDASSYS)/include' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile &&     echo 'LDFLAGS = -L$(MIDASSYS)/lib -lmidas' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile &&     echo 'frontend: frontend.c' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile &&     echo '	$(CC) $(CFLAGS) -o frontend frontend.c $(LDFLAGS)' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile
+--> 15bbad0a26e3
+STEP 19/25: RUN mkdir -p /tmp/workspace-seed &&     cp -r /home/hpcuser/workspace/* /tmp/workspace-seed/ &&     mkdir -p /tmp/workspace-seed/examples /tmp/workspace-seed/reframe /tmp/workspace-seed/docs /tmp/workspace-seed/spack
+--> 419d364a2ac4
+STEP 20/25: RUN chown -R hpcuser:hpcuser /home/hpcuser/workspace/midas &&     chmod +x /home/hpcuser/workspace/midas/midas_env.sh &&     chmod +x /home/hpcuser/workspace/midas/midas_demo.py &&     chmod +x /opt/midas/install/bin/* 2>/dev/null || true
+--> 1f5e467225eb
+STEP 21/25: USER hpcuser
+--> fcd496c90a8b
+STEP 22/25: WORKDIR /home/hpcuser/workspace
+--> e3e42d498aa9
+STEP 23/25: CMD ["/bin/bash"]
+--> 7d15f25ea137
+STEP 24/25: ENV "OPENSHIFT_BUILD_NAME"="hpc-midas-8" "OPENSHIFT_BUILD_NAMESPACE"="hpc-interview"
+--> f489b929d881
+STEP 25/25: LABEL "io.openshift.build.name"="hpc-midas-8" "io.openshift.build.namespace"="hpc-interview"
+COMMIT temp.builder.openshift.io/hpc-interview/hpc-midas-8:ff923e80
+--> 0396f450f2cd
+Successfully tagged temp.builder.openshift.io/hpc-interview/hpc-midas-8:ff923e80
+0396f450f2cd8bb0ce18a62fcae9316e7713b59440c3a998acfd1ee264c10a87
+
+Pushing image image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-midas:latest ...
+Getting image source signatures
+Copying blob sha256:2a2c7f6c0e58222db65021e85201e545733418bb783afbc0a29ec85a39372b85
+Copying blob sha256:eced006eac62b7f1ee4833245ed052d88064b21b6460a2cf8ee2acd08fc89d49
+Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
+Copying blob sha256:dca5cacfa704b598920f18cf3c2375fbc5d12032a1161a3bc10a15e84b2f62d4
+Copying blob sha256:430cbf78efcdb9c9b0bcf8cb598c5b0ebef7be5e66a549cbca50b8533124a891
+Copying blob sha256:80b7e415809e0a614f4322708c4b0c0963de7cb82608a886e81992e3ff88bf55
+Copying blob sha256:68e0436d4275bac7ea709ac8ecf56f72d7d78262e2e72d15fe45fd9c48a9a2c3
+Copying blob sha256:d02cfb31694124ba7044a91367c77ccbec8f5de7b350823dc2f64cd4103accde
+Copying blob sha256:1fb592e9b83703d28a4a48df53c3b621d79982d07beeb38342856f526f58b4ca
+Copying blob sha256:757688562dec5df9233b069af043eea7e9f0f3a4d67330dbf1803e281ca2cbdc
+Copying blob sha256:5e12426c8d541d714cf6f18dc4923e1edee71932a60d1d574f34c6a7d19a371e
+Copying blob sha256:21fc0909dc5b2af4c459d34db1b50a9e285e67a8f1621d60ebde320b77c1e7d2
+Copying blob sha256:d3679868afa774bbecafc84c20a8736e372b46072c3861630205000b12e7581e
+Copying blob sha256:7797a785356c9eae947ee2eeba1c8dd8d5519ff64ef9d4e282aeb601104a95b2
+Copying blob sha256:5bfc2ce4696347ac0e13b26ccbd3838a708056a87b635bc73c196466cb870044
+Copying blob sha256:b505c30e102ac7a85bf4dd629fe8f7ff5f507e94b033a9aa8f57ea42dbd5107e
+Copying blob sha256:e1dfd192c994120346605c42e0411dbf55d97ae470027f6eb1023549a6fcabd2
+Copying blob sha256:df95e7dee490807eec054955e649d8cd85b170c3c44c8f540f2a2d54bb020758
+Copying config sha256:0396f450f2cd8bb0ce18a62fcae9316e7713b59440c3a998acfd1ee264c10a87
+Writing manifest to image destination
+Successfully pushed image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-midas@sha256:b9f69339266f638ae7557a37f7ae7d34a1c6298dda40e191028c5dbf473c4340
+Push successful

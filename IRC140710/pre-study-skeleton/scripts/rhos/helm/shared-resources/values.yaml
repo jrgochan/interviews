@@ -1,0 +1,29 @@
+# Default values for shared-resources chart
+# This configures the shared persistent volumes for the HPC environment
+
+namespace: hpc-interview
+
+storage:
+  # Shared workspace PVC
+  workspace:
+    name: hpc-shared-workspace
+    size: 10Gi
+    accessMode: ReadWriteOnce
+    storageClass: ""  # Uses default storage class
+    
+  # Shared data PVC  
+  data:
+    name: hpc-shared-data
+    size: 5Gi
+    accessMode: ReadWriteOnce
+    storageClass: ""  # Uses default storage class
+
+labels:
+  app: hpc-shared-storage
+  component: interview-demo
+  
+# Additional labels to add to all resources
+additionalLabels: {}
+
+# Annotations to add to all resources
+annotations: {}

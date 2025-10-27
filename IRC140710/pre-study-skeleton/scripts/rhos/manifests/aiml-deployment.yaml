@@ -15,6 +15,32 @@ spec:
       labels:
         app: aiml-workspace
     spec:
+      initContainers:
+      - name: workspace-init
+        image: image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-aiml:latest
+        imagePullPolicy: Always
+        command: ["/bin/bash"]
+        args:
+        - -c
+        - |
+          echo "🚀 Initializing AI/ML workspace..."
+          if [ ! -f /workspace/.initialized ]; then
+            echo "📂 Copying workspace files from container seed..."
+            # Copy all project files from seed (inherited from hpc-base)
+            cp -r /tmp/workspace-seed/* /workspace/ 2>/dev/null || true
+            # Mark as initialized
+            touch /workspace/.initialized
+            echo "✅ Workspace initialized successfully"
+          else
+            echo "✅ Workspace already initialized"
+          fi
+          # OpenShift will handle permissions automatically
+          echo "🏁 InitContainer completed successfully"
+        volumeMounts:
+        - name: shared-workspace
+          mountPath: /workspace
+        - name: shared-data
+          mountPath: /data
       containers:
       - name: aiml-container
         image: image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-aiml:latest
@@ -52,9 +78,6 @@ spec:
           claimName: hpc-shared-data
       securityContext:
         runAsNonRoot: true
-        runAsUser: 1000
-        runAsGroup: 1000
-        fsGroup: 1000
 ---
 apiVersion: v1
 kind: Service

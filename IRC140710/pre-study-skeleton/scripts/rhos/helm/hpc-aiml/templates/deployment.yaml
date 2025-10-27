@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "hpc-aiml.deploymentName" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "hpc-aiml.labels" . | nindent 4 }}
+  {{- with .Values.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  selector:
+    matchLabels:
+      {{- include "hpc-aiml.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "hpc-aiml.selectorLabels" . | nindent 8 }}
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    spec:
+      {{- if .Values.initContainer.enabled }}
+      initContainers:
+      - name: {{ .Values.initContainer.name }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command: {{ toYaml .Values.initContainer.command | nindent 8 }}
+        args: {{ toYaml .Values.initContainer.args | nindent 8 }}
+        volumeMounts:
+        - name: shared-workspace
+          mountPath: /workspace
+        - name: shared-data
+          mountPath: /data
+      {{- end }}
+      containers:
+      - name: {{ .Values.container.name }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command: {{ toYaml .Values.container.command | nindent 8 }}
+        args: {{ toYaml .Values.container.args | nindent 8 }}
+        ports:
+          {{- toYaml .Values.container.ports | nindent 8 }}
+        resources:
+          {{- toYaml .Values.resources | nindent 10 }}
+        volumeMounts:
+          {{- toYaml .Values.volumeMounts | nindent 8 }}
+        env:
+          {{- toYaml .Values.env | nindent 8 }}
+      volumes:
+        {{- toYaml .Values.volumes | nindent 6 }}
+      securityContext:
+        {{- toYaml .Values.securityContext | nindent 8 }}

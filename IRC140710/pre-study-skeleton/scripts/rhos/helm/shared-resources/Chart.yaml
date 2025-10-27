@@ -1,0 +1,14 @@
+apiVersion: v2
+name: shared-resources
+description: Shared resources for HPC Interview environment
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - hpc
+  - shared
+  - storage
+home: https://github.com/jrgochan/interviews
+maintainers:
+  - name: Jason Gochanour
+    email: jrgochan@example.com

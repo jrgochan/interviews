@@ -105,6 +105,12 @@ scripts/rhos/
 - **Includes:** PyTorch, TensorBoard, Jupyter, distributed computing tools
 - **Use Cases:** ML training demonstrations, HPC + AI integration
 
+### **hpc-midas:latest**
+
+- **Purpose:** MIDAS data acquisition system from PSI/TRIUMF
+- **Includes:** MIDAS DAQ system, ROOT framework, web interface, Python integration
+- **Use Cases:** Physics experiment data acquisition, neutron optics, muon instrumentation
+
 ## 🎮 Usage Examples
 
 ### **MPI Debugging Demonstration**
@@ -145,6 +151,20 @@ scripts/rhos/
 ./examples/run-aiml-demo.sh tensorboard  # Start TensorBoard
 ```
 
+### **MIDAS Data Acquisition**
+
+```bash
+# Run complete MIDAS demo
+./examples/run-midas-demo.sh
+
+# Individual components  
+./examples/run-midas-demo.sh environment # Check MIDAS installation
+./examples/run-midas-demo.sh web         # Test web interface
+./examples/run-midas-demo.sh odb         # Online Database operations
+./examples/run-midas-demo.sh data        # Simulate data acquisition
+./examples/run-midas-demo.sh interactive # Interactive MIDAS session
+```
+
 ### **Interactive Development**
 
 ```bash
@@ -153,6 +173,9 @@ scripts/rhos/
 
 # AI/ML environment shell
 ./examples/shell.sh aiml
+
+# MIDAS environment shell
+./examples/shell.sh midas
 
 # Direct pod access
 oc exec -it $(oc get pods -l app=hpc-workspace -o name | head -1) -- /bin/bash
@@ -179,6 +202,16 @@ oc get route jupyter-route -o jsonpath='{.spec.host}'
 oc get route tensorboard-route -o jsonpath='{.spec.host}'
 
 # Access: https://<route-url>
+```
+
+### **MIDAS Web Interface**
+
+```bash
+# Get MIDAS web interface URL
+oc get route midas-web-route -o jsonpath='{.spec.host}'
+
+# Access: https://<route-url>
+# Features: Online Database editor, run control, experiment monitoring
 ```
 
 ## 📊 Monitoring & Debugging

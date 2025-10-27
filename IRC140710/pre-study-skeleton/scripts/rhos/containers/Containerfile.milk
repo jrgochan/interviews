@@ -67,6 +67,12 @@ RUN if [ -d /tmp/MILK/examples ]; then \
         cp -r /tmp/MILK/examples/* /home/hpcuser/workspace/milk/examples/ 2>/dev/null || true; \
     fi
 
+# Create workspace seed directory for init container
+RUN mkdir -p /tmp/workspace-seed && \
+    cp -r /home/hpcuser/workspace/* /tmp/workspace-seed/ && \
+    # Also copy project directories that will be mounted during build
+    mkdir -p /tmp/workspace-seed/examples /tmp/workspace-seed/reframe /tmp/workspace-seed/docs /tmp/workspace-seed/spack
+
 # Create MILK startup script
 RUN echo '#!/bin/bash' > /home/hpcuser/workspace/milk/milk_env.sh && \
     echo '# MILK Environment Setup' >> /home/hpcuser/workspace/milk/milk_env.sh && \

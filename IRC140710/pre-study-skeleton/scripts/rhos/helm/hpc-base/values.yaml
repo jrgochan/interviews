@@ -1,0 +1,113 @@
+# Default values for hpc-base chart
+# This configures the base HPC environment
+
+# Global settings
+namespace: hpc-interview
+nameOverride: ""
+fullnameOverride: ""
+
+
+# Image configuration
+image:
+  repository: image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base
+  pullPolicy: Always
+  tag: "latest"
+
+# Deployment configuration
+deployment:
+  name: hpc-workspace
+  replicas: 1
+  
+# Init container configuration
+initContainer:
+  enabled: true
+  name: workspace-init
+  command: 
+    - "/bin/bash"
+  args:
+    - "-c"
+    - |
+      echo "🚀 Initializing HPC workspace..."
+      if [ ! -f /workspace/.initialized ]; then
+        echo "📂 Copying workspace files from container seed..."
+        # Copy all project files from seed
+        cp -r /tmp/workspace-seed/* /workspace/ 2>/dev/null || true
+        # Mark as initialized
+        touch /workspace/.initialized
+        echo "✅ Workspace initialized successfully"
+      else
+        echo "✅ Workspace already initialized"
+      fi
+      # OpenShift will handle permissions automatically
+      echo "🏁 InitContainer completed successfully"
+
+# Container configuration
+container:
+  name: hpc-base
+  command:
+    - "/bin/bash"
+  args:
+    - "-c"
+    - "while true; do sleep 30; done"
+
+# Resource configuration
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "500m"
+  limits:
+    memory: "2Gi"
+    cpu: "2000m"
+
+# Volume mounts
+volumeMounts:
+  - name: shared-workspace
+    mountPath: /home/hpcuser/workspace
+  - name: shared-data
+    mountPath: /home/hpcuser/data
+  - name: legacy-shared
+    mountPath: /shared
+
+# Volumes
+volumes:
+  - name: shared-workspace
+    persistentVolumeClaim:
+      claimName: hpc-shared-workspace
+  - name: shared-data
+    persistentVolumeClaim:
+      claimName: hpc-shared-data
+  - name: legacy-shared
+    emptyDir: {}
+
+# Environment variables
+env:
+  - name: WORKSPACE_TYPE
+    value: "hpc-base"
+
+# Service configuration
+service:
+  enabled: true
+  name: hpc-workspace-svc
+  type: ClusterIP
+  ports:
+    - name: ssh
+      port: 22
+      targetPort: 22
+
+# Security context
+securityContext:
+  runAsNonRoot: true
+
+# Labels and selectors
+labels:
+  app: hpc-workspace
+  component: interview-demo
+
+# Additional labels
+additionalLabels: {}
+
+# Annotations
+annotations: {}
+
+# Pod annotations
+podAnnotations: {}

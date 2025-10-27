@@ -1,0 +1,122 @@
+# Default values for hpc-milk chart
+# This configures the MILK diffraction analysis system
+
+# Global settings
+namespace: hpc-interview
+nameOverride: ""
+fullnameOverride: ""
+
+
+# Image configuration
+image:
+  repository: image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-milk
+  pullPolicy: Always
+  tag: "latest"
+
+# Deployment configuration
+deployment:
+  name: milk-workspace
+  replicas: 1
+  
+# Init container configuration
+initContainer:
+  enabled: true
+  name: workspace-init
+  command: 
+    - "/bin/bash"
+  args:
+    - "-c"
+    - |
+      echo "🚀 Initializing MILK workspace..."
+      if [ ! -f /workspace/.initialized ]; then
+        echo "📂 Copying workspace files from container seed..."
+        # Copy MILK-specific files
+        cp -r /tmp/workspace-seed/* /workspace/ 2>/dev/null || true
+        # Create project structure directories
+        mkdir -p /workspace/examples /workspace/reframe /workspace/docs /workspace/spack
+        # Mark as initialized
+        touch /workspace/.initialized
+        echo "✅ Workspace initialized successfully"
+      else
+        echo "✅ Workspace already initialized"
+      fi
+      # OpenShift will handle permissions automatically
+      echo "🏁 InitContainer completed successfully"
+
+# Container configuration
+container:
+  name: hpc-milk
+  command:
+    - "/bin/bash"
+  args:
+    - "-c"
+    - "while true; do sleep 30; done"
+  ports:
+    - containerPort: 8080
+      name: http
+
+# Resource configuration
+resources:
+  requests:
+    memory: "1Gi"
+    cpu: "1000m"
+  limits:
+    memory: "4Gi"
+    cpu: "4000m"
+
+# Volume mounts
+volumeMounts:
+  - name: shared-workspace
+    mountPath: /home/hpcuser/workspace
+  - name: shared-data
+    mountPath: /home/hpcuser/data
+  - name: legacy-shared
+    mountPath: /shared
+
+# Volumes
+volumes:
+  - name: shared-workspace
+    persistentVolumeClaim:
+      claimName: hpc-shared-workspace
+  - name: shared-data
+    persistentVolumeClaim:
+      claimName: hpc-shared-data
+  - name: legacy-shared
+    emptyDir: {}
+
+# Environment variables
+env:
+  - name: WORKSPACE_TYPE
+    value: "hpc-milk"
+  - name: MAUD_PATH
+    value: "/opt/maud"
+  - name: JAVA_HOME
+    value: "/usr/lib/jvm/java-11-openjdk"
+
+# Service configuration
+service:
+  enabled: true
+  name: milk-workspace-svc
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+
+# Security context
+securityContext:
+  runAsNonRoot: true
+
+# Labels and selectors
+labels:
+  app: milk-workspace
+  component: interview-demo
+
+# Additional labels
+additionalLabels: {}
+
+# Annotations
+annotations: {}
+
+# Pod annotations
+podAnnotations: {}

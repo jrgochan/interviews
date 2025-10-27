@@ -1,0 +1,19 @@
+{{- if .Values.service.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "hpc-midas.serviceName" . }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "hpc-midas.labels" . | nindent 4 }}
+  {{- with .Values.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  selector:
+    {{- include "hpc-midas.selectorLabels" . | nindent 4 }}
+  ports:
+    {{- toYaml .Values.service.ports | nindent 2 }}
+  type: {{ .Values.service.type }}
+{{- end }}

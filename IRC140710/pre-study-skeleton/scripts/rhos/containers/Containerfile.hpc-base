@@ -44,6 +44,11 @@ RUN groupadd -g 1000 hpcuser && \
 # Copy project files
 COPY --chown=hpcuser:hpcuser . /home/hpcuser/workspace/
 
+# Create workspace seed directory for init container
+RUN mkdir -p /tmp/workspace-seed && \
+    cp -r /home/hpcuser/workspace/* /tmp/workspace-seed/ && \
+    chown -R hpcuser:hpcuser /tmp/workspace-seed
+
 # Set working directory and user
 WORKDIR /home/hpcuser/workspace
 USER hpcuser

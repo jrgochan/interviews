@@ -66,17 +66,18 @@ check_prerequisites() {
         fi
     done
     
-    # Check Podman connectivity
+    # Check Podman connectivity (optional for OpenShift BuildConfigs)
     echo -e "${CYAN}Testing Podman connectivity...${NC}"
     if podman version &> /dev/null; then
         echo -e "${GREEN}✅ Podman is accessible${NC}"
         podman version --format "{{.Client.Version}}" | head -1
         log "Podman connectivity verified"
+        export PODMAN_AVAILABLE=true
     else
-        echo -e "${RED}❌ Cannot connect to Podman${NC}"
-        echo -e "Run: podman machine start"
-        log "ERROR: Podman connectivity failed"
-        has_errors=true
+        echo -e "${YELLOW}⚠️  Cannot connect to Podman (using OpenShift BuildConfigs instead)${NC}"
+        echo -e "${CYAN}Note: Podman not required when using OpenShift BuildConfigs${NC}"
+        log "WARNING: Podman connectivity failed - will use OpenShift BuildConfigs"
+        export PODMAN_AVAILABLE=false
     fi
     
     # Check OpenShift connectivity with detailed info
@@ -205,11 +206,13 @@ build_images() {
         local build_base=true
         local build_aiml=true
         local build_milk=true
-        echo -e "${CYAN}Building all modules: hpc-base, hpc-aiml, hpc-milk${NC}"
+        local build_midas=true
+        echo -e "${CYAN}Building all modules: hpc-base, hpc-aiml, hpc-milk, hpc-midas${NC}"
     else
         local build_base=false
         local build_aiml=false
         local build_milk=false
+        local build_midas=false
         
         IFS=',' read -ra MODULES <<< "$modules_to_build"
         for module in "${MODULES[@]}"; do
@@ -226,16 +229,20 @@ build_images() {
                     build_milk=true
                     echo -e "${CYAN}Will build: hpc-milk${NC}"
                     ;;
+                midas|hpc-midas)
+                    build_midas=true
+                    echo -e "${CYAN}Will build: hpc-midas${NC}"
+                    ;;
                 *)
                     echo -e "${RED}❌ Unknown module: $module${NC}"
-                    echo -e "Available modules: base, aiml, milk"
+                    echo -e "Available modules: base, aiml, milk, midas"
                     exit 1
                     ;;
             esac
         done
         
         # If building dependent images, ensure base is built first
-        if [ "$build_aiml" = true ] || [ "$build_milk" = true ]; then
+        if [ "$build_aiml" = true ] || [ "$build_milk" = true ] || [ "$build_midas" = true ]; then
             if [ "$build_base" = false ]; then
                 echo -e "${YELLOW}⚠️  Dependent modules require hpc-base. Adding hpc-base to build list.${NC}"
                 build_base=true
@@ -261,6 +268,12 @@ build_images() {
         build_dependent_image "hpc-milk" "${SCRIPT_DIR}/containers/Containerfile.milk"
     else
         echo -e "${YELLOW}⏭️  Skipping hpc-milk build${NC}"
+    fi
+    
+    if [ "$build_midas" = true ]; then
+        build_dependent_image "hpc-midas" "${SCRIPT_DIR}/containers/Containerfile.midas"
+    else
+        echo -e "${YELLOW}⏭️  Skipping hpc-midas build${NC}"
     fi
     
     echo -e "${GREEN}✅ Container image builds completed in OpenShift${NC}"
@@ -715,10 +728,16 @@ display_usage() {
     echo -e "  ${SCRIPT_DIR}/examples/run-milk-demo.sh interactive # Interactive MILK session"
     echo -e "  ${SCRIPT_DIR}/examples/run-milk-demo.sh analysis  # Sample analysis workflow"
     echo
+    echo -e "${YELLOW}🧪 Data Acquisition:${NC}"
+    echo -e "  ${SCRIPT_DIR}/examples/run-midas-demo.sh          # MIDAS DAQ system demo"
+    echo -e "  ${SCRIPT_DIR}/examples/run-midas-demo.sh web      # MIDAS web interface"
+    echo -e "  ${SCRIPT_DIR}/examples/run-midas-demo.sh interactive # Interactive MIDAS session"
+    echo
     echo -e "${YELLOW}🔧 Interactive Access:${NC}"
     echo -e "  ${SCRIPT_DIR}/examples/shell.sh                  # HPC environment shell"
     echo -e "  ${SCRIPT_DIR}/examples/shell.sh aiml             # AI/ML environment shell"
     echo -e "  ${SCRIPT_DIR}/examples/shell.sh milk             # MILK analysis environment"
+    echo -e "  ${SCRIPT_DIR}/examples/shell.sh midas            # MIDAS DAQ environment"
     echo -e "  ${SCRIPT_DIR}/examples/simple-podman-test.sh     # Simple Podman testing"
     echo
     echo -e "${YELLOW}📈 Monitoring:${NC}"
@@ -755,6 +774,8 @@ Demo Scripts:
 - MPI Debugging: ${SCRIPT_DIR}/examples/run-mpi-debug.sh
 - Performance Testing: ${SCRIPT_DIR}/examples/run-reframe-tests.sh  
 - AI/ML Training: ${SCRIPT_DIR}/examples/run-aiml-demo.sh
+- MILK Analysis: ${SCRIPT_DIR}/examples/run-milk-demo.sh
+- MIDAS DAQ: ${SCRIPT_DIR}/examples/run-midas-demo.sh
 - Interactive Shell: ${SCRIPT_DIR}/examples/shell.sh
 
 Quick Start:
@@ -831,23 +852,24 @@ while [[ $# -gt 0 ]]; do
             echo "Options:"
             echo "  --help, -h              Show this help message"
             echo "  --modules <modules>     Comma-separated list of modules to build"
-            echo "                          Available: base, aiml, milk, all (default: all)"
+            echo "                          Available: base, aiml, milk, midas, all (default: all)"
             echo "  --force                 Force recreation of namespace and resources"
             echo "  --quick                 Skip health checks and validation"
             echo ""
             echo "Module Examples:"
             echo "  $0                                    # Build all modules (default)"
-            echo "  $0 --modules milk                    # Build only MILK module"
-            echo "  $0 --modules base,milk               # Build base and MILK modules"
+            echo "  $0 --modules midas                   # Build only MIDAS module"
+            echo "  $0 --modules base,midas              # Build base and MIDAS modules"
             echo "  $0 --modules aiml --force            # Rebuild only AI/ML module"
             echo ""
             echo "Available Modules:"
             echo "  base     - HPC base environment (GCC, MPI, Python, tools)"
             echo "  aiml     - AI/ML environment (PyTorch, ReFrame, Jupyter)"
             echo "  milk     - MILK diffraction analysis (MAUD, Java, MILK library)"
+            echo "  midas    - MIDAS data acquisition system (PSI/TRIUMF, ROOT, web interface)"
             echo ""
             echo "Note: Dependent modules automatically include their dependencies."
-            echo "      For example, 'milk' will also build 'base' if not already built."
+            echo "      For example, 'midas' will also build 'base' if not already built."
             exit 0
             ;;
         --modules)

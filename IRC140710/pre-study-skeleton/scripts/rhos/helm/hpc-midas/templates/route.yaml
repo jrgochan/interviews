@@ -1,0 +1,25 @@
+{{- if .Values.route.enabled }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ .Values.route.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "hpc-midas.labels" . | nindent 4 }}
+  annotations:
+    # Disable health checks completely since Mongoose/mhttpd has issues with health checks
+    router.openshift.io/haproxy.health.check.interval: "0s"
+    haproxy.router.openshift.io/disable_cookies: "true"
+    haproxy.router.openshift.io/balance: "roundrobin"
+spec:
+  to:
+    kind: Service
+    name: {{ include "hpc-midas.serviceName" . }}
+  port:
+    targetPort: {{ .Values.route.targetPort }}
+  {{- if .Values.route.tls }}
+  tls:
+    {{- toYaml .Values.route.tls | nindent 4 }}
+  {{- end }}
+  wildcardPolicy: None
+{{- end }}

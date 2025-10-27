@@ -1,0 +1,190 @@
+# Default values for hpc-midas chart
+# This configures the MIDAS data acquisition system
+
+# Global settings
+namespace: hpc-interview
+nameOverride: ""
+fullnameOverride: ""
+
+
+# Image configuration
+image:
+  repository: image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-midas
+  pullPolicy: Always
+  tag: "latest"
+
+# Deployment configuration
+deployment:
+  name: midas-workspace
+  replicas: 1
+  
+# Init container configuration
+initContainer:
+  enabled: true
+  name: workspace-init
+  command: 
+    - "/bin/bash"
+  args:
+    - "-c"
+    - |
+      echo "🚀 Initializing MIDAS workspace..."
+      if [ ! -f /workspace/.initialized ]; then
+        echo "📂 Copying workspace files from container seed..."
+        # Copy MIDAS-specific files
+        cp -r /tmp/workspace-seed/* /workspace/ 2>/dev/null || true
+        # Create project structure directories
+        mkdir -p /workspace/examples /workspace/reframe /workspace/docs /workspace/spack
+        # Create MIDAS experiment directories
+        mkdir -p /workspace/midas/experiments/demo
+        mkdir -p /workspace/midas/data
+        mkdir -p /workspace/midas/logs
+        # Mark as initialized
+        touch /workspace/.initialized
+        echo "✅ Workspace initialized successfully"
+      else
+        echo "✅ Workspace already initialized"
+      fi
+      # OpenShift will handle permissions automatically
+      echo "🏁 InitContainer completed successfully"
+
+# Container configuration
+container:
+  name: hpc-midas
+  command:
+    - "/bin/bash"
+  args:
+    - "-c"
+    - |
+      # MIDAS Services Startup Script
+      export MIDASSYS=${MIDASSYS:-/opt/midas/install}
+      export PATH=$MIDASSYS/bin:$PATH
+      export LD_LIBRARY_PATH=$MIDASSYS/lib:$LD_LIBRARY_PATH
+      
+      # Create experiment table
+      mkdir -p /tmp/midas_demo
+      cd /tmp/midas_demo
+      echo 'demo /tmp/midas_demo hpcuser' > exptab
+      export MIDAS_EXPTAB=/tmp/midas_demo/exptab
+      
+      # Start MIDAS services
+      echo "🗄️ Starting MIDAS ODB server..."
+      mserver -e demo > odb.log 2>&1 &
+      
+      echo "🌐 Starting MIDAS web interface..."
+      mhttpd -e demo --no-hostlist -D > mhttpd.log 2>&1 &
+      
+      echo "🔗 Starting simple proxy placeholder on port 9090..."
+      echo "Proxy will be added manually after deployment" > proxy.log &
+      
+      echo "📝 Starting MIDAS logger..."
+      mlogger -e demo > mlogger.log 2>&1 &
+      
+      # Keep container running and monitor services
+      while true; do
+        sleep 30
+        # Restart any failed services
+        if ! pgrep -f "mserver.*demo" > /dev/null; then
+          echo "🔄 Restarting ODB server..."
+          MIDAS_EXPTAB=/tmp/midas_demo/exptab mserver -e demo > odb.log 2>&1 &
+        fi
+        if ! pgrep -f "mhttpd.*demo" > /dev/null; then
+          echo "🔄 Restarting web server..."
+          MIDAS_EXPTAB=/tmp/midas_demo/exptab mhttpd -e demo --no-hostlist -D > mhttpd.log 2>&1 &
+        fi
+        if ! pgrep -f "mlogger.*demo" > /dev/null; then
+          echo "🔄 Restarting logger..."
+          MIDAS_EXPTAB=/tmp/midas_demo/exptab mlogger -e demo > mlogger.log 2>&1 &
+        fi
+      done
+  ports:
+    - containerPort: 9090
+      name: midas-web
+      protocol: TCP
+    - containerPort: 1175
+      name: midas-odb
+      protocol: TCP
+
+# Resource configuration
+resources:
+  requests:
+    memory: "1Gi"
+    cpu: "1000m"
+  limits:
+    memory: "6Gi"
+    cpu: "4000m"
+
+# Volume mounts
+volumeMounts:
+  - name: shared-workspace
+    mountPath: /home/hpcuser/workspace
+  - name: shared-data
+    mountPath: /home/hpcuser/data
+  - name: legacy-shared
+    mountPath: /shared
+
+# Volumes
+volumes:
+  - name: shared-workspace
+    persistentVolumeClaim:
+      claimName: hpc-shared-workspace
+  - name: shared-data
+    persistentVolumeClaim:
+      claimName: hpc-shared-data
+  - name: legacy-shared
+    emptyDir: {}
+
+# Environment variables
+env:
+  - name: WORKSPACE_TYPE
+    value: "hpc-midas"
+  - name: MIDASSYS
+    value: "/opt/midas/install"
+  - name: ROOTSYS
+    value: "/usr"
+  - name: MIDAS_EXPT_NAME
+    value: "demo"
+  - name: MIDAS_EXPT_DIR
+    value: "/home/hpcuser/workspace/midas/experiments/demo"
+
+# Service configuration
+service:
+  enabled: true
+  name: midas-workspace-svc
+  type: ClusterIP
+  ports:
+    - name: midas-web
+      port: 8080
+      targetPort: 9090
+      protocol: TCP
+    - name: midas-odb
+      port: 1175
+      targetPort: 1175
+      protocol: TCP
+
+# Route configuration for OpenShift
+route:
+  enabled: true
+  name: midas-web-route
+  targetPort: midas-web
+  # Temporarily disable TLS to troubleshoot 503 issue
+  # tls:
+  #   termination: edge
+  #   insecureEdgeTerminationPolicy: Redirect
+
+# Security context
+securityContext:
+  runAsNonRoot: true
+
+# Labels and selectors
+labels:
+  app: midas-workspace
+  component: interview-demo
+
+# Additional labels
+additionalLabels: {}
+
+# Annotations
+annotations: {}
+
+# Pod annotations
+podAnnotations: {}

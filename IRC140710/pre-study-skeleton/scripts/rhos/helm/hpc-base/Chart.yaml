@@ -1,0 +1,17 @@
+apiVersion: v2
+name: hpc-base
+description: Base HPC environment with GCC, MPI, Python, and debugging tools
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+keywords:
+  - hpc
+  - mpi
+  - gcc
+  - python
+  - debugging
+home: https://github.com/jrgochan/interviews
+maintainers:
+  - name: Jason Gochanour
+    email: jrgochan@example.com
+# Dependencies handled by deployment script

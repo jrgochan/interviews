@@ -1,5 +1,5 @@
 === HPC Interview Environment Info ===
-Generated: Sat Oct 25 14:03:06 MDT 2025
+Generated: Sun Oct 26 17:48:10 MDT 2025
 
 OpenShift Cluster:
 - API: https://api.crc.testing:6443
@@ -18,6 +18,8 @@ Demo Scripts:
 - MPI Debugging: /Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/scripts/rhos/examples/run-mpi-debug.sh
 - Performance Testing: /Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/scripts/rhos/examples/run-reframe-tests.sh  
 - AI/ML Training: /Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/scripts/rhos/examples/run-aiml-demo.sh
+- MILK Analysis: /Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/scripts/rhos/examples/run-milk-demo.sh
+- MIDAS DAQ: /Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/scripts/rhos/examples/run-midas-demo.sh
 - Interactive Shell: /Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/scripts/rhos/examples/shell.sh
 
 Quick Start:

@@ -1,0 +1,39 @@
+{{- if .Values.routes.jupyter.enabled }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ .Values.routes.jupyter.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "hpc-aiml.labels" . | nindent 4 }}
+spec:
+  to:
+    kind: Service
+    name: {{ include "hpc-aiml.serviceName" . }}
+  port:
+    targetPort: {{ .Values.routes.jupyter.targetPort }}
+  {{- if .Values.routes.jupyter.tls }}
+  tls:
+    {{- toYaml .Values.routes.jupyter.tls | nindent 4 }}
+  {{- end }}
+{{- end }}
+---
+{{- if .Values.routes.tensorboard.enabled }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ .Values.routes.tensorboard.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    {{- include "hpc-aiml.labels" . | nindent 4 }}
+spec:
+  to:
+    kind: Service
+    name: {{ include "hpc-aiml.serviceName" . }}
+  port:
+    targetPort: {{ .Values.routes.tensorboard.targetPort }}
+  {{- if .Values.routes.tensorboard.tls }}
+  tls:
+    {{- toYaml .Values.routes.tensorboard.tls | nindent 4 }}
+  {{- end }}
+{{- end }}

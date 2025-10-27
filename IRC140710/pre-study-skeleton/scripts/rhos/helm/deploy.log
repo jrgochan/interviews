@@ -1,0 +1,17 @@
+=== Helm Deployment Script - Mon Oct 27 17:34:00 MDT 2025 ===
+2025-10-27 17:34:00 - Checking prerequisites
+2025-10-27 17:34:00 - helm found
+2025-10-27 17:34:00 - oc found
+2025-10-27 17:34:00 - kubectl found
+2025-10-27 17:34:00 - Helm version: v3.19.0+g3d8990f
+2025-10-27 17:34:00 - Cluster connectivity verified
+2025-10-27 17:34:00 - Prerequisites check passed
+2025-10-27 17:34:00 - Ensuring namespace: hpc-interview
+2025-10-27 17:34:00 - Namespace hpc-interview exists
+2025-10-27 17:34:00 - Starting deployment for modules: hpc-midas
+2025-10-27 17:34:00 - Deployment order: shared-resources hpc-midas
+2025-10-27 17:34:00 - Deploying module: shared-resources
+2025-10-27 17:34:00 - Successfully deployed: shared-resources
+2025-10-27 17:34:00 - Deploying module: hpc-midas
+2025-10-27 17:34:00 - Successfully deployed: hpc-midas
+2025-10-27 17:34:00 - Successfully deployed: shared-resources hpc-midas
