@@ -1,59 +1,172 @@
-# HPC Base Image - Foundation for HPC Interview Examples
-FROM rockylinux:9
+# MIDAS (Maximum Integrated Data Acquisition System) Container
+# Data acquisition system from PSI/TRIUMF for physics experiments
+FROM image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest
 
 # Metadata
 LABEL maintainer="HPC Interview Preparation"
-LABEL description="Base HPC environment with essential tools"
+LABEL description="MIDAS - Maximum Integrated Data Acquisition System for physics experiments"
 LABEL version="1.0"
 
-# Install system packages
+# Switch to root for installation
+USER root
+
+# Install MIDAS dependencies
 RUN dnf update -y && \
-    dnf install -y --allowerasing \
-        gcc gcc-c++ gcc-gfortran \
-        make cmake autoconf automake libtool \
-        git wget curl vim \
-        python3 python3-pip python3-devel \
-        openmpi openmpi-devel \
-        hwloc-devel \
-        numactl \
-        which file \
-        procps-ng \
-        strace gdb valgrind \
-        net-tools \
-        iproute \
+    dnf install -y \
+        cmake \
+        make \
+        gcc-c++ \
+        git \
+        wget \
+        curl \
+        sqlite-devel \
+        mariadb-connector-c-devel \
+        zlib-devel \
+        openssl-devel \
+        libxml2-devel \
+        readline-devel \
+        ncurses-devel \
+        httpd-devel \
         && dnf clean all
 
-# Set up MPI environment
-ENV MPI_ROOT=/usr/lib64/openmpi
-ENV PATH=$MPI_ROOT/bin:$PATH
-ENV LD_LIBRARY_PATH=$MPI_ROOT/lib:$LD_LIBRARY_PATH
-ENV MANPATH=$MPI_ROOT/share/man:$MANPATH
+# Install ROOT framework (optional but recommended for physics analysis)
+# Note: ROOT packages not available in Rocky Linux 9 standard repositories
+# ROOT can be installed separately if needed via EPEL or from source
 
-# Install Python packages
+# Set ROOT environment (disabled - ROOT not installed)
+# ENV ROOTSYS=/usr
+# ENV PATH=$ROOTSYS/bin:$PATH
+# ENV LD_LIBRARY_PATH=$ROOTSYS/lib64:$LD_LIBRARY_PATH
+
+# Clone and build MIDAS
+RUN mkdir -p /opt && \
+    cd /opt && \
+    git clone https://bitbucket.org/tmidas/midas.git && \
+    cd midas && \
+    # Initialize git submodules (required for mxml dependency)
+    git submodule update --init --recursive && \
+    # Create build directory
+    mkdir -p build && cd build && \
+    # Configure with CMake
+    cmake .. \
+        -DCMAKE_INSTALL_PREFIX=/opt/midas/install \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DHAVE_ROOT=OFF \
+        -DHAVE_MYSQL=ON \
+        -DHAVE_SQLITE=ON \
+        && \
+    make -j$(nproc) && \
+    make install
+
+# Set MIDAS environment
+ENV MIDASSYS=/opt/midas/install
+ENV PATH=$MIDASSYS/bin:$PATH
+ENV LD_LIBRARY_PATH=$MIDASSYS/lib:$LD_LIBRARY_PATH
+
+# Create MIDAS experiment directory
+RUN mkdir -p /opt/midas/experiments/demo && \
+    cd /opt/midas/experiments/demo
+
+# Install additional Python packages for MIDAS integration
 RUN pip3 install --no-cache-dir \
-    numpy \
+    requests \
+    flask \
+    pymongo \
+    sqlalchemy \
     matplotlib \
-    pandas \
-    jupyter \
-    ipython
+    jupyter
 
-# Create non-root user with specific UID/GID for OpenShift compatibility
-RUN groupadd -g 1000 hpcuser && \
-    useradd -u 1000 -g 1000 -m -s /bin/bash hpcuser && \
-    mkdir -p /home/hpcuser/workspace && \
-    chown -R hpcuser:hpcuser /home/hpcuser
+# Create workspace directories for MIDAS
+RUN mkdir -p /home/hpcuser/workspace/midas/experiments && \
+    mkdir -p /home/hpcuser/workspace/midas/data && \
+    mkdir -p /home/hpcuser/workspace/midas/config && \
+    mkdir -p /home/hpcuser/workspace/midas/logs
 
-# Copy project files
-COPY --chown=hpcuser:hpcuser . /home/hpcuser/workspace/
+# Create MIDAS startup script
+RUN echo '#!/bin/bash' > /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo '# MIDAS Environment Setup (ROOT disabled)' >> /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo '' >> /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo 'export MIDASSYS=/opt/midas/install' >> /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo 'export PATH=$MIDASSYS/bin:$PATH' >> /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo 'export LD_LIBRARY_PATH=$MIDASSYS/lib:$LD_LIBRARY_PATH' >> /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo 'export MIDAS_EXPT_NAME=demo' >> /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo 'export MIDAS_EXPT_DIR=/home/hpcuser/workspace/midas/experiments/demo' >> /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo '' >> /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo 'echo "MIDAS Environment Loaded"' >> /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo 'echo "MIDAS System: $MIDASSYS"' >> /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo 'echo "ROOT Support: Disabled"' >> /home/hpcuser/workspace/midas/midas_env.sh && \
+    echo 'echo "Experiment: $MIDAS_EXPT_NAME"' >> /home/hpcuser/workspace/midas/midas_env.sh
+
+# Create demo experiment configuration
+RUN mkdir -p /home/hpcuser/workspace/midas/experiments/demo && \
+    cd /home/hpcuser/workspace/midas/experiments/demo && \
+    # Create basic ODB configuration using echo commands
+    echo '[/Experiment]' > demo.odb && \
+    echo 'Name = STRING : [32] Demo Experiment' >> demo.odb && \
+    echo 'Security = BOOL : n' >> demo.odb && \
+    echo 'Max sub run = DWORD : 0' >> demo.odb && \
+    echo '' >> demo.odb && \
+    echo '[/Logger/Channels/0]' >> demo.odb && \
+    echo 'Settings/Filename = STRING : [256] run%05d.mid' >> demo.odb && \
+    echo 'Settings/Format = STRING : [8] MIDAS' >> demo.odb && \
+    echo 'Settings/ODB dump = BOOL : y' >> demo.odb && \
+    echo 'Settings/Log messages = DWORD : 1' >> demo.odb && \
+    echo '' >> demo.odb && \
+    echo '[/Equipment/Trigger/Common]' >> demo.odb && \
+    echo 'Event ID = WORD : 1' >> demo.odb && \
+    echo 'Trigger mask = WORD : 0' >> demo.odb && \
+    echo 'Buffer = STRING : [32] SYSTEM' >> demo.odb && \
+    echo 'Type = INT : 2' >> demo.odb && \
+    echo 'Source = INT : 0' >> demo.odb && \
+    echo 'Format = STRING : [8] MIDAS' >> demo.odb && \
+    echo 'Enabled = BOOL : y' >> demo.odb && \
+    echo 'Read on = INT : 257' >> demo.odb && \
+    echo 'Period = INT : 500' >> demo.odb && \
+    echo 'Event limit = DOUBLE : 0' >> demo.odb && \
+    echo 'Num subevents = DWORD : 0' >> demo.odb && \
+    echo 'Log history = INT : 0' >> demo.odb && \
+    echo 'Frontend host = STRING : [32] localhost' >> demo.odb && \
+    echo 'Frontend name = STRING : [32] Demo Frontend' >> demo.odb && \
+    echo 'Frontend file name = STRING : [256]' >> demo.odb
+
+# Create basic Python demo using echo (files will be created in init container)
+RUN echo '#!/usr/bin/env python3' > /home/hpcuser/workspace/midas/midas_demo.py && \
+    echo 'import os, sys, time, json, subprocess' >> /home/hpcuser/workspace/midas/midas_demo.py && \
+    echo 'print("🐍 MIDAS Python Demo Starting...")' >> /home/hpcuser/workspace/midas/midas_demo.py && \
+    echo 'print("✅ MIDAS Environment:", os.environ.get("MIDASSYS", "Not set"))' >> /home/hpcuser/workspace/midas/midas_demo.py && \
+    echo 'print("🎉 MIDAS Python Demo Completed!")' >> /home/hpcuser/workspace/midas/midas_demo.py
+
+# Create basic frontend.c source (simplified)
+RUN echo '#include <stdio.h>' > /home/hpcuser/workspace/midas/experiments/demo/frontend.c && \
+    echo 'int main() { printf("Demo frontend placeholder\\n"); return 0; }' >> /home/hpcuser/workspace/midas/experiments/demo/frontend.c
+
+# Create basic Makefile
+RUN echo 'CC = gcc' > /home/hpcuser/workspace/midas/experiments/demo/Makefile && \
+    echo 'CFLAGS = -I$(MIDASSYS)/include' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile && \
+    echo 'LDFLAGS = -L$(MIDASSYS)/lib -lmidas' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile && \
+    echo 'frontend: frontend.c' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile && \
+    echo '	$(CC) $(CFLAGS) -o frontend frontend.c $(LDFLAGS)' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile
+
+# Note: Full demo files will be created by init container to avoid Dockerfile parsing issues
 
 # Create workspace seed directory for init container
 RUN mkdir -p /tmp/workspace-seed && \
     cp -r /home/hpcuser/workspace/* /tmp/workspace-seed/ && \
-    chown -R hpcuser:hpcuser /tmp/workspace-seed
+    # Also copy project directories that will be mounted during build
+    mkdir -p /tmp/workspace-seed/examples /tmp/workspace-seed/reframe /tmp/workspace-seed/docs /tmp/workspace-seed/spack
 
-# Set working directory and user
-WORKDIR /home/hpcuser/workspace
+# Fix ownership and permissions
+RUN chown -R hpcuser:hpcuser /home/hpcuser/workspace/midas && \
+    chmod +x /home/hpcuser/workspace/midas/midas_env.sh && \
+    chmod +x /home/hpcuser/workspace/midas/midas_demo.py && \
+    # Make MIDAS programs executable
+    chmod +x /opt/midas/install/bin/* 2>/dev/null || true
+
+# Switch back to hpcuser
 USER hpcuser
+
+# Set working directory
+WORKDIR /home/hpcuser/workspace
 
 # Default command
 CMD ["/bin/bash"]

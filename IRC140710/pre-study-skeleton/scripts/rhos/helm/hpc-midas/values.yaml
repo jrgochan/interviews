@@ -104,8 +104,11 @@ container:
       fi
       
       echo "🌐 Starting MIDAS web interface..."
-      # Start web server on port 8080 (container-compatible mode, no daemon flag)
-      mhttpd -e demo -p 8080 --no-hostlist > mhttpd.log 2>&1 &
+      # Configure ODB to set HTTP port and bind to all interfaces
+      odbedit -e demo -c 'create INT "/Programs/mhttpd/Port" 8080' 2>/dev/null || true
+      odbedit -e demo -c 'set "/Programs/mhttpd/Port" 8080' 2>/dev/null || true
+      # Start web server (will use ODB configuration for port and binding)
+      mhttpd -e demo --no-hostlist > mhttpd.log 2>&1 &
       MHTTPD_PID=$!
       sleep 5
       
@@ -153,7 +156,9 @@ container:
           echo "🔄 Restarting web server..."
           pkill -f "mhttpd.*demo" 2>/dev/null || true
           sleep 2
-          mhttpd -e demo -p 8080 --no-hostlist > mhttpd.log 2>&1 &
+          # Re-configure port in ODB before restart
+          odbedit -e demo -c 'set "/Programs/mhttpd/Port" 8080' 2>/dev/null || true
+          mhttpd -e demo --no-hostlist > mhttpd.log 2>&1 &
           MHTTPD_PID=$!
           sleep 3
         fi

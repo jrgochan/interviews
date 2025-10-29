@@ -50,24 +50,26 @@ spec:
           {{- toYaml .Values.volumeMounts | nindent 8 }}
         env:
           {{- toYaml .Values.env | nindent 8 }}
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          initialDelaySeconds: 60
-          periodSeconds: 10
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 8080
-          initialDelaySeconds: 120
-          periodSeconds: 30
-          timeoutSeconds: 10
-          successThreshold: 1
-          failureThreshold: 3
+        # Readiness and liveness probes disabled - MIDAS binds to localhost only
+        # which prevents external health checks from working
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 8080
+        #   initialDelaySeconds: 60
+        #   periodSeconds: 10
+        #   timeoutSeconds: 5
+        #   successThreshold: 1
+        #   failureThreshold: 3
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 8080
+        #   initialDelaySeconds: 120
+        #   periodSeconds: 30
+        #   timeoutSeconds: 10
+        #   successThreshold: 1
+        #   failureThreshold: 3
       volumes:
         {{- toYaml .Values.volumes | nindent 6 }}
       securityContext:

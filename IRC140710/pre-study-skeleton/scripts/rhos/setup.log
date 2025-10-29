@@ -1,1 +1,55 @@
-=== HPC Interview Environment Setup - Tue Oct 28 20:32:51 MDT 2025 ===
+=== HPC Interview Environment Setup - Tue Oct 28 21:25:50 MDT 2025 ===
+2025-10-28 21:25:50 - Starting HPC Interview Environment Setup
+2025-10-28 21:25:50 - Starting prerequisites check
+2025-10-28 21:25:50 - oc found at /opt/homebrew/bin/oc
+2025-10-28 21:25:50 - git found at /usr/bin/git
+2025-10-28 21:25:50 - podman found at /opt/homebrew/bin/podman
+2025-10-28 21:25:50 - WARNING: docker not found (optional)
+2025-10-28 21:25:50 - Podman connectivity verified
+2025-10-28 21:25:51 - OpenShift connectivity verified
+2025-10-28 21:25:51 - Prerequisites check completed successfully
+2025-10-28 21:25:51 - Checking CRC clock synchronization
+2025-10-28 21:25:51 - Clock synchronization check passed
+2025-10-28 21:25:51 - Creating namespace: hpc-interview
+2025-10-28 21:25:52 - Namespace configured successfully
+2025-10-28 21:25:52 - Starting container image builds using OpenShift BuildConfigs
+2025-10-28 21:25:52 - Creating BuildConfig for image: hpc-base
+2025-10-28 21:52:42 - Successfully built hpc-base
+2025-10-28 21:52:42 - Creating BuildConfig for dependent image: hpc-aiml
+2025-10-28 21:56:16 - Successfully built hpc-aiml
+2025-10-28 21:56:16 - Creating BuildConfig for dependent image: hpc-milk
+2025-10-28 22:20:21 - Successfully built hpc-milk
+2025-10-28 22:20:21 - Creating BuildConfig for dependent image: hpc-midas
+2025-10-28 22:22:50 - Successfully built hpc-midas
+2025-10-28 22:22:50 - Container builds completed in OpenShift
+2025-10-28 22:22:50 - Starting OpenShift resource deployment
+2025-10-28 22:22:50 - Found        5 manifest files
+2025-10-28 22:22:51 - deployment.apps/aiml-workspace ready
+2025-10-28 22:22:51 - deployment.apps/hpc-workspace ready
+2025-10-28 22:32:51 - WARNING: deployment.apps/midas-workspace not ready within timeout
+2025-10-28 22:32:52 - deployment.apps/milk-workspace ready
+2025-10-28 22:32:52 - OpenShift resource deployment completed
+2025-10-28 22:32:52 - Setting up all HPC examples
+2025-10-28 22:32:52 - MPI examples setup completed
+2025-10-28 22:32:52 - CUDA examples prepared
+2025-10-28 22:32:53 - AI/ML examples setup completed
+2025-10-28 22:32:53 - All HPC examples setup completed
+2025-10-28 22:32:53 - Setting up monitoring
+2025-10-28 22:32:53 - Monitoring setup completed
+2025-10-28 22:32:53 - Starting health checks
+2025-10-28 22:32:53 - Pod aiml-workspace-bd44bc6c5-jn7wj: Running
+2025-10-28 22:32:54 - WARNING: Pod hpc-aiml-1-build: Succeeded
+2025-10-28 22:32:54 - WARNING: Pod hpc-base-1-build: Succeeded
+2025-10-28 22:32:54 - WARNING: Pod hpc-base-3-build: Succeeded
+2025-10-28 22:32:54 - WARNING: Pod hpc-midas-1-build: Succeeded
+2025-10-28 22:32:54 - WARNING: Pod hpc-milk-1-build: Succeeded
+2025-10-28 22:32:54 - Pod hpc-workspace-55bbf5db8-z5qgj: Running
+2025-10-28 22:32:54 - Pod midas-workspace-5d46fb4cb6-slmbr: Running
+2025-10-28 22:32:54 - Pod midas-workspace-6dbbdbc4f-5n5mv: Running
+2025-10-28 22:32:54 - Pod milk-workspace-68b65fff57-mzvfv: Running
+2025-10-28 22:32:55 - MPI functionality verified
+2025-10-28 22:32:55 - Python environment verified
+2025-10-28 22:32:55 - Health checks completed
+2025-10-28 22:32:55 - Starting deployment validation
+2025-10-28 22:38:00 - Deployment validation completed
+2025-10-28 22:38:00 - Setup completed successfully

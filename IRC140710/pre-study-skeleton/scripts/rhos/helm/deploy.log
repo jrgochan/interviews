@@ -1,8 +1,23 @@
-=== Helm Deployment Script - Tue Oct 28 16:29:29 MDT 2025 ===
-2025-10-28 16:29:29 - Checking prerequisites
-2025-10-28 16:29:29 - helm found
-2025-10-28 16:29:29 - ERROR: oc not found
-2025-10-28 16:29:29 - kubectl found
-2025-10-28 16:29:30 - Helm version: v3.19.0+g3d8990f
-2025-10-28 16:29:30 - Cluster connectivity verified
-2025-10-28 16:29:30 - Prerequisites check failed
+=== Helm Deployment Script - Wed Oct 29 13:05:28 MDT 2025 ===
+2025-10-29 13:05:28 - Checking prerequisites
+2025-10-29 13:05:28 - helm found
+2025-10-29 13:05:28 - oc found
+2025-10-29 13:05:28 - kubectl found
+2025-10-29 13:05:28 - Helm version: v3.19.0+g3d8990f
+2025-10-29 13:05:29 - Cluster connectivity verified
+2025-10-29 13:05:29 - Prerequisites check passed
+2025-10-29 13:05:29 - Ensuring namespace: hpc-interview
+2025-10-29 13:05:29 - Namespace hpc-interview exists
+2025-10-29 13:05:29 - Starting deployment for modules: shared-resources,hpc-base,hpc-aiml,hpc-midas,hpc-milk
+2025-10-29 13:05:29 - Deployment order: shared-resources hpc-base hpc-aiml hpc-midas hpc-milk
+2025-10-29 13:05:29 - Deploying module: shared-resources
+2025-10-29 13:05:29 - Successfully deployed: shared-resources
+2025-10-29 13:05:29 - Deploying module: hpc-base
+2025-10-29 13:05:29 - Successfully deployed: hpc-base
+2025-10-29 13:05:29 - Deploying module: hpc-aiml
+2025-10-29 13:05:29 - Successfully deployed: hpc-aiml
+2025-10-29 13:05:29 - Deploying module: hpc-midas
+2025-10-29 13:05:30 - Successfully deployed: hpc-midas
+2025-10-29 13:05:30 - Deploying module: hpc-milk
+2025-10-29 13:05:30 - Successfully deployed: hpc-milk
+2025-10-29 13:05:30 - Successfully deployed: shared-resources hpc-base hpc-aiml hpc-midas hpc-milk
