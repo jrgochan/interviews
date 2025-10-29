@@ -1,17 +1,1 @@
-=== HPC Interview Environment Setup - Tue Oct 28 17:36:54 MDT 2025 ===
-2025-10-28 17:36:54 - Starting HPC Interview Environment Setup
-2025-10-28 17:36:54 - Starting prerequisites check
-2025-10-28 17:36:54 - oc found at /opt/homebrew/bin/oc
-2025-10-28 17:36:54 - git found at /usr/bin/git
-2025-10-28 17:36:54 - podman found at /opt/homebrew/bin/podman
-2025-10-28 17:36:54 - WARNING: docker not found (optional)
-2025-10-28 17:36:55 - Podman connectivity verified
-2025-10-28 17:36:55 - OpenShift connectivity verified
-2025-10-28 17:36:55 - Prerequisites check completed successfully
-2025-10-28 17:36:55 - Creating namespace: hpc-interview
-2025-10-28 17:37:02 - Deleted existing namespace
-2025-10-28 17:37:02 - Created new namespace: hpc-interview
-2025-10-28 17:37:02 - Namespace configured successfully
-2025-10-28 17:37:02 - Starting container image builds using OpenShift BuildConfigs
-2025-10-28 17:37:02 - Creating BuildConfig for image: hpc-base
-2025-10-28 17:41:40 - ERROR: Failed to build hpc-base
+=== HPC Interview Environment Setup - Tue Oct 28 20:32:51 MDT 2025 ===

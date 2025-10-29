@@ -4,6 +4,8 @@
 
 set -e  # Exit on any error
 
+oc login -u kubeadmin -p xuUQc-r7Eov-zYFkU-4ULx9 https://api.crc.testing:6443
+
 # Configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "${SCRIPT_DIR}/../.." && pwd)"
@@ -972,3 +974,6 @@ fi
 
 # Execute main function with module selection
 main "$modules_to_build"
+
+# Ensure clean exit
+exit 0

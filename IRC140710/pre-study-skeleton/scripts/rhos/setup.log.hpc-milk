@@ -3,39 +3,39 @@ Uploading directory "/Users/jrgochan/code/github.com/jrgochan/interviews/IRC1407
 Uploading finished
 build.build.openshift.io/hpc-milk-1 started
 Receiving source from STDIN as archive ...
-time="2025-10-25T22:09:19Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
-I1025 22:09:19.362637       1 defaults.go:112] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
+time="2025-10-29T00:36:24Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
+I1029 00:36:24.008697       1 defaults.go:112] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
 Caching blobs under "/var/cache/blobs".
 
 Pulling image image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest ...
 Trying to pull image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest...
 Getting image source signatures
-Copying blob sha256:b0fc4564f5a950037d7405b57c02f8929a7fca44b65ebd6b69ada7df2efb2707
-Copying blob sha256:16428e16220cf196ccb523a3d11722bbf4e317f1cf2a4df77383bf3072641463
-Copying blob sha256:3a6eb8de0d403e50ff08f94a0782bc7eb7b96bf8a4792d0d40865e7546c0d0b1
+Copying blob sha256:2220ba3c6c0594ac8bef43f7414ad7b5debfe6aeceb7f008bcc761e4ba0903cd
+Copying blob sha256:21e72ea8aeb5012b9cb9fca58a17efca0278631908157b50d18f0d62225f6744
+Copying blob sha256:467d901185734c85cfa64420d57c1aff2950c7939dee03e96f43fa964164f701
 Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
-Copying blob sha256:33c70e01458bacde1c01233903fdbc6602adc47ee1f6a344f7905f7e896c45d4
-Copying blob sha256:183a11a5709db4b382392c8fcc9ee267a9135205456b8c226bb8eb333d2e623f
-Copying config sha256:d5d7c65d8ea9fa78de5be3b46d4b56d85fe9bab1e3781455563017745018c8e0
+Copying blob sha256:a1f3feb8c84ea5538eccfb24fa7d77ca5f23b6796606dc509b84d5065960f122
+Copying blob sha256:c236f866cc23cbfec12e903a90d3809e86beba3cf24062df7ba2f71c55d9cd92
+Copying config sha256:abf0ebea697be62e1a52f33d5603e15de35e16235c207bbc3c57f4d2ceef3612
 Writing manifest to image destination
 Adding transient rw bind mount for /run/secrets/rhsm
 STEP 1/24: FROM image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest
 STEP 2/24: LABEL maintainer="HPC Interview Preparation"
---> 40394dabc156
+--> c7c2188a890a
 STEP 3/24: LABEL description="MILK - MAUD Interface Language Kit for diffraction analysis"
---> 964814eb0a16
+--> b96a5415b133
 STEP 4/24: LABEL version="1.0"
---> 263c33665fad
+--> 0e763dcb538b
 STEP 5/24: USER root
---> 5cb264d5b62f
+--> 048f36693056
 STEP 6/24: RUN dnf update -y &&     dnf install -y         java-11-openjdk         java-11-openjdk-devel         wget         unzip         && dnf clean all
-Rocky Linux 9 - BaseOS                          2.1 MB/s | 2.6 MB     00:01    
-Rocky Linux 9 - AppStream                       4.9 MB/s | 8.1 MB     00:01    
-Rocky Linux 9 - Extras                           39 kB/s |  18 kB     00:00    
+Rocky Linux 9 - BaseOS                          711 kB/s | 2.6 MB     00:03    
+Rocky Linux 9 - AppStream                       2.2 MB/s | 8.1 MB     00:03    
+Rocky Linux 9 - Extras                           36 kB/s |  18 kB     00:00    
 Dependencies resolved.
 Nothing to do.
 Complete!
-Last metadata expiration check: 0:00:01 ago on Sat Oct 25 22:09:37 2025.
+Last metadata expiration check: 0:00:01 ago on Wed Oct 29 00:36:46 2025.
 Package wget-1.21.1-8.el9_4.aarch64 is already installed.
 Dependencies resolved.
 =====================================================================================================
@@ -48,7 +48,6 @@ Installing:
 Installing dependencies:
  ModemManager-glib                         aarch64  1.20.2-1.el9                     baseos     326 k
  NetworkManager-libnm                      aarch64  1:1.52.0-7.el9_6                 baseos     1.8 M
- acl                                       aarch64  2.3.1-4.el9                      baseos      69 k
  adobe-source-code-pro-fonts               noarch   2.030.1.050-12.el9.1             baseos     831 k
  adwaita-cursor-theme                      noarch   40.1.1-3.el9                     appstream  623 k
  adwaita-icon-theme                        noarch   40.1.1-3.el9                     appstream   11 M
@@ -67,9 +66,6 @@ Installing dependencies:
  copy-jdk-configs                          noarch   4.0-3.el9                        appstream   27 k
  cryptsetup-libs                           aarch64  2.7.2-3.el9_6.1                  baseos     509 k
  cups-libs                                 aarch64  1:2.3.3op2-33.el9_6.1            baseos     258 k
- dbus                                      aarch64  1:1.12.20-8.el9                  baseos     6.8 k
- dbus-broker                               aarch64  28-7.el9                         baseos     165 k
- dbus-common                               noarch   1:1.12.20-8.el9                  baseos      14 k
  dbus-libs                                 aarch64  1:1.12.20-8.el9                  baseos     149 k
  dejavu-sans-fonts                         noarch   2.37-18.el9                      baseos     1.3 M
  device-mapper                             aarch64  9:1.02.202-6.el9                 baseos     135 k
@@ -111,7 +107,6 @@ Installing dependencies:
  kbd-legacy                                noarch   2.4.0-11.el9                     baseos     502 k
  kbd-misc                                  noarch   2.4.0-11.el9                     baseos     1.5 M
  kmod                                      aarch64  28-10.el9                        baseos     119 k
- kmod-libs                                 aarch64  28-10.el9                        baseos      61 k
  langpacks-core-font-en                    noarch   3.0-16.el9                       appstream  9.5 k
  lcms2                                     aarch64  2.12-3.el9                       appstream  164 k
  libX11                                    aarch64  1.7.0-11.el9                     appstream  635 k
@@ -158,7 +153,6 @@ Installing dependencies:
  libproxy                                  aarch64  0.4.15-35.el9                    baseos      70 k
  librsvg2                                  aarch64  2.50.7-3.el9                     appstream  2.7 M
  libsbc                                    aarch64  1.4-9.el9                        appstream   43 k
- libseccomp                                aarch64  2.5.2-2.el9                      baseos      71 k
  libsndfile                                aarch64  1.0.31-9.el9                     appstream  206 k
  libsoup                                   aarch64  2.72.0-10.el9_6.2                appstream  381 k
  libstemmer                                aarch64  0-18.585svn.el9                  appstream   82 k
@@ -214,15 +208,12 @@ Installing dependencies:
  rtkit                                     aarch64  0.11-29.el9                      appstream   54 k
  shared-mime-info                          aarch64  2.1-5.el9                        baseos     371 k
  sound-theme-freedesktop                   noarch   0.8-17.el9                       appstream  377 k
- systemd                                   aarch64  252-51.el9_6.2                   baseos     3.8 M
- systemd-pam                               aarch64  252-51.el9_6.2                   baseos     263 k
- systemd-rpm-macros                        noarch   252-51.el9_6.2                   baseos      61 k
  systemd-udev                              aarch64  252-51.el9_6.2                   baseos     1.9 M
  totem-pl-parser                           aarch64  3.26.6-2.el9                     appstream  127 k
  tracker                                   aarch64  3.1.2-3.el9_1                    appstream  534 k
  ttmkfdir                                  aarch64  3.0.9-65.el9                     appstream   49 k
  upower                                    aarch64  0.99.13-2.el9                    appstream  162 k
- webkit2gtk3-jsc                           aarch64  2.48.5-1.el9_6                   appstream  4.3 M
+ webkit2gtk3-jsc                           aarch64  2.50.1-0.el9_6                   appstream  4.3 M
  webrtc-audio-processing                   aarch64  0.3.1-8.el9.0.1                  appstream  293 k
  wireplumber                               aarch64  0.4.14-1.el9.0.1                 appstream   80 k
  wireplumber-libs                          aarch64  0.4.14-1.el9.0.1                 appstream  316 k
@@ -250,216 +241,207 @@ Installing weak dependencies:
 
 Transaction Summary
 =====================================================================================================
-Install  203 Packages
+Install  194 Packages
 
-Total download size: 190 M
-Installed size: 743 M
+Total download size: 186 M
+Installed size: 730 M
 Downloading Packages:
-(1/203): device-mapper-1.02.202-6.el9.aarch64.r 328 kB/s | 135 kB     00:00    
-(2/203): hwdata-0.348-9.18.el9.noarch.rpm       2.1 MB/s | 1.6 MB     00:00    
-(3/203): dbus-common-1.12.20-8.el9.noarch.rpm    80 kB/s |  14 kB     00:00    
-(4/203): gsettings-desktop-schemas-40.0-7.el9_6 1.0 MB/s | 665 kB     00:00    
-(5/203): libtdb-1.4.12-1.el9.aarch64.rpm        157 kB/s |  51 kB     00:00    
-(6/203): json-glib-1.6.6-1.el9.aarch64.rpm      306 kB/s | 148 kB     00:00    
-(7/203): polkit-libs-0.117-13.el9.aarch64.rpm   4.7 MB/s | 8.2 MB     00:01    
-(8/203): device-mapper-libs-1.02.202-6.el9.aarc 384 kB/s | 172 kB     00:00    
-(9/203): dejavu-sans-fonts-2.37-18.el9.noarch.r 1.8 MB/s | 1.3 MB     00:00    
-(10/203): libproxy-0.4.15-35.el9.aarch64.rpm    199 kB/s |  70 kB     00:00    
-(11/203): fuse-common-3.10.2-9.el9.aarch64.rpm   45 kB/s | 7.2 kB     00:00    
-(12/203): fuse-2.9.9-17.el9.aarch64.rpm         223 kB/s |  77 kB     00:00    
-(13/203): kbd-misc-2.4.0-11.el9.noarch.rpm      2.0 MB/s | 1.5 MB     00:00    
-(14/203): dbus-libs-1.12.20-8.el9.aarch64.rpm   333 kB/s | 149 kB     00:00    
-(15/203): acl-2.3.1-4.el9.aarch64.rpm           214 kB/s |  69 kB     00:00    
-(16/203): cryptsetup-libs-2.7.2-3.el9_6.1.aarch 940 kB/s | 509 kB     00:00    
-(17/203): gobject-introspection-1.68.0-11.el9.a 490 kB/s | 245 kB     00:00    
-(18/203): bluez-libs-5.72-4.el9.aarch64.rpm     272 kB/s |  85 kB     00:00    
-(19/203): systemd-rpm-macros-252-51.el9_6.2.noa 203 kB/s |  61 kB     00:00    
-(20/203): kmod-28-10.el9.aarch64.rpm            297 kB/s | 119 kB     00:00    
-(21/203): libgusb-0.3.8-2.el9.aarch64.rpm       151 kB/s |  48 kB     00:00    
-(22/203): freetype-2.10.4-10.el9_5.aarch64.rpm  812 kB/s | 380 kB     00:00    
-(23/203): fuse-libs-2.9.9-17.el9.aarch64.rpm    311 kB/s |  94 kB     00:00    
-(24/203): shared-mime-info-2.1-5.el9.aarch64.rp 762 kB/s | 371 kB     00:00    
-(25/203): graphite2-1.3.14-9.el9.aarch64.rpm    282 kB/s |  90 kB     00:00    
-(26/203): harfbuzz-2.7.4-10.el9.aarch64.rpm     1.1 MB/s | 624 kB     00:00    
-(27/203): fonts-filesystem-2.0.5-7.el9.1.noarch  61 kB/s | 9.0 kB     00:00    
-(28/203): kmod-libs-28-10.el9.aarch64.rpm       185 kB/s |  61 kB     00:00    
-(29/203): ModemManager-glib-1.20.2-1.el9.aarch6 681 kB/s | 326 kB     00:00    
-(30/203): cups-libs-2.3.3op2-33.el9_6.1.aarch64 531 kB/s | 258 kB     00:00    
-(31/203): systemd-pam-252-51.el9_6.2.aarch64.rp 544 kB/s | 263 kB     00:00    
-(32/203): adobe-source-code-pro-fonts-2.030.1.0 1.2 MB/s | 831 kB     00:00    
-(33/203): dbus-1.12.20-8.el9.aarch64.rpm         39 kB/s | 6.8 kB     00:00    
-(34/203): avahi-libs-0.8-22.el9_6.1.aarch64.rpm 206 kB/s |  65 kB     00:00    
-(35/203): glib-networking-2.68.3-3.el9.aarch64. 410 kB/s | 168 kB     00:00    
-(36/203): kbd-legacy-2.4.0-11.el9.noarch.rpm    910 kB/s | 502 kB     00:00    
-(37/203): unzip-6.0-58.el9_5.aarch64.rpm        456 kB/s | 176 kB     00:00    
-(38/203): libgudev-237-1.el9.aarch64.rpm        129 kB/s |  34 kB     00:00    
-(39/203): polkit-0.117-13.el9.aarch64.rpm       343 kB/s | 143 kB     00:00    
-(40/203): libseccomp-2.5.2-2.el9.aarch64.rpm    203 kB/s |  71 kB     00:00    
-(41/203): libpng-1.6.37-12.el9.aarch64.rpm      295 kB/s | 114 kB     00:00    
-(42/203): polkit-pkla-compat-0.1-21.el9.aarch64 130 kB/s |  43 kB     00:00    
-(43/203): dbus-broker-28-7.el9.aarch64.rpm      331 kB/s | 165 kB     00:00    
-(44/203): systemd-252-51.el9_6.2.aarch64.rpm    3.1 MB/s | 3.8 MB     00:01    
-(45/203): bubblewrap-0.4.1-8.el9_5.aarch64.rpm  129 kB/s |  48 kB     00:00    
-(46/203): libbrotli-1.0.9-7.el9_5.aarch64.rpm   615 kB/s | 311 kB     00:00    
-(47/203): lksctp-tools-1.0.19-3.el9_4.aarch64.r 297 kB/s |  94 kB     00:00    
-(48/203): NetworkManager-libnm-1.52.0-7.el9_6.a 2.0 MB/s | 1.8 MB     00:00    
-(49/203): kbd-2.4.0-11.el9.aarch64.rpm          742 kB/s | 370 kB     00:00    
-(50/203): libXdamage-1.1.5-7.el9.aarch64.rpm     90 kB/s |  22 kB     00:00    
-(51/203): graphene-1.10.6-2.el9.aarch64.rpm     285 kB/s |  95 kB     00:00    
-(52/203): systemd-udev-252-51.el9_6.2.aarch64.r 2.2 MB/s | 1.9 MB     00:00    
-(53/203): low-memory-monitor-2.1-4.el9.aarch64. 137 kB/s |  35 kB     00:00    
-(54/203): libXxf86vm-1.1.4-18.el9.aarch64.rpm    75 kB/s |  18 kB     00:00    
-(55/203): atk-2.36.0-5.el9.aarch64.rpm          525 kB/s | 269 kB     00:00    
-(56/203): nss-3.112.0-4.el9_4.aarch64.rpm       1.1 MB/s | 698 kB     00:00    
-(57/203): flatpak-session-helper-1.12.9-4.el9_6 204 kB/s |  69 kB     00:00    
-(58/203): mesa-dri-drivers-24.2.8-3.el9_6.aarch 4.7 MB/s | 8.0 MB     00:01    
-(59/203): wireplumber-0.4.14-1.el9.0.1.aarch64. 234 kB/s |  80 kB     00:00    
-(60/203): fdk-aac-free-2.0.0-8.el9.aarch64.rpm  310 kB/s | 317 kB     00:01    
-(61/203): libtiff-4.4.0-13.el9.aarch64.rpm      487 kB/s | 192 kB     00:00    
-(62/203): libX11-xcb-1.7.0-11.el9.aarch64.rpm    62 kB/s |  10 kB     00:00    
-(63/203): adwaita-cursor-theme-40.1.1-3.el9.noa 1.1 MB/s | 623 kB     00:00    
-(64/203): libwayland-client-1.21.0-1.el9.aarch6 116 kB/s |  32 kB     00:00    
-(65/203): libgxps-0.3.2-3.el9.aarch64.rpm       229 kB/s |  76 kB     00:00    
-(66/203): mkfontscale-1.2.1-3.el9.aarch64.rpm   120 kB/s |  31 kB     00:00    
-(67/203): lua-posix-35.0-8.el9.aarch64.rpm      339 kB/s | 130 kB     00:00    
-(68/203): hicolor-icon-theme-0.17-13.el9.noarch 205 kB/s |  66 kB     00:00    
-(69/203): pulseaudio-libs-15.0-3.el9.aarch64.rp 1.1 MB/s | 630 kB     00:00    
-(70/203): abattis-cantarell-fonts-0.301-4.el9.n 790 kB/s | 364 kB     00:00    
-(71/203): libnotify-0.7.9-8.el9.aarch64.rpm     130 kB/s |  42 kB     00:00    
-(72/203): libdrm-2.4.123-2.el9.aarch64.rpm      309 kB/s | 129 kB     00:00    
-(73/203): gtk-update-icon-cache-3.24.31-5.el9.a 121 kB/s |  32 kB     00:00    
-(74/203): libXau-1.0.9-8.el9.aarch64.rpm        116 kB/s |  30 kB     00:00    
-(75/203): libtheora-1.1.1-31.el9.aarch64.rpm    388 kB/s | 155 kB     00:00    
-(76/203): javapackages-filesystem-6.4.0-1.el9.n  62 kB/s |  10 kB     00:00    
-(77/203): gsm-1.0.19-6.el9.aarch64.rpm          132 kB/s |  34 kB     00:00    
-(78/203): sound-theme-freedesktop-0.8-17.el9.no 787 kB/s | 377 kB     00:00    
-(79/203): pixman-0.40.0-6.el9_3.aarch64.rpm     394 kB/s | 166 kB     00:00    
-(80/203): rtkit-0.11-29.el9.aarch64.rpm         163 kB/s |  54 kB     00:00    
-(81/203): librsvg2-2.50.7-3.el9.aarch64.rpm     3.1 MB/s | 2.7 MB     00:00    
-(82/203): mesa-filesystem-24.2.8-3.el9_6.aarch6  61 kB/s |  11 kB     00:00    
-(83/203): pipewire-1.0.1-1.el9.aarch64.rpm      257 kB/s | 101 kB     00:00    
-(84/203): libXi-1.7.10-8.el9.aarch64.rpm        150 kB/s |  37 kB     00:00    
-(85/203): libX11-common-1.7.0-11.el9.noarch.rpm 409 kB/s | 151 kB     00:00    
-(86/203): wireplumber-libs-0.4.14-1.el9.0.1.aar 639 kB/s | 316 kB     00:00    
-(87/203): at-spi2-core-2.40.3-1.el9.aarch64.rpm 410 kB/s | 174 kB     00:00    
-(88/203): poppler-21.01.0-21.el9.aarch64.rpm    1.5 MB/s | 998 kB     00:00    
-(89/203): libxcb-1.13.1-9.el9.aarch64.rpm       462 kB/s | 226 kB     00:00    
-(90/203): libX11-1.7.0-11.el9.aarch64.rpm       1.1 MB/s | 635 kB     00:00    
-(91/203): gdk-pixbuf2-modules-2.42.6-6.el9_6.aa 269 kB/s |  82 kB     00:00    
-(92/203): libwebp-1.2.0-8.el9.aarch64.rpm       543 kB/s | 260 kB     00:00    
-(93/203): libXtst-1.2.3-16.el9.aarch64.rpm       83 kB/s |  20 kB     00:00    
-(94/203): pipewire-alsa-1.0.1-1.el9.aarch64.rpm 169 kB/s |  54 kB     00:00    
-(95/203): libwayland-server-1.21.0-1.el9.aarch6 152 kB/s |  40 kB     00:00    
-(96/203): libxshmfence-1.3-10.el9.aarch64.rpm    75 kB/s |  12 kB     00:00    
-(97/203): libglvnd-glx-1.3.4-1.el9.aarch64.rpm  339 kB/s | 135 kB     00:00    
-(98/203): poppler-glib-21.01.0-21.el9.aarch64.r 377 kB/s | 144 kB     00:00    
-(99/203): libfontenc-1.1.3-17.el9.aarch64.rpm   119 kB/s |  30 kB     00:00    
-(100/203): xml-common-0.6.3-58.el9.noarch.rpm   138 kB/s |  31 kB     00:00    
-(101/203): copy-jdk-configs-4.0-3.el9.noarch.rp 100 kB/s |  27 kB     00:00    
-(102/203): libstemmer-0-18.585svn.el9.aarch64.r 256 kB/s |  82 kB     00:00    
-(103/203): dconf-0.40.0-6.el9.aarch64.rpm       260 kB/s | 106 kB     00:00    
-(104/203): ttmkfdir-3.0.9-65.el9.aarch64.rpm     81 kB/s |  49 kB     00:00    
-(105/203): libproxy-webkitgtk4-0.4.15-35.el9.aa  85 kB/s |  20 kB     00:00    
-(106/203): langpacks-core-font-en-3.0-16.el9.no  65 kB/s | 9.5 kB     00:00    
-(107/203): libldac-2.0.2.3-10.el9.aarch64.rpm   148 kB/s |  40 kB     00:00    
-(108/203): libXrender-0.9.10-16.el9.aarch64.rpm  92 kB/s |  26 kB     00:00    
-(109/203): libogg-1.3.4-6.el9.aarch64.rpm       132 kB/s |  32 kB     00:00    
-(110/203): libappstream-glib-0.7.18-5.el9_4.aar 720 kB/s | 370 kB     00:00    
-(111/203): libXinerama-1.1.4-10.el9.aarch64.rpm  79 kB/s |  14 kB     00:00    
-(112/203): pipewire-pulseaudio-1.0.1-1.el9.aarc 416 kB/s | 178 kB     00:00    
-(113/203): libjpeg-turbo-2.0.90-7.el9.aarch64.r 447 kB/s | 168 kB     00:00    
-(114/203): pipewire-jack-audio-connection-kit-l 301 kB/s | 120 kB     00:00    
-(115/203): libgsf-1.14.47-5.el9.aarch64.rpm     503 kB/s | 242 kB     00:00    
-(116/203): mesa-libglapi-24.2.8-3.el9_6.aarch64 189 kB/s |  61 kB     00:00    
-(117/203): cairo-gobject-1.17.4-7.el9.aarch64.r  74 kB/s |  18 kB     00:00    
-(118/203): mesa-libgbm-24.2.8-3.el9_6.aarch64.r 142 kB/s |  35 kB     00:00    
-(119/203): libgexiv2-0.12.3-1.el9.aarch64.rpm   235 kB/s |  77 kB     00:00    
-(120/203): nss-softokn-freebl-3.112.0-4.el9_4.a 778 kB/s | 414 kB     00:00    
-(121/203): libXfixes-5.0.3-16.el9.aarch64.rpm    76 kB/s |  19 kB     00:00    
-(122/203): geoclue2-2.6.0-8.el9_6.1.aarch64.rpm 309 kB/s | 118 kB     00:00    
-(123/203): composefs-libs-1.0.8-1.el9.aarch64.r 162 kB/s |  52 kB     00:00    
-(124/203): giflib-5.2.1-9.el9.aarch64.rpm       157 kB/s |  48 kB     00:00    
-(125/203): pipewire-jack-audio-connection-kit-1  49 kB/s | 8.1 kB     00:00    
-(126/203): exiv2-libs-0.27.5-2.el9.aarch64.rpm  1.2 MB/s | 734 kB     00:00    
-(127/203): fontconfig-2.14.0-2.el9_1.aarch64.rp 531 kB/s | 277 kB     00:00    
-(128/203): fribidi-1.0.10-6.el9.2.aarch64.rpm   254 kB/s |  83 kB     00:00    
-(129/203): exiv2-0.27.5-2.el9.aarch64.rpm       1.5 MB/s | 971 kB     00:00    
-(130/203): gstreamer1-1.22.12-3.el9.aarch64.rpm 1.9 MB/s | 1.4 MB     00:00    
-(131/203): totem-pl-parser-3.26.6-2.el9.aarch64 301 kB/s | 127 kB     00:00    
-(132/203): libthai-0.1.28-8.el9.aarch64.rpm     437 kB/s | 206 kB     00:00    
-(133/203): openjpeg2-2.4.0-8.el9.aarch64.rpm    409 kB/s | 158 kB     00:00    
-(134/203): libvorbis-1.3.7-5.el9.aarch64.rpm    480 kB/s | 188 kB     00:00    
-(135/203): libcanberra-gtk3-0.30-27.el9.aarch64 125 kB/s |  30 kB     00:00    
-(136/203): libiptcdata-1.0.5-10.el9.aarch64.rpm 171 kB/s |  57 kB     00:00    
-(137/203): at-spi2-atk-2.38.0-4.el9.aarch64.rpm 249 kB/s |  85 kB     00:00    
-(138/203): libsoup-2.72.0-10.el9_6.2.aarch64.rp 717 kB/s | 381 kB     00:00    
-(139/203): poppler-data-0.4.9-9.el9.0.1.noarch. 2.2 MB/s | 1.8 MB     00:00    
-(140/203): cairo-1.17.4-7.el9.aarch64.rpm       1.0 MB/s | 644 kB     00:00    
-(141/203): java-11-openjdk-devel-11.0.25.0.9-7. 3.2 MB/s | 3.3 MB     00:01    
-(142/203): tracker-miners-3.1.2-4.el9_3.aarch64 1.1 MB/s | 881 kB     00:00    
-(143/203): xdg-desktop-portal-gtk-1.12.0-3.el9. 307 kB/s | 125 kB     00:00    
-(144/203): xdg-dbus-proxy-0.1.3-1.el9.aarch64.r 169 kB/s |  40 kB     00:00    
-(145/203): libXft-2.3.3-8.el9.aarch64.rpm       181 kB/s |  60 kB     00:00    
-(146/203): opus-1.3.1-10.el9.aarch64.rpm        469 kB/s | 193 kB     00:00    
-(147/203): libsbc-1.4-9.el9.aarch64.rpm         127 kB/s |  43 kB     00:00    
-(148/203): libwayland-cursor-1.21.0-1.el9.aarch  62 kB/s |  18 kB     00:00    
-(149/203): gstreamer1-plugins-base-1.22.12-4.el 2.2 MB/s | 2.1 MB     00:00    
-(150/203): libXcursor-1.2.0-7.el9.aarch64.rpm   109 kB/s |  29 kB     00:00    
-(151/203): java-11-openjdk-11.0.25.0.9-7.el9.aa 674 kB/s | 401 kB     00:00    
-(152/203): libXrandr-1.5.2-8.el9.aarch64.rpm     95 kB/s |  26 kB     00:00    
-(153/203): xorg-x11-fonts-Type1-7.5-33.el9.noar 903 kB/s | 499 kB     00:00    
-(154/203): osinfo-db-tools-1.10.0-1.el9.aarch64 204 kB/s |  67 kB     00:00    
-(155/203): alsa-lib-1.2.13-2.el9.aarch64.rpm    907 kB/s | 494 kB     00:00    
-(156/203): libglvnd-egl-1.3.4-1.el9.aarch64.rpm 136 kB/s |  36 kB     00:00    
-(157/203): orc-0.4.31-8.el9.aarch64.rpm         431 kB/s | 177 kB     00:00    
-(158/203): mesa-libGL-24.2.8-3.el9_6.aarch64.rp 414 kB/s | 174 kB     00:00    
-(159/203): libexif-0.6.22-6.el9.aarch64.rpm     792 kB/s | 422 kB     00:00    
-(160/203): libdatrie-0.2.13-4.el9.aarch64.rpm   123 kB/s |  31 kB     00:00    
-(161/203): libxslt-1.1.34-13.el9_6.aarch64.rpm  467 kB/s | 237 kB     00:00    
-(162/203): lua-5.4.4-4.el9.aarch64.rpm          462 kB/s | 185 kB     00:00    
-(163/203): tracker-3.1.2-3.el9_1.aarch64.rpm    972 kB/s | 534 kB     00:00    
-(164/203): nss-sysinit-3.112.0-4.el9_4.aarch64.  70 kB/s |  17 kB     00:00    
-(165/203): libcanberra-0.30-27.el9.aarch64.rpm  225 kB/s |  82 kB     00:00    
-(166/203): libXv-1.0.11-16.el9.aarch64.rpm       64 kB/s |  18 kB     00:00    
-(167/203): libxkbcommon-1.0.3-4.el9.aarch64.rpm 272 kB/s | 130 kB     00:00    
-(168/203): nss-util-3.112.0-4.el9_4.aarch64.rpm 248 kB/s |  86 kB     00:00    
-(169/203): mesa-libEGL-24.2.8-3.el9_6.aarch64.r 296 kB/s | 137 kB     00:00    
-(170/203): libXcomposite-0.4.5-7.el9.aarch64.rp  95 kB/s |  23 kB     00:00    
-(171/203): flatpak-1.12.9-4.el9_6.aarch64.rpm   1.7 MB/s | 1.5 MB     00:00    
-(172/203): nspr-4.36.0-4.el9_4.aarch64.rpm      315 kB/s | 130 kB     00:00    
-(173/203): ostree-libs-2025.2-2.el9_6.aarch64.r 752 kB/s | 424 kB     00:00    
-(174/203): pango-1.48.7-3.el9.aarch64.rpm       559 kB/s | 291 kB     00:00    
-(175/203): colord-libs-1.4.5-6.el9_6.aarch64.rp 440 kB/s | 218 kB     00:00    
-(176/203): libosinfo-1.10.0-1.el9.aarch64.rpm   610 kB/s | 312 kB     00:00    
-(177/203): libsndfile-1.0.31-9.el9.aarch64.rpm  422 kB/s | 206 kB     00:00    
-(178/203): libtracker-sparql-3.1.2-3.el9_1.aarc 605 kB/s | 309 kB     00:00    
-(179/203): lcms2-2.12-3.el9.aarch64.rpm         373 kB/s | 164 kB     00:00    
-(180/203): p11-kit-server-0.25.3-3.el9_5.aarch6 418 kB/s | 231 kB     00:00    
-(181/203): upower-0.99.13-2.el9.aarch64.rpm     367 kB/s | 162 kB     00:00    
-(182/203): libasyncns-0.8-22.el9.aarch64.rpm    101 kB/s |  29 kB     00:00    
-(183/203): flac-libs-1.3.3-10.el9_2.1.aarch64.r 444 kB/s | 192 kB     00:00    
-(184/203): iso-codes-4.6.0-3.el9.noarch.rpm     2.6 MB/s | 3.3 MB     00:01    
-(185/203): llvm-libs-19.1.7-1.el9.aarch64.rpm   4.4 MB/s |  53 MB     00:11    
-(186/203): libwayland-egl-1.21.0-1.el9.aarch64.  69 kB/s |  12 kB     00:00    
-(187/203): java-11-openjdk-headless-11.0.25.0.9 3.2 MB/s |  38 MB     00:12    
-(188/203): osinfo-db-20250124-2.el9.rocky.20250 639 kB/s | 308 kB     00:00    
-(189/203): nss-softokn-3.112.0-4.el9_4.aarch64. 731 kB/s | 388 kB     00:00    
-(190/203): webrtc-audio-processing-0.3.1-8.el9. 571 kB/s | 293 kB     00:00    
-(191/203): gtk3-3.24.31-5.el9.aarch64.rpm       2.1 MB/s | 4.8 MB     00:02    
-(192/203): avahi-glib-0.8-22.el9_6.1.aarch64.rp  78 kB/s |  13 kB     00:00    
-(193/203): jbigkit-libs-2.1-23.el9.aarch64.rpm  163 kB/s |  52 kB     00:00    
-(194/203): libglvnd-1.3.4-1.el9.aarch64.rpm     321 kB/s | 127 kB     00:00    
-(195/203): gdk-pixbuf2-2.42.6-6.el9_6.aarch64.r 851 kB/s | 464 kB     00:00    
-(196/203): xkeyboard-config-2.33-2.el9.noarch.r 1.2 MB/s | 779 kB     00:00    
-(197/203): libXext-1.3.4-8.el9.aarch64.rpm      147 kB/s |  38 kB     00:00    
-(198/203): exempi-2.6.0-0.2.20211007gite23c213. 870 kB/s | 488 kB     00:00    
-(199/203): xdg-desktop-portal-1.12.6-1.el9.aarc 715 kB/s | 344 kB     00:00    
-(200/203): libepoxy-1.5.5-4.el9.aarch64.rpm     441 kB/s | 256 kB     00:00    
-(201/203): webkit2gtk3-jsc-2.48.5-1.el9_6.aarch 3.1 MB/s | 4.3 MB     00:01    
-(202/203): pipewire-libs-1.0.1-1.el9.aarch64.rp 1.8 MB/s | 1.7 MB     00:00    
-(203/203): adwaita-icon-theme-40.1.1-3.el9.noar 4.7 MB/s |  11 MB     00:02    
+(1/194): device-mapper-1.02.202-6.el9.aarch64.r 331 kB/s | 135 kB     00:00    
+(2/194): gsettings-desktop-schemas-40.0-7.el9_6 992 kB/s | 665 kB     00:00    
+(3/194): hwdata-0.348-9.18.el9.noarch.rpm       1.4 MB/s | 1.6 MB     00:01    
+(4/194): libtdb-1.4.12-1.el9.aarch64.rpm        147 kB/s |  51 kB     00:00    
+(5/194): json-glib-1.6.6-1.el9.aarch64.rpm      284 kB/s | 148 kB     00:00    
+(6/194): device-mapper-libs-1.02.202-6.el9.aarc 170 kB/s | 172 kB     00:01    
+(7/194): dejavu-sans-fonts-2.37-18.el9.noarch.r 1.0 MB/s | 1.3 MB     00:01    
+(8/194): libproxy-0.4.15-35.el9.aarch64.rpm     205 kB/s |  70 kB     00:00    
+(9/194): fuse-common-3.10.2-9.el9.aarch64.rpm    40 kB/s | 7.2 kB     00:00    
+(10/194): fuse-2.9.9-17.el9.aarch64.rpm         222 kB/s |  77 kB     00:00    
+(11/194): polkit-libs-0.117-13.el9.aarch64.rpm  2.3 MB/s | 8.2 MB     00:03    
+(12/194): dbus-libs-1.12.20-8.el9.aarch64.rpm   340 kB/s | 149 kB     00:00    
+(13/194): kbd-misc-2.4.0-11.el9.noarch.rpm      1.4 MB/s | 1.5 MB     00:01    
+(14/194): cryptsetup-libs-2.7.2-3.el9_6.1.aarch 893 kB/s | 509 kB     00:00    
+(15/194): bluez-libs-5.72-4.el9.aarch64.rpm     223 kB/s |  85 kB     00:00    
+(16/194): gobject-introspection-1.68.0-11.el9.a 508 kB/s | 245 kB     00:00    
+(17/194): kmod-28-10.el9.aarch64.rpm            168 kB/s | 119 kB     00:00    
+(18/194): libgusb-0.3.8-2.el9.aarch64.rpm        84 kB/s |  48 kB     00:00    
+(19/194): freetype-2.10.4-10.el9_5.aarch64.rpm  570 kB/s | 380 kB     00:00    
+(20/194): fuse-libs-2.9.9-17.el9.aarch64.rpm    257 kB/s |  94 kB     00:00    
+(21/194): graphite2-1.3.14-9.el9.aarch64.rpm    281 kB/s |  90 kB     00:00    
+(22/194): shared-mime-info-2.1-5.el9.aarch64.rp 601 kB/s | 371 kB     00:00    
+(23/194): harfbuzz-2.7.4-10.el9.aarch64.rpm     924 kB/s | 624 kB     00:00    
+(24/194): fonts-filesystem-2.0.5-7.el9.1.noarch  50 kB/s | 9.0 kB     00:00    
+(25/194): ModemManager-glib-1.20.2-1.el9.aarch6 671 kB/s | 326 kB     00:00    
+(26/194): cups-libs-2.3.3op2-33.el9_6.1.aarch64 492 kB/s | 258 kB     00:00    
+(27/194): avahi-libs-0.8-22.el9_6.1.aarch64.rpm 205 kB/s |  65 kB     00:00    
+(28/194): adobe-source-code-pro-fonts-2.030.1.0 1.1 MB/s | 831 kB     00:00    
+(29/194): glib-networking-2.68.3-3.el9.aarch64. 383 kB/s | 168 kB     00:00    
+(30/194): kbd-legacy-2.4.0-11.el9.noarch.rpm    872 kB/s | 502 kB     00:00    
+(31/194): unzip-6.0-58.el9_5.aarch64.rpm        384 kB/s | 176 kB     00:00    
+(32/194): libgudev-237-1.el9.aarch64.rpm        143 kB/s |  34 kB     00:00    
+(33/194): polkit-0.117-13.el9.aarch64.rpm       339 kB/s | 143 kB     00:00    
+(34/194): libpng-1.6.37-12.el9.aarch64.rpm      297 kB/s | 114 kB     00:00    
+(35/194): polkit-pkla-compat-0.1-21.el9.aarch64 122 kB/s |  43 kB     00:00    
+(36/194): bubblewrap-0.4.1-8.el9_5.aarch64.rpm  137 kB/s |  48 kB     00:00    
+(37/194): libbrotli-1.0.9-7.el9_5.aarch64.rpm   565 kB/s | 311 kB     00:00    
+(38/194): lksctp-tools-1.0.19-3.el9_4.aarch64.r 233 kB/s |  94 kB     00:00    
+(39/194): kbd-2.4.0-11.el9.aarch64.rpm          595 kB/s | 370 kB     00:00    
+(40/194): libXdamage-1.1.5-7.el9.aarch64.rpm     72 kB/s |  22 kB     00:00    
+(41/194): graphene-1.10.6-2.el9.aarch64.rpm     267 kB/s |  95 kB     00:00    
+(42/194): systemd-udev-252-51.el9_6.2.aarch64.r 1.5 MB/s | 1.9 MB     00:01    
+(43/194): low-memory-monitor-2.1-4.el9.aarch64. 114 kB/s |  35 kB     00:00    
+(44/194): libXxf86vm-1.1.4-18.el9.aarch64.rpm    64 kB/s |  18 kB     00:00    
+(45/194): atk-2.36.0-5.el9.aarch64.rpm          515 kB/s | 269 kB     00:00    
+(46/194): nss-3.112.0-4.el9_4.aarch64.rpm       820 kB/s | 698 kB     00:00    
+(47/194): fdk-aac-free-2.0.0-8.el9.aarch64.rpm  593 kB/s | 317 kB     00:00    
+(48/194): flatpak-session-helper-1.12.9-4.el9_6 195 kB/s |  69 kB     00:00    
+(49/194): wireplumber-0.4.14-1.el9.0.1.aarch64. 218 kB/s |  80 kB     00:00    
+(50/194): libtiff-4.4.0-13.el9.aarch64.rpm      406 kB/s | 192 kB     00:00    
+(51/194): mesa-dri-drivers-24.2.8-3.el9_6.aarch 1.7 MB/s | 8.0 MB     00:04    
+(52/194): adwaita-cursor-theme-40.1.1-3.el9.noa 547 kB/s | 623 kB     00:01    
+(53/194): libX11-xcb-1.7.0-11.el9.aarch64.rpm    26 kB/s |  10 kB     00:00    
+(54/194): NetworkManager-libnm-1.52.0-7.el9_6.a 281 kB/s | 1.8 MB     00:06    
+(55/194): libgxps-0.3.2-3.el9.aarch64.rpm       219 kB/s |  76 kB     00:00    
+(56/194): libwayland-client-1.21.0-1.el9.aarch6 117 kB/s |  32 kB     00:00    
+(57/194): mkfontscale-1.2.1-3.el9.aarch64.rpm   117 kB/s |  31 kB     00:00    
+(58/194): hicolor-icon-theme-0.17-13.el9.noarch 196 kB/s |  66 kB     00:00    
+(59/194): lua-posix-35.0-8.el9.aarch64.rpm      309 kB/s | 130 kB     00:00    
+(60/194): pulseaudio-libs-15.0-3.el9.aarch64.rp 965 kB/s | 630 kB     00:00    
+(61/194): libdrm-2.4.123-2.el9.aarch64.rpm      300 kB/s | 129 kB     00:00    
+(62/194): abattis-cantarell-fonts-0.301-4.el9.n 629 kB/s | 364 kB     00:00    
+(63/194): libnotify-0.7.9-8.el9.aarch64.rpm     123 kB/s |  42 kB     00:00    
+(64/194): gtk-update-icon-cache-3.24.31-5.el9.a 123 kB/s |  32 kB     00:00    
+(65/194): libXau-1.0.9-8.el9.aarch64.rpm        120 kB/s |  30 kB     00:00    
+(66/194): javapackages-filesystem-6.4.0-1.el9.n  54 kB/s |  10 kB     00:00    
+(67/194): libtheora-1.1.1-31.el9.aarch64.rpm    364 kB/s | 155 kB     00:00    
+(68/194): gsm-1.0.19-6.el9.aarch64.rpm          110 kB/s |  34 kB     00:00    
+(69/194): sound-theme-freedesktop-0.8-17.el9.no 658 kB/s | 377 kB     00:00    
+(70/194): pixman-0.40.0-6.el9_3.aarch64.rpm     328 kB/s | 166 kB     00:00    
+(71/194): rtkit-0.11-29.el9.aarch64.rpm         153 kB/s |  54 kB     00:00    
+(72/194): mesa-filesystem-24.2.8-3.el9_6.aarch6  60 kB/s |  11 kB     00:00    
+(73/194): pipewire-1.0.1-1.el9.aarch64.rpm      169 kB/s | 101 kB     00:00    
+(74/194): librsvg2-2.50.7-3.el9.aarch64.rpm     1.6 MB/s | 2.7 MB     00:01    
+(75/194): libX11-common-1.7.0-11.el9.noarch.rpm 238 kB/s | 151 kB     00:00    
+(76/194): libXi-1.7.10-8.el9.aarch64.rpm        132 kB/s |  37 kB     00:00    
+(77/194): at-spi2-core-2.40.3-1.el9.aarch64.rpm 147 kB/s | 174 kB     00:01    
+(78/194): poppler-21.01.0-21.el9.aarch64.rpm    415 kB/s | 998 kB     00:02    
+(79/194): libxcb-1.13.1-9.el9.aarch64.rpm       159 kB/s | 226 kB     00:01    
+(80/194): wireplumber-libs-0.4.14-1.el9.0.1.aar  90 kB/s | 316 kB     00:03    
+(81/194): gdk-pixbuf2-modules-2.42.6-6.el9_6.aa 113 kB/s |  82 kB     00:00    
+(82/194): libXtst-1.2.3-16.el9.aarch64.rpm       71 kB/s |  20 kB     00:00    
+(83/194): libwebp-1.2.0-8.el9.aarch64.rpm       193 kB/s | 260 kB     00:01    
+(84/194): libwayland-server-1.21.0-1.el9.aarch6 104 kB/s |  40 kB     00:00    
+(85/194): pipewire-alsa-1.0.1-1.el9.aarch64.rpm 114 kB/s |  54 kB     00:00    
+(86/194): libX11-1.7.0-11.el9.aarch64.rpm       253 kB/s | 635 kB     00:02    
+(87/194): libxshmfence-1.3-10.el9.aarch64.rpm    43 kB/s |  12 kB     00:00    
+(88/194): libfontenc-1.1.3-17.el9.aarch64.rpm    96 kB/s |  30 kB     00:00    
+(89/194): libglvnd-glx-1.3.4-1.el9.aarch64.rpm  147 kB/s | 135 kB     00:00    
+(90/194): xml-common-0.6.3-58.el9.noarch.rpm     83 kB/s |  31 kB     00:00    
+(91/194): poppler-glib-21.01.0-21.el9.aarch64.r 106 kB/s | 144 kB     00:01    
+(92/194): copy-jdk-configs-4.0-3.el9.noarch.rpm  55 kB/s |  27 kB     00:00    
+(93/194): ttmkfdir-3.0.9-65.el9.aarch64.rpm     101 kB/s |  49 kB     00:00    
+(94/194): libstemmer-0-18.585svn.el9.aarch64.rp 124 kB/s |  82 kB     00:00    
+(95/194): libproxy-webkitgtk4-0.4.15-35.el9.aar  67 kB/s |  20 kB     00:00    
+(96/194): dconf-0.40.0-6.el9.aarch64.rpm        135 kB/s | 106 kB     00:00    
+(97/194): langpacks-core-font-en-3.0-16.el9.noa  49 kB/s | 9.5 kB     00:00    
+(98/194): libldac-2.0.2.3-10.el9.aarch64.rpm     91 kB/s |  40 kB     00:00    
+(99/194): libXrender-0.9.10-16.el9.aarch64.rpm   77 kB/s |  26 kB     00:00    
+(100/194): libogg-1.3.4-6.el9.aarch64.rpm        79 kB/s |  32 kB     00:00    
+(101/194): libXinerama-1.1.4-10.el9.aarch64.rpm  20 kB/s |  14 kB     00:00    
+(102/194): pipewire-pulseaudio-1.0.1-1.el9.aarc 160 kB/s | 178 kB     00:01    
+(103/194): libappstream-glib-0.7.18-5.el9_4.aar 211 kB/s | 370 kB     00:01    
+(104/194): libjpeg-turbo-2.0.90-7.el9.aarch64.r 189 kB/s | 168 kB     00:00    
+(105/194): pipewire-jack-audio-connection-kit-l 159 kB/s | 120 kB     00:00    
+(106/194): libgsf-1.14.47-5.el9.aarch64.rpm     192 kB/s | 242 kB     00:01    
+(107/194): mesa-libglapi-24.2.8-3.el9_6.aarch64 124 kB/s |  61 kB     00:00    
+(108/194): cairo-gobject-1.17.4-7.el9.aarch64.r  76 kB/s |  18 kB     00:00    
+(109/194): mesa-libgbm-24.2.8-3.el9_6.aarch64.r 108 kB/s |  35 kB     00:00    
+(110/194): libgexiv2-0.12.3-1.el9.aarch64.rpm   157 kB/s |  77 kB     00:00    
+(111/194): composefs-libs-1.0.8-1.el9.aarch64.r 127 kB/s |  52 kB     00:00    
+(112/194): libXfixes-5.0.3-16.el9.aarch64.rpm    77 kB/s |  19 kB     00:00    
+(113/194): geoclue2-2.6.0-8.el9_6.1.aarch64.rpm 115 kB/s | 118 kB     00:01    
+(114/194): nss-softokn-freebl-3.112.0-4.el9_4.a 264 kB/s | 414 kB     00:01    
+(115/194): giflib-5.2.1-9.el9.aarch64.rpm       108 kB/s |  48 kB     00:00    
+(116/194): pipewire-jack-audio-connection-kit-1  50 kB/s | 8.1 kB     00:00    
+(117/194): fontconfig-2.14.0-2.el9_1.aarch64.rp 247 kB/s | 277 kB     00:01    
+(118/194): fribidi-1.0.10-6.el9.2.aarch64.rpm   169 kB/s |  83 kB     00:00    
+(119/194): exiv2-0.27.5-2.el9.aarch64.rpm       391 kB/s | 971 kB     00:02    
+(120/194): totem-pl-parser-3.26.6-2.el9.aarch64 250 kB/s | 127 kB     00:00    
+(121/194): libthai-0.1.28-8.el9.aarch64.rpm     307 kB/s | 206 kB     00:00    
+(122/194): gstreamer1-1.22.12-3.el9.aarch64.rpm 511 kB/s | 1.4 MB     00:02    
+(123/194): openjpeg2-2.4.0-8.el9.aarch64.rpm    248 kB/s | 158 kB     00:00    
+(124/194): libvorbis-1.3.7-5.el9.aarch64.rpm    319 kB/s | 188 kB     00:00    
+(125/194): libiptcdata-1.0.5-10.el9.aarch64.rpm 151 kB/s |  57 kB     00:00    
+(126/194): libcanberra-gtk3-0.30-27.el9.aarch64 113 kB/s |  30 kB     00:00    
+(127/194): at-spi2-atk-2.38.0-4.el9.aarch64.rpm 209 kB/s |  85 kB     00:00    
+(128/194): exiv2-libs-0.27.5-2.el9.aarch64.rpm  114 kB/s | 734 kB     00:06    
+(129/194): libsoup-2.72.0-10.el9_6.2.aarch64.rp 446 kB/s | 381 kB     00:00    
+(130/194): poppler-data-0.4.9-9.el9.0.1.noarch. 751 kB/s | 1.8 MB     00:02    
+(131/194): cairo-1.17.4-7.el9.aarch64.rpm       562 kB/s | 644 kB     00:01    
+(132/194): xdg-desktop-portal-gtk-1.12.0-3.el9. 301 kB/s | 125 kB     00:00    
+(133/194): xdg-dbus-proxy-0.1.3-1.el9.aarch64.r 125 kB/s |  40 kB     00:00    
+(134/194): libXft-2.3.3-8.el9.aarch64.rpm       168 kB/s |  60 kB     00:00    
+(135/194): tracker-miners-3.1.2-4.el9_3.aarch64 600 kB/s | 881 kB     00:01    
+(136/194): opus-1.3.1-10.el9.aarch64.rpm        272 kB/s | 193 kB     00:00    
+(137/194): libsbc-1.4-9.el9.aarch64.rpm         133 kB/s |  43 kB     00:00    
+(138/194): libwayland-cursor-1.21.0-1.el9.aarch  59 kB/s |  18 kB     00:00    
+(139/194): java-11-openjdk-devel-11.0.25.0.9-7. 736 kB/s | 3.3 MB     00:04    
+(140/194): libXcursor-1.2.0-7.el9.aarch64.rpm   108 kB/s |  29 kB     00:00    
+(141/194): java-11-openjdk-11.0.25.0.9-7.el9.aa 450 kB/s | 401 kB     00:00    
+(142/194): libXrandr-1.5.2-8.el9.aarch64.rpm     24 kB/s |  26 kB     00:01    
+(143/194): xorg-x11-fonts-Type1-7.5-33.el9.noar 334 kB/s | 499 kB     00:01    
+(144/194): osinfo-db-tools-1.10.0-1.el9.aarch64 155 kB/s |  67 kB     00:00    
+(145/194): libglvnd-egl-1.3.4-1.el9.aarch64.rpm 133 kB/s |  36 kB     00:00    
+(146/194): alsa-lib-1.2.13-2.el9.aarch64.rpm    494 kB/s | 494 kB     00:00    
+(147/194): orc-0.4.31-8.el9.aarch64.rpm         282 kB/s | 177 kB     00:00    
+(148/194): mesa-libGL-24.2.8-3.el9_6.aarch64.rp 362 kB/s | 174 kB     00:00    
+(149/194): libxslt-1.1.34-13.el9_6.aarch64.rpm  364 kB/s | 237 kB     00:00    
+(150/194): libexif-0.6.22-6.el9.aarch64.rpm     469 kB/s | 422 kB     00:00    
+(151/194): libdatrie-0.2.13-4.el9.aarch64.rpm    83 kB/s |  31 kB     00:00    
+(152/194): gstreamer1-plugins-base-1.22.12-4.el 342 kB/s | 2.1 MB     00:06    
+(153/194): lua-5.4.4-4.el9.aarch64.rpm          339 kB/s | 185 kB     00:00    
+(154/194): tracker-3.1.2-3.el9_1.aarch64.rpm    236 kB/s | 534 kB     00:02    
+(155/194): nss-sysinit-3.112.0-4.el9_4.aarch64.  72 kB/s |  17 kB     00:00    
+(156/194): libcanberra-0.30-27.el9.aarch64.rpm  160 kB/s |  82 kB     00:00    
+(157/194): libXv-1.0.11-16.el9.aarch64.rpm       75 kB/s |  18 kB     00:00    
+(158/194): libxkbcommon-1.0.3-4.el9.aarch64.rpm 190 kB/s | 130 kB     00:00    
+(159/194): nss-util-3.112.0-4.el9_4.aarch64.rpm 178 kB/s |  86 kB     00:00    
+(160/194): mesa-libEGL-24.2.8-3.el9_6.aarch64.r 181 kB/s | 137 kB     00:00    
+(161/194): libXcomposite-0.4.5-7.el9.aarch64.rp  82 kB/s |  23 kB     00:00    
+(162/194): flatpak-1.12.9-4.el9_6.aarch64.rpm   249 kB/s | 1.5 MB     00:06    
+(163/194): nspr-4.36.0-4.el9_4.aarch64.rpm      172 kB/s | 130 kB     00:00    
+(164/194): ostree-libs-2025.2-2.el9_6.aarch64.r 302 kB/s | 424 kB     00:01    
+(165/194): pango-1.48.7-3.el9.aarch64.rpm       261 kB/s | 291 kB     00:01    
+(166/194): colord-libs-1.4.5-6.el9_6.aarch64.rp 230 kB/s | 218 kB     00:00    
+(167/194): libosinfo-1.10.0-1.el9.aarch64.rpm   273 kB/s | 312 kB     00:01    
+(168/194): libsndfile-1.0.31-9.el9.aarch64.rpm  223 kB/s | 206 kB     00:00    
+(169/194): libtracker-sparql-3.1.2-3.el9_1.aarc 270 kB/s | 309 kB     00:01    
+(170/194): lcms2-2.12-3.el9.aarch64.rpm         217 kB/s | 164 kB     00:00    
+(171/194): p11-kit-server-0.25.3-3.el9_5.aarch6 236 kB/s | 231 kB     00:00    
+(172/194): upower-0.99.13-2.el9.aarch64.rpm     131 kB/s | 162 kB     00:01    
+(173/194): libasyncns-0.8-22.el9.aarch64.rpm     76 kB/s |  29 kB     00:00    
+(174/194): flac-libs-1.3.3-10.el9_2.1.aarch64.r 146 kB/s | 192 kB     00:01    
+(175/194): webkit2gtk3-jsc-2.50.1-0.el9_6.aarch 499 kB/s | 4.3 MB     00:08    
+(176/194): iso-codes-4.6.0-3.el9.noarch.rpm     505 kB/s | 3.3 MB     00:06    
+(177/194): gtk3-3.24.31-5.el9.aarch64.rpm       244 kB/s | 4.8 MB     00:19    
+(178/194): java-11-openjdk-headless-11.0.25.0.9 667 kB/s |  38 MB     00:59    
+(179/194): libwayland-egl-1.21.0-1.el9.aarch64.  15 kB/s |  12 kB     00:00    
+(180/194): osinfo-db-20250124-2.el9.rocky.20250 169 kB/s | 308 kB     00:01    
+(181/194): nss-softokn-3.112.0-4.el9_4.aarch64. 162 kB/s | 388 kB     00:02    
+(182/194): webrtc-audio-processing-0.3.1-8.el9. 188 kB/s | 293 kB     00:01    
+(183/194): jbigkit-libs-2.1-23.el9.aarch64.rpm  115 kB/s |  52 kB     00:00    
+(184/194): avahi-glib-0.8-22.el9_6.1.aarch64.rp  84 kB/s |  13 kB     00:00    
+(185/194): libglvnd-1.3.4-1.el9.aarch64.rpm     178 kB/s | 127 kB     00:00    
+(186/194): gdk-pixbuf2-2.42.6-6.el9_6.aarch64.r 263 kB/s | 464 kB     00:01    
+(187/194): xkeyboard-config-2.33-2.el9.noarch.r 217 kB/s | 779 kB     00:03    
+(188/194): libXext-1.3.4-8.el9.aarch64.rpm       69 kB/s |  38 kB     00:00    
+(189/194): exempi-2.6.0-0.2.20211007gite23c213. 154 kB/s | 488 kB     00:03    
+(190/194): xdg-desktop-portal-1.12.6-1.el9.aarc 230 kB/s | 344 kB     00:01    
+(191/194): libepoxy-1.5.5-4.el9.aarch64.rpm     152 kB/s | 256 kB     00:01    
+(192/194): pipewire-libs-1.0.1-1.el9.aarch64.rp 152 kB/s | 1.7 MB     00:11    
+(193/194): adwaita-icon-theme-40.1.1-3.el9.noar 462 kB/s |  11 MB     00:23    
+(194/194): llvm-libs-19.1.7-1.el9.aarch64.rpm   362 kB/s |  53 MB     02:29    
 --------------------------------------------------------------------------------
-Total                                           4.8 MB/s | 190 MB     00:39     
+Total                                           985 kB/s | 186 MB     03:13     
 Running transaction check
 Transaction check succeeded.
 Running transaction test
@@ -468,480 +450,452 @@ Running transaction
   Running scriptlet: copy-jdk-configs-4.0-3.el9.noarch                      1/1 
   Running scriptlet: java-11-openjdk-headless-1:11.0.25.0.9-7.el9.aarch64   1/1 
   Preparing        :                                                        1/1 
-  Installing       : libpng-2:1.6.37-12.el9.aarch64                       1/203 
-  Installing       : dbus-libs-1:1.12.20-8.el9.aarch64                    2/203 
-  Installing       : nspr-4.36.0-4.el9_4.aarch64                          3/203 
-  Installing       : libjpeg-turbo-2.0.90-7.el9.aarch64                   4/203 
-  Installing       : json-glib-1.6.6-1.el9.aarch64                        5/203 
-  Installing       : avahi-libs-0.8-22.el9_6.1.aarch64                    6/203 
-  Installing       : alsa-lib-1.2.13-2.el9.aarch64                        7/203 
-  Installing       : libogg-2:1.3.4-6.el9.aarch64                         8/203 
-  Installing       : libdrm-2.4.123-2.el9.aarch64                         9/203 
-  Installing       : libvorbis-1:1.3.7-5.el9.aarch64                     10/203 
-  Installing       : nss-util-3.112.0-4.el9_4.aarch64                    11/203 
-  Installing       : libwayland-client-1.21.0-1.el9.aarch64              12/203 
-  Installing       : libX11-xcb-1.7.0-11.el9.aarch64                     13/203 
-  Installing       : fonts-filesystem-1:2.0.5-7.el9.1.noarch             14/203 
-  Installing       : lcms2-2.12-3.el9.aarch64                            15/203 
-  Installing       : opus-1.3.1-10.el9.aarch64                           16/203 
-  Installing       : gstreamer1-1.22.12-3.el9.aarch64                    17/203 
-  Installing       : libstemmer-0-18.585svn.el9.aarch64                  18/203 
-  Installing       : libxshmfence-1.3-10.el9.aarch64                     19/203 
-  Installing       : atk-2.36.0-5.el9.aarch64                            20/203 
-  Installing       : libseccomp-2.5.2-2.el9.aarch64                      21/203 
-  Installing       : polkit-libs-0.117-13.el9.aarch64                    22/203 
-  Installing       : dejavu-sans-fonts-2.37-18.el9.noarch                23/203 
-  Installing       : libwayland-cursor-1.21.0-1.el9.aarch64              24/203 
-  Installing       : cups-libs-1:2.3.3op2-33.el9_6.1.aarch64             25/203 
-  Installing       : exiv2-0.27.5-2.el9.aarch64                          26/203 
-  Installing       : exiv2-libs-0.27.5-2.el9.aarch64                     27/203 
-  Installing       : libglvnd-1:1.3.4-1.el9.aarch64                      28/203 
-  Installing       : libwayland-egl-1.21.0-1.el9.aarch64                 29/203 
-  Installing       : fribidi-1.0.10-6.el9.2.aarch64                      30/203 
-  Running scriptlet: xml-common-0.6.3-58.el9.noarch                      31/203 
-  Installing       : xml-common-0.6.3-58.el9.noarch                      31/203 
-  Installing       : libwayland-server-1.21.0-1.el9.aarch64              32/203 
-  Installing       : pixman-0.40.0-6.el9_3.aarch64                       33/203 
-  Installing       : libXau-1.0.9-8.el9.aarch64                          34/203 
-  Installing       : libxcb-1.13.1-9.el9.aarch64                         35/203 
-  Installing       : libbrotli-1.0.9-7.el9_5.aarch64                     36/203 
-  Installing       : libgudev-237-1.el9.aarch64                          37/203 
-  Installing       : kmod-libs-28-10.el9.aarch64                         38/203 
-  Installing       : fuse-libs-2.9.9-17.el9.aarch64                      39/203 
-  Installing       : libproxy-0.4.15-35.el9.aarch64                      40/203 
-  Installing       : libtdb-1.4.12-1.el9.aarch64                         41/203 
-  Installing       : hwdata-0.348-9.18.el9.noarch                        42/203 
-  Installing       : osinfo-db-20250124-2.el9.rocky.20250630.noarch      43/203 
-  Installing       : iso-codes-4.6.0-3.el9.noarch                        44/203 
-  Installing       : libgexiv2-0.12.3-1.el9.aarch64                      45/203 
-  Installing       : langpacks-core-font-en-3.0-16.el9.noarch            46/203 
-  Installing       : adobe-source-code-pro-fonts-2.030.1.050-12.el9.1    47/203 
-  Installing       : abattis-cantarell-fonts-0.301-4.el9.noarch          48/203 
-  Installing       : gsettings-desktop-schemas-40.0-7.el9_6.aarch64      49/203 
-  Installing       : nss-softokn-freebl-3.112.0-4.el9_4.aarch64          50/203 
-  Installing       : nss-softokn-3.112.0-4.el9_4.aarch64                 51/203 
-  Installing       : nss-sysinit-3.112.0-4.el9_4.aarch64                 52/203 
-  Installing       : nss-3.112.0-4.el9_4.aarch64                         53/203 
-  Running scriptlet: nss-3.112.0-4.el9_4.aarch64                         53/203 
-  Installing       : libtheora-1:1.1.1-31.el9.aarch64                    54/203 
-  Installing       : flac-libs-1.3.3-10.el9_2.1.aarch64                  55/203 
-  Installing       : avahi-glib-0.8-22.el9_6.1.aarch64                   56/203 
-  Installing       : libepoxy-1.5.5-4.el9.aarch64                        57/203 
-  Installing       : webkit2gtk3-jsc-2.48.5-1.el9_6.aarch64              58/203 
-  Installing       : libproxy-webkitgtk4-0.4.15-35.el9.aarch64           59/203 
-  Installing       : glib-networking-2.68.3-3.el9.aarch64                60/203 
-  Installing       : libsoup-2.72.0-10.el9_6.2.aarch64                   61/203 
-  Installing       : osinfo-db-tools-1.10.0-1.el9.aarch64                62/203 
-  Installing       : exempi-2.6.0-0.2.20211007gite23c213.el9.aarch64     63/203 
-  Installing       : xkeyboard-config-2.33-2.el9.noarch                  64/203 
-  Installing       : libxkbcommon-1.0.3-4.el9.aarch64                    65/203 
-  Installing       : jbigkit-libs-2.1-23.el9.aarch64                     66/203 
-  Installing       : webrtc-audio-processing-0.3.1-8.el9.0.1.aarch64     67/203 
-  Installing       : libasyncns-0.8-22.el9.aarch64                       68/203 
-  Installing       : p11-kit-server-0.25.3-3.el9_5.aarch64               69/203 
-  Installing       : llvm-libs-19.1.7-1.el9.aarch64                      70/203 
-  Installing       : lua-5.4.4-4.el9.aarch64                             71/203 
-  Installing       : libdatrie-0.2.13-4.el9.aarch64                      72/203 
-  Installing       : libthai-0.1.28-8.el9.aarch64                        73/203 
-  Installing       : libxslt-1.1.34-13.el9_6.aarch64                     74/203 
-  Installing       : libosinfo-1.10.0-1.el9.aarch64                      75/203 
-  Installing       : libexif-0.6.22-6.el9.aarch64                        76/203 
-  Installing       : orc-0.4.31-8.el9.aarch64                            77/203 
-  Installing       : libsbc-1.4-9.el9.aarch64                            78/203 
-  Installing       : poppler-data-0.4.9-9.el9.0.1.noarch                 79/203 
-  Installing       : libiptcdata-1.0.5-10.el9.aarch64                    80/203 
-  Installing       : openjpeg2-2.4.0-8.el9.aarch64                       81/203 
-  Installing       : totem-pl-parser-3.26.6-2.el9.aarch64                82/203 
-  Installing       : giflib-5.2.1-9.el9.aarch64                          83/203 
-  Installing       : composefs-libs-1.0.8-1.el9.aarch64                  84/203 
-  Installing       : ostree-libs-2025.2-2.el9_6.aarch64                  85/203 
-  Installing       : libldac-2.0.2.3-10.el9.aarch64                      86/203 
-  Installing       : libfontenc-1.1.3-17.el9.aarch64                     87/203 
-  Installing       : libwebp-1.2.0-8.el9.aarch64                         88/203 
-  Installing       : libtiff-4.4.0-13.el9.aarch64                        89/203 
-  Installing       : libX11-common-1.7.0-11.el9.noarch                   90/203 
-  Installing       : libX11-1.7.0-11.el9.aarch64                         91/203 
-  Installing       : libXext-1.3.4-8.el9.aarch64                         92/203 
-  Installing       : libXrender-0.9.10-16.el9.aarch64                    93/203 
-  Installing       : libXi-1.7.10-8.el9.aarch64                          94/203 
-  Installing       : libXfixes-5.0.3-16.el9.aarch64                      95/203 
-  Installing       : libXtst-1.2.3-16.el9.aarch64                        96/203 
-  Installing       : libXcomposite-0.4.5-7.el9.aarch64                   97/203 
-  Installing       : libXdamage-1.1.5-7.el9.aarch64                      98/203 
-  Installing       : libXcursor-1.2.0-7.el9.aarch64                      99/203 
-  Installing       : libXrandr-1.5.2-8.el9.aarch64                      100/203 
-  Installing       : libXxf86vm-1.1.4-18.el9.aarch64                    101/203 
-  Installing       : libXinerama-1.1.4-10.el9.aarch64                   102/203 
-  Installing       : libXv-1.0.11-16.el9.aarch64                        103/203 
-  Installing       : mesa-filesystem-24.2.8-3.el9_6.aarch64             104/203 
-  Installing       : mesa-libglapi-24.2.8-3.el9_6.aarch64               105/203 
-  Installing       : mesa-libgbm-24.2.8-3.el9_6.aarch64                 106/203 
-  Installing       : libglvnd-egl-1:1.3.4-1.el9.aarch64                 107/203 
-  Installing       : mesa-libEGL-24.2.8-3.el9_6.aarch64                 108/203 
-  Installing       : mesa-dri-drivers-24.2.8-3.el9_6.aarch64            109/203 
-  Installing       : libglvnd-glx-1:1.3.4-1.el9.aarch64                 110/203 
-  Installing       : mesa-libGL-24.2.8-3.el9_6.aarch64                  111/203 
-  Installing       : sound-theme-freedesktop-0.8-17.el9.noarch          112/203 
-  Running scriptlet: sound-theme-freedesktop-0.8-17.el9.noarch          112/203 
-  Installing       : gsm-1.0.19-6.el9.aarch64                           113/203 
-  Installing       : libsndfile-1.0.31-9.el9.aarch64                    114/203 
-  Installing       : pulseaudio-libs-15.0-3.el9.aarch64                 115/203 
-  Installing       : javapackages-filesystem-6.4.0-1.el9.noarch         116/203 
-  Installing       : hicolor-icon-theme-0.17-13.el9.noarch              117/203 
-  Installing       : lua-posix-35.0-8.el9.aarch64                       118/203 
-  Installing       : copy-jdk-configs-4.0-3.el9.noarch                  119/203 
-  Installing       : adwaita-cursor-theme-40.1.1-3.el9.noarch           120/203 
-  Installing       : adwaita-icon-theme-40.1.1-3.el9.noarch             121/203 
-  Installing       : fdk-aac-free-2.0.0-8.el9.aarch64                   122/203 
-  Installing       : low-memory-monitor-2.1-4.el9.aarch64               123/203 
-  Running scriptlet: low-memory-monitor-2.1-4.el9.aarch64               123/203 
-  Installing       : graphene-1.10.6-2.el9.aarch64                      124/203 
-  Installing       : lksctp-tools-1.0.19-3.el9_4.aarch64                125/203 
-  Installing       : java-11-openjdk-headless-1:11.0.25.0.9-7.el9.aar   126/203 
-  Running scriptlet: java-11-openjdk-headless-1:11.0.25.0.9-7.el9.aar   126/203 
-  Installing       : NetworkManager-libnm-1:1.52.0-7.el9_6.aarch64      127/203 
-  Installing       : bubblewrap-0.4.1-8.el9_5.aarch64                   128/203 
-  Installing       : kbd-legacy-2.4.0-11.el9.noarch                     129/203 
-  Installing       : ModemManager-glib-1.20.2-1.el9.aarch64             130/203 
-  Installing       : graphite2-1.3.14-9.el9.aarch64                     131/203 
-  Installing       : harfbuzz-2.7.4-10.el9.aarch64                      132/203 
-  Installing       : freetype-2.10.4-10.el9_5.aarch64                   133/203 
-  Installing       : fontconfig-2.14.0-2.el9_1.aarch64                  134/203 
-  Running scriptlet: fontconfig-2.14.0-2.el9_1.aarch64                  134/203 
-  Installing       : cairo-1.17.4-7.el9.aarch64                         135/203 
-  Installing       : cairo-gobject-1.17.4-7.el9.aarch64                 136/203 
-  Installing       : libgxps-0.3.2-3.el9.aarch64                        137/203 
-  Installing       : poppler-21.01.0-21.el9.aarch64                     138/203 
-  Installing       : poppler-glib-21.01.0-21.el9.aarch64                139/203 
-  Installing       : libXft-2.3.3-8.el9.aarch64                         140/203 
-  Installing       : pango-1.48.7-3.el9.aarch64                         141/203 
-  Installing       : gstreamer1-plugins-base-1.22.12-4.el9.aarch64      142/203 
-  Installing       : mkfontscale-1.2.1-3.el9.aarch64                    143/203 
-  Installing       : ttmkfdir-3.0.9-65.el9.aarch64                      144/203 
-  Installing       : xorg-x11-fonts-Type1-7.5-33.el9.noarch             145/203 
-  Running scriptlet: xorg-x11-fonts-Type1-7.5-33.el9.noarch             145/203 
-  Installing       : shared-mime-info-2.1-5.el9.aarch64                 146/203 
-  Running scriptlet: shared-mime-info-2.1-5.el9.aarch64                 146/203 
-  Installing       : gdk-pixbuf2-2.42.6-6.el9_6.aarch64                 147/203 
-  Installing       : libnotify-0.7.9-8.el9.aarch64                      148/203 
-  Installing       : gtk-update-icon-cache-3.24.31-5.el9.aarch64        149/203 
-  Installing       : librsvg2-2.50.7-3.el9.aarch64                      150/203 
-  Installing       : gdk-pixbuf2-modules-2.42.6-6.el9_6.aarch64         151/203 
-  Installing       : libappstream-glib-0.7.18-5.el9_4.aarch64           152/203 
-  Installing       : libgsf-1.14.47-5.el9.aarch64                       153/203 
-  Installing       : libgusb-0.3.8-2.el9.aarch64                        154/203 
-  Installing       : colord-libs-1.4.5-6.el9_6.aarch64                  155/203 
-  Installing       : kmod-28-10.el9.aarch64                             156/203 
-  Installing       : systemd-rpm-macros-252-51.el9_6.2.noarch           157/203 
-  Installing       : bluez-libs-5.72-4.el9.aarch64                      158/203 
-  Installing       : gobject-introspection-1.68.0-11.el9.aarch64        159/203 
-  Installing       : acl-2.3.1-4.el9.aarch64                            160/203 
-  Installing       : systemd-pam-252-51.el9_6.2.aarch64                 161/203 
-  Installing       : dbus-1:1.12.20-8.el9.aarch64                       162/203 
-  Running scriptlet: systemd-252-51.el9_6.2.aarch64                     163/203 
-  Installing       : systemd-252-51.el9_6.2.aarch64                     163/203 
-  Running scriptlet: systemd-252-51.el9_6.2.aarch64                     163/203 
-  Installing       : dbus-common-1:1.12.20-8.el9.noarch                 164/203 
-  Running scriptlet: dbus-common-1:1.12.20-8.el9.noarch                 164/203 
-Created symlink /etc/systemd/system/sockets.target.wants/dbus.socket → /usr/lib/systemd/system/dbus.socket.
-Created symlink /etc/systemd/user/sockets.target.wants/dbus.socket → /usr/lib/systemd/user/dbus.socket.
-
-  Running scriptlet: dbus-broker-28-7.el9.aarch64                       165/203 
-  Installing       : dbus-broker-28-7.el9.aarch64                       165/203 
-  Running scriptlet: dbus-broker-28-7.el9.aarch64                       165/203 
-Created symlink /etc/systemd/system/dbus.service → /usr/lib/systemd/system/dbus-broker.service.
-Created symlink /etc/systemd/user/dbus.service → /usr/lib/systemd/user/dbus-broker.service.
-
-  Running scriptlet: polkit-0.117-13.el9.aarch64                        166/203 
-  Installing       : polkit-0.117-13.el9.aarch64                        166/203 
-  Running scriptlet: polkit-0.117-13.el9.aarch64                        166/203 
-  Installing       : polkit-pkla-compat-0.1-21.el9.aarch64              167/203 
-  Installing       : dconf-0.40.0-6.el9.aarch64                         168/203 
-  Running scriptlet: dconf-0.40.0-6.el9.aarch64                         168/203 
-  Running scriptlet: rtkit-0.11-29.el9.aarch64                          169/203 
-  Installing       : rtkit-0.11-29.el9.aarch64                          169/203 
-  Running scriptlet: rtkit-0.11-29.el9.aarch64                          169/203 
+  Installing       : libpng-2:1.6.37-12.el9.aarch64                       1/194 
+  Installing       : dbus-libs-1:1.12.20-8.el9.aarch64                    2/194 
+  Installing       : nspr-4.36.0-4.el9_4.aarch64                          3/194 
+  Installing       : libjpeg-turbo-2.0.90-7.el9.aarch64                   4/194 
+  Installing       : json-glib-1.6.6-1.el9.aarch64                        5/194 
+  Installing       : avahi-libs-0.8-22.el9_6.1.aarch64                    6/194 
+  Installing       : alsa-lib-1.2.13-2.el9.aarch64                        7/194 
+  Installing       : libogg-2:1.3.4-6.el9.aarch64                         8/194 
+  Installing       : libdrm-2.4.123-2.el9.aarch64                         9/194 
+  Installing       : libvorbis-1:1.3.7-5.el9.aarch64                     10/194 
+  Installing       : nss-util-3.112.0-4.el9_4.aarch64                    11/194 
+  Installing       : libwayland-client-1.21.0-1.el9.aarch64              12/194 
+  Installing       : libX11-xcb-1.7.0-11.el9.aarch64                     13/194 
+  Installing       : fonts-filesystem-1:2.0.5-7.el9.1.noarch             14/194 
+  Installing       : lcms2-2.12-3.el9.aarch64                            15/194 
+  Installing       : opus-1.3.1-10.el9.aarch64                           16/194 
+  Installing       : gstreamer1-1.22.12-3.el9.aarch64                    17/194 
+  Installing       : libstemmer-0-18.585svn.el9.aarch64                  18/194 
+  Installing       : libxshmfence-1.3-10.el9.aarch64                     19/194 
+  Installing       : atk-2.36.0-5.el9.aarch64                            20/194 
+  Installing       : polkit-libs-0.117-13.el9.aarch64                    21/194 
+  Running scriptlet: polkit-0.117-13.el9.aarch64                         22/194 
+  Installing       : polkit-0.117-13.el9.aarch64                         22/194 
+  Running scriptlet: polkit-0.117-13.el9.aarch64                         22/194 
+  Installing       : polkit-pkla-compat-0.1-21.el9.aarch64               23/194 
+  Installing       : dejavu-sans-fonts-2.37-18.el9.noarch                24/194 
+  Installing       : libwayland-cursor-1.21.0-1.el9.aarch64              25/194 
+  Installing       : cups-libs-1:2.3.3op2-33.el9_6.1.aarch64             26/194 
+  Installing       : exiv2-0.27.5-2.el9.aarch64                          27/194 
+  Installing       : exiv2-libs-0.27.5-2.el9.aarch64                     28/194 
+  Installing       : libglvnd-1:1.3.4-1.el9.aarch64                      29/194 
+  Installing       : libwayland-egl-1.21.0-1.el9.aarch64                 30/194 
+  Installing       : fribidi-1.0.10-6.el9.2.aarch64                      31/194 
+  Installing       : dconf-0.40.0-6.el9.aarch64                          32/194 
+  Running scriptlet: dconf-0.40.0-6.el9.aarch64                          32/194 
+  Running scriptlet: xml-common-0.6.3-58.el9.noarch                      33/194 
+  Installing       : xml-common-0.6.3-58.el9.noarch                      33/194 
+  Installing       : libwayland-server-1.21.0-1.el9.aarch64              34/194 
+  Installing       : pixman-0.40.0-6.el9_3.aarch64                       35/194 
+  Installing       : libXau-1.0.9-8.el9.aarch64                          36/194 
+  Installing       : libxcb-1.13.1-9.el9.aarch64                         37/194 
+  Installing       : libbrotli-1.0.9-7.el9_5.aarch64                     38/194 
+  Installing       : libgudev-237-1.el9.aarch64                          39/194 
+  Installing       : fuse-libs-2.9.9-17.el9.aarch64                      40/194 
+  Installing       : libproxy-0.4.15-35.el9.aarch64                      41/194 
+  Installing       : libtdb-1.4.12-1.el9.aarch64                         42/194 
+  Installing       : hwdata-0.348-9.18.el9.noarch                        43/194 
+  Installing       : osinfo-db-20250124-2.el9.rocky.20250630.noarch      44/194 
+  Installing       : iso-codes-4.6.0-3.el9.noarch                        45/194 
+  Installing       : libgexiv2-0.12.3-1.el9.aarch64                      46/194 
+  Installing       : langpacks-core-font-en-3.0-16.el9.noarch            47/194 
+  Running scriptlet: rtkit-0.11-29.el9.aarch64                           48/194 
+  Installing       : rtkit-0.11-29.el9.aarch64                           48/194 
+  Running scriptlet: rtkit-0.11-29.el9.aarch64                           48/194 
 Created symlink /etc/systemd/system/graphical.target.wants/rtkit-daemon.service → /usr/lib/systemd/system/rtkit-daemon.service.
 
-  Installing       : wireplumber-0.4.14-1.el9.0.1.aarch64               170/203 
-  Installing       : wireplumber-libs-0.4.14-1.el9.0.1.aarch64          171/203 
-  Installing       : pipewire-libs-1.0.1-1.el9.aarch64                  172/203 
-  Running scriptlet: pipewire-1.0.1-1.el9.aarch64                       173/203 
-  Installing       : pipewire-1.0.1-1.el9.aarch64                       173/203 
-  Running scriptlet: pipewire-1.0.1-1.el9.aarch64                       173/203 
+  Installing       : adobe-source-code-pro-fonts-2.030.1.050-12.el9.1    49/194 
+  Installing       : abattis-cantarell-fonts-0.301-4.el9.noarch          50/194 
+  Installing       : gsettings-desktop-schemas-40.0-7.el9_6.aarch64      51/194 
+  Installing       : nss-softokn-freebl-3.112.0-4.el9_4.aarch64          52/194 
+  Installing       : nss-softokn-3.112.0-4.el9_4.aarch64                 53/194 
+  Installing       : nss-sysinit-3.112.0-4.el9_4.aarch64                 54/194 
+  Installing       : nss-3.112.0-4.el9_4.aarch64                         55/194 
+  Running scriptlet: nss-3.112.0-4.el9_4.aarch64                         55/194 
+  Installing       : libtheora-1:1.1.1-31.el9.aarch64                    56/194 
+  Installing       : flac-libs-1.3.3-10.el9_2.1.aarch64                  57/194 
+  Installing       : avahi-glib-0.8-22.el9_6.1.aarch64                   58/194 
+  Installing       : device-mapper-libs-9:1.02.202-6.el9.aarch64         59/194 
+  Installing       : device-mapper-9:1.02.202-6.el9.aarch64              60/194 
+  Installing       : cryptsetup-libs-2.7.2-3.el9_6.1.aarch64             61/194 
+  Installing       : libepoxy-1.5.5-4.el9.aarch64                        62/194 
+  Installing       : exempi-2.6.0-0.2.20211007gite23c213.el9.aarch64     63/194 
+  Installing       : xkeyboard-config-2.33-2.el9.noarch                  64/194 
+  Installing       : libxkbcommon-1.0.3-4.el9.aarch64                    65/194 
+  Installing       : jbigkit-libs-2.1-23.el9.aarch64                     66/194 
+  Installing       : webrtc-audio-processing-0.3.1-8.el9.0.1.aarch64     67/194 
+  Installing       : webkit2gtk3-jsc-2.50.1-0.el9_6.aarch64              68/194 
+  Installing       : libproxy-webkitgtk4-0.4.15-35.el9.aarch64           69/194 
+  Installing       : glib-networking-2.68.3-3.el9.aarch64                70/194 
+  Installing       : libsoup-2.72.0-10.el9_6.2.aarch64                   71/194 
+  Installing       : osinfo-db-tools-1.10.0-1.el9.aarch64                72/194 
+  Installing       : libasyncns-0.8-22.el9.aarch64                       73/194 
+  Installing       : p11-kit-server-0.25.3-3.el9_5.aarch64               74/194 
+  Installing       : llvm-libs-19.1.7-1.el9.aarch64                      75/194 
+  Installing       : lua-5.4.4-4.el9.aarch64                             76/194 
+  Installing       : libdatrie-0.2.13-4.el9.aarch64                      77/194 
+  Installing       : libthai-0.1.28-8.el9.aarch64                        78/194 
+  Installing       : libxslt-1.1.34-13.el9_6.aarch64                     79/194 
+  Installing       : libosinfo-1.10.0-1.el9.aarch64                      80/194 
+  Installing       : libexif-0.6.22-6.el9.aarch64                        81/194 
+  Installing       : orc-0.4.31-8.el9.aarch64                            82/194 
+  Installing       : libsbc-1.4-9.el9.aarch64                            83/194 
+  Installing       : xdg-dbus-proxy-0.1.3-1.el9.aarch64                  84/194 
+  Installing       : poppler-data-0.4.9-9.el9.0.1.noarch                 85/194 
+  Installing       : libiptcdata-1.0.5-10.el9.aarch64                    86/194 
+  Installing       : openjpeg2-2.4.0-8.el9.aarch64                       87/194 
+  Installing       : totem-pl-parser-3.26.6-2.el9.aarch64                88/194 
+  Installing       : giflib-5.2.1-9.el9.aarch64                          89/194 
+  Installing       : composefs-libs-1.0.8-1.el9.aarch64                  90/194 
+  Installing       : ostree-libs-2025.2-2.el9_6.aarch64                  91/194 
+  Installing       : libldac-2.0.2.3-10.el9.aarch64                      92/194 
+  Installing       : libfontenc-1.1.3-17.el9.aarch64                     93/194 
+  Installing       : libwebp-1.2.0-8.el9.aarch64                         94/194 
+  Installing       : libtiff-4.4.0-13.el9.aarch64                        95/194 
+  Installing       : libX11-common-1.7.0-11.el9.noarch                   96/194 
+  Installing       : libX11-1.7.0-11.el9.aarch64                         97/194 
+  Installing       : libXext-1.3.4-8.el9.aarch64                         98/194 
+  Installing       : libXrender-0.9.10-16.el9.aarch64                    99/194 
+  Installing       : libXi-1.7.10-8.el9.aarch64                         100/194 
+  Installing       : libXfixes-5.0.3-16.el9.aarch64                     101/194 
+  Installing       : libXtst-1.2.3-16.el9.aarch64                       102/194 
+  Installing       : libXcomposite-0.4.5-7.el9.aarch64                  103/194 
+  Installing       : at-spi2-core-2.40.3-1.el9.aarch64                  104/194 
+  Installing       : at-spi2-atk-2.38.0-4.el9.aarch64                   105/194 
+  Installing       : libXdamage-1.1.5-7.el9.aarch64                     106/194 
+  Installing       : libXcursor-1.2.0-7.el9.aarch64                     107/194 
+  Installing       : libXrandr-1.5.2-8.el9.aarch64                      108/194 
+  Installing       : libXxf86vm-1.1.4-18.el9.aarch64                    109/194 
+  Installing       : libXinerama-1.1.4-10.el9.aarch64                   110/194 
+  Installing       : libXv-1.0.11-16.el9.aarch64                        111/194 
+  Installing       : mesa-filesystem-24.2.8-3.el9_6.aarch64             112/194 
+  Installing       : mesa-libglapi-24.2.8-3.el9_6.aarch64               113/194 
+  Installing       : mesa-libgbm-24.2.8-3.el9_6.aarch64                 114/194 
+  Installing       : libglvnd-egl-1:1.3.4-1.el9.aarch64                 115/194 
+  Installing       : mesa-libEGL-24.2.8-3.el9_6.aarch64                 116/194 
+  Installing       : mesa-dri-drivers-24.2.8-3.el9_6.aarch64            117/194 
+  Installing       : libglvnd-glx-1:1.3.4-1.el9.aarch64                 118/194 
+  Installing       : mesa-libGL-24.2.8-3.el9_6.aarch64                  119/194 
+  Installing       : sound-theme-freedesktop-0.8-17.el9.noarch          120/194 
+  Running scriptlet: sound-theme-freedesktop-0.8-17.el9.noarch          120/194 
+  Installing       : gsm-1.0.19-6.el9.aarch64                           121/194 
+  Installing       : libsndfile-1.0.31-9.el9.aarch64                    122/194 
+  Installing       : pulseaudio-libs-15.0-3.el9.aarch64                 123/194 
+  Installing       : libcanberra-0.30-27.el9.aarch64                    124/194 
+  Running scriptlet: libcanberra-0.30-27.el9.aarch64                    124/194 
+  Installing       : javapackages-filesystem-6.4.0-1.el9.noarch         125/194 
+  Installing       : hicolor-icon-theme-0.17-13.el9.noarch              126/194 
+  Installing       : lua-posix-35.0-8.el9.aarch64                       127/194 
+  Installing       : copy-jdk-configs-4.0-3.el9.noarch                  128/194 
+  Installing       : adwaita-cursor-theme-40.1.1-3.el9.noarch           129/194 
+  Installing       : adwaita-icon-theme-40.1.1-3.el9.noarch             130/194 
+  Installing       : flatpak-session-helper-1.12.9-4.el9_6.aarch64      131/194 
+  Installing       : fdk-aac-free-2.0.0-8.el9.aarch64                   132/194 
+  Installing       : low-memory-monitor-2.1-4.el9.aarch64               133/194 
+  Running scriptlet: low-memory-monitor-2.1-4.el9.aarch64               133/194 
+Created symlink /etc/systemd/system/basic.target.wants/low-memory-monitor.service → /usr/lib/systemd/system/low-memory-monitor.service.
+
+  Installing       : graphene-1.10.6-2.el9.aarch64                      134/194 
+  Installing       : lksctp-tools-1.0.19-3.el9_4.aarch64                135/194 
+  Installing       : java-11-openjdk-headless-1:11.0.25.0.9-7.el9.aar   136/194 
+  Running scriptlet: java-11-openjdk-headless-1:11.0.25.0.9-7.el9.aar   136/194 
+  Installing       : NetworkManager-libnm-1:1.52.0-7.el9_6.aarch64      137/194 
+  Installing       : bubblewrap-0.4.1-8.el9_5.aarch64                   138/194 
+  Installing       : kbd-legacy-2.4.0-11.el9.noarch                     139/194 
+  Installing       : ModemManager-glib-1.20.2-1.el9.aarch64             140/194 
+  Installing       : graphite2-1.3.14-9.el9.aarch64                     141/194 
+  Installing       : harfbuzz-2.7.4-10.el9.aarch64                      142/194 
+  Installing       : freetype-2.10.4-10.el9_5.aarch64                   143/194 
+  Installing       : fontconfig-2.14.0-2.el9_1.aarch64                  144/194 
+  Running scriptlet: fontconfig-2.14.0-2.el9_1.aarch64                  144/194 
+  Installing       : cairo-1.17.4-7.el9.aarch64                         145/194 
+  Installing       : cairo-gobject-1.17.4-7.el9.aarch64                 146/194 
+  Installing       : libgxps-0.3.2-3.el9.aarch64                        147/194 
+  Installing       : poppler-21.01.0-21.el9.aarch64                     148/194 
+  Installing       : poppler-glib-21.01.0-21.el9.aarch64                149/194 
+  Installing       : libXft-2.3.3-8.el9.aarch64                         150/194 
+  Installing       : pango-1.48.7-3.el9.aarch64                         151/194 
+  Installing       : gstreamer1-plugins-base-1.22.12-4.el9.aarch64      152/194 
+  Installing       : mkfontscale-1.2.1-3.el9.aarch64                    153/194 
+  Installing       : ttmkfdir-3.0.9-65.el9.aarch64                      154/194 
+  Installing       : xorg-x11-fonts-Type1-7.5-33.el9.noarch             155/194 
+  Running scriptlet: xorg-x11-fonts-Type1-7.5-33.el9.noarch             155/194 
+  Installing       : shared-mime-info-2.1-5.el9.aarch64                 156/194 
+  Running scriptlet: shared-mime-info-2.1-5.el9.aarch64                 156/194 
+  Installing       : gdk-pixbuf2-2.42.6-6.el9_6.aarch64                 157/194 
+  Installing       : libnotify-0.7.9-8.el9.aarch64                      158/194 
+  Running scriptlet: geoclue2-2.6.0-8.el9_6.1.aarch64                   159/194 
+  Installing       : geoclue2-2.6.0-8.el9_6.1.aarch64                   159/194 
+  Running scriptlet: geoclue2-2.6.0-8.el9_6.1.aarch64                   159/194 
+  Installing       : gtk-update-icon-cache-3.24.31-5.el9.aarch64        160/194 
+  Installing       : librsvg2-2.50.7-3.el9.aarch64                      161/194 
+  Installing       : gdk-pixbuf2-modules-2.42.6-6.el9_6.aarch64         162/194 
+  Installing       : libappstream-glib-0.7.18-5.el9_4.aarch64           163/194 
+  Installing       : libgsf-1.14.47-5.el9.aarch64                       164/194 
+  Installing       : libgusb-0.3.8-2.el9.aarch64                        165/194 
+  Installing       : colord-libs-1.4.5-6.el9_6.aarch64                  166/194 
+  Installing       : kmod-28-10.el9.aarch64                             167/194 
+  Installing       : bluez-libs-5.72-4.el9.aarch64                      168/194 
+  Installing       : wireplumber-0.4.14-1.el9.0.1.aarch64               169/194 
+  Installing       : wireplumber-libs-0.4.14-1.el9.0.1.aarch64          170/194 
+  Installing       : pipewire-libs-1.0.1-1.el9.aarch64                  171/194 
+  Running scriptlet: pipewire-1.0.1-1.el9.aarch64                       172/194 
+  Installing       : pipewire-1.0.1-1.el9.aarch64                       172/194 
+  Running scriptlet: pipewire-1.0.1-1.el9.aarch64                       172/194 
 Created symlink /etc/systemd/user/sockets.target.wants/pipewire.socket → /usr/lib/systemd/user/pipewire.socket.
 
-  Installing       : pipewire-jack-audio-connection-kit-libs-1.0.1-1.   174/203 
-  Installing       : device-mapper-libs-9:1.02.202-6.el9.aarch64        175/203 
-  Installing       : device-mapper-9:1.02.202-6.el9.aarch64             176/203 
-  Installing       : cryptsetup-libs-2.7.2-3.el9_6.1.aarch64            177/203 
-  Installing       : flatpak-session-helper-1.12.9-4.el9_6.aarch64      178/203 
-  Running scriptlet: geoclue2-2.6.0-8.el9_6.1.aarch64                   179/203 
-  Installing       : geoclue2-2.6.0-8.el9_6.1.aarch64                   179/203 
-  Running scriptlet: geoclue2-2.6.0-8.el9_6.1.aarch64                   179/203 
-  Installing       : libcanberra-0.30-27.el9.aarch64                    180/203 
-  Running scriptlet: libcanberra-0.30-27.el9.aarch64                    180/203 
-  Installing       : at-spi2-core-2.40.3-1.el9.aarch64                  181/203 
-  Installing       : at-spi2-atk-2.38.0-4.el9.aarch64                   182/203 
-  Installing       : xdg-dbus-proxy-0.1.3-1.el9.aarch64                 183/203 
-  Installing       : fuse-common-3.10.2-9.el9.aarch64                   184/203 
-  Installing       : fuse-2.9.9-17.el9.aarch64                          185/203 
-  Installing       : xdg-desktop-portal-1.12.6-1.el9.aarch64            186/203 
-  Running scriptlet: xdg-desktop-portal-1.12.6-1.el9.aarch64            186/203 
-  Running scriptlet: flatpak-1.12.9-4.el9_6.aarch64                     187/203 
-  Installing       : flatpak-1.12.9-4.el9_6.aarch64                     187/203 
-  Installing       : kbd-misc-2.4.0-11.el9.noarch                       188/203 
-  Installing       : kbd-2.4.0-11.el9.aarch64                           189/203 
-  Installing       : systemd-udev-252-51.el9_6.2.aarch64                190/203 
-  Running scriptlet: systemd-udev-252-51.el9_6.2.aarch64                190/203 
+  Installing       : pipewire-jack-audio-connection-kit-libs-1.0.1-1.   173/194 
+  Installing       : gobject-introspection-1.68.0-11.el9.aarch64        174/194 
+  Installing       : fuse-common-3.10.2-9.el9.aarch64                   175/194 
+  Installing       : fuse-2.9.9-17.el9.aarch64                          176/194 
+  Installing       : xdg-desktop-portal-1.12.6-1.el9.aarch64            177/194 
+  Running scriptlet: xdg-desktop-portal-1.12.6-1.el9.aarch64            177/194 
+  Running scriptlet: flatpak-1.12.9-4.el9_6.aarch64                     178/194 
+  Installing       : flatpak-1.12.9-4.el9_6.aarch64                     178/194 
+  Installing       : kbd-misc-2.4.0-11.el9.noarch                       179/194 
+  Installing       : kbd-2.4.0-11.el9.aarch64                           180/194 
+  Installing       : systemd-udev-252-51.el9_6.2.aarch64                181/194 
+  Running scriptlet: systemd-udev-252-51.el9_6.2.aarch64                181/194 
 Created symlink /etc/systemd/system/sysinit.target.wants/systemd-boot-update.service → /usr/lib/systemd/system/systemd-boot-update.service.
 Created symlink /etc/systemd/system/sysinit.target.wants/systemd-pstore.service → /usr/lib/systemd/system/systemd-pstore.service.
 
-  Installing       : upower-0.99.13-2.el9.aarch64                       191/203 
-  Running scriptlet: upower-0.99.13-2.el9.aarch64                       191/203 
+  Installing       : upower-0.99.13-2.el9.aarch64                       182/194 
+  Running scriptlet: upower-0.99.13-2.el9.aarch64                       182/194 
 Created symlink /etc/systemd/system/graphical.target.wants/upower.service → /usr/lib/systemd/system/upower.service.
 
-  Installing       : libtracker-sparql-3.1.2-3.el9_1.aarch64            192/203 
-  Installing       : tracker-3.1.2-3.el9_1.aarch64                      193/203 
-  Running scriptlet: tracker-3.1.2-3.el9_1.aarch64                      193/203 
-  Installing       : tracker-miners-3.1.2-4.el9_3.aarch64               194/203 
-  Running scriptlet: tracker-miners-3.1.2-4.el9_3.aarch64               194/203 
-  Installing       : libcanberra-gtk3-0.30-27.el9.aarch64               195/203 
-  Installing       : xdg-desktop-portal-gtk-1.12.0-3.el9.aarch64        196/203 
-  Running scriptlet: xdg-desktop-portal-gtk-1.12.0-3.el9.aarch64        196/203 
-  Installing       : gtk3-3.24.31-5.el9.aarch64                         197/203 
-  Installing       : java-11-openjdk-1:11.0.25.0.9-7.el9.aarch64        198/203 
-  Running scriptlet: java-11-openjdk-1:11.0.25.0.9-7.el9.aarch64        198/203 
-  Installing       : java-11-openjdk-devel-1:11.0.25.0.9-7.el9.aarch6   199/203 
-  Running scriptlet: java-11-openjdk-devel-1:11.0.25.0.9-7.el9.aarch6   199/203 
-  Installing       : pipewire-jack-audio-connection-kit-1.0.1-1.el9.a   200/203 
-  Installing       : pipewire-alsa-1.0.1-1.el9.aarch64                  201/203 
-  Installing       : pipewire-pulseaudio-1.0.1-1.el9.aarch64            202/203 
-  Running scriptlet: pipewire-pulseaudio-1.0.1-1.el9.aarch64            202/203 
+  Installing       : libtracker-sparql-3.1.2-3.el9_1.aarch64            183/194 
+  Installing       : tracker-3.1.2-3.el9_1.aarch64                      184/194 
+  Running scriptlet: tracker-3.1.2-3.el9_1.aarch64                      184/194 
+  Installing       : tracker-miners-3.1.2-4.el9_3.aarch64               185/194 
+  Running scriptlet: tracker-miners-3.1.2-4.el9_3.aarch64               185/194 
+  Installing       : libcanberra-gtk3-0.30-27.el9.aarch64               186/194 
+  Installing       : xdg-desktop-portal-gtk-1.12.0-3.el9.aarch64        187/194 
+  Running scriptlet: xdg-desktop-portal-gtk-1.12.0-3.el9.aarch64        187/194 
+  Installing       : gtk3-3.24.31-5.el9.aarch64                         188/194 
+  Installing       : java-11-openjdk-1:11.0.25.0.9-7.el9.aarch64        189/194 
+  Running scriptlet: java-11-openjdk-1:11.0.25.0.9-7.el9.aarch64        189/194 
+  Installing       : java-11-openjdk-devel-1:11.0.25.0.9-7.el9.aarch6   190/194 
+  Running scriptlet: java-11-openjdk-devel-1:11.0.25.0.9-7.el9.aarch6   190/194 
+  Installing       : pipewire-jack-audio-connection-kit-1.0.1-1.el9.a   191/194 
+  Installing       : pipewire-alsa-1.0.1-1.el9.aarch64                  192/194 
+  Installing       : pipewire-pulseaudio-1.0.1-1.el9.aarch64            193/194 
+  Running scriptlet: pipewire-pulseaudio-1.0.1-1.el9.aarch64            193/194 
 Created symlink /etc/systemd/user/sockets.target.wants/pipewire-pulse.socket → /usr/lib/systemd/user/pipewire-pulse.socket.
 
-  Installing       : unzip-6.0-58.el9_5.aarch64                         203/203 
-  Running scriptlet: nss-3.112.0-4.el9_4.aarch64                        203/203 
-  Running scriptlet: copy-jdk-configs-4.0-3.el9.noarch                  203/203 
-  Running scriptlet: java-11-openjdk-headless-1:11.0.25.0.9-7.el9.aar   203/203 
-  Running scriptlet: fontconfig-2.14.0-2.el9_1.aarch64                  203/203 
-  Running scriptlet: dconf-0.40.0-6.el9.aarch64                         203/203 
-  Running scriptlet: wireplumber-0.4.14-1.el9.0.1.aarch64               203/203 
+  Installing       : unzip-6.0-58.el9_5.aarch64                         194/194 
+  Running scriptlet: dconf-0.40.0-6.el9.aarch64                         194/194 
+  Running scriptlet: nss-3.112.0-4.el9_4.aarch64                        194/194 
+  Running scriptlet: copy-jdk-configs-4.0-3.el9.noarch                  194/194 
+  Running scriptlet: java-11-openjdk-headless-1:11.0.25.0.9-7.el9.aar   194/194 
+  Running scriptlet: fontconfig-2.14.0-2.el9_1.aarch64                  194/194 
+  Running scriptlet: wireplumber-0.4.14-1.el9.0.1.aarch64               194/194 
 Created symlink /etc/systemd/user/pipewire-session-manager.service → /usr/lib/systemd/user/wireplumber.service.
 Created symlink /etc/systemd/user/pipewire.service.wants/wireplumber.service → /usr/lib/systemd/user/wireplumber.service.
 
-  Running scriptlet: java-11-openjdk-1:11.0.25.0.9-7.el9.aarch64        203/203 
-  Running scriptlet: java-11-openjdk-devel-1:11.0.25.0.9-7.el9.aarch6   203/203 
-  Running scriptlet: unzip-6.0-58.el9_5.aarch64                         203/203 
-  Verifying        : device-mapper-9:1.02.202-6.el9.aarch64               1/203 
-  Verifying        : polkit-libs-0.117-13.el9.aarch64                     2/203 
-  Verifying        : hwdata-0.348-9.18.el9.noarch                         3/203 
-  Verifying        : gsettings-desktop-schemas-40.0-7.el9_6.aarch64       4/203 
-  Verifying        : dbus-common-1:1.12.20-8.el9.noarch                   5/203 
-  Verifying        : json-glib-1.6.6-1.el9.aarch64                        6/203 
-  Verifying        : libtdb-1.4.12-1.el9.aarch64                          7/203 
-  Verifying        : dejavu-sans-fonts-2.37-18.el9.noarch                 8/203 
-  Verifying        : device-mapper-libs-9:1.02.202-6.el9.aarch64          9/203 
-  Verifying        : libproxy-0.4.15-35.el9.aarch64                      10/203 
-  Verifying        : kbd-misc-2.4.0-11.el9.noarch                        11/203 
-  Verifying        : fuse-common-3.10.2-9.el9.aarch64                    12/203 
-  Verifying        : fuse-2.9.9-17.el9.aarch64                           13/203 
-  Verifying        : dbus-libs-1:1.12.20-8.el9.aarch64                   14/203 
-  Verifying        : cryptsetup-libs-2.7.2-3.el9_6.1.aarch64             15/203 
-  Verifying        : acl-2.3.1-4.el9.aarch64                             16/203 
-  Verifying        : gobject-introspection-1.68.0-11.el9.aarch64         17/203 
-  Verifying        : bluez-libs-5.72-4.el9.aarch64                       18/203 
-  Verifying        : systemd-rpm-macros-252-51.el9_6.2.noarch            19/203 
-  Verifying        : kmod-28-10.el9.aarch64                              20/203 
-  Verifying        : freetype-2.10.4-10.el9_5.aarch64                    21/203 
-  Verifying        : libgusb-0.3.8-2.el9.aarch64                         22/203 
-  Verifying        : fuse-libs-2.9.9-17.el9.aarch64                      23/203 
-  Verifying        : shared-mime-info-2.1-5.el9.aarch64                  24/203 
-  Verifying        : harfbuzz-2.7.4-10.el9.aarch64                       25/203 
-  Verifying        : graphite2-1.3.14-9.el9.aarch64                      26/203 
-  Verifying        : ModemManager-glib-1.20.2-1.el9.aarch64              27/203 
-  Verifying        : kmod-libs-28-10.el9.aarch64                         28/203 
-  Verifying        : fonts-filesystem-1:2.0.5-7.el9.1.noarch             29/203 
-  Verifying        : adobe-source-code-pro-fonts-2.030.1.050-12.el9.1    30/203 
-  Verifying        : cups-libs-1:2.3.3op2-33.el9_6.1.aarch64             31/203 
-  Verifying        : systemd-pam-252-51.el9_6.2.aarch64                  32/203 
-  Verifying        : dbus-1:1.12.20-8.el9.aarch64                        33/203 
-  Verifying        : avahi-libs-0.8-22.el9_6.1.aarch64                   34/203 
-  Verifying        : kbd-legacy-2.4.0-11.el9.noarch                      35/203 
-  Verifying        : glib-networking-2.68.3-3.el9.aarch64                36/203 
-  Verifying        : unzip-6.0-58.el9_5.aarch64                          37/203 
-  Verifying        : polkit-0.117-13.el9.aarch64                         38/203 
-  Verifying        : systemd-252-51.el9_6.2.aarch64                      39/203 
-  Verifying        : libgudev-237-1.el9.aarch64                          40/203 
-  Verifying        : libpng-2:1.6.37-12.el9.aarch64                      41/203 
-  Verifying        : libseccomp-2.5.2-2.el9.aarch64                      42/203 
-  Verifying        : dbus-broker-28-7.el9.aarch64                        43/203 
-  Verifying        : polkit-pkla-compat-0.1-21.el9.aarch64               44/203 
-  Verifying        : bubblewrap-0.4.1-8.el9_5.aarch64                    45/203 
-  Verifying        : libbrotli-1.0.9-7.el9_5.aarch64                     46/203 
-  Verifying        : NetworkManager-libnm-1:1.52.0-7.el9_6.aarch64       47/203 
-  Verifying        : lksctp-tools-1.0.19-3.el9_4.aarch64                 48/203 
-  Verifying        : kbd-2.4.0-11.el9.aarch64                            49/203 
-  Verifying        : systemd-udev-252-51.el9_6.2.aarch64                 50/203 
-  Verifying        : libXdamage-1.1.5-7.el9.aarch64                      51/203 
-  Verifying        : graphene-1.10.6-2.el9.aarch64                       52/203 
-  Verifying        : mesa-dri-drivers-24.2.8-3.el9_6.aarch64             53/203 
-  Verifying        : low-memory-monitor-2.1-4.el9.aarch64                54/203 
-  Verifying        : libXxf86vm-1.1.4-18.el9.aarch64                     55/203 
-  Verifying        : atk-2.36.0-5.el9.aarch64                            56/203 
-  Verifying        : nss-3.112.0-4.el9_4.aarch64                         57/203 
-  Verifying        : fdk-aac-free-2.0.0-8.el9.aarch64                    58/203 
-  Verifying        : flatpak-session-helper-1.12.9-4.el9_6.aarch64       59/203 
-  Verifying        : wireplumber-0.4.14-1.el9.0.1.aarch64                60/203 
-  Verifying        : libtiff-4.4.0-13.el9.aarch64                        61/203 
-  Verifying        : adwaita-cursor-theme-40.1.1-3.el9.noarch            62/203 
-  Verifying        : libX11-xcb-1.7.0-11.el9.aarch64                     63/203 
-  Verifying        : libgxps-0.3.2-3.el9.aarch64                         64/203 
-  Verifying        : libwayland-client-1.21.0-1.el9.aarch64              65/203 
-  Verifying        : mkfontscale-1.2.1-3.el9.aarch64                     66/203 
-  Verifying        : pulseaudio-libs-15.0-3.el9.aarch64                  67/203 
-  Verifying        : lua-posix-35.0-8.el9.aarch64                        68/203 
-  Verifying        : hicolor-icon-theme-0.17-13.el9.noarch               69/203 
-  Verifying        : abattis-cantarell-fonts-0.301-4.el9.noarch          70/203 
-  Verifying        : libdrm-2.4.123-2.el9.aarch64                        71/203 
-  Verifying        : libnotify-0.7.9-8.el9.aarch64                       72/203 
-  Verifying        : gtk-update-icon-cache-3.24.31-5.el9.aarch64         73/203 
-  Verifying        : libtheora-1:1.1.1-31.el9.aarch64                    74/203 
-  Verifying        : libXau-1.0.9-8.el9.aarch64                          75/203 
-  Verifying        : javapackages-filesystem-6.4.0-1.el9.noarch          76/203 
-  Verifying        : gsm-1.0.19-6.el9.aarch64                            77/203 
-  Verifying        : sound-theme-freedesktop-0.8-17.el9.noarch           78/203 
-  Verifying        : librsvg2-2.50.7-3.el9.aarch64                       79/203 
-  Verifying        : pixman-0.40.0-6.el9_3.aarch64                       80/203 
-  Verifying        : rtkit-0.11-29.el9.aarch64                           81/203 
-  Verifying        : pipewire-1.0.1-1.el9.aarch64                        82/203 
-  Verifying        : mesa-filesystem-24.2.8-3.el9_6.aarch64              83/203 
-  Verifying        : libX11-common-1.7.0-11.el9.noarch                   84/203 
-  Verifying        : wireplumber-libs-0.4.14-1.el9.0.1.aarch64           85/203 
-  Verifying        : libXi-1.7.10-8.el9.aarch64                          86/203 
-  Verifying        : poppler-21.01.0-21.el9.aarch64                      87/203 
-  Verifying        : at-spi2-core-2.40.3-1.el9.aarch64                   88/203 
-  Verifying        : libxcb-1.13.1-9.el9.aarch64                         89/203 
-  Verifying        : libX11-1.7.0-11.el9.aarch64                         90/203 
-  Verifying        : libwebp-1.2.0-8.el9.aarch64                         91/203 
-  Verifying        : gdk-pixbuf2-modules-2.42.6-6.el9_6.aarch64          92/203 
-  Verifying        : libXtst-1.2.3-16.el9.aarch64                        93/203 
-  Verifying        : pipewire-alsa-1.0.1-1.el9.aarch64                   94/203 
-  Verifying        : libwayland-server-1.21.0-1.el9.aarch64              95/203 
-  Verifying        : libglvnd-glx-1:1.3.4-1.el9.aarch64                  96/203 
-  Verifying        : poppler-glib-21.01.0-21.el9.aarch64                 97/203 
-  Verifying        : libxshmfence-1.3-10.el9.aarch64                     98/203 
-  Verifying        : libfontenc-1.1.3-17.el9.aarch64                     99/203 
-  Verifying        : xml-common-0.6.3-58.el9.noarch                     100/203 
-  Verifying        : copy-jdk-configs-4.0-3.el9.noarch                  101/203 
-  Verifying        : ttmkfdir-3.0.9-65.el9.aarch64                      102/203 
-  Verifying        : libstemmer-0-18.585svn.el9.aarch64                 103/203 
-  Verifying        : dconf-0.40.0-6.el9.aarch64                         104/203 
-  Verifying        : libproxy-webkitgtk4-0.4.15-35.el9.aarch64          105/203 
-  Verifying        : libldac-2.0.2.3-10.el9.aarch64                     106/203 
-  Verifying        : langpacks-core-font-en-3.0-16.el9.noarch           107/203 
-  Verifying        : libXrender-0.9.10-16.el9.aarch64                   108/203 
-  Verifying        : libappstream-glib-0.7.18-5.el9_4.aarch64           109/203 
-  Verifying        : libogg-2:1.3.4-6.el9.aarch64                       110/203 
-  Verifying        : pipewire-pulseaudio-1.0.1-1.el9.aarch64            111/203 
-  Verifying        : libXinerama-1.1.4-10.el9.aarch64                   112/203 
-  Verifying        : libjpeg-turbo-2.0.90-7.el9.aarch64                 113/203 
-  Verifying        : libgsf-1.14.47-5.el9.aarch64                       114/203 
-  Verifying        : pipewire-jack-audio-connection-kit-libs-1.0.1-1.   115/203 
-  Verifying        : mesa-libglapi-24.2.8-3.el9_6.aarch64               116/203 
-  Verifying        : cairo-gobject-1.17.4-7.el9.aarch64                 117/203 
-  Verifying        : nss-softokn-freebl-3.112.0-4.el9_4.aarch64         118/203 
-  Verifying        : mesa-libgbm-24.2.8-3.el9_6.aarch64                 119/203 
-  Verifying        : libgexiv2-0.12.3-1.el9.aarch64                     120/203 
-  Verifying        : geoclue2-2.6.0-8.el9_6.1.aarch64                   121/203 
-  Verifying        : composefs-libs-1.0.8-1.el9.aarch64                 122/203 
-  Verifying        : libXfixes-5.0.3-16.el9.aarch64                     123/203 
-  Verifying        : exiv2-libs-0.27.5-2.el9.aarch64                    124/203 
-  Verifying        : giflib-5.2.1-9.el9.aarch64                         125/203 
-  Verifying        : fontconfig-2.14.0-2.el9_1.aarch64                  126/203 
-  Verifying        : pipewire-jack-audio-connection-kit-1.0.1-1.el9.a   127/203 
-  Verifying        : exiv2-0.27.5-2.el9.aarch64                         128/203 
-  Verifying        : fribidi-1.0.10-6.el9.2.aarch64                     129/203 
-  Verifying        : gstreamer1-1.22.12-3.el9.aarch64                   130/203 
-  Verifying        : totem-pl-parser-3.26.6-2.el9.aarch64               131/203 
-  Verifying        : libthai-0.1.28-8.el9.aarch64                       132/203 
-  Verifying        : openjpeg2-2.4.0-8.el9.aarch64                      133/203 
-  Verifying        : libvorbis-1:1.3.7-5.el9.aarch64                    134/203 
-  Verifying        : libiptcdata-1.0.5-10.el9.aarch64                   135/203 
-  Verifying        : libcanberra-gtk3-0.30-27.el9.aarch64               136/203 
-  Verifying        : poppler-data-0.4.9-9.el9.0.1.noarch                137/203 
-  Verifying        : at-spi2-atk-2.38.0-4.el9.aarch64                   138/203 
-  Verifying        : libsoup-2.72.0-10.el9_6.2.aarch64                  139/203 
-  Verifying        : java-11-openjdk-devel-1:11.0.25.0.9-7.el9.aarch6   140/203 
-  Verifying        : cairo-1.17.4-7.el9.aarch64                         141/203 
-  Verifying        : tracker-miners-3.1.2-4.el9_3.aarch64               142/203 
-  Verifying        : xdg-desktop-portal-gtk-1.12.0-3.el9.aarch64        143/203 
-  Verifying        : xdg-dbus-proxy-0.1.3-1.el9.aarch64                 144/203 
-  Verifying        : libXft-2.3.3-8.el9.aarch64                         145/203 
-  Verifying        : gstreamer1-plugins-base-1.22.12-4.el9.aarch64      146/203 
-  Verifying        : opus-1.3.1-10.el9.aarch64                          147/203 
-  Verifying        : libsbc-1.4-9.el9.aarch64                           148/203 
-  Verifying        : libwayland-cursor-1.21.0-1.el9.aarch64             149/203 
-  Verifying        : java-11-openjdk-1:11.0.25.0.9-7.el9.aarch64        150/203 
-  Verifying        : libXcursor-1.2.0-7.el9.aarch64                     151/203 
-  Verifying        : xorg-x11-fonts-Type1-7.5-33.el9.noarch             152/203 
-  Verifying        : libXrandr-1.5.2-8.el9.aarch64                      153/203 
-  Verifying        : alsa-lib-1.2.13-2.el9.aarch64                      154/203 
-  Verifying        : osinfo-db-tools-1.10.0-1.el9.aarch64               155/203 
-  Verifying        : libglvnd-egl-1:1.3.4-1.el9.aarch64                 156/203 
-  Verifying        : orc-0.4.31-8.el9.aarch64                           157/203 
-  Verifying        : mesa-libGL-24.2.8-3.el9_6.aarch64                  158/203 
-  Verifying        : libexif-0.6.22-6.el9.aarch64                       159/203 
-  Verifying        : libxslt-1.1.34-13.el9_6.aarch64                    160/203 
-  Verifying        : libdatrie-0.2.13-4.el9.aarch64                     161/203 
-  Verifying        : lua-5.4.4-4.el9.aarch64                            162/203 
-  Verifying        : llvm-libs-19.1.7-1.el9.aarch64                     163/203 
-  Verifying        : tracker-3.1.2-3.el9_1.aarch64                      164/203 
-  Verifying        : java-11-openjdk-headless-1:11.0.25.0.9-7.el9.aar   165/203 
-  Verifying        : nss-sysinit-3.112.0-4.el9_4.aarch64                166/203 
-  Verifying        : libcanberra-0.30-27.el9.aarch64                    167/203 
-  Verifying        : libXv-1.0.11-16.el9.aarch64                        168/203 
-  Verifying        : libxkbcommon-1.0.3-4.el9.aarch64                   169/203 
-  Verifying        : nss-util-3.112.0-4.el9_4.aarch64                   170/203 
-  Verifying        : mesa-libEGL-24.2.8-3.el9_6.aarch64                 171/203 
-  Verifying        : libXcomposite-0.4.5-7.el9.aarch64                  172/203 
-  Verifying        : flatpak-1.12.9-4.el9_6.aarch64                     173/203 
-  Verifying        : nspr-4.36.0-4.el9_4.aarch64                        174/203 
-  Verifying        : ostree-libs-2025.2-2.el9_6.aarch64                 175/203 
-  Verifying        : pango-1.48.7-3.el9.aarch64                         176/203 
-  Verifying        : colord-libs-1.4.5-6.el9_6.aarch64                  177/203 
-  Verifying        : libosinfo-1.10.0-1.el9.aarch64                     178/203 
-  Verifying        : libsndfile-1.0.31-9.el9.aarch64                    179/203 
-  Verifying        : libtracker-sparql-3.1.2-3.el9_1.aarch64            180/203 
-  Verifying        : lcms2-2.12-3.el9.aarch64                           181/203 
-  Verifying        : p11-kit-server-0.25.3-3.el9_5.aarch64              182/203 
-  Verifying        : upower-0.99.13-2.el9.aarch64                       183/203 
-  Verifying        : libasyncns-0.8-22.el9.aarch64                      184/203 
-  Verifying        : flac-libs-1.3.3-10.el9_2.1.aarch64                 185/203 
-  Verifying        : iso-codes-4.6.0-3.el9.noarch                       186/203 
-  Verifying        : gtk3-3.24.31-5.el9.aarch64                         187/203 
-  Verifying        : libwayland-egl-1.21.0-1.el9.aarch64                188/203 
-  Verifying        : osinfo-db-20250124-2.el9.rocky.20250630.noarch     189/203 
-  Verifying        : nss-softokn-3.112.0-4.el9_4.aarch64                190/203 
-  Verifying        : webrtc-audio-processing-0.3.1-8.el9.0.1.aarch64    191/203 
-  Verifying        : jbigkit-libs-2.1-23.el9.aarch64                    192/203 
-  Verifying        : avahi-glib-0.8-22.el9_6.1.aarch64                  193/203 
-  Verifying        : libglvnd-1:1.3.4-1.el9.aarch64                     194/203 
-  Verifying        : gdk-pixbuf2-2.42.6-6.el9_6.aarch64                 195/203 
-  Verifying        : xkeyboard-config-2.33-2.el9.noarch                 196/203 
-  Verifying        : exempi-2.6.0-0.2.20211007gite23c213.el9.aarch64    197/203 
-  Verifying        : libXext-1.3.4-8.el9.aarch64                        198/203 
-  Verifying        : xdg-desktop-portal-1.12.6-1.el9.aarch64            199/203 
-  Verifying        : webkit2gtk3-jsc-2.48.5-1.el9_6.aarch64             200/203 
-  Verifying        : adwaita-icon-theme-40.1.1-3.el9.noarch             201/203 
-  Verifying        : libepoxy-1.5.5-4.el9.aarch64                       202/203 
-  Verifying        : pipewire-libs-1.0.1-1.el9.aarch64                  203/203 
+  Running scriptlet: java-11-openjdk-1:11.0.25.0.9-7.el9.aarch64        194/194 
+  Running scriptlet: java-11-openjdk-devel-1:11.0.25.0.9-7.el9.aarch6   194/194 
+  Running scriptlet: unzip-6.0-58.el9_5.aarch64                         194/194 
+  Verifying        : device-mapper-9:1.02.202-6.el9.aarch64               1/194 
+  Verifying        : polkit-libs-0.117-13.el9.aarch64                     2/194 
+  Verifying        : hwdata-0.348-9.18.el9.noarch                         3/194 
+  Verifying        : gsettings-desktop-schemas-40.0-7.el9_6.aarch64       4/194 
+  Verifying        : json-glib-1.6.6-1.el9.aarch64                        5/194 
+  Verifying        : libtdb-1.4.12-1.el9.aarch64                          6/194 
+  Verifying        : dejavu-sans-fonts-2.37-18.el9.noarch                 7/194 
+  Verifying        : device-mapper-libs-9:1.02.202-6.el9.aarch64          8/194 
+  Verifying        : libproxy-0.4.15-35.el9.aarch64                       9/194 
+  Verifying        : kbd-misc-2.4.0-11.el9.noarch                        10/194 
+  Verifying        : fuse-common-3.10.2-9.el9.aarch64                    11/194 
+  Verifying        : fuse-2.9.9-17.el9.aarch64                           12/194 
+  Verifying        : dbus-libs-1:1.12.20-8.el9.aarch64                   13/194 
+  Verifying        : cryptsetup-libs-2.7.2-3.el9_6.1.aarch64             14/194 
+  Verifying        : gobject-introspection-1.68.0-11.el9.aarch64         15/194 
+  Verifying        : bluez-libs-5.72-4.el9.aarch64                       16/194 
+  Verifying        : kmod-28-10.el9.aarch64                              17/194 
+  Verifying        : freetype-2.10.4-10.el9_5.aarch64                    18/194 
+  Verifying        : libgusb-0.3.8-2.el9.aarch64                         19/194 
+  Verifying        : fuse-libs-2.9.9-17.el9.aarch64                      20/194 
+  Verifying        : shared-mime-info-2.1-5.el9.aarch64                  21/194 
+  Verifying        : harfbuzz-2.7.4-10.el9.aarch64                       22/194 
+  Verifying        : graphite2-1.3.14-9.el9.aarch64                      23/194 
+  Verifying        : ModemManager-glib-1.20.2-1.el9.aarch64              24/194 
+  Verifying        : fonts-filesystem-1:2.0.5-7.el9.1.noarch             25/194 
+  Verifying        : adobe-source-code-pro-fonts-2.030.1.050-12.el9.1    26/194 
+  Verifying        : cups-libs-1:2.3.3op2-33.el9_6.1.aarch64             27/194 
+  Verifying        : avahi-libs-0.8-22.el9_6.1.aarch64                   28/194 
+  Verifying        : kbd-legacy-2.4.0-11.el9.noarch                      29/194 
+  Verifying        : glib-networking-2.68.3-3.el9.aarch64                30/194 
+  Verifying        : unzip-6.0-58.el9_5.aarch64                          31/194 
+  Verifying        : polkit-0.117-13.el9.aarch64                         32/194 
+  Verifying        : libgudev-237-1.el9.aarch64                          33/194 
+  Verifying        : libpng-2:1.6.37-12.el9.aarch64                      34/194 
+  Verifying        : polkit-pkla-compat-0.1-21.el9.aarch64               35/194 
+  Verifying        : bubblewrap-0.4.1-8.el9_5.aarch64                    36/194 
+  Verifying        : libbrotli-1.0.9-7.el9_5.aarch64                     37/194 
+  Verifying        : NetworkManager-libnm-1:1.52.0-7.el9_6.aarch64       38/194 
+  Verifying        : lksctp-tools-1.0.19-3.el9_4.aarch64                 39/194 
+  Verifying        : kbd-2.4.0-11.el9.aarch64                            40/194 
+  Verifying        : systemd-udev-252-51.el9_6.2.aarch64                 41/194 
+  Verifying        : libXdamage-1.1.5-7.el9.aarch64                      42/194 
+  Verifying        : graphene-1.10.6-2.el9.aarch64                       43/194 
+  Verifying        : mesa-dri-drivers-24.2.8-3.el9_6.aarch64             44/194 
+  Verifying        : low-memory-monitor-2.1-4.el9.aarch64                45/194 
+  Verifying        : libXxf86vm-1.1.4-18.el9.aarch64                     46/194 
+  Verifying        : atk-2.36.0-5.el9.aarch64                            47/194 
+  Verifying        : nss-3.112.0-4.el9_4.aarch64                         48/194 
+  Verifying        : fdk-aac-free-2.0.0-8.el9.aarch64                    49/194 
+  Verifying        : flatpak-session-helper-1.12.9-4.el9_6.aarch64       50/194 
+  Verifying        : wireplumber-0.4.14-1.el9.0.1.aarch64                51/194 
+  Verifying        : libtiff-4.4.0-13.el9.aarch64                        52/194 
+  Verifying        : adwaita-cursor-theme-40.1.1-3.el9.noarch            53/194 
+  Verifying        : libX11-xcb-1.7.0-11.el9.aarch64                     54/194 
+  Verifying        : libgxps-0.3.2-3.el9.aarch64                         55/194 
+  Verifying        : libwayland-client-1.21.0-1.el9.aarch64              56/194 
+  Verifying        : mkfontscale-1.2.1-3.el9.aarch64                     57/194 
+  Verifying        : pulseaudio-libs-15.0-3.el9.aarch64                  58/194 
+  Verifying        : lua-posix-35.0-8.el9.aarch64                        59/194 
+  Verifying        : hicolor-icon-theme-0.17-13.el9.noarch               60/194 
+  Verifying        : abattis-cantarell-fonts-0.301-4.el9.noarch          61/194 
+  Verifying        : libdrm-2.4.123-2.el9.aarch64                        62/194 
+  Verifying        : libnotify-0.7.9-8.el9.aarch64                       63/194 
+  Verifying        : gtk-update-icon-cache-3.24.31-5.el9.aarch64         64/194 
+  Verifying        : libtheora-1:1.1.1-31.el9.aarch64                    65/194 
+  Verifying        : libXau-1.0.9-8.el9.aarch64                          66/194 
+  Verifying        : javapackages-filesystem-6.4.0-1.el9.noarch          67/194 
+  Verifying        : gsm-1.0.19-6.el9.aarch64                            68/194 
+  Verifying        : sound-theme-freedesktop-0.8-17.el9.noarch           69/194 
+  Verifying        : librsvg2-2.50.7-3.el9.aarch64                       70/194 
+  Verifying        : pixman-0.40.0-6.el9_3.aarch64                       71/194 
+  Verifying        : rtkit-0.11-29.el9.aarch64                           72/194 
+  Verifying        : pipewire-1.0.1-1.el9.aarch64                        73/194 
+  Verifying        : mesa-filesystem-24.2.8-3.el9_6.aarch64              74/194 
+  Verifying        : libX11-common-1.7.0-11.el9.noarch                   75/194 
+  Verifying        : wireplumber-libs-0.4.14-1.el9.0.1.aarch64           76/194 
+  Verifying        : libXi-1.7.10-8.el9.aarch64                          77/194 
+  Verifying        : poppler-21.01.0-21.el9.aarch64                      78/194 
+  Verifying        : at-spi2-core-2.40.3-1.el9.aarch64                   79/194 
+  Verifying        : libxcb-1.13.1-9.el9.aarch64                         80/194 
+  Verifying        : libX11-1.7.0-11.el9.aarch64                         81/194 
+  Verifying        : libwebp-1.2.0-8.el9.aarch64                         82/194 
+  Verifying        : gdk-pixbuf2-modules-2.42.6-6.el9_6.aarch64          83/194 
+  Verifying        : libXtst-1.2.3-16.el9.aarch64                        84/194 
+  Verifying        : pipewire-alsa-1.0.1-1.el9.aarch64                   85/194 
+  Verifying        : libwayland-server-1.21.0-1.el9.aarch64              86/194 
+  Verifying        : libglvnd-glx-1:1.3.4-1.el9.aarch64                  87/194 
+  Verifying        : poppler-glib-21.01.0-21.el9.aarch64                 88/194 
+  Verifying        : libxshmfence-1.3-10.el9.aarch64                     89/194 
+  Verifying        : libfontenc-1.1.3-17.el9.aarch64                     90/194 
+  Verifying        : xml-common-0.6.3-58.el9.noarch                      91/194 
+  Verifying        : copy-jdk-configs-4.0-3.el9.noarch                   92/194 
+  Verifying        : ttmkfdir-3.0.9-65.el9.aarch64                       93/194 
+  Verifying        : libstemmer-0-18.585svn.el9.aarch64                  94/194 
+  Verifying        : dconf-0.40.0-6.el9.aarch64                          95/194 
+  Verifying        : libproxy-webkitgtk4-0.4.15-35.el9.aarch64           96/194 
+  Verifying        : libldac-2.0.2.3-10.el9.aarch64                      97/194 
+  Verifying        : langpacks-core-font-en-3.0-16.el9.noarch            98/194 
+  Verifying        : libXrender-0.9.10-16.el9.aarch64                    99/194 
+  Verifying        : libappstream-glib-0.7.18-5.el9_4.aarch64           100/194 
+  Verifying        : libogg-2:1.3.4-6.el9.aarch64                       101/194 
+  Verifying        : pipewire-pulseaudio-1.0.1-1.el9.aarch64            102/194 
+  Verifying        : libXinerama-1.1.4-10.el9.aarch64                   103/194 
+  Verifying        : libjpeg-turbo-2.0.90-7.el9.aarch64                 104/194 
+  Verifying        : libgsf-1.14.47-5.el9.aarch64                       105/194 
+  Verifying        : pipewire-jack-audio-connection-kit-libs-1.0.1-1.   106/194 
+  Verifying        : mesa-libglapi-24.2.8-3.el9_6.aarch64               107/194 
+  Verifying        : cairo-gobject-1.17.4-7.el9.aarch64                 108/194 
+  Verifying        : nss-softokn-freebl-3.112.0-4.el9_4.aarch64         109/194 
+  Verifying        : mesa-libgbm-24.2.8-3.el9_6.aarch64                 110/194 
+  Verifying        : libgexiv2-0.12.3-1.el9.aarch64                     111/194 
+  Verifying        : geoclue2-2.6.0-8.el9_6.1.aarch64                   112/194 
+  Verifying        : composefs-libs-1.0.8-1.el9.aarch64                 113/194 
+  Verifying        : libXfixes-5.0.3-16.el9.aarch64                     114/194 
+  Verifying        : exiv2-libs-0.27.5-2.el9.aarch64                    115/194 
+  Verifying        : giflib-5.2.1-9.el9.aarch64                         116/194 
+  Verifying        : fontconfig-2.14.0-2.el9_1.aarch64                  117/194 
+  Verifying        : pipewire-jack-audio-connection-kit-1.0.1-1.el9.a   118/194 
+  Verifying        : exiv2-0.27.5-2.el9.aarch64                         119/194 
+  Verifying        : fribidi-1.0.10-6.el9.2.aarch64                     120/194 
+  Verifying        : gstreamer1-1.22.12-3.el9.aarch64                   121/194 
+  Verifying        : totem-pl-parser-3.26.6-2.el9.aarch64               122/194 
+  Verifying        : libthai-0.1.28-8.el9.aarch64                       123/194 
+  Verifying        : openjpeg2-2.4.0-8.el9.aarch64                      124/194 
+  Verifying        : libvorbis-1:1.3.7-5.el9.aarch64                    125/194 
+  Verifying        : libiptcdata-1.0.5-10.el9.aarch64                   126/194 
+  Verifying        : libcanberra-gtk3-0.30-27.el9.aarch64               127/194 
+  Verifying        : poppler-data-0.4.9-9.el9.0.1.noarch                128/194 
+  Verifying        : at-spi2-atk-2.38.0-4.el9.aarch64                   129/194 
+  Verifying        : libsoup-2.72.0-10.el9_6.2.aarch64                  130/194 
+  Verifying        : java-11-openjdk-devel-1:11.0.25.0.9-7.el9.aarch6   131/194 
+  Verifying        : cairo-1.17.4-7.el9.aarch64                         132/194 
+  Verifying        : tracker-miners-3.1.2-4.el9_3.aarch64               133/194 
+  Verifying        : xdg-desktop-portal-gtk-1.12.0-3.el9.aarch64        134/194 
+  Verifying        : xdg-dbus-proxy-0.1.3-1.el9.aarch64                 135/194 
+  Verifying        : libXft-2.3.3-8.el9.aarch64                         136/194 
+  Verifying        : gstreamer1-plugins-base-1.22.12-4.el9.aarch64      137/194 
+  Verifying        : opus-1.3.1-10.el9.aarch64                          138/194 
+  Verifying        : libsbc-1.4-9.el9.aarch64                           139/194 
+  Verifying        : libwayland-cursor-1.21.0-1.el9.aarch64             140/194 
+  Verifying        : java-11-openjdk-1:11.0.25.0.9-7.el9.aarch64        141/194 
+  Verifying        : libXcursor-1.2.0-7.el9.aarch64                     142/194 
+  Verifying        : xorg-x11-fonts-Type1-7.5-33.el9.noarch             143/194 
+  Verifying        : libXrandr-1.5.2-8.el9.aarch64                      144/194 
+  Verifying        : alsa-lib-1.2.13-2.el9.aarch64                      145/194 
+  Verifying        : osinfo-db-tools-1.10.0-1.el9.aarch64               146/194 
+  Verifying        : libglvnd-egl-1:1.3.4-1.el9.aarch64                 147/194 
+  Verifying        : orc-0.4.31-8.el9.aarch64                           148/194 
+  Verifying        : mesa-libGL-24.2.8-3.el9_6.aarch64                  149/194 
+  Verifying        : libexif-0.6.22-6.el9.aarch64                       150/194 
+  Verifying        : libxslt-1.1.34-13.el9_6.aarch64                    151/194 
+  Verifying        : libdatrie-0.2.13-4.el9.aarch64                     152/194 
+  Verifying        : lua-5.4.4-4.el9.aarch64                            153/194 
+  Verifying        : llvm-libs-19.1.7-1.el9.aarch64                     154/194 
+  Verifying        : tracker-3.1.2-3.el9_1.aarch64                      155/194 
+  Verifying        : java-11-openjdk-headless-1:11.0.25.0.9-7.el9.aar   156/194 
+  Verifying        : nss-sysinit-3.112.0-4.el9_4.aarch64                157/194 
+  Verifying        : libcanberra-0.30-27.el9.aarch64                    158/194 
+  Verifying        : libXv-1.0.11-16.el9.aarch64                        159/194 
+  Verifying        : libxkbcommon-1.0.3-4.el9.aarch64                   160/194 
+  Verifying        : nss-util-3.112.0-4.el9_4.aarch64                   161/194 
+  Verifying        : mesa-libEGL-24.2.8-3.el9_6.aarch64                 162/194 
+  Verifying        : libXcomposite-0.4.5-7.el9.aarch64                  163/194 
+  Verifying        : flatpak-1.12.9-4.el9_6.aarch64                     164/194 
+  Verifying        : nspr-4.36.0-4.el9_4.aarch64                        165/194 
+  Verifying        : ostree-libs-2025.2-2.el9_6.aarch64                 166/194 
+  Verifying        : pango-1.48.7-3.el9.aarch64                         167/194 
+  Verifying        : colord-libs-1.4.5-6.el9_6.aarch64                  168/194 
+  Verifying        : libosinfo-1.10.0-1.el9.aarch64                     169/194 
+  Verifying        : libsndfile-1.0.31-9.el9.aarch64                    170/194 
+  Verifying        : libtracker-sparql-3.1.2-3.el9_1.aarch64            171/194 
+  Verifying        : lcms2-2.12-3.el9.aarch64                           172/194 
+  Verifying        : p11-kit-server-0.25.3-3.el9_5.aarch64              173/194 
+  Verifying        : upower-0.99.13-2.el9.aarch64                       174/194 
+  Verifying        : libasyncns-0.8-22.el9.aarch64                      175/194 
+  Verifying        : flac-libs-1.3.3-10.el9_2.1.aarch64                 176/194 
+  Verifying        : webkit2gtk3-jsc-2.50.1-0.el9_6.aarch64             177/194 
+  Verifying        : iso-codes-4.6.0-3.el9.noarch                       178/194 
+  Verifying        : gtk3-3.24.31-5.el9.aarch64                         179/194 
+  Verifying        : libwayland-egl-1.21.0-1.el9.aarch64                180/194 
+  Verifying        : osinfo-db-20250124-2.el9.rocky.20250630.noarch     181/194 
+  Verifying        : nss-softokn-3.112.0-4.el9_4.aarch64                182/194 
+  Verifying        : webrtc-audio-processing-0.3.1-8.el9.0.1.aarch64    183/194 
+  Verifying        : jbigkit-libs-2.1-23.el9.aarch64                    184/194 
+  Verifying        : avahi-glib-0.8-22.el9_6.1.aarch64                  185/194 
+  Verifying        : libglvnd-1:1.3.4-1.el9.aarch64                     186/194 
+  Verifying        : gdk-pixbuf2-2.42.6-6.el9_6.aarch64                 187/194 
+  Verifying        : xkeyboard-config-2.33-2.el9.noarch                 188/194 
+  Verifying        : exempi-2.6.0-0.2.20211007gite23c213.el9.aarch64    189/194 
+  Verifying        : libXext-1.3.4-8.el9.aarch64                        190/194 
+  Verifying        : xdg-desktop-portal-1.12.6-1.el9.aarch64            191/194 
+  Verifying        : adwaita-icon-theme-40.1.1-3.el9.noarch             192/194 
+  Verifying        : libepoxy-1.5.5-4.el9.aarch64                       193/194 
+  Verifying        : pipewire-libs-1.0.1-1.el9.aarch64                  194/194 
 
 Installed:
   ModemManager-glib-1.20.2-1.el9.aarch64                                        
   NetworkManager-libnm-1:1.52.0-7.el9_6.aarch64                                 
   abattis-cantarell-fonts-0.301-4.el9.noarch                                    
-  acl-2.3.1-4.el9.aarch64                                                       
   adobe-source-code-pro-fonts-2.030.1.050-12.el9.1.noarch                       
   adwaita-cursor-theme-40.1.1-3.el9.noarch                                      
   adwaita-icon-theme-40.1.1-3.el9.noarch                                        
@@ -960,9 +914,6 @@ Installed:
   copy-jdk-configs-4.0-3.el9.noarch                                             
   cryptsetup-libs-2.7.2-3.el9_6.1.aarch64                                       
   cups-libs-1:2.3.3op2-33.el9_6.1.aarch64                                       
-  dbus-1:1.12.20-8.el9.aarch64                                                  
-  dbus-broker-28-7.el9.aarch64                                                  
-  dbus-common-1:1.12.20-8.el9.noarch                                            
   dbus-libs-1:1.12.20-8.el9.aarch64                                             
   dconf-0.40.0-6.el9.aarch64                                                    
   dejavu-sans-fonts-2.37-18.el9.noarch                                          
@@ -1010,7 +961,6 @@ Installed:
   kbd-legacy-2.4.0-11.el9.noarch                                                
   kbd-misc-2.4.0-11.el9.noarch                                                  
   kmod-28-10.el9.aarch64                                                        
-  kmod-libs-28-10.el9.aarch64                                                   
   langpacks-core-font-en-3.0-16.el9.noarch                                      
   lcms2-2.12-3.el9.aarch64                                                      
   libX11-1.7.0-11.el9.aarch64                                                   
@@ -1059,7 +1009,6 @@ Installed:
   libproxy-webkitgtk4-0.4.15-35.el9.aarch64                                     
   librsvg2-2.50.7-3.el9.aarch64                                                 
   libsbc-1.4-9.el9.aarch64                                                      
-  libseccomp-2.5.2-2.el9.aarch64                                                
   libsndfile-1.0.31-9.el9.aarch64                                               
   libsoup-2.72.0-10.el9_6.2.aarch64                                             
   libstemmer-0-18.585svn.el9.aarch64                                            
@@ -1121,9 +1070,6 @@ Installed:
   rtkit-0.11-29.el9.aarch64                                                     
   shared-mime-info-2.1-5.el9.aarch64                                            
   sound-theme-freedesktop-0.8-17.el9.noarch                                     
-  systemd-252-51.el9_6.2.aarch64                                                
-  systemd-pam-252-51.el9_6.2.aarch64                                            
-  systemd-rpm-macros-252-51.el9_6.2.noarch                                      
   systemd-udev-252-51.el9_6.2.aarch64                                           
   totem-pl-parser-3.26.6-2.el9.aarch64                                          
   tracker-3.1.2-3.el9_1.aarch64                                                 
@@ -1131,7 +1077,7 @@ Installed:
   ttmkfdir-3.0.9-65.el9.aarch64                                                 
   unzip-6.0-58.el9_5.aarch64                                                    
   upower-0.99.13-2.el9.aarch64                                                  
-  webkit2gtk3-jsc-2.48.5-1.el9_6.aarch64                                        
+  webkit2gtk3-jsc-2.50.1-0.el9_6.aarch64                                        
   webrtc-audio-processing-0.3.1-8.el9.0.1.aarch64                               
   wireplumber-0.4.14-1.el9.0.1.aarch64                                          
   wireplumber-libs-0.4.14-1.el9.0.1.aarch64                                     
@@ -1144,11 +1090,11 @@ Installed:
 
 Complete!
 25 files removed
---> 1827604326d7
+--> b46bdfb5af01
 STEP 7/24: ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
---> c110089e534b
+--> 380806376c1a
 STEP 8/24: ENV PATH=$JAVA_HOME/bin:$PATH
---> cf7659f4498a
+--> 3d4ea24d1302
 STEP 9/24: RUN pip3 install --no-cache-dir     multiprocess     scipy     scikit-learn     h5py     tqdm     click
 Collecting multiprocess
   Downloading multiprocess-0.70.18-py39-none-any.whl (133 kB)
@@ -1165,22 +1111,22 @@ Collecting click
 Collecting dill>=0.4.0
   Downloading dill-0.4.0-py3-none-any.whl (119 kB)
 Requirement already satisfied: numpy<2.3,>=1.22.4 in /usr/local/lib64/python3.9/site-packages (from scipy) (2.0.2)
-Collecting threadpoolctl>=3.1.0
-  Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
 Collecting joblib>=1.2.0
   Downloading joblib-1.5.2-py3-none-any.whl (308 kB)
+Collecting threadpoolctl>=3.1.0
+  Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
 Installing collected packages: threadpoolctl, scipy, joblib, dill, tqdm, scikit-learn, multiprocess, h5py, click
 Successfully installed click-8.1.8 dill-0.4.0 h5py-3.14.0 joblib-1.5.2 multiprocess-0.70.18 scikit-learn-1.6.1 scipy-1.13.1 threadpoolctl-3.6.0 tqdm-4.67.1
 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
---> 8a214ab655a9
+--> df72d5dcaba7
 STEP 10/24: RUN mkdir -p /opt &&     cd /opt &&     git clone https://github.com/luttero/maud.git &&     cd maud &&     find . -name "maud*" -type f -exec chmod +x {} \; 2>/dev/null || true &&     echo '#!/bin/bash' > /opt/maud/maud_wrapper.sh &&     echo 'java -jar /opt/maud/Maud.jar "$@"' >> /opt/maud/maud_wrapper.sh &&     chmod +x /opt/maud/maud_wrapper.sh &&     ln -sf /opt/maud/maud_wrapper.sh /opt/maud/maud &&     chmod +x /opt/maud/maud
 Cloning into 'maud'...
 Updating files:  36% (988/2688)Updating files:  37% (995/2688)Updating files:  38% (1022/2688)Updating files:  39% (1049/2688)Updating files:  40% (1076/2688)Updating files:  41% (1103/2688)Updating files:  42% (1129/2688)Updating files:  43% (1156/2688)Updating files:  44% (1183/2688)Updating files:  45% (1210/2688)Updating files:  46% (1237/2688)Updating files:  47% (1264/2688)Updating files:  48% (1291/2688)Updating files:  49% (1318/2688)Updating files:  50% (1344/2688)Updating files:  51% (1371/2688)Updating files:  52% (1398/2688)Updating files:  53% (1425/2688)Updating files:  54% (1452/2688)Updating files:  55% (1479/2688)Updating files:  56% (1506/2688)Updating files:  57% (1533/2688)Updating files:  58% (1560/2688)Updating files:  59% (1586/2688)Updating files:  60% (1613/2688)Updating files:  61% (1640/2688)Updating files:  62% (1667/2688)Updating files:  63% (1694/2688)Updating files:  64% (1721/2688)Updating files:  65% (1748/2688)Updating files:  66% (1775/2688)Updating files:  67% (1801/2688)Updating files:  68% (1828/2688)Updating files:  69% (1855/2688)Updating files:  70% (1882/2688)Updating files:  71% (1909/2688)Updating files:  72% (1936/2688)Updating files:  73% (1963/2688)Updating files:  74% (1990/2688)Updating files:  75% (2016/2688)Updating files:  76% (2043/2688)Updating files:  77% (2070/2688)Updating files:  78% (2097/2688)Updating files:  79% (2124/2688)Updating files:  80% (2151/2688)Updating files:  81% (2178/2688)Updating files:  82% (2205/2688)Updating files:  83% (2232/2688)Updating files:  84% (2258/2688)Updating files:  85% (2285/2688)Updating files:  86% (2312/2688)Updating files:  87% (2339/2688)Updating files:  88% (2366/2688)Updating files:  89% (2393/2688)Updating files:  90% (2420/2688)Updating files:  91% (2447/2688)Updating files:  92% (2473/2688)Updating files:  93% (2500/2688)Updating files:  94% (2527/2688)Updating files:  95% (2554/2688)Updating files:  96% (2581/2688)Updating files:  97% (2608/2688)Updating files:  98% (2635/2688)Updating files:  99% (2662/2688)Updating files: 100% (2688/2688)Updating files: 100% (2688/2688), done.
---> a3e6a651f19a
+--> 062809d68deb
 STEP 11/24: ENV MAUD_PATH=/opt/maud
---> b6b2880bf626
+--> 766a035404ad
 STEP 12/24: ENV PATH=$MAUD_PATH:$PATH
---> a21c67536fc0
+--> d3594f2bb4d6
 STEP 13/24: RUN cd /tmp &&     git clone https://github.com/lanl/MILK.git &&     cd MILK &&     python3 setup.py install
 Cloning into 'MILK'...
 running install
@@ -1338,7 +1284,6 @@ byte-compiling build/bdist.linux-aarch64/egg/bin/milk_examples.py to milk_exampl
 byte-compiling build/bdist.linux-aarch64/egg/bin/milk_ge2fabIO.py to milk_ge2fabIO.cpython-39.pyc
 byte-compiling build/bdist.linux-aarch64/egg/bin/milk_histogram_contour.py to milk_histogram_contour.cpython-39.pyc
 byte-compiling build/bdist.linux-aarch64/egg/bin/milk_integrate.py to milk_integrate.cpython-39.pyc
-Sorry: IndentationError: expected an indented block (milk_histogram_contour.py, line 72)
 byte-compiling build/bdist.linux-aarch64/egg/bin/milk_maudText.py to milk_maudText.cpython-39.pyc
 byte-compiling build/bdist.linux-aarch64/egg/bin/milk_poni_export.py to milk_poni_export.cpython-39.pyc
 creating build/bdist.linux-aarch64/egg/EGG-INFO
@@ -1350,6 +1295,7 @@ copying MILK.egg-info/not-zip-safe -> build/bdist.linux-aarch64/egg/EGG-INFO
 copying MILK.egg-info/top_level.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
 creating dist
 creating 'dist/MILK-0.3-py3.9.egg' and adding 'build/bdist.linux-aarch64/egg' to it
+Sorry: IndentationError: expected an indented block (milk_histogram_contour.py, line 72)
 removing 'build/bdist.linux-aarch64/egg' (and everything under it)
 Processing MILK-0.3-py3.9.egg
 creating /usr/local/lib/python3.9/site-packages/MILK-0.3-py3.9.egg
@@ -1369,52 +1315,52 @@ Installing milk-poni-export script to /usr/local/bin
 Installed /usr/local/lib/python3.9/site-packages/MILK-0.3-py3.9.egg
 Processing dependencies for MILK==0.3
 Finished processing dependencies for MILK==0.3
---> 9bd72bc11ca3
+--> 70d7c2ff143f
 STEP 14/24: RUN mkdir -p /home/hpcuser/workspace/milk/examples &&     mkdir -p /home/hpcuser/workspace/milk/data &&     mkdir -p /home/hpcuser/workspace/milk/results
---> b8c696fd6eec
+--> 8ca75dcb0a2c
 STEP 15/24: RUN if [ -d /tmp/MILK/examples ]; then         cp -r /tmp/MILK/examples/* /home/hpcuser/workspace/milk/examples/ 2>/dev/null || true;     fi
---> 870acb7a4f9a
+--> 4b600dffcd5f
 STEP 16/24: RUN mkdir -p /tmp/workspace-seed &&     cp -r /home/hpcuser/workspace/* /tmp/workspace-seed/ &&     mkdir -p /tmp/workspace-seed/examples /tmp/workspace-seed/reframe /tmp/workspace-seed/docs /tmp/workspace-seed/spack
---> 1d7a696c7dab
+--> 07f61c0b3062
 STEP 17/24: RUN echo '#!/bin/bash' > /home/hpcuser/workspace/milk/milk_env.sh &&     echo '# MILK Environment Setup' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo '' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'export MAUD_PATH=/opt/maud' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'export PATH=$MAUD_PATH:$JAVA_HOME/bin:$PATH' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'export PYTHONPATH=/home/hpcuser/workspace:$PYTHONPATH' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo '' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'echo "MILK Environment Loaded"' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'echo "MAUD Path: $MAUD_PATH"' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'echo "Java Version: $(java -version 2>&1 | head -1)"' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'echo "Python Version: $(python3 --version)"' >> /home/hpcuser/workspace/milk/milk_env.sh
---> 85870d6f1067
+--> 65416b5469f9
 STEP 18/24: RUN echo '#!/usr/bin/env python3' > /home/hpcuser/workspace/milk/run_sample.py &&     echo '"""' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'Sample MILK workflow for diffraction analysis' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'Demonstrates basic MILK functionality' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '"""' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'import os' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'import sys' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'def main():' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    print("MILK Sample Workflow")' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    print("=" * 50)' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    ' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    try:' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '        import MILK' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '        print("✅ MILK module available")' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    except ImportError as e:' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '        print(f"❌ Failed to import MILK: {e}")' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '        return 1' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    ' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    print("📊 MILK Environment Ready!")' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    return 0' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'if __name__ == "__main__":' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    sys.exit(main())' >> /home/hpcuser/workspace/milk/run_sample.py
---> 7c3912949c14
+--> f86fbdec9668
 STEP 19/24: RUN chown -R hpcuser:hpcuser /home/hpcuser/workspace/milk &&     chmod +x /home/hpcuser/workspace/milk/milk_env.sh &&     chmod +x /home/hpcuser/workspace/milk/run_sample.py &&     chmod +x /opt/maud/maud_wrapper.sh &&     chmod +x /opt/maud/maud 2>/dev/null || true &&     rm -rf /tmp/MILK
---> 9f491bef983a
+--> 3de1a3e4211b
 STEP 20/24: USER hpcuser
---> 1c1ad1dc4079
+--> 94f9c8d95673
 STEP 21/24: WORKDIR /home/hpcuser/workspace
---> 6eddd827eded
+--> c7c106820bdc
 STEP 22/24: CMD ["/bin/bash"]
---> 91c185e4ec3b
+--> db2104f0a135
 STEP 23/24: ENV "OPENSHIFT_BUILD_NAME"="hpc-milk-1" "OPENSHIFT_BUILD_NAMESPACE"="hpc-interview"
---> d8d181e15b56
+--> 5fb084c456dc
 STEP 24/24: LABEL "io.openshift.build.name"="hpc-milk-1" "io.openshift.build.namespace"="hpc-interview"
-COMMIT temp.builder.openshift.io/hpc-interview/hpc-milk-1:6ec82146
---> 67c1caede8c5
-Successfully tagged temp.builder.openshift.io/hpc-interview/hpc-milk-1:6ec82146
-67c1caede8c5300f9865fe28ce33a979eae1e7107e7669728b094cb7ab336114
+COMMIT temp.builder.openshift.io/hpc-interview/hpc-milk-1:c09223fc
+--> 7410b98f7064
+Successfully tagged temp.builder.openshift.io/hpc-interview/hpc-milk-1:c09223fc
+7410b98f70641a87da4799a0bedbd1e155443f9f3bc7670d793565bbf6e80d6d
 
 Pushing image image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-milk:latest ...
 Getting image source signatures
-Copying blob sha256:183a11a5709db4b382392c8fcc9ee267a9135205456b8c226bb8eb333d2e623f
+Copying blob sha256:2220ba3c6c0594ac8bef43f7414ad7b5debfe6aeceb7f008bcc761e4ba0903cd
+Copying blob sha256:21e72ea8aeb5012b9cb9fca58a17efca0278631908157b50d18f0d62225f6744
 Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
-Copying blob sha256:16428e16220cf196ccb523a3d11722bbf4e317f1cf2a4df77383bf3072641463
-Copying blob sha256:33c70e01458bacde1c01233903fdbc6602adc47ee1f6a344f7905f7e896c45d4
-Copying blob sha256:3a6eb8de0d403e50ff08f94a0782bc7eb7b96bf8a4792d0d40865e7546c0d0b1
-Copying blob sha256:b0fc4564f5a950037d7405b57c02f8929a7fca44b65ebd6b69ada7df2efb2707
-Copying blob sha256:eee87a5d021c16750ee5b2cf7b9328b465d5db73378a6a77cd1f7b76ebf5510e
-Copying blob sha256:1ca6f13adcca09413d22a2963412adcb0dcb4033e5258e7e1e91f7f8bc888889
-Copying blob sha256:28bfa5411f1c531a0ce9a94f1148c63aab5ec781631eb2bb8c1baa2bc1fc6d3b
-Copying blob sha256:a22ece7e2f16666b41246d51662053b806d51f37b684bfaeebdec464971b725f
-Copying blob sha256:9944ec4c476373948802681cf702295a6a56ab7b3760fd9d12718ee9dae79f59
-Copying blob sha256:c392d143405a031f20994a7068fb3602a2cdaa3e4d3e68dd4857c6e7ee3a09df
-Copying blob sha256:0d45967f56e7a636cce73548183623aab0220b0566c6cc153e0d9e88bcc57ed9
-Copying blob sha256:f5869f975c51239d289ed22bb1d91f36a88b60fd719d872eafa840d9fb599fa5
-Copying blob sha256:ba555fc32d4a4cf5d6e635ed67deac4299e4fe3d69b029559e5fab5bfa2ab594
-Copying blob sha256:77c50c7cb67aed2dee705a9f1943a8ff815479465e025557a578491bfbfd1b50
-Copying config sha256:67c1caede8c5300f9865fe28ce33a979eae1e7107e7669728b094cb7ab336114
+Copying blob sha256:c236f866cc23cbfec12e903a90d3809e86beba3cf24062df7ba2f71c55d9cd92
+Copying blob sha256:a1f3feb8c84ea5538eccfb24fa7d77ca5f23b6796606dc509b84d5065960f122
+Copying blob sha256:467d901185734c85cfa64420d57c1aff2950c7939dee03e96f43fa964164f701
+Copying blob sha256:7d1dd35b0ba5c36028ec44c41392f0236d70736ca86f8a1e0398cf106f83c432
+Copying blob sha256:5711c40bfd615361be3b96636dd7068c62b91d27bf48a78efc1059ce8fa043ef
+Copying blob sha256:630a714ff5ea09e69e33421f3d89d469d17e030f106afec2b2afb62a52a11d59
+Copying blob sha256:ea6a1f06916ecd5b721ec99e411196c4e98ef76beb849df841c9151e16796f55
+Copying blob sha256:a091d59c548f2700ac227fd402d862417be07d204809f97f4ce975d779b7916d
+Copying blob sha256:469f1a1833cb0cd85c0f660887636f005f3868219c7d861015c5a3f9dc95ffce
+Copying blob sha256:715d79bc2a7fb5ecc267f6cecf787ef971670302b428dffe316bf8aca75037e0
+Copying blob sha256:143251f9ad990189cc2be924a9da53520a40d6708306713ba6e770d8e8fd46a4
+Copying blob sha256:c4851f6fc76755a354055ea27a518f7b70a05506a58e551bfc8fe99088678420
+Copying blob sha256:f5bfc9cae0718de50acc8fac601b65d975f86a4e6939fed94b12846b22025635
+Copying config sha256:7410b98f70641a87da4799a0bedbd1e155443f9f3bc7670d793565bbf6e80d6d
 Writing manifest to image destination
-Successfully pushed image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-milk@sha256:ce5e20d6c15e93dec6a09bb668b81dc6e06030a1596d1497ea4228fb4872e7b1
+Successfully pushed image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-milk@sha256:3d9cd6e38c4ee9e553bde71127a5802d44da52e15044f42221115eea5b486060
 Push successful
