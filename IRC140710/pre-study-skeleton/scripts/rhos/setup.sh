@@ -34,6 +34,70 @@ echo
 # Initialize log file
 echo "=== HPC Interview Environment Setup - $(date) ===" > "${LOG_FILE}"
 
+# Function to check CRC clock synchronization
+check_crc_clock_sync() {
+    echo -e "${BLUE}🕐 Checking CRC clock synchronization...${NC}"
+    log "Checking CRC clock synchronization"
+    
+    # Only check if CRC and oc are available
+    if ! command -v crc &> /dev/null; then
+        echo -e "${YELLOW}⚠️  CRC not found, skipping clock check${NC}"
+        log "CRC not found, skipping clock check"
+        return 0
+    fi
+    
+    # Check if CRC is running
+    local crc_status=$(crc status 2>/dev/null | grep "CRC VM:" | awk '{print $3}' || echo "Unknown")
+    if [ "$crc_status" != "Running" ]; then
+        echo -e "${YELLOW}⚠️  CRC not running, skipping clock check${NC}"
+        log "CRC not running, skipping clock check"
+        return 0
+    fi
+    
+    # Check for NodeClockNotSynchronising events
+    echo -e "${CYAN}Checking for clock synchronization alerts...${NC}"
+    local clock_alerts=$(oc get events --all-namespaces --field-selector reason=NodeClockNotSynchronising 2>/dev/null | wc -l || echo "0")
+    
+    if [ "$clock_alerts" -gt 1 ]; then  # Greater than 1 because header counts as 1
+        echo -e "${RED}❌ Clock synchronization issues detected!${NC}"
+        echo -e "${CYAN}NodeClockNotSynchronising alerts found in cluster${NC}"
+        log "ERROR: Clock synchronization issues detected"
+        
+        if [ -f "${SCRIPT_DIR}/fix-crc-clock.sh" ]; then
+            echo -e "${YELLOW}This can cause deployment failures and instability${NC}"
+            echo
+            read -p "Run automatic clock synchronization fix now? [Y/n]: " -n 1 -r
+            echo
+            if [[ ! $REPLY =~ ^[Nn]$ ]]; then
+                echo -e "${BLUE}Running clock synchronization fix...${NC}"
+                if "${SCRIPT_DIR}/fix-crc-clock.sh" --auto; then
+                    echo -e "${GREEN}✅ Clock synchronization fix completed${NC}"
+                    log "Clock synchronization fix completed successfully"
+                else
+                    echo -e "${RED}❌ Clock synchronization fix failed${NC}"
+                    echo -e "${YELLOW}Continuing with setup, but may experience issues${NC}"
+                    log "WARNING: Clock synchronization fix failed"
+                fi
+                echo
+            else
+                echo -e "${YELLOW}⚠️  Continuing without fixing clock synchronization${NC}"
+                echo -e "${CYAN}Note: This may cause deployment issues${NC}"
+                log "WARNING: User chose not to fix clock synchronization"
+                echo
+            fi
+        else
+            echo -e "${YELLOW}To fix this issue manually:${NC}"
+            echo -e "  1. Run: crc stop && crc start"
+            echo -e "  2. Or use: ssh -i ~/.crc/machines/crc/id_ecdsa core@\$(crc ip) 'sudo systemctl restart chronyd && sudo chronyc makestep'"
+            log "WARNING: Clock fix script not found, provided manual instructions"
+            echo
+        fi
+    else
+        echo -e "${GREEN}✅ Clock synchronization appears healthy${NC}"
+        log "Clock synchronization check passed"
+    fi
+}
+
 # Function to check prerequisites with detailed validation
 check_prerequisites() {
     echo -e "${BLUE}📋 Comprehensive Prerequisites Check...${NC}"
@@ -41,9 +105,9 @@ check_prerequisites() {
     
     local has_errors=false
     
-    # Check for required commands (docker is optional if podman is available)
-    local required_commands=("podman" "oc" "git")
-    local optional_commands=("docker")
+    # Check for required commands (podman and docker are optional - using OpenShift BuildConfigs)
+    local required_commands=("oc" "git")
+    local optional_commands=("podman" "docker")
     
     for cmd in "${required_commands[@]}"; do
         if command -v "$cmd" &> /dev/null; then
@@ -61,7 +125,7 @@ check_prerequisites() {
             echo -e "${GREEN}✅ $cmd found: $(command -v $cmd)${NC}"
             log "$cmd found at $(command -v $cmd)"
         else
-            echo -e "${YELLOW}⚠️  $cmd not found (optional - using podman)${NC}"
+            echo -e "${YELLOW}⚠️  $cmd not found (optional - using OpenShift BuildConfigs)${NC}"
             log "WARNING: $cmd not found (optional)"
         fi
     done
@@ -813,25 +877,28 @@ main() {
     echo -e "${CYAN}===== Phase 1: Prerequisites =====>${NC}"
     check_prerequisites
     
-    echo -e "${CYAN}===== Phase 2: Namespace Setup =====${NC}"
+    echo -e "${CYAN}===== Phase 2: Clock Synchronization =====${NC}"
+    check_crc_clock_sync
+    
+    echo -e "${CYAN}===== Phase 3: Namespace Setup =====${NC}"
     create_namespace
     
-    echo -e "${CYAN}===== Phase 3: Container Images =====${NC}" 
+    echo -e "${CYAN}===== Phase 4: Container Images =====${NC}" 
     build_images "$modules_to_build"
     
-    echo -e "${CYAN}===== Phase 4: OpenShift Resources =====${NC}"
+    echo -e "${CYAN}===== Phase 5: OpenShift Resources =====${NC}"
     deploy_resources
     
-    echo -e "${CYAN}===== Phase 5: HPC Examples =====${NC}"
+    echo -e "${CYAN}===== Phase 6: HPC Examples =====${NC}"
     setup_all_examples
     
-    echo -e "${CYAN}===== Phase 6: Monitoring =====${NC}"
+    echo -e "${CYAN}===== Phase 7: Monitoring =====${NC}"
     setup_monitoring
     
-    echo -e "${CYAN}===== Phase 7: Health Checks =====${NC}"
+    echo -e "${CYAN}===== Phase 8: Health Checks =====${NC}"
     perform_health_checks
     
-    echo -e "${CYAN}===== Phase 8: Final Configuration =====${NC}"
+    echo -e "${CYAN}===== Phase 9: Final Configuration =====${NC}"
     validate_deployments
     
     echo -e "${CYAN}===== Setup Complete =====${NC}"

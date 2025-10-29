@@ -110,6 +110,48 @@ provide_instructions() {
     echo
 }
 
+# Function to check for clock synchronization issues
+check_clock_sync() {
+    echo -e "${BLUE}🕐 Checking CRC clock synchronization...${NC}"
+    
+    # Only check if CRC and oc are available
+    if ! command -v crc &> /dev/null || ! command -v oc &> /dev/null; then
+        return 0
+    fi
+    
+    # Check if CRC is running
+    local crc_status=$(crc status 2>/dev/null | grep "CRC VM:" | awk '{print $3}' || echo "Unknown")
+    if [ "$crc_status" != "Running" ]; then
+        return 0
+    fi
+    
+    # Check for NodeClockNotSynchronising events
+    local clock_alerts=$(oc get events --all-namespaces --field-selector reason=NodeClockNotSynchronising 2>/dev/null | wc -l || echo "0")
+    
+    if [ "$clock_alerts" -gt 1 ]; then  # Greater than 1 because header counts as 1
+        echo -e "${YELLOW}⚠️  Clock synchronization issues detected!${NC}"
+        echo -e "${CYAN}NodeClockNotSynchronising alerts found in cluster${NC}"
+        echo
+        
+        if [ -f "$(dirname "$0")/fix-crc-clock.sh" ]; then
+            read -p "Run automatic clock fix? [Y/n]: " -n 1 -r
+            echo
+            if [[ ! $REPLY =~ ^[Nn]$ ]]; then
+                echo -e "${BLUE}Running clock synchronization fix...${NC}"
+                "$(dirname "$0")/fix-crc-clock.sh" --auto
+                echo
+            fi
+        else
+            echo -e "${YELLOW}To fix this issue, run:${NC}"
+            echo -e "  crc stop && crc start"
+            echo -e "${YELLOW}Or use the dedicated fix script if available${NC}"
+            echo
+        fi
+    else
+        echo -e "${GREEN}✅ Clock synchronization appears healthy${NC}"
+    fi
+}
+
 # Function to test connection
 test_connection() {
     echo -e "${BLUE}🔌 Testing OpenShift connection...${NC}"
@@ -170,6 +212,10 @@ case "${1:-}" in
         
         if test_connection; then
             echo -e "${GREEN}🎉 OpenShift cluster is ready!${NC}"
+            
+            # Check for clock synchronization issues
+            check_clock_sync
+            
             echo -e "You can now run: ./setup.sh"
         else
             echo -e "${YELLOW}⚠️  OpenShift cluster not accessible${NC}"
@@ -180,6 +226,9 @@ case "${1:-}" in
                 echo
                 echo -e "${BLUE}🔄 Alternative: Try Podman-only mode${NC}"
                 echo -e "  ./start-openshift.sh --podman-only"
+            else
+                # Check clock sync after successful connection
+                check_clock_sync
             fi
         fi
         ;;

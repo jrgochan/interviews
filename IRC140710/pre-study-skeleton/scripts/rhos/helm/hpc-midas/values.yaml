@@ -55,49 +55,118 @@ container:
   args:
     - "-c"
     - |
-      # MIDAS Services Startup Script
+      # MIDAS Services Startup Script (Fixed version based on MIDAS_WEB_SERVER_FIX.md)
       export MIDASSYS=${MIDASSYS:-/opt/midas/install}
       export PATH=$MIDASSYS/bin:$PATH
       export LD_LIBRARY_PATH=$MIDASSYS/lib:$LD_LIBRARY_PATH
       
-      # Create experiment table
-      mkdir -p /tmp/midas_demo
+      echo "🚀 Starting MIDAS services..."
+      
+      # Create proper experiment directory structure
+      mkdir -p /tmp/midas_demo/{data,logs,odb}
       cd /tmp/midas_demo
+      
+      # Create experiment table
       echo 'demo /tmp/midas_demo hpcuser' > exptab
       export MIDAS_EXPTAB=/tmp/midas_demo/exptab
       
-      # Start MIDAS services
-      echo "🗄️ Starting MIDAS ODB server..."
+      # Function to check if port is in use
+      check_port() {
+        netstat -ln 2>/dev/null | grep ":$1" >/dev/null
+      }
+      
+      echo "🔄 Cleaning up any existing MIDAS processes..."
+      pkill -f "mserver.*demo" 2>/dev/null || true
+      pkill -f "mhttpd.*demo" 2>/dev/null || true
+      pkill -f "mlogger.*demo" 2>/dev/null || true
+      sleep 2
+      
+      # Clean up old ODB files
+      rm -f .odb* odb.log 2>/dev/null || true
+      
+      echo "🗄️ Initializing ODB database..."
+      # Create basic ODB structure
+      odbedit -e demo -c 'create STRING "/Experiment/Name[32]" "MIDAS Demo"' 2>&1 || echo "  ℹ️  ODB structure may already exist"
+      echo "  ✅ ODB experiment name set"
+      
+      echo "🗄️ Starting ODB server..."
       mserver -e demo > odb.log 2>&1 &
+      MSERVER_PID=$!
+      sleep 5
+      
+      # Verify ODB server is running and responsive
+      if kill -0 $MSERVER_PID 2>/dev/null && odbedit -e demo -c 'ls /' >/dev/null 2>&1; then
+        echo "  ✅ ODB server running (PID: $MSERVER_PID)"
+      else
+        echo "  ❌ ODB server failed to start"
+        cat odb.log
+        exit 1
+      fi
       
       echo "🌐 Starting MIDAS web interface..."
-      mhttpd -e demo --no-hostlist -D > mhttpd.log 2>&1 &
+      # Start web server on port 8080 (container-compatible mode, no daemon flag)
+      mhttpd -e demo -p 8080 --no-hostlist > mhttpd.log 2>&1 &
+      MHTTPD_PID=$!
+      sleep 5
       
-      echo "🔗 Starting simple proxy placeholder on port 9090..."
-      echo "Proxy will be added manually after deployment" > proxy.log &
+      # Verify web server is running and bound to port
+      if kill -0 $MHTTPD_PID 2>/dev/null && check_port 8080; then
+        echo "  ✅ MIDAS web interface started (PID: $MHTTPD_PID)"
+      else
+        echo "  ❌ Web server failed to start on port 8080"
+        cat mhttpd.log
+        exit 1
+      fi
       
       echo "📝 Starting MIDAS logger..."
       mlogger -e demo > mlogger.log 2>&1 &
+      MLOGGER_PID=$!
       
-      # Keep container running and monitor services
+      if kill -0 $MLOGGER_PID 2>/dev/null; then
+        echo "  ✅ Logger started (PID: $MLOGGER_PID)"
+      else
+        echo "  ⚠️  Logger may have issues, check mlogger.log"
+      fi
+      
+      echo "🎯 MIDAS services status:"
+      ps aux | grep -E "(mserver|mhttpd|mlogger)" | grep -v grep || echo "  No MIDAS processes found"
+      
+      echo "🔍 Network status:"
+      netstat -ln 2>/dev/null | grep -E ":(8080|1175)" || echo "  No network ports bound"
+      
+      echo "✅ MIDAS startup completed"
+      
+      # Keep container running and monitor services with enhanced health checks
       while true; do
         sleep 30
-        # Restart any failed services
-        if ! pgrep -f "mserver.*demo" > /dev/null; then
+        
+        # Check and restart ODB server if needed
+        if ! kill -0 $MSERVER_PID 2>/dev/null; then
           echo "🔄 Restarting ODB server..."
-          MIDAS_EXPTAB=/tmp/midas_demo/exptab mserver -e demo > odb.log 2>&1 &
+          mserver -e demo > odb.log 2>&1 &
+          MSERVER_PID=$!
+          sleep 3
         fi
-        if ! pgrep -f "mhttpd.*demo" > /dev/null; then
+        
+        # Check and restart web server if needed (with port verification)
+        if ! kill -0 $MHTTPD_PID 2>/dev/null || ! check_port 8080; then
           echo "🔄 Restarting web server..."
-          MIDAS_EXPTAB=/tmp/midas_demo/exptab mhttpd -e demo --no-hostlist -D > mhttpd.log 2>&1 &
+          pkill -f "mhttpd.*demo" 2>/dev/null || true
+          sleep 2
+          mhttpd -e demo -p 8080 --no-hostlist > mhttpd.log 2>&1 &
+          MHTTPD_PID=$!
+          sleep 3
         fi
-        if ! pgrep -f "mlogger.*demo" > /dev/null; then
+        
+        # Check and restart logger if needed
+        if ! kill -0 $MLOGGER_PID 2>/dev/null; then
           echo "🔄 Restarting logger..."
-          MIDAS_EXPTAB=/tmp/midas_demo/exptab mlogger -e demo > mlogger.log 2>&1 &
+          mlogger -e demo > mlogger.log 2>&1 &
+          MLOGGER_PID=$!
         fi
       done
   ports:
-    - containerPort: 9090
+    - containerPort: 8080
       name: midas-web
       protocol: TCP
     - containerPort: 1175
@@ -154,7 +223,7 @@ service:
   ports:
     - name: midas-web
       port: 8080
-      targetPort: 9090
+      targetPort: 8080
       protocol: TCP
     - name: midas-odb
       port: 1175

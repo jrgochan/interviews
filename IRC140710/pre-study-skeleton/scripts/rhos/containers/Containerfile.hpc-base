@@ -19,6 +19,8 @@ RUN dnf update -y && \
         which file \
         procps-ng \
         strace gdb valgrind \
+        net-tools \
+        iproute \
         && dnf clean all
 
 # Set up MPI environment
