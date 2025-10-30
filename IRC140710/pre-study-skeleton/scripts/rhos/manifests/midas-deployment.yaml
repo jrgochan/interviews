@@ -164,7 +164,119 @@ spec:
         image: image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-midas:latest
         imagePullPolicy: Always
         command: ["/bin/bash"]
-        args: ["-c", "while true; do sleep 30; done"]
+        args: 
+        - "-c"
+        - |
+          # MIDAS Services Startup Script (Fixed version based on MIDAS_WEB_SERVER_FIX.md)
+          export MIDASSYS=${MIDASSYS:-/opt/midas/install}
+          export PATH=$MIDASSYS/bin:$PATH
+          export LD_LIBRARY_PATH=$MIDASSYS/lib:$LD_LIBRARY_PATH
+          
+          echo "🚀 Starting MIDAS services..."
+          
+          # Create proper experiment directory structure
+          mkdir -p /tmp/midas_demo/{data,logs,odb}
+          cd /tmp/midas_demo
+          
+          # Create experiment table
+          echo 'demo /tmp/midas_demo hpcuser' > exptab
+          export MIDAS_EXPTAB=/tmp/midas_demo/exptab
+          
+          # Function to check if port is in use
+          check_port() {
+            netstat -ln 2>/dev/null | grep ":$1" >/dev/null
+          }
+          
+          echo "🔄 Cleaning up any existing MIDAS processes..."
+          pkill -f "mserver.*demo" 2>/dev/null || true
+          pkill -f "mhttpd.*demo" 2>/dev/null || true
+          pkill -f "mlogger.*demo" 2>/dev/null || true
+          sleep 2
+          
+          # Clean up old ODB files
+          rm -f .odb* odb.log 2>/dev/null || true
+          
+          echo "🗄️ Initializing ODB database..."
+          # Create basic ODB structure
+          odbedit -e demo -c 'create STRING "/Experiment/Name[32]" "MIDAS Demo"' 2>&1 || echo "  ℹ️  ODB structure may already exist"
+          echo "  ✅ ODB experiment name set"
+          
+          echo "🗄️ Starting ODB server..."
+          mserver -e demo > odb.log 2>&1 &
+          MSERVER_PID=$!
+          sleep 5
+          
+          # Verify ODB server is running and responsive
+          if kill -0 $MSERVER_PID 2>/dev/null && odbedit -e demo -c 'ls /' >/dev/null 2>&1; then
+            echo "  ✅ ODB server running (PID: $MSERVER_PID)"
+          else
+            echo "  ❌ ODB server failed to start"
+            cat odb.log
+            exit 1
+          fi
+          
+          echo "🌐 Starting MIDAS web interface..."
+          # Start MIDAS web server (port configured via ODB to 8081)
+          mhttpd -e demo --no-hostlist > mhttpd.log 2>&1 &
+          MHTTPD_PID=$!
+          sleep 5
+          
+          # Verify MIDAS web server is running on port 8080 (default)
+          if kill -0 $MHTTPD_PID 2>/dev/null && check_port 8080; then
+            echo "  ✅ MIDAS web interface started (PID: $MHTTPD_PID)"
+          else
+            echo "  ❌ MIDAS web server failed to start"
+            cat mhttpd.log
+            exit 1
+          fi
+          
+          echo "📝 Starting MIDAS logger..."
+          mlogger -e demo > mlogger.log 2>&1 &
+          MLOGGER_PID=$!
+          
+          if kill -0 $MLOGGER_PID 2>/dev/null; then
+            echo "  ✅ Logger started (PID: $MLOGGER_PID)"
+          else
+            echo "  ⚠️  Logger may have issues, check mlogger.log"
+          fi
+          
+          echo "🎯 MIDAS services status:"
+          ps aux | grep -E "(mserver|mhttpd|mlogger)" | grep -v grep || echo "  No MIDAS processes found"
+          
+          echo "🔍 Network status:"
+          netstat -ln 2>/dev/null | grep -E ":(8080|1175)" || echo "  No network ports bound"
+          
+          echo "✅ MIDAS startup completed"
+          
+          # Keep container running and monitor services with enhanced health checks
+          while true; do
+            sleep 30
+            
+            # Check and restart ODB server if needed
+            if ! kill -0 $MSERVER_PID 2>/dev/null; then
+              echo "🔄 Restarting ODB server..."
+              mserver -e demo > odb.log 2>&1 &
+              MSERVER_PID=$!
+              sleep 3
+            fi
+            
+            # Check and restart web server if needed (with port verification)
+            if ! kill -0 $MHTTPD_PID 2>/dev/null || ! check_port 8080; then
+              echo "🔄 Restarting MIDAS web server..."
+              pkill -f "mhttpd.*demo" 2>/dev/null || true
+              sleep 2
+              mhttpd -e demo --no-hostlist > mhttpd.log 2>&1 &
+              MHTTPD_PID=$!
+              sleep 3
+            fi
+            
+            # Check and restart logger if needed
+            if ! kill -0 $MLOGGER_PID 2>/dev/null; then
+              echo "🔄 Restarting logger..."
+              mlogger -e demo > mlogger.log 2>&1 &
+              MLOGGER_PID=$!
+            fi
+          done
         resources:
           requests:
             memory: "1Gi"
@@ -191,12 +303,47 @@ spec:
         - name: MIDAS_EXPT_DIR
           value: "/home/hpcuser/workspace/midas/experiments/demo"
         ports:
-        - containerPort: 8080
-          name: midas-web
-          protocol: TCP
         - containerPort: 1175
           name: midas-odb
           protocol: TCP
+      # Nginx sidecar proxy to expose mhttpd externally
+      - name: nginx-proxy
+        image: nginx:alpine
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8088
+          name: http-proxy
+          protocol: TCP
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "50m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+          readOnly: true
+        readinessProbe:
+          httpGet:
+            path: /nginx-health
+            port: 8088
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /nginx-health
+            port: 8088
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
       volumes:
       - name: shared-workspace
         persistentVolumeClaim:
@@ -206,6 +353,12 @@ spec:
           claimName: hpc-shared-data
       - name: legacy-shared
         emptyDir: {}
+      - name: nginx-config
+        configMap:
+          name: midas-nginx-config
+          items:
+            - key: nginx.conf
+              path: nginx.conf
       securityContext:
         runAsNonRoot: true
 ---
@@ -221,7 +374,7 @@ spec:
   ports:
   - name: midas-web
     port: 8080
-    targetPort: 8080
+    targetPort: 8088
     protocol: TCP
   - name: midas-odb
     port: 1175

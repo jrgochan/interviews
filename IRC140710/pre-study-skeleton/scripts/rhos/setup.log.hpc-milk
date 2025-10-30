@@ -3,39 +3,38 @@ Uploading directory "/Users/jrgochan/code/github.com/jrgochan/interviews/IRC1407
 Uploading finished
 build.build.openshift.io/hpc-milk-1 started
 Receiving source from STDIN as archive ...
-time="2025-10-29T03:56:21Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
-I1029 03:56:21.022482       1 defaults.go:112] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
+time="2025-10-29T21:02:56Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
+I1029 21:02:56.888946       1 defaults.go:112] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
 Caching blobs under "/var/cache/blobs".
 
 Pulling image image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest ...
 Trying to pull image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest...
 Getting image source signatures
-Copying blob sha256:337715367d611284fdc339eb9140c0c505b9a3eefeda5ec792c3b9df536e2bfa
-Copying blob sha256:a52dc10bb6662bb89c89833cef67065eed2b737c9595562bf296c4c25286e904
+Copying blob sha256:2183d4844dcebcbe2db6c91380442de1c5e3d4adc6c5452e711be9584cd45d8e
+Copying blob sha256:59d55dd9ad6fc59adec3b6a4b9ff87149588cc30f7ef24b03668ebfd9b7d90e8
+Copying blob sha256:d13443ee664c99e55064fd45c55e549594682a945f7d1d892c7b947b48870b0f
+Copying blob sha256:f4190587e15a9dc6e1d365e58f273403a093f9f90eb960562f64984a5e3de77e
+Copying blob sha256:f2916c38b152deeb9288496b29d0d3c5e5c554f41730f1414388beb10283ce3c
 Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
-Copying blob sha256:de84f602012660e13300121530021307255eb26d70bf4870d85341280d1c29ac
-Copying blob sha256:4e4ec80cd421ba38abe5c8188ee0410dfa3e68ef1981acc21ff1b4f9ae9b0cd2
-Copying blob sha256:41f539972805291403245d8c6825558389c080f644bba54275b9f693851d5beb
-Copying config sha256:5bdcc4960db9695d2703f49774d4322ea2b14d492f95e3836cb6b5247e53fbd3
+Copying config sha256:df0cf2414b9738ee381a1a9cc4b0f42204a37f8c42e97d47f73e8876a314236d
 Writing manifest to image destination
 Adding transient rw bind mount for /run/secrets/rhsm
 STEP 1/24: FROM image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest
 STEP 2/24: LABEL maintainer="HPC Interview Preparation"
---> a713c7ee75bf
+--> 825f5e21a8d6
 STEP 3/24: LABEL description="MILK - MAUD Interface Language Kit for diffraction analysis"
---> 2c37a08e31f0
+--> e32e4662cf43
 STEP 4/24: LABEL version="1.0"
---> 1008901051ae
+--> 4c0c7d49f2bc
 STEP 5/24: USER root
---> d2aa933eee1d
+--> 20b7eae3e8a7
 STEP 6/24: RUN dnf update -y &&     dnf install -y         java-11-openjdk         java-11-openjdk-devel         wget         unzip         && dnf clean all
-Rocky Linux 9 - BaseOS                          247 kB/s | 2.6 MB     00:10    
-Rocky Linux 9 - AppStream                       300 kB/s | 8.1 MB     00:27    
-Rocky Linux 9 - Extras                           11 kB/s |  18 kB     00:01    
+Rocky Linux 9 - BaseOS                          2.1 MB/s | 2.6 MB     00:01    
+Rocky Linux 9 - AppStream                       4.1 MB/s | 8.1 MB     00:01    
+Rocky Linux 9 - Extras                           36 kB/s |  18 kB     00:00    
 Dependencies resolved.
 Nothing to do.
 Complete!
-Last metadata expiration check: 0:00:01 ago on Wed Oct 29 03:57:16 2025.
 Package wget-1.21.1-8.el9_4.aarch64 is already installed.
 Dependencies resolved.
 =====================================================================================================
@@ -246,202 +245,202 @@ Install  194 Packages
 Total download size: 186 M
 Installed size: 730 M
 Downloading Packages:
-(1/194): device-mapper-1.02.202-6.el9.aarch64.r 158 kB/s | 135 kB     00:00    
-(2/194): gsettings-desktop-schemas-40.0-7.el9_6 108 kB/s | 665 kB     00:06    
-(3/194): json-glib-1.6.6-1.el9.aarch64.rpm      157 kB/s | 148 kB     00:00    
-(4/194): libtdb-1.4.12-1.el9.aarch64.rpm        111 kB/s |  51 kB     00:00    
-(5/194): hwdata-0.348-9.18.el9.noarch.rpm       112 kB/s | 1.6 MB     00:14    
-(6/194): device-mapper-libs-1.02.202-6.el9.aarc 112 kB/s | 172 kB     00:01    
-(7/194): libproxy-0.4.15-35.el9.aarch64.rpm     116 kB/s |  70 kB     00:00    
-(8/194): dejavu-sans-fonts-2.37-18.el9.noarch.r 121 kB/s | 1.3 MB     00:11    
-(9/194): fuse-common-3.10.2-9.el9.aarch64.rpm    37 kB/s | 7.2 kB     00:00    
-(10/194): fuse-2.9.9-17.el9.aarch64.rpm          91 kB/s |  77 kB     00:00    
-(11/194): dbus-libs-1.12.20-8.el9.aarch64.rpm   114 kB/s | 149 kB     00:01    
-(12/194): cryptsetup-libs-2.7.2-3.el9_6.1.aarch 189 kB/s | 509 kB     00:02    
-(13/194): gobject-introspection-1.68.0-11.el9.a 143 kB/s | 245 kB     00:01    
-(14/194): bluez-libs-5.72-4.el9.aarch64.rpm     133 kB/s |  85 kB     00:00    
-(15/194): kmod-28-10.el9.aarch64.rpm            110 kB/s | 119 kB     00:01    
-(16/194): kbd-misc-2.4.0-11.el9.noarch.rpm      137 kB/s | 1.5 MB     00:11    
-(17/194): libgusb-0.3.8-2.el9.aarch64.rpm        96 kB/s |  48 kB     00:00    
-(18/194): fuse-libs-2.9.9-17.el9.aarch64.rpm    121 kB/s |  94 kB     00:00    
-(19/194): freetype-2.10.4-10.el9_5.aarch64.rpm  126 kB/s | 380 kB     00:03    
-(20/194): shared-mime-info-2.1-5.el9.aarch64.rp 104 kB/s | 371 kB     00:03    
-(21/194): graphite2-1.3.14-9.el9.aarch64.rpm    146 kB/s |  90 kB     00:00    
-(22/194): harfbuzz-2.7.4-10.el9.aarch64.rpm     150 kB/s | 624 kB     00:04    
-(23/194): fonts-filesystem-2.0.5-7.el9.1.noarch  19 kB/s | 9.0 kB     00:00    
-(24/194): ModemManager-glib-1.20.2-1.el9.aarch6 176 kB/s | 326 kB     00:01    
-(25/194): cups-libs-2.3.3op2-33.el9_6.1.aarch64 188 kB/s | 258 kB     00:01    
-(26/194): avahi-libs-0.8-22.el9_6.1.aarch64.rpm 123 kB/s |  65 kB     00:00    
-(27/194): adobe-source-code-pro-fonts-2.030.1.0 226 kB/s | 831 kB     00:03    
-(28/194): glib-networking-2.68.3-3.el9.aarch64. 113 kB/s | 168 kB     00:01    
-(29/194): kbd-legacy-2.4.0-11.el9.noarch.rpm    154 kB/s | 502 kB     00:03    
-(30/194): polkit-0.117-13.el9.aarch64.rpm       134 kB/s | 143 kB     00:01    
-(31/194): unzip-6.0-58.el9_5.aarch64.rpm        146 kB/s | 176 kB     00:01    
-(32/194): libgudev-237-1.el9.aarch64.rpm         87 kB/s |  34 kB     00:00    
-(33/194): polkit-pkla-compat-0.1-21.el9.aarch64  97 kB/s |  43 kB     00:00    
-(34/194): libpng-1.6.37-12.el9.aarch64.rpm      151 kB/s | 114 kB     00:00    
-(35/194): bubblewrap-0.4.1-8.el9_5.aarch64.rpm   54 kB/s |  48 kB     00:00    
-(36/194): libbrotli-1.0.9-7.el9_5.aarch64.rpm   151 kB/s | 311 kB     00:02    
-(37/194): lksctp-tools-1.0.19-3.el9_4.aarch64.r 112 kB/s |  94 kB     00:00    
-(38/194): kbd-2.4.0-11.el9.aarch64.rpm          160 kB/s | 370 kB     00:02    
-(39/194): polkit-libs-0.117-13.el9.aarch64.rpm  162 kB/s | 8.2 MB     00:52    
-(40/194): libXdamage-1.1.5-7.el9.aarch64.rpm     86 kB/s |  22 kB     00:00    
-(41/194): graphene-1.10.6-2.el9.aarch64.rpm      74 kB/s |  95 kB     00:01    
-(42/194): NetworkManager-libnm-1.52.0-7.el9_6.a 144 kB/s | 1.8 MB     00:13    
-(43/194): low-memory-monitor-2.1-4.el9.aarch64.  25 kB/s |  35 kB     00:01    
-(44/194): libXxf86vm-1.1.4-18.el9.aarch64.rpm    67 kB/s |  18 kB     00:00    
-(45/194): systemd-udev-252-51.el9_6.2.aarch64.r 178 kB/s | 1.9 MB     00:10    
-(46/194): atk-2.36.0-5.el9.aarch64.rpm          117 kB/s | 269 kB     00:02    
-(47/194): nss-3.112.0-4.el9_4.aarch64.rpm       231 kB/s | 698 kB     00:03    
-(48/194): fdk-aac-free-2.0.0-8.el9.aarch64.rpm  202 kB/s | 317 kB     00:01    
-(49/194): flatpak-session-helper-1.12.9-4.el9_6 140 kB/s |  69 kB     00:00    
-(50/194): wireplumber-0.4.14-1.el9.0.1.aarch64.  94 kB/s |  80 kB     00:00    
-(51/194): libtiff-4.4.0-13.el9.aarch64.rpm      184 kB/s | 192 kB     00:01    
-(52/194): libX11-xcb-1.7.0-11.el9.aarch64.rpm    54 kB/s |  10 kB     00:00    
-(53/194): libgxps-0.3.2-3.el9.aarch64.rpm       155 kB/s |  76 kB     00:00    
-(54/194): libwayland-client-1.21.0-1.el9.aarch6  74 kB/s |  32 kB     00:00    
-(55/194): mkfontscale-1.2.1-3.el9.aarch64.rpm    86 kB/s |  31 kB     00:00    
-(56/194): adwaita-cursor-theme-40.1.1-3.el9.noa 270 kB/s | 623 kB     00:02    
-(57/194): lua-posix-35.0-8.el9.aarch64.rpm      219 kB/s | 130 kB     00:00    
-(58/194): hicolor-icon-theme-0.17-13.el9.noarch 140 kB/s |  66 kB     00:00    
-(59/194): pulseaudio-libs-15.0-3.el9.aarch64.rp 262 kB/s | 630 kB     00:02    
-(60/194): abattis-cantarell-fonts-0.301-4.el9.n 283 kB/s | 364 kB     00:01    
-(61/194): libdrm-2.4.123-2.el9.aarch64.rpm      217 kB/s | 129 kB     00:00    
-(62/194): gtk-update-icon-cache-3.24.31-5.el9.a 123 kB/s |  32 kB     00:00    
-(63/194): libnotify-0.7.9-8.el9.aarch64.rpm     115 kB/s |  42 kB     00:00    
-(64/194): libXau-1.0.9-8.el9.aarch64.rpm         92 kB/s |  30 kB     00:00    
-(65/194): javapackages-filesystem-6.4.0-1.el9.n  55 kB/s |  10 kB     00:00    
-(66/194): libtheora-1.1.1-31.el9.aarch64.rpm    209 kB/s | 155 kB     00:00    
-(67/194): gsm-1.0.19-6.el9.aarch64.rpm          120 kB/s |  34 kB     00:00    
-(68/194): sound-theme-freedesktop-0.8-17.el9.no 148 kB/s | 377 kB     00:02    
-(69/194): pixman-0.40.0-6.el9_3.aarch64.rpm      92 kB/s | 166 kB     00:01    
-(70/194): rtkit-0.11-29.el9.aarch64.rpm         105 kB/s |  54 kB     00:00    
-(71/194): pipewire-1.0.1-1.el9.aarch64.rpm      130 kB/s | 101 kB     00:00    
-(72/194): mesa-filesystem-24.2.8-3.el9_6.aarch6 8.9 kB/s |  11 kB     00:01    
-(73/194): libX11-common-1.7.0-11.el9.noarch.rpm 172 kB/s | 151 kB     00:00    
-(74/194): wireplumber-libs-0.4.14-1.el9.0.1.aar 199 kB/s | 316 kB     00:01    
-(75/194): libXi-1.7.10-8.el9.aarch64.rpm         55 kB/s |  37 kB     00:00    
-(76/194): librsvg2-2.50.7-3.el9.aarch64.rpm     140 kB/s | 2.7 MB     00:19    
-(77/194): at-spi2-core-2.40.3-1.el9.aarch64.rpm 157 kB/s | 174 kB     00:01    
-(78/194): poppler-21.01.0-21.el9.aarch64.rpm     85 kB/s | 998 kB     00:11    
-(79/194): libxcb-1.13.1-9.el9.aarch64.rpm       107 kB/s | 226 kB     00:02    
-(80/194): libwebp-1.2.0-8.el9.aarch64.rpm        91 kB/s | 260 kB     00:02    
-(81/194): gdk-pixbuf2-modules-2.42.6-6.el9_6.aa 123 kB/s |  82 kB     00:00    
-(82/194): libXtst-1.2.3-16.el9.aarch64.rpm       50 kB/s |  20 kB     00:00    
-(83/194): pipewire-alsa-1.0.1-1.el9.aarch64.rpm 114 kB/s |  54 kB     00:00    
-(84/194): libwayland-server-1.21.0-1.el9.aarch6  35 kB/s |  40 kB     00:01    
-(85/194): libX11-1.7.0-11.el9.aarch64.rpm        93 kB/s | 635 kB     00:06    
-(86/194): libglvnd-glx-1.3.4-1.el9.aarch64.rpm  165 kB/s | 135 kB     00:00    
-(87/194): libxshmfence-1.3-10.el9.aarch64.rpm    68 kB/s |  12 kB     00:00    
-(88/194): poppler-glib-21.01.0-21.el9.aarch64.r 104 kB/s | 144 kB     00:01    
-(89/194): libfontenc-1.1.3-17.el9.aarch64.rpm    36 kB/s |  30 kB     00:00    
-(90/194): xml-common-0.6.3-58.el9.noarch.rpm     77 kB/s |  31 kB     00:00    
-(91/194): ttmkfdir-3.0.9-65.el9.aarch64.rpm      88 kB/s |  49 kB     00:00    
-(92/194): copy-jdk-configs-4.0-3.el9.noarch.rpm  41 kB/s |  27 kB     00:00    
-(93/194): libstemmer-0-18.585svn.el9.aarch64.rp 144 kB/s |  82 kB     00:00    
-(94/194): dconf-0.40.0-6.el9.aarch64.rpm        129 kB/s | 106 kB     00:00    
-(95/194): libproxy-webkitgtk4-0.4.15-35.el9.aar  74 kB/s |  20 kB     00:00    
-(96/194): langpacks-core-font-en-3.0-16.el9.noa  41 kB/s | 9.5 kB     00:00    
-(97/194): libldac-2.0.2.3-10.el9.aarch64.rpm     96 kB/s |  40 kB     00:00    
-(98/194): libXrender-0.9.10-16.el9.aarch64.rpm   92 kB/s |  26 kB     00:00    
-(99/194): libogg-1.3.4-6.el9.aarch64.rpm         85 kB/s |  32 kB     00:00    
-(100/194): pipewire-pulseaudio-1.0.1-1.el9.aarc 166 kB/s | 178 kB     00:01    
-(101/194): libappstream-glib-0.7.18-5.el9_4.aar 219 kB/s | 370 kB     00:01    
-(102/194): libXinerama-1.1.4-10.el9.aarch64.rpm  79 kB/s |  14 kB     00:00    
-(103/194): libjpeg-turbo-2.0.90-7.el9.aarch64.r 135 kB/s | 168 kB     00:01    
-(104/194): mesa-dri-drivers-24.2.8-3.el9_6.aarc 157 kB/s | 8.0 MB     00:51    
-(105/194): pipewire-jack-audio-connection-kit-l  60 kB/s | 120 kB     00:02    
-(106/194): libgsf-1.14.47-5.el9.aarch64.rpm      74 kB/s | 242 kB     00:03    
-(107/194): cairo-gobject-1.17.4-7.el9.aarch64.r  61 kB/s |  18 kB     00:00    
-(108/194): mesa-libglapi-24.2.8-3.el9_6.aarch64  82 kB/s |  61 kB     00:00    
-(109/194): mesa-libgbm-24.2.8-3.el9_6.aarch64.r  93 kB/s |  35 kB     00:00    
-(110/194): libgexiv2-0.12.3-1.el9.aarch64.rpm   109 kB/s |  77 kB     00:00    
-(111/194): geoclue2-2.6.0-8.el9_6.1.aarch64.rpm 107 kB/s | 118 kB     00:01    
-(112/194): composefs-libs-1.0.8-1.el9.aarch64.r  81 kB/s |  52 kB     00:00    
-(113/194): nss-softokn-freebl-3.112.0-4.el9_4.a 212 kB/s | 414 kB     00:01    
-(114/194): libXfixes-5.0.3-16.el9.aarch64.rpm    66 kB/s |  19 kB     00:00    
-(115/194): giflib-5.2.1-9.el9.aarch64.rpm        37 kB/s |  48 kB     00:01    
-(116/194): pipewire-jack-audio-connection-kit-1  46 kB/s | 8.1 kB     00:00    
-(117/194): fontconfig-2.14.0-2.el9_1.aarch64.rp 188 kB/s | 277 kB     00:01    
-(118/194): fribidi-1.0.10-6.el9.2.aarch64.rpm    49 kB/s |  83 kB     00:01    
-(119/194): exiv2-libs-0.27.5-2.el9.aarch64.rpm  138 kB/s | 734 kB     00:05    
-(120/194): totem-pl-parser-3.26.6-2.el9.aarch64 162 kB/s | 127 kB     00:00    
-(121/194): exiv2-0.27.5-2.el9.aarch64.rpm       216 kB/s | 971 kB     00:04    
-(122/194): libthai-0.1.28-8.el9.aarch64.rpm     177 kB/s | 206 kB     00:01    
-(123/194): openjpeg2-2.4.0-8.el9.aarch64.rpm     94 kB/s | 158 kB     00:01    
-(124/194): libiptcdata-1.0.5-10.el9.aarch64.rpm 110 kB/s |  57 kB     00:00    
-(125/194): libcanberra-gtk3-0.30-27.el9.aarch64  57 kB/s |  30 kB     00:00    
-(126/194): libvorbis-1.3.7-5.el9.aarch64.rpm     89 kB/s | 188 kB     00:02    
-(127/194): at-spi2-atk-2.38.0-4.el9.aarch64.rpm 133 kB/s |  85 kB     00:00    
-(128/194): gstreamer1-1.22.12-3.el9.aarch64.rpm 183 kB/s | 1.4 MB     00:07    
-(129/194): libsoup-2.72.0-10.el9_6.2.aarch64.rp 185 kB/s | 381 kB     00:02    
-(130/194): cairo-1.17.4-7.el9.aarch64.rpm       213 kB/s | 644 kB     00:03    
-(131/194): poppler-data-0.4.9-9.el9.0.1.noarch. 274 kB/s | 1.8 MB     00:06    
-(132/194): xdg-desktop-portal-gtk-1.12.0-3.el9. 195 kB/s | 125 kB     00:00    
-(133/194): xdg-dbus-proxy-0.1.3-1.el9.aarch64.r 110 kB/s |  40 kB     00:00    
-(134/194): libXft-2.3.3-8.el9.aarch64.rpm       151 kB/s |  60 kB     00:00    
-(135/194): tracker-miners-3.1.2-4.el9_3.aarch64 151 kB/s | 881 kB     00:05    
-(136/194): opus-1.3.1-10.el9.aarch64.rpm        140 kB/s | 193 kB     00:01    
-(137/194): libsbc-1.4-9.el9.aarch64.rpm         116 kB/s |  43 kB     00:00    
-(138/194): libwayland-cursor-1.21.0-1.el9.aarch  72 kB/s |  18 kB     00:00    
-(139/194): java-11-openjdk-11.0.25.0.9-7.el9.aa 224 kB/s | 401 kB     00:01    
-(140/194): java-11-openjdk-devel-11.0.25.0.9-7. 242 kB/s | 3.3 MB     00:13    
-(141/194): libXcursor-1.2.0-7.el9.aarch64.rpm    94 kB/s |  29 kB     00:00    
-(142/194): libXrandr-1.5.2-8.el9.aarch64.rpm     92 kB/s |  26 kB     00:00    
-(143/194): xorg-x11-fonts-Type1-7.5-33.el9.noar 199 kB/s | 499 kB     00:02    
-(144/194): gstreamer1-plugins-base-1.22.12-4.el 202 kB/s | 2.1 MB     00:10    
-(145/194): osinfo-db-tools-1.10.0-1.el9.aarch64 129 kB/s |  67 kB     00:00    
-(146/194): libglvnd-egl-1.3.4-1.el9.aarch64.rpm  94 kB/s |  36 kB     00:00    
-(147/194): alsa-lib-1.2.13-2.el9.aarch64.rpm    160 kB/s | 494 kB     00:03    
-(148/194): orc-0.4.31-8.el9.aarch64.rpm         161 kB/s | 177 kB     00:01    
-(149/194): mesa-libGL-24.2.8-3.el9_6.aarch64.rp 130 kB/s | 174 kB     00:01    
-(150/194): libdatrie-0.2.13-4.el9.aarch64.rpm    41 kB/s |  31 kB     00:00    
-(151/194): libxslt-1.1.34-13.el9_6.aarch64.rpm   84 kB/s | 237 kB     00:02    
-(152/194): libexif-0.6.22-6.el9.aarch64.rpm     119 kB/s | 422 kB     00:03    
-(153/194): lua-5.4.4-4.el9.aarch64.rpm           67 kB/s | 185 kB     00:02    
-(154/194): tracker-3.1.2-3.el9_1.aarch64.rpm    167 kB/s | 534 kB     00:03    
-(155/194): nss-sysinit-3.112.0-4.el9_4.aarch64.  66 kB/s |  17 kB     00:00    
-(156/194): libcanberra-0.30-27.el9.aarch64.rpm  184 kB/s |  82 kB     00:00    
-(157/194): libXv-1.0.11-16.el9.aarch64.rpm       70 kB/s |  18 kB     00:00    
-(158/194): libxkbcommon-1.0.3-4.el9.aarch64.rpm 207 kB/s | 130 kB     00:00    
-(159/194): nss-util-3.112.0-4.el9_4.aarch64.rpm 188 kB/s |  86 kB     00:00    
-(160/194): mesa-libEGL-24.2.8-3.el9_6.aarch64.r  52 kB/s | 137 kB     00:02    
-(161/194): libXcomposite-0.4.5-7.el9.aarch64.rp  80 kB/s |  23 kB     00:00    
-(162/194): flatpak-1.12.9-4.el9_6.aarch64.rpm   202 kB/s | 1.5 MB     00:07    
-(163/194): nspr-4.36.0-4.el9_4.aarch64.rpm      200 kB/s | 130 kB     00:00    
-(164/194): ostree-libs-2025.2-2.el9_6.aarch64.r 275 kB/s | 424 kB     00:01    
-(165/194): pango-1.48.7-3.el9.aarch64.rpm       255 kB/s | 291 kB     00:01    
-(166/194): colord-libs-1.4.5-6.el9_6.aarch64.rp 255 kB/s | 218 kB     00:00    
-(167/194): libosinfo-1.10.0-1.el9.aarch64.rpm   280 kB/s | 312 kB     00:01    
-(168/194): libsndfile-1.0.31-9.el9.aarch64.rpm  251 kB/s | 206 kB     00:00    
-(169/194): libtracker-sparql-3.1.2-3.el9_1.aarc 216 kB/s | 309 kB     00:01    
-(170/194): lcms2-2.12-3.el9.aarch64.rpm         168 kB/s | 164 kB     00:00    
-(171/194): p11-kit-server-0.25.3-3.el9_5.aarch6 185 kB/s | 231 kB     00:01    
-(172/194): upower-0.99.13-2.el9.aarch64.rpm     102 kB/s | 162 kB     00:01    
-(173/194): libasyncns-0.8-22.el9.aarch64.rpm     61 kB/s |  29 kB     00:00    
-(174/194): flac-libs-1.3.3-10.el9_2.1.aarch64.r 177 kB/s | 192 kB     00:01    
-(175/194): webkit2gtk3-jsc-2.50.1-0.el9_6.aarch 210 kB/s | 4.3 MB     00:20    
-(176/194): iso-codes-4.6.0-3.el9.noarch.rpm     219 kB/s | 3.3 MB     00:15    
-(177/194): gtk3-3.24.31-5.el9.aarch64.rpm       202 kB/s | 4.8 MB     00:24    
-(178/194): libwayland-egl-1.21.0-1.el9.aarch64.  55 kB/s |  12 kB     00:00    
-(179/194): osinfo-db-20250124-2.el9.rocky.20250 208 kB/s | 308 kB     00:01    
-(180/194): nss-softokn-3.112.0-4.el9_4.aarch64. 245 kB/s | 388 kB     00:01    
-(181/194): webrtc-audio-processing-0.3.1-8.el9. 163 kB/s | 293 kB     00:01    
-(182/194): jbigkit-libs-2.1-23.el9.aarch64.rpm   50 kB/s |  52 kB     00:01    
-(183/194): avahi-glib-0.8-22.el9_6.1.aarch64.rp  72 kB/s |  13 kB     00:00    
-(184/194): libglvnd-1.3.4-1.el9.aarch64.rpm     101 kB/s | 127 kB     00:01    
-(185/194): gdk-pixbuf2-2.42.6-6.el9_6.aarch64.r 229 kB/s | 464 kB     00:02    
-(186/194): xkeyboard-config-2.33-2.el9.noarch.r 156 kB/s | 779 kB     00:04    
-(187/194): exempi-2.6.0-0.2.20211007gite23c213. 184 kB/s | 488 kB     00:02    
-(188/194): libXext-1.3.4-8.el9.aarch64.rpm      104 kB/s |  38 kB     00:00    
-(189/194): xdg-desktop-portal-1.12.6-1.el9.aarc 122 kB/s | 344 kB     00:02    
-(190/194): adwaita-icon-theme-40.1.1-3.el9.noar 256 kB/s |  11 MB     00:42    
-(191/194): libepoxy-1.5.5-4.el9.aarch64.rpm     159 kB/s | 256 kB     00:01    
-(192/194): pipewire-libs-1.0.1-1.el9.aarch64.rp 376 kB/s | 1.7 MB     00:04    
-(193/194): java-11-openjdk-headless-11.0.25.0.9 245 kB/s |  38 MB     02:40    
-(194/194): llvm-libs-19.1.7-1.el9.aarch64.rpm   262 kB/s |  53 MB     03:27    
+(1/194): device-mapper-1.02.202-6.el9.aarch64.r 328 kB/s | 135 kB     00:00    
+(2/194): hwdata-0.348-9.18.el9.noarch.rpm       1.9 MB/s | 1.6 MB     00:00    
+(3/194): gsettings-desktop-schemas-40.0-7.el9_6 1.0 MB/s | 665 kB     00:00    
+(4/194): json-glib-1.6.6-1.el9.aarch64.rpm      352 kB/s | 148 kB     00:00    
+(5/194): libtdb-1.4.12-1.el9.aarch64.rpm        158 kB/s |  51 kB     00:00    
+(6/194): device-mapper-libs-1.02.202-6.el9.aarc 399 kB/s | 172 kB     00:00    
+(7/194): polkit-libs-0.117-13.el9.aarch64.rpm   4.0 MB/s | 8.2 MB     00:02    
+(8/194): libproxy-0.4.15-35.el9.aarch64.rpm     186 kB/s |  70 kB     00:00    
+(9/194): dejavu-sans-fonts-2.37-18.el9.noarch.r 1.3 MB/s | 1.3 MB     00:01    
+(10/194): fuse-common-3.10.2-9.el9.aarch64.rpm   37 kB/s | 7.2 kB     00:00    
+(11/194): fuse-2.9.9-17.el9.aarch64.rpm         230 kB/s |  77 kB     00:00    
+(12/194): kbd-misc-2.4.0-11.el9.noarch.rpm      1.8 MB/s | 1.5 MB     00:00    
+(13/194): dbus-libs-1.12.20-8.el9.aarch64.rpm   282 kB/s | 149 kB     00:00    
+(14/194): cryptsetup-libs-2.7.2-3.el9_6.1.aarch 884 kB/s | 509 kB     00:00    
+(15/194): bluez-libs-5.72-4.el9.aarch64.rpm     248 kB/s |  85 kB     00:00    
+(16/194): gobject-introspection-1.68.0-11.el9.a 489 kB/s | 245 kB     00:00    
+(17/194): kmod-28-10.el9.aarch64.rpm            305 kB/s | 119 kB     00:00    
+(18/194): freetype-2.10.4-10.el9_5.aarch64.rpm  761 kB/s | 380 kB     00:00    
+(19/194): libgusb-0.3.8-2.el9.aarch64.rpm       139 kB/s |  48 kB     00:00    
+(20/194): fuse-libs-2.9.9-17.el9.aarch64.rpm    300 kB/s |  94 kB     00:00    
+(21/194): shared-mime-info-2.1-5.el9.aarch64.rp 752 kB/s | 371 kB     00:00    
+(22/194): graphite2-1.3.14-9.el9.aarch64.rpm    267 kB/s |  90 kB     00:00    
+(23/194): harfbuzz-2.7.4-10.el9.aarch64.rpm     942 kB/s | 624 kB     00:00    
+(24/194): fonts-filesystem-2.0.5-7.el9.1.noarch  46 kB/s | 9.0 kB     00:00    
+(25/194): ModemManager-glib-1.20.2-1.el9.aarch6 541 kB/s | 326 kB     00:00    
+(26/194): cups-libs-2.3.3op2-33.el9_6.1.aarch64 532 kB/s | 258 kB     00:00    
+(27/194): adobe-source-code-pro-fonts-2.030.1.0 1.2 MB/s | 831 kB     00:00    
+(28/194): avahi-libs-0.8-22.el9_6.1.aarch64.rpm 186 kB/s |  65 kB     00:00    
+(29/194): glib-networking-2.68.3-3.el9.aarch64. 410 kB/s | 168 kB     00:00    
+(30/194): kbd-legacy-2.4.0-11.el9.noarch.rpm    945 kB/s | 502 kB     00:00    
+(31/194): unzip-6.0-58.el9_5.aarch64.rpm        449 kB/s | 176 kB     00:00    
+(32/194): libgudev-237-1.el9.aarch64.rpm        148 kB/s |  34 kB     00:00    
+(33/194): polkit-0.117-13.el9.aarch64.rpm       346 kB/s | 143 kB     00:00    
+(34/194): libpng-1.6.37-12.el9.aarch64.rpm      309 kB/s | 114 kB     00:00    
+(35/194): polkit-pkla-compat-0.1-21.el9.aarch64 137 kB/s |  43 kB     00:00    
+(36/194): bubblewrap-0.4.1-8.el9_5.aarch64.rpm  159 kB/s |  48 kB     00:00    
+(37/194): libbrotli-1.0.9-7.el9_5.aarch64.rpm   639 kB/s | 311 kB     00:00    
+(38/194): lksctp-tools-1.0.19-3.el9_4.aarch64.r 276 kB/s |  94 kB     00:00    
+(39/194): NetworkManager-libnm-1.52.0-7.el9_6.a 2.1 MB/s | 1.8 MB     00:00    
+(40/194): kbd-2.4.0-11.el9.aarch64.rpm          714 kB/s | 370 kB     00:00    
+(41/194): libXdamage-1.1.5-7.el9.aarch64.rpm     86 kB/s |  22 kB     00:00    
+(42/194): graphene-1.10.6-2.el9.aarch64.rpm     266 kB/s |  95 kB     00:00    
+(43/194): systemd-udev-252-51.el9_6.2.aarch64.r 2.1 MB/s | 1.9 MB     00:00    
+(44/194): low-memory-monitor-2.1-4.el9.aarch64. 135 kB/s |  35 kB     00:00    
+(45/194): libXxf86vm-1.1.4-18.el9.aarch64.rpm    63 kB/s |  18 kB     00:00    
+(46/194): atk-2.36.0-5.el9.aarch64.rpm          470 kB/s | 269 kB     00:00    
+(47/194): nss-3.112.0-4.el9_4.aarch64.rpm       1.1 MB/s | 698 kB     00:00    
+(48/194): flatpak-session-helper-1.12.9-4.el9_6 201 kB/s |  69 kB     00:00    
+(49/194): fdk-aac-free-2.0.0-8.el9.aarch64.rpm  499 kB/s | 317 kB     00:00    
+(50/194): mesa-dri-drivers-24.2.8-3.el9_6.aarch 4.3 MB/s | 8.0 MB     00:01    
+(51/194): wireplumber-0.4.14-1.el9.0.1.aarch64. 189 kB/s |  80 kB     00:00    
+(52/194): libtiff-4.4.0-13.el9.aarch64.rpm      379 kB/s | 192 kB     00:00    
+(53/194): libX11-xcb-1.7.0-11.el9.aarch64.rpm    51 kB/s |  10 kB     00:00    
+(54/194): libwayland-client-1.21.0-1.el9.aarch6 126 kB/s |  32 kB     00:00    
+(55/194): libgxps-0.3.2-3.el9.aarch64.rpm       235 kB/s |  76 kB     00:00    
+(56/194): mkfontscale-1.2.1-3.el9.aarch64.rpm   121 kB/s |  31 kB     00:00    
+(57/194): adwaita-cursor-theme-40.1.1-3.el9.noa 718 kB/s | 623 kB     00:00    
+(58/194): lua-posix-35.0-8.el9.aarch64.rpm      341 kB/s | 130 kB     00:00    
+(59/194): hicolor-icon-theme-0.17-13.el9.noarch 194 kB/s |  66 kB     00:00    
+(60/194): pulseaudio-libs-15.0-3.el9.aarch64.rp 716 kB/s | 630 kB     00:00    
+(61/194): libdrm-2.4.123-2.el9.aarch64.rpm      310 kB/s | 129 kB     00:00    
+(62/194): libnotify-0.7.9-8.el9.aarch64.rpm     116 kB/s |  42 kB     00:00    
+(63/194): abattis-cantarell-fonts-0.301-4.el9.n 553 kB/s | 364 kB     00:00    
+(64/194): gtk-update-icon-cache-3.24.31-5.el9.a 120 kB/s |  32 kB     00:00    
+(65/194): javapackages-filesystem-6.4.0-1.el9.n  54 kB/s |  10 kB     00:00    
+(66/194): libXau-1.0.9-8.el9.aarch64.rpm        100 kB/s |  30 kB     00:00    
+(67/194): libtheora-1.1.1-31.el9.aarch64.rpm    302 kB/s | 155 kB     00:00    
+(68/194): gsm-1.0.19-6.el9.aarch64.rpm          117 kB/s |  34 kB     00:00    
+(69/194): pixman-0.40.0-6.el9_3.aarch64.rpm     388 kB/s | 166 kB     00:00    
+(70/194): sound-theme-freedesktop-0.8-17.el9.no 535 kB/s | 377 kB     00:00    
+(71/194): rtkit-0.11-29.el9.aarch64.rpm         172 kB/s |  54 kB     00:00    
+(72/194): pipewire-1.0.1-1.el9.aarch64.rpm      260 kB/s | 101 kB     00:00    
+(73/194): mesa-filesystem-24.2.8-3.el9_6.aarch6  68 kB/s |  11 kB     00:00    
+(74/194): libX11-common-1.7.0-11.el9.noarch.rpm 377 kB/s | 151 kB     00:00    
+(75/194): wireplumber-libs-0.4.14-1.el9.0.1.aar 559 kB/s | 316 kB     00:00    
+(76/194): libXi-1.7.10-8.el9.aarch64.rpm        152 kB/s |  37 kB     00:00    
+(77/194): librsvg2-2.50.7-3.el9.aarch64.rpm     1.3 MB/s | 2.7 MB     00:01    
+(78/194): at-spi2-core-2.40.3-1.el9.aarch64.rpm 354 kB/s | 174 kB     00:00    
+(79/194): libxcb-1.13.1-9.el9.aarch64.rpm       448 kB/s | 226 kB     00:00    
+(80/194): poppler-21.01.0-21.el9.aarch64.rpm    908 kB/s | 998 kB     00:01    
+(81/194): libX11-1.7.0-11.el9.aarch64.rpm       757 kB/s | 635 kB     00:00    
+(82/194): gdk-pixbuf2-modules-2.42.6-6.el9_6.aa 262 kB/s |  82 kB     00:00    
+(83/194): libwebp-1.2.0-8.el9.aarch64.rpm       481 kB/s | 260 kB     00:00    
+(84/194): libXtst-1.2.3-16.el9.aarch64.rpm       68 kB/s |  20 kB     00:00    
+(85/194): pipewire-alsa-1.0.1-1.el9.aarch64.rpm 172 kB/s |  54 kB     00:00    
+(86/194): libwayland-server-1.21.0-1.el9.aarch6 157 kB/s |  40 kB     00:00    
+(87/194): libxshmfence-1.3-10.el9.aarch64.rpm    67 kB/s |  12 kB     00:00    
+(88/194): libglvnd-glx-1.3.4-1.el9.aarch64.rpm  322 kB/s | 135 kB     00:00    
+(89/194): poppler-glib-21.01.0-21.el9.aarch64.r 378 kB/s | 144 kB     00:00    
+(90/194): libfontenc-1.1.3-17.el9.aarch64.rpm    85 kB/s |  30 kB     00:00    
+(91/194): xml-common-0.6.3-58.el9.noarch.rpm    122 kB/s |  31 kB     00:00    
+(92/194): copy-jdk-configs-4.0-3.el9.noarch.rpm 110 kB/s |  27 kB     00:00    
+(93/194): ttmkfdir-3.0.9-65.el9.aarch64.rpm     155 kB/s |  49 kB     00:00    
+(94/194): libstemmer-0-18.585svn.el9.aarch64.rp 259 kB/s |  82 kB     00:00    
+(95/194): dconf-0.40.0-6.el9.aarch64.rpm        264 kB/s | 106 kB     00:00    
+(96/194): libproxy-webkitgtk4-0.4.15-35.el9.aar  82 kB/s |  20 kB     00:00    
+(97/194): langpacks-core-font-en-3.0-16.el9.noa  56 kB/s | 9.5 kB     00:00    
+(98/194): libldac-2.0.2.3-10.el9.aarch64.rpm    139 kB/s |  40 kB     00:00    
+(99/194): libXrender-0.9.10-16.el9.aarch64.rpm  103 kB/s |  26 kB     00:00    
+(100/194): libogg-1.3.4-6.el9.aarch64.rpm       129 kB/s |  32 kB     00:00    
+(101/194): libXinerama-1.1.4-10.el9.aarch64.rpm  77 kB/s |  14 kB     00:00    
+(102/194): libappstream-glib-0.7.18-5.el9_4.aar 582 kB/s | 370 kB     00:00    
+(103/194): pipewire-pulseaudio-1.0.1-1.el9.aarc 333 kB/s | 178 kB     00:00    
+(104/194): libjpeg-turbo-2.0.90-7.el9.aarch64.r 429 kB/s | 168 kB     00:00    
+(105/194): libgsf-1.14.47-5.el9.aarch64.rpm     499 kB/s | 242 kB     00:00    
+(106/194): pipewire-jack-audio-connection-kit-l 288 kB/s | 120 kB     00:00    
+(107/194): mesa-libglapi-24.2.8-3.el9_6.aarch64 195 kB/s |  61 kB     00:00    
+(108/194): cairo-gobject-1.17.4-7.el9.aarch64.r  78 kB/s |  18 kB     00:00    
+(109/194): mesa-libgbm-24.2.8-3.el9_6.aarch64.r 146 kB/s |  35 kB     00:00    
+(110/194): libgexiv2-0.12.3-1.el9.aarch64.rpm   238 kB/s |  77 kB     00:00    
+(111/194): nss-softokn-freebl-3.112.0-4.el9_4.a 664 kB/s | 414 kB     00:00    
+(112/194): geoclue2-2.6.0-8.el9_6.1.aarch64.rpm 265 kB/s | 118 kB     00:00    
+(113/194): libXfixes-5.0.3-16.el9.aarch64.rpm    78 kB/s |  19 kB     00:00    
+(114/194): composefs-libs-1.0.8-1.el9.aarch64.r 167 kB/s |  52 kB     00:00    
+(115/194): giflib-5.2.1-9.el9.aarch64.rpm       158 kB/s |  48 kB     00:00    
+(116/194): pipewire-jack-audio-connection-kit-1  49 kB/s | 8.1 kB     00:00    
+(117/194): fontconfig-2.14.0-2.el9_1.aarch64.rp 474 kB/s | 277 kB     00:00    
+(118/194): exiv2-libs-0.27.5-2.el9.aarch64.rpm  799 kB/s | 734 kB     00:00    
+(119/194): fribidi-1.0.10-6.el9.2.aarch64.rpm   251 kB/s |  83 kB     00:00    
+(120/194): totem-pl-parser-3.26.6-2.el9.aarch64 273 kB/s | 127 kB     00:00    
+(121/194): exiv2-0.27.5-2.el9.aarch64.rpm       777 kB/s | 971 kB     00:01    
+(122/194): libthai-0.1.28-8.el9.aarch64.rpm     374 kB/s | 206 kB     00:00    
+(123/194): openjpeg2-2.4.0-8.el9.aarch64.rpm    367 kB/s | 158 kB     00:00    
+(124/194): gstreamer1-1.22.12-3.el9.aarch64.rpm 960 kB/s | 1.4 MB     00:01    
+(125/194): libvorbis-1.3.7-5.el9.aarch64.rpm    415 kB/s | 188 kB     00:00    
+(126/194): libiptcdata-1.0.5-10.el9.aarch64.rpm 184 kB/s |  57 kB     00:00    
+(127/194): libcanberra-gtk3-0.30-27.el9.aarch64 127 kB/s |  30 kB     00:00    
+(128/194): at-spi2-atk-2.38.0-4.el9.aarch64.rpm 272 kB/s |  85 kB     00:00    
+(129/194): libsoup-2.72.0-10.el9_6.2.aarch64.rp 587 kB/s | 381 kB     00:00    
+(130/194): poppler-data-0.4.9-9.el9.0.1.noarch. 1.2 MB/s | 1.8 MB     00:01    
+(131/194): cairo-1.17.4-7.el9.aarch64.rpm       790 kB/s | 644 kB     00:00    
+(132/194): xdg-desktop-portal-gtk-1.12.0-3.el9. 324 kB/s | 125 kB     00:00    
+(133/194): xdg-dbus-proxy-0.1.3-1.el9.aarch64.r 165 kB/s |  40 kB     00:00    
+(134/194): libXft-2.3.3-8.el9.aarch64.rpm       184 kB/s |  60 kB     00:00    
+(135/194): java-11-openjdk-devel-11.0.25.0.9-7. 1.5 MB/s | 3.3 MB     00:02    
+(136/194): tracker-miners-3.1.2-4.el9_3.aarch64 871 kB/s | 881 kB     00:01    
+(137/194): libsbc-1.4-9.el9.aarch64.rpm         136 kB/s |  43 kB     00:00    
+(138/194): opus-1.3.1-10.el9.aarch64.rpm        420 kB/s | 193 kB     00:00    
+(139/194): libwayland-cursor-1.21.0-1.el9.aarch  73 kB/s |  18 kB     00:00    
+(140/194): libXcursor-1.2.0-7.el9.aarch64.rpm   106 kB/s |  29 kB     00:00    
+(141/194): java-11-openjdk-11.0.25.0.9-7.el9.aa 574 kB/s | 401 kB     00:00    
+(142/194): libXrandr-1.5.2-8.el9.aarch64.rpm    110 kB/s |  26 kB     00:00    
+(143/194): xorg-x11-fonts-Type1-7.5-33.el9.noar 688 kB/s | 499 kB     00:00    
+(144/194): gstreamer1-plugins-base-1.22.12-4.el 1.2 MB/s | 2.1 MB     00:01    
+(145/194): osinfo-db-tools-1.10.0-1.el9.aarch64 207 kB/s |  67 kB     00:00    
+(146/194): libglvnd-egl-1.3.4-1.el9.aarch64.rpm 136 kB/s |  36 kB     00:00    
+(147/194): alsa-lib-1.2.13-2.el9.aarch64.rpm    640 kB/s | 494 kB     00:00    
+(148/194): orc-0.4.31-8.el9.aarch64.rpm         337 kB/s | 177 kB     00:00    
+(149/194): mesa-libGL-24.2.8-3.el9_6.aarch64.rp 324 kB/s | 174 kB     00:00    
+(150/194): libdatrie-0.2.13-4.el9.aarch64.rpm   109 kB/s |  31 kB     00:00    
+(151/194): libxslt-1.1.34-13.el9_6.aarch64.rpm  463 kB/s | 237 kB     00:00    
+(152/194): libexif-0.6.22-6.el9.aarch64.rpm     516 kB/s | 422 kB     00:00    
+(153/194): lua-5.4.4-4.el9.aarch64.rpm          376 kB/s | 185 kB     00:00    
+(154/194): tracker-3.1.2-3.el9_1.aarch64.rpm    660 kB/s | 534 kB     00:00    
+(155/194): nss-sysinit-3.112.0-4.el9_4.aarch64.  76 kB/s |  17 kB     00:00    
+(156/194): libcanberra-0.30-27.el9.aarch64.rpm  242 kB/s |  82 kB     00:00    
+(157/194): libXv-1.0.11-16.el9.aarch64.rpm       57 kB/s |  18 kB     00:00    
+(158/194): libxkbcommon-1.0.3-4.el9.aarch64.rpm 318 kB/s | 130 kB     00:00    
+(159/194): nss-util-3.112.0-4.el9_4.aarch64.rpm 226 kB/s |  86 kB     00:00    
+(160/194): mesa-libEGL-24.2.8-3.el9_6.aarch64.r 317 kB/s | 137 kB     00:00    
+(161/194): libXcomposite-0.4.5-7.el9.aarch64.rp  66 kB/s |  23 kB     00:00    
+(162/194): flatpak-1.12.9-4.el9_6.aarch64.rpm   1.0 MB/s | 1.5 MB     00:01    
+(163/194): nspr-4.36.0-4.el9_4.aarch64.rpm      285 kB/s | 130 kB     00:00    
+(164/194): ostree-libs-2025.2-2.el9_6.aarch64.r 527 kB/s | 424 kB     00:00    
+(165/194): pango-1.48.7-3.el9.aarch64.rpm       459 kB/s | 291 kB     00:00    
+(166/194): colord-libs-1.4.5-6.el9_6.aarch64.rp 413 kB/s | 218 kB     00:00    
+(167/194): libosinfo-1.10.0-1.el9.aarch64.rpm   249 kB/s | 312 kB     00:01    
+(168/194): libsndfile-1.0.31-9.el9.aarch64.rpm  348 kB/s | 206 kB     00:00    
+(169/194): libtracker-sparql-3.1.2-3.el9_1.aarc 458 kB/s | 309 kB     00:00    
+(170/194): lcms2-2.12-3.el9.aarch64.rpm         291 kB/s | 164 kB     00:00    
+(171/194): p11-kit-server-0.25.3-3.el9_5.aarch6 401 kB/s | 231 kB     00:00    
+(172/194): upower-0.99.13-2.el9.aarch64.rpm     328 kB/s | 162 kB     00:00    
+(173/194): java-11-openjdk-headless-11.0.25.0.9 3.4 MB/s |  38 MB     00:11    
+(174/194): libasyncns-0.8-22.el9.aarch64.rpm    121 kB/s |  29 kB     00:00    
+(175/194): flac-libs-1.3.3-10.el9_2.1.aarch64.r 471 kB/s | 192 kB     00:00    
+(176/194): webkit2gtk3-jsc-2.50.1-0.el9_6.aarch 2.6 MB/s | 4.3 MB     00:01    
+(177/194): iso-codes-4.6.0-3.el9.noarch.rpm     2.3 MB/s | 3.3 MB     00:01    
+(178/194): libwayland-egl-1.21.0-1.el9.aarch64.  56 kB/s |  12 kB     00:00    
+(179/194): osinfo-db-20250124-2.el9.rocky.20250 585 kB/s | 308 kB     00:00    
+(180/194): nss-softokn-3.112.0-4.el9_4.aarch64. 709 kB/s | 388 kB     00:00    
+(181/194): gtk3-3.24.31-5.el9.aarch64.rpm       2.7 MB/s | 4.8 MB     00:01    
+(182/194): webrtc-audio-processing-0.3.1-8.el9. 525 kB/s | 293 kB     00:00    
+(183/194): avahi-glib-0.8-22.el9_6.1.aarch64.rp  82 kB/s |  13 kB     00:00    
+(184/194): jbigkit-libs-2.1-23.el9.aarch64.rpm  161 kB/s |  52 kB     00:00    
+(185/194): llvm-libs-19.1.7-1.el9.aarch64.rpm   3.4 MB/s |  53 MB     00:15    
+(186/194): libglvnd-1.3.4-1.el9.aarch64.rpm     310 kB/s | 127 kB     00:00    
+(187/194): gdk-pixbuf2-2.42.6-6.el9_6.aarch64.r 845 kB/s | 464 kB     00:00    
+(188/194): libXext-1.3.4-8.el9.aarch64.rpm      140 kB/s |  38 kB     00:00    
+(189/194): exempi-2.6.0-0.2.20211007gite23c213. 900 kB/s | 488 kB     00:00    
+(190/194): xkeyboard-config-2.33-2.el9.noarch.r 1.1 MB/s | 779 kB     00:00    
+(191/194): xdg-desktop-portal-1.12.6-1.el9.aarc 728 kB/s | 344 kB     00:00    
+(192/194): libepoxy-1.5.5-4.el9.aarch64.rpm     496 kB/s | 256 kB     00:00    
+(193/194): pipewire-libs-1.0.1-1.el9.aarch64.rp 1.9 MB/s | 1.7 MB     00:00    
+(194/194): adwaita-icon-theme-40.1.1-3.el9.noar 4.5 MB/s |  11 MB     00:02    
 --------------------------------------------------------------------------------
-Total                                           548 kB/s | 186 MB     05:47     
+Total                                           4.2 MB/s | 186 MB     00:44     
 Running transaction check
 Transaction check succeeded.
 Running transaction test
@@ -1090,11 +1089,11 @@ Installed:
 
 Complete!
 25 files removed
---> 17edbe0acc81
+--> 55de205bc022
 STEP 7/24: ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
---> 352cf74cb04a
+--> 36362617db92
 STEP 8/24: ENV PATH=$JAVA_HOME/bin:$PATH
---> 438d2a98cdb1
+--> 09d89797740d
 STEP 9/24: RUN pip3 install --no-cache-dir     multiprocess     scipy     scikit-learn     h5py     tqdm     click
 Collecting multiprocess
   Downloading multiprocess-0.70.18-py39-none-any.whl (133 kB)
@@ -1111,22 +1110,22 @@ Collecting click
 Collecting dill>=0.4.0
   Downloading dill-0.4.0-py3-none-any.whl (119 kB)
 Requirement already satisfied: numpy<2.3,>=1.22.4 in /usr/local/lib64/python3.9/site-packages (from scipy) (2.0.2)
-Collecting threadpoolctl>=3.1.0
-  Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
 Collecting joblib>=1.2.0
   Downloading joblib-1.5.2-py3-none-any.whl (308 kB)
+Collecting threadpoolctl>=3.1.0
+  Downloading threadpoolctl-3.6.0-py3-none-any.whl (18 kB)
 Installing collected packages: threadpoolctl, scipy, joblib, dill, tqdm, scikit-learn, multiprocess, h5py, click
 Successfully installed click-8.1.8 dill-0.4.0 h5py-3.14.0 joblib-1.5.2 multiprocess-0.70.18 scikit-learn-1.6.1 scipy-1.13.1 threadpoolctl-3.6.0 tqdm-4.67.1
 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
---> 66433ea9fc80
+--> 21b5975fe9de
 STEP 10/24: RUN mkdir -p /opt &&     cd /opt &&     git clone https://github.com/luttero/maud.git &&     cd maud &&     find . -name "maud*" -type f -exec chmod +x {} \; 2>/dev/null || true &&     echo '#!/bin/bash' > /opt/maud/maud_wrapper.sh &&     echo 'java -jar /opt/maud/Maud.jar "$@"' >> /opt/maud/maud_wrapper.sh &&     chmod +x /opt/maud/maud_wrapper.sh &&     ln -sf /opt/maud/maud_wrapper.sh /opt/maud/maud &&     chmod +x /opt/maud/maud
 Cloning into 'maud'...
 Updating files:  36% (988/2688)Updating files:  37% (995/2688)Updating files:  38% (1022/2688)Updating files:  39% (1049/2688)Updating files:  40% (1076/2688)Updating files:  41% (1103/2688)Updating files:  42% (1129/2688)Updating files:  43% (1156/2688)Updating files:  44% (1183/2688)Updating files:  45% (1210/2688)Updating files:  46% (1237/2688)Updating files:  47% (1264/2688)Updating files:  48% (1291/2688)Updating files:  49% (1318/2688)Updating files:  50% (1344/2688)Updating files:  51% (1371/2688)Updating files:  52% (1398/2688)Updating files:  53% (1425/2688)Updating files:  54% (1452/2688)Updating files:  55% (1479/2688)Updating files:  56% (1506/2688)Updating files:  57% (1533/2688)Updating files:  58% (1560/2688)Updating files:  59% (1586/2688)Updating files:  60% (1613/2688)Updating files:  61% (1640/2688)Updating files:  62% (1667/2688)Updating files:  63% (1694/2688)Updating files:  64% (1721/2688)Updating files:  65% (1748/2688)Updating files:  66% (1775/2688)Updating files:  67% (1801/2688)Updating files:  68% (1828/2688)Updating files:  69% (1855/2688)Updating files:  70% (1882/2688)Updating files:  71% (1909/2688)Updating files:  72% (1936/2688)Updating files:  73% (1963/2688)Updating files:  74% (1990/2688)Updating files:  75% (2016/2688)Updating files:  76% (2043/2688)Updating files:  77% (2070/2688)Updating files:  78% (2097/2688)Updating files:  79% (2124/2688)Updating files:  80% (2151/2688)Updating files:  81% (2178/2688)Updating files:  82% (2205/2688)Updating files:  83% (2232/2688)Updating files:  84% (2258/2688)Updating files:  85% (2285/2688)Updating files:  86% (2312/2688)Updating files:  87% (2339/2688)Updating files:  88% (2366/2688)Updating files:  89% (2393/2688)Updating files:  90% (2420/2688)Updating files:  91% (2447/2688)Updating files:  92% (2473/2688)Updating files:  93% (2500/2688)Updating files:  94% (2527/2688)Updating files:  95% (2554/2688)Updating files:  96% (2581/2688)Updating files:  97% (2608/2688)Updating files:  98% (2635/2688)Updating files:  99% (2662/2688)Updating files: 100% (2688/2688)Updating files: 100% (2688/2688), done.
---> 65381df5d813
+--> 17ba94f468f2
 STEP 11/24: ENV MAUD_PATH=/opt/maud
---> 1030edff8be6
+--> 2aad492bae53
 STEP 12/24: ENV PATH=$MAUD_PATH:$PATH
---> 3d39096b7102
+--> 36cf252d511a
 STEP 13/24: RUN cd /tmp &&     git clone https://github.com/lanl/MILK.git &&     cd MILK &&     python3 setup.py install
 Cloning into 'MILK'...
 running install
@@ -1283,10 +1282,10 @@ byte-compiling build/bdist.linux-aarch64/egg/bin/milk_esg_loader.py to milk_esg_
 byte-compiling build/bdist.linux-aarch64/egg/bin/milk_examples.py to milk_examples.cpython-39.pyc
 byte-compiling build/bdist.linux-aarch64/egg/bin/milk_ge2fabIO.py to milk_ge2fabIO.cpython-39.pyc
 byte-compiling build/bdist.linux-aarch64/egg/bin/milk_histogram_contour.py to milk_histogram_contour.cpython-39.pyc
+Sorry: IndentationError: expected an indented block (milk_histogram_contour.py, line 72)
 byte-compiling build/bdist.linux-aarch64/egg/bin/milk_integrate.py to milk_integrate.cpython-39.pyc
 byte-compiling build/bdist.linux-aarch64/egg/bin/milk_maudText.py to milk_maudText.cpython-39.pyc
 byte-compiling build/bdist.linux-aarch64/egg/bin/milk_poni_export.py to milk_poni_export.cpython-39.pyc
-Sorry: IndentationError: expected an indented block (milk_histogram_contour.py, line 72)
 creating build/bdist.linux-aarch64/egg/EGG-INFO
 copying MILK.egg-info/PKG-INFO -> build/bdist.linux-aarch64/egg/EGG-INFO
 copying MILK.egg-info/SOURCES.txt -> build/bdist.linux-aarch64/egg/EGG-INFO
@@ -1315,52 +1314,52 @@ Installing milk-poni-export script to /usr/local/bin
 Installed /usr/local/lib/python3.9/site-packages/MILK-0.3-py3.9.egg
 Processing dependencies for MILK==0.3
 Finished processing dependencies for MILK==0.3
---> dc6971a1e085
+--> ead192892365
 STEP 14/24: RUN mkdir -p /home/hpcuser/workspace/milk/examples &&     mkdir -p /home/hpcuser/workspace/milk/data &&     mkdir -p /home/hpcuser/workspace/milk/results
---> 5aa7863e7c92
+--> 2bdd437c2e55
 STEP 15/24: RUN if [ -d /tmp/MILK/examples ]; then         cp -r /tmp/MILK/examples/* /home/hpcuser/workspace/milk/examples/ 2>/dev/null || true;     fi
---> 8ef3d38b90f3
+--> 520ad60f3112
 STEP 16/24: RUN mkdir -p /tmp/workspace-seed &&     cp -r /home/hpcuser/workspace/* /tmp/workspace-seed/ &&     mkdir -p /tmp/workspace-seed/examples /tmp/workspace-seed/reframe /tmp/workspace-seed/docs /tmp/workspace-seed/spack
---> 2b1fdb4fd74c
+--> 7c668e3df5fb
 STEP 17/24: RUN echo '#!/bin/bash' > /home/hpcuser/workspace/milk/milk_env.sh &&     echo '# MILK Environment Setup' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo '' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'export MAUD_PATH=/opt/maud' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'export JAVA_HOME=/usr/lib/jvm/java-11-openjdk' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'export PATH=$MAUD_PATH:$JAVA_HOME/bin:$PATH' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'export PYTHONPATH=/home/hpcuser/workspace:$PYTHONPATH' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo '' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'echo "MILK Environment Loaded"' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'echo "MAUD Path: $MAUD_PATH"' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'echo "Java Version: $(java -version 2>&1 | head -1)"' >> /home/hpcuser/workspace/milk/milk_env.sh &&     echo 'echo "Python Version: $(python3 --version)"' >> /home/hpcuser/workspace/milk/milk_env.sh
---> 6b07975d757c
+--> 9600dfef8b71
 STEP 18/24: RUN echo '#!/usr/bin/env python3' > /home/hpcuser/workspace/milk/run_sample.py &&     echo '"""' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'Sample MILK workflow for diffraction analysis' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'Demonstrates basic MILK functionality' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '"""' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'import os' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'import sys' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'def main():' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    print("MILK Sample Workflow")' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    print("=" * 50)' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    ' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    try:' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '        import MILK' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '        print("✅ MILK module available")' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    except ImportError as e:' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '        print(f"❌ Failed to import MILK: {e}")' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '        return 1' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    ' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    print("📊 MILK Environment Ready!")' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    return 0' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo 'if __name__ == "__main__":' >> /home/hpcuser/workspace/milk/run_sample.py &&     echo '    sys.exit(main())' >> /home/hpcuser/workspace/milk/run_sample.py
---> 943c102ec987
+--> 5bfe8fa96394
 STEP 19/24: RUN chown -R hpcuser:hpcuser /home/hpcuser/workspace/milk &&     chmod +x /home/hpcuser/workspace/milk/milk_env.sh &&     chmod +x /home/hpcuser/workspace/milk/run_sample.py &&     chmod +x /opt/maud/maud_wrapper.sh &&     chmod +x /opt/maud/maud 2>/dev/null || true &&     rm -rf /tmp/MILK
---> f3182b0d8224
+--> 6143b977b1e9
 STEP 20/24: USER hpcuser
---> a83f691f9868
+--> f13fc711a526
 STEP 21/24: WORKDIR /home/hpcuser/workspace
---> 3709d47ca317
+--> d199f909d9b5
 STEP 22/24: CMD ["/bin/bash"]
---> a72818fcc339
+--> e4cf3d37a128
 STEP 23/24: ENV "OPENSHIFT_BUILD_NAME"="hpc-milk-1" "OPENSHIFT_BUILD_NAMESPACE"="hpc-interview"
---> d1f78592a0f1
+--> e6d0c237dd38
 STEP 24/24: LABEL "io.openshift.build.name"="hpc-milk-1" "io.openshift.build.namespace"="hpc-interview"
-COMMIT temp.builder.openshift.io/hpc-interview/hpc-milk-1:3e6f7c8d
---> 12be03899902
-Successfully tagged temp.builder.openshift.io/hpc-interview/hpc-milk-1:3e6f7c8d
-12be0389990229bad16855ad9711f9257d69064da164fa9a821534397d8b7ad7
+COMMIT temp.builder.openshift.io/hpc-interview/hpc-milk-1:8cc67b00
+--> b63cb1c3a870
+Successfully tagged temp.builder.openshift.io/hpc-interview/hpc-milk-1:8cc67b00
+b63cb1c3a87087c59c9e3eddf8be90a4cfc1f641243df2a068601389e774bc82
 
 Pushing image image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-milk:latest ...
 Getting image source signatures
-Copying blob sha256:337715367d611284fdc339eb9140c0c505b9a3eefeda5ec792c3b9df536e2bfa
-Copying blob sha256:a52dc10bb6662bb89c89833cef67065eed2b737c9595562bf296c4c25286e904
+Copying blob sha256:f4190587e15a9dc6e1d365e58f273403a093f9f90eb960562f64984a5e3de77e
+Copying blob sha256:2183d4844dcebcbe2db6c91380442de1c5e3d4adc6c5452e711be9584cd45d8e
+Copying blob sha256:d13443ee664c99e55064fd45c55e549594682a945f7d1d892c7b947b48870b0f
 Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
-Copying blob sha256:41f539972805291403245d8c6825558389c080f644bba54275b9f693851d5beb
-Copying blob sha256:de84f602012660e13300121530021307255eb26d70bf4870d85341280d1c29ac
-Copying blob sha256:4e4ec80cd421ba38abe5c8188ee0410dfa3e68ef1981acc21ff1b4f9ae9b0cd2
-Copying blob sha256:39463a31b2af5423c9ceee1dbf68cfd19246bc55e7cb6b187ae8b16b9d470721
-Copying blob sha256:8be87dd33413eba41b69f6a9b34c89a5fe407b4e02415dcff011d4d875cf1c41
-Copying blob sha256:cd9809e1b7696381481f61bafb2a55834ee2a35b01c916047a07da6709f0dada
-Copying blob sha256:fad969df92be208d742cdc3585b85c37e149e86fe2700e242291861e9399362f
-Copying blob sha256:f37d1fc4eefac78f21ef15689f3e6580586460bd865f1b3fafea00fac488be0f
-Copying blob sha256:d2225aa4cd1ad308df5e726e85e861996fa91b7a3d81d8defa26e22b1327829f
-Copying blob sha256:b28ec4e9395d875dabc1d1c798d366165f26a69385c657ee079d2b57da3e75fa
-Copying blob sha256:82cb2d87ca8b1b5fd0c7b7d08dfff4f06ece4a162a70c94222fee19eb42e1175
-Copying blob sha256:cbaa62161547148411874531979bea0abbabc6f3d19214aa33584a5073075381
-Copying blob sha256:90409ef3f2580842d80d982d044fd9fbe1dcc9c7c99f373eb6ecddfd754db63a
-Copying config sha256:12be0389990229bad16855ad9711f9257d69064da164fa9a821534397d8b7ad7
+Copying blob sha256:59d55dd9ad6fc59adec3b6a4b9ff87149588cc30f7ef24b03668ebfd9b7d90e8
+Copying blob sha256:f2916c38b152deeb9288496b29d0d3c5e5c554f41730f1414388beb10283ce3c
+Copying blob sha256:fe225ab5125e4064174ec5d3aeb945a52fbffd178ef823e49a1e7179ce59f200
+Copying blob sha256:ece3ae31f07cce72b9eb6975bf0032b0434c2ae2200a5aec47b070e0bdfd9e53
+Copying blob sha256:c88bde6dc453e20fd2789f94aaea89e0ff1a09ab5c9861f3d0f292dd3124a4a0
+Copying blob sha256:8be9886bc14a5782ae6c8f6fc5ac6c8360665eb21ae1015c48bbf864526f7ca9
+Copying blob sha256:fe1f134d04028c74d9996f7693e5aae8764017bce2deb17b90a3bef4f9b4bed4
+Copying blob sha256:05511094c8e3600cde9ca56c49eb708615f93a65d19b7f51919e107878bf71a8
+Copying blob sha256:8867932178e4562b70a4578794d0f0d22e42d99db393aa287c80819829fd53ce
+Copying blob sha256:fdf9f0577943e91e3391607b8f8327025369998f43ed4cdc48974234692821dd
+Copying blob sha256:fc7ae6929318bd153e7aa19307a53690d3afb2fae7b4abb235cd777267cd6910
+Copying blob sha256:cc586aded448db51403c79cbe06e0153e6b869d1edab6739c6e1b475d3e7ef1f
+Copying config sha256:b63cb1c3a87087c59c9e3eddf8be90a4cfc1f641243df2a068601389e774bc82
 Writing manifest to image destination
-Successfully pushed image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-milk@sha256:9ab81cf224b77337c60e546024a548c3aed1d2998dd7d050f5661ae6c95ce0b5
+Successfully pushed image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-milk@sha256:a2dfefb0cbea8cdf89463f5fec2bbe1773a4ad7621fbd5405d81b6e3d27aea4b
 Push successful

@@ -104,19 +104,16 @@ container:
       fi
       
       echo "🌐 Starting MIDAS web interface..."
-      # Configure ODB to set HTTP port and bind to all interfaces
-      odbedit -e demo -c 'create INT "/Programs/mhttpd/Port" 8080' 2>/dev/null || true
-      odbedit -e demo -c 'set "/Programs/mhttpd/Port" 8080' 2>/dev/null || true
-      # Start web server (will use ODB configuration for port and binding)
+      # Start MIDAS web server on localhost:8080 (default)
       mhttpd -e demo --no-hostlist > mhttpd.log 2>&1 &
       MHTTPD_PID=$!
       sleep 5
       
-      # Verify web server is running and bound to port
+      # Verify MIDAS web server is running on default port (8080 on localhost)
       if kill -0 $MHTTPD_PID 2>/dev/null && check_port 8080; then
         echo "  ✅ MIDAS web interface started (PID: $MHTTPD_PID)"
       else
-        echo "  ❌ Web server failed to start on port 8080"
+        echo "  ❌ MIDAS web server failed to start"
         cat mhttpd.log
         exit 1
       fi
@@ -153,11 +150,9 @@ container:
         
         # Check and restart web server if needed (with port verification)
         if ! kill -0 $MHTTPD_PID 2>/dev/null || ! check_port 8080; then
-          echo "🔄 Restarting web server..."
+          echo "🔄 Restarting MIDAS web server..."
           pkill -f "mhttpd.*demo" 2>/dev/null || true
           sleep 2
-          # Re-configure port in ODB before restart
-          odbedit -e demo -c 'set "/Programs/mhttpd/Port" 8080' 2>/dev/null || true
           mhttpd -e demo --no-hostlist > mhttpd.log 2>&1 &
           MHTTPD_PID=$!
           sleep 3
@@ -171,12 +166,26 @@ container:
         fi
       done
   ports:
-    - containerPort: 8080
-      name: midas-web
-      protocol: TCP
     - containerPort: 1175
       name: midas-odb
       protocol: TCP
+
+# Nginx sidecar proxy configuration
+sidecar:
+  enabled: true
+  name: nginx-proxy
+  image: nginx:alpine
+  ports:
+    - containerPort: 8080
+      name: http-proxy
+      protocol: TCP
+  resources:
+    requests:
+      memory: "32Mi"
+      cpu: "50m"
+    limits:
+      memory: "128Mi"
+      cpu: "200m"
 
 # Resource configuration
 resources:
@@ -206,6 +215,12 @@ volumes:
       claimName: hpc-shared-data
   - name: legacy-shared
     emptyDir: {}
+  - name: nginx-config
+    configMap:
+      name: midas-nginx-config
+      items:
+        - key: nginx.conf
+          path: nginx.conf
 
 # Environment variables
 env:
@@ -228,7 +243,7 @@ service:
   ports:
     - name: midas-web
       port: 8080
-      targetPort: 8080
+      targetPort: 8080  # Points to nginx sidecar
       protocol: TCP
     - name: midas-odb
       port: 1175
@@ -240,10 +255,9 @@ route:
   enabled: true
   name: midas-web-route
   targetPort: midas-web
-  # Temporarily disable TLS to troubleshoot 503 issue
-  # tls:
-  #   termination: edge
-  #   insecureEdgeTerminationPolicy: Redirect
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
 
 # Security context
 securityContext:

@@ -1,7 +1,14 @@
 {
   "cmake.sourceDirectory": "/Users/jrgochan/code/github.com/jrgochan/interviews/IRC140710/pre-study-skeleton/examples/mpi",
-  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.defaultProfile.osx": "clean-bash",
   "terminal.integrated.profiles.osx": {
+    "clean-bash": {
+      "path": "/bin/bash",
+      "args": ["--noprofile", "--norc"],
+      "env": {
+        "PS1": "$ "
+      }
+    },
     "zsh": {
       "path": "/bin/zsh",
       "args": ["-l"]

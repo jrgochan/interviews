@@ -50,26 +50,38 @@ spec:
           {{- toYaml .Values.volumeMounts | nindent 8 }}
         env:
           {{- toYaml .Values.env | nindent 8 }}
-        # Readiness and liveness probes disabled - MIDAS binds to localhost only
-        # which prevents external health checks from working
-        # readinessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: 8080
-        #   initialDelaySeconds: 60
-        #   periodSeconds: 10
-        #   timeoutSeconds: 5
-        #   successThreshold: 1
-        #   failureThreshold: 3
-        # livenessProbe:
-        #   httpGet:
-        #     path: /
-        #     port: 8080
-        #   initialDelaySeconds: 120
-        #   periodSeconds: 30
-        #   timeoutSeconds: 10
-        #   successThreshold: 1
-        #   failureThreshold: 3
+      {{- if .Values.sidecar.enabled }}
+      - name: {{ .Values.sidecar.name }}
+        image: {{ .Values.sidecar.image }}
+        imagePullPolicy: Always
+        ports:
+          {{- toYaml .Values.sidecar.ports | nindent 8 }}
+        resources:
+          {{- toYaml .Values.sidecar.resources | nindent 10 }}
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+          readOnly: true
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 30
+          timeoutSeconds: 10
+          successThreshold: 1
+          failureThreshold: 3
+      {{- end }}
       volumes:
         {{- toYaml .Values.volumes | nindent 6 }}
       securityContext:

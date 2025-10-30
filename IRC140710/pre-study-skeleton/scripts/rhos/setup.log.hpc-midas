@@ -3,38 +3,39 @@ Uploading directory "/Users/jrgochan/code/github.com/jrgochan/interviews/IRC1407
 Uploading finished
 build.build.openshift.io/hpc-midas-1 started
 Receiving source from STDIN as archive ...
-time="2025-10-29T04:20:26Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
-I1029 04:20:26.503154       1 defaults.go:112] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
+time="2025-10-29T21:06:45Z" level=info msg="Not using native diff for overlay, this may cause degraded performance for building images: kernel has CONFIG_OVERLAY_FS_REDIRECT_DIR enabled"
+I1029 21:06:45.578000       1 defaults.go:112] Defaulting to storage driver "overlay" with options [mountopt=metacopy=on].
 Caching blobs under "/var/cache/blobs".
 
 Pulling image image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest ...
 Trying to pull image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest...
 Getting image source signatures
-Copying blob sha256:337715367d611284fdc339eb9140c0c505b9a3eefeda5ec792c3b9df536e2bfa
-Copying blob sha256:a52dc10bb6662bb89c89833cef67065eed2b737c9595562bf296c4c25286e904
+Copying blob sha256:f4190587e15a9dc6e1d365e58f273403a093f9f90eb960562f64984a5e3de77e
+Copying blob sha256:2183d4844dcebcbe2db6c91380442de1c5e3d4adc6c5452e711be9584cd45d8e
+Copying blob sha256:d13443ee664c99e55064fd45c55e549594682a945f7d1d892c7b947b48870b0f
+Copying blob sha256:59d55dd9ad6fc59adec3b6a4b9ff87149588cc30f7ef24b03668ebfd9b7d90e8
 Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
-Copying blob sha256:41f539972805291403245d8c6825558389c080f644bba54275b9f693851d5beb
-Copying blob sha256:de84f602012660e13300121530021307255eb26d70bf4870d85341280d1c29ac
-Copying blob sha256:4e4ec80cd421ba38abe5c8188ee0410dfa3e68ef1981acc21ff1b4f9ae9b0cd2
-Copying config sha256:5bdcc4960db9695d2703f49774d4322ea2b14d492f95e3836cb6b5247e53fbd3
+Copying blob sha256:f2916c38b152deeb9288496b29d0d3c5e5c554f41730f1414388beb10283ce3c
+Copying config sha256:df0cf2414b9738ee381a1a9cc4b0f42204a37f8c42e97d47f73e8876a314236d
 Writing manifest to image destination
 Adding transient rw bind mount for /run/secrets/rhsm
 STEP 1/25: FROM image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-base:latest
 STEP 2/25: LABEL maintainer="HPC Interview Preparation"
---> 7cde4bcbdded
+--> eeb6eba1b62b
 STEP 3/25: LABEL description="MIDAS - Maximum Integrated Data Acquisition System for physics experiments"
---> b2cbd671f356
+--> 767566374f82
 STEP 4/25: LABEL version="1.0"
---> d9683a0a36aa
+--> 237e639461e2
 STEP 5/25: USER root
---> c236a4a38288
+--> dfa5dc13928b
 STEP 6/25: RUN dnf update -y &&     dnf install -y         cmake         make         gcc-c++         git         wget         curl         sqlite-devel         mariadb-connector-c-devel         zlib-devel         openssl-devel         libxml2-devel         readline-devel         ncurses-devel         httpd-devel         && dnf clean all
-Rocky Linux 9 - BaseOS                          475 kB/s | 2.6 MB     00:05    
-Rocky Linux 9 - AppStream                       1.7 MB/s | 8.1 MB     00:04    
-Rocky Linux 9 - Extras                           36 kB/s |  18 kB     00:00    
+Rocky Linux 9 - BaseOS                          2.1 MB/s | 2.6 MB     00:01    
+Rocky Linux 9 - AppStream                       3.2 MB/s | 8.1 MB     00:02    
+Rocky Linux 9 - Extras                           39 kB/s |  18 kB     00:00    
 Dependencies resolved.
 Nothing to do.
 Complete!
+Last metadata expiration check: 0:00:01 ago on Wed Oct 29 21:07:05 2025.
 Package cmake-3.26.5-2.el9.aarch64 is already installed.
 Package make-1:4.3-8.el9.aarch64 is already installed.
 Package gcc-c++-11.5.0-5.el9_5.aarch64 is already installed.
@@ -84,36 +85,36 @@ Install  28 Packages
 Total download size: 9.0 M
 Installed size: 36 M
 Downloading Packages:
-(1/28): apr-util-openssl-1.6.1-23.el9.aarch64.r  80 kB/s |  14 kB     00:00    
-(2/28): mailcap-2.1.49-5.el9.noarch.rpm         127 kB/s |  32 kB     00:00    
-(3/28): cyrus-sasl-2.1.27-21.el9.aarch64.rpm    212 kB/s |  72 kB     00:00    
-(4/28): apr-util-bdb-1.6.1-23.el9.aarch64.rpm    69 kB/s |  12 kB     00:00    
-(5/28): mariadb-connector-c-config-3.2.6-1.el9_  57 kB/s | 9.8 kB     00:00    
-(6/28): apr-util-devel-1.6.1-23.el9.aarch64.rpm 223 kB/s |  70 kB     00:00    
-(7/28): apr-1.7.0-12.el9_3.aarch64.rpm          291 kB/s | 118 kB     00:00    
-(8/28): httpd-devel-2.4.62-4.el9_6.4.aarch64.rp 428 kB/s | 192 kB     00:00    
-(9/28): cyrus-sasl-devel-2.1.27-21.el9.aarch64. 234 kB/s | 102 kB     00:00    
-(10/28): libxml2-devel-2.9.13-12.el9_6.aarch64. 971 kB/s | 828 kB     00:00    
-(11/28): ncurses-devel-6.2-10.20210508.el9_6.2. 739 kB/s | 517 kB     00:00    
-(12/28): httpd-tools-2.4.62-4.el9_6.4.aarch64.r 210 kB/s |  77 kB     00:00    
-(13/28): xz-devel-5.2.5-8.el9_0.aarch64.rpm     143 kB/s |  52 kB     00:00    
-(14/28): mariadb-connector-c-3.2.6-1.el9_0.aarc 425 kB/s | 194 kB     00:00    
-(15/28): httpd-filesystem-2.4.62-4.el9_6.4.noar  65 kB/s |  11 kB     00:00    
-(16/28): libdb-devel-5.3.28-57.el9_6.aarch64.rp 132 kB/s |  36 kB     00:00    
-(17/28): apr-util-1.6.1-23.el9.aarch64.rpm      235 kB/s |  95 kB     00:00    
-(18/28): sqlite-devel-3.34.1-8.el9_6.aarch64.rp 328 kB/s | 133 kB     00:00    
-(19/28): expat-devel-2.5.0-5.el9_6.aarch64.rpm  146 kB/s |  51 kB     00:00    
-(20/28): apr-devel-1.7.0-12.el9_3.aarch64.rpm   435 kB/s | 217 kB     00:00    
-(21/28): openldap-devel-2.6.8-4.el9.0.1.aarch64 805 kB/s | 684 kB     00:00    
-(22/28): ncurses-c++-libs-6.2-10.20210508.el9_6 132 kB/s |  35 kB     00:00    
-(23/28): sqlite-3.34.1-8.el9_6.aarch64.rpm      871 kB/s | 737 kB     00:00    
-(24/28): openssl-devel-3.2.2-6.el9_5.1.aarch64. 1.7 MB/s | 3.2 MB     00:01    
-(25/28): mariadb-connector-c-devel-3.2.6-1.el9_ 153 kB/s |  54 kB     00:00    
-(26/28): readline-devel-8.1-4.el9.aarch64.rpm   453 kB/s | 194 kB     00:00    
-(27/28): zlib-devel-1.2.11-40.el9.aarch64.rpm   136 kB/s |  44 kB     00:00    
-(28/28): httpd-core-2.4.62-4.el9_6.4.aarch64.rp 1.2 MB/s | 1.4 MB     00:01    
+(1/28): apr-util-openssl-1.6.1-23.el9.aarch64.r  85 kB/s |  14 kB     00:00    
+(2/28): mailcap-2.1.49-5.el9.noarch.rpm         126 kB/s |  32 kB     00:00    
+(3/28): cyrus-sasl-2.1.27-21.el9.aarch64.rpm    227 kB/s |  72 kB     00:00    
+(4/28): apr-util-bdb-1.6.1-23.el9.aarch64.rpm    66 kB/s |  12 kB     00:00    
+(5/28): mariadb-connector-c-config-3.2.6-1.el9_  60 kB/s | 9.8 kB     00:00    
+(6/28): apr-util-devel-1.6.1-23.el9.aarch64.rpm 236 kB/s |  70 kB     00:00    
+(7/28): apr-1.7.0-12.el9_3.aarch64.rpm          307 kB/s | 118 kB     00:00    
+(8/28): httpd-devel-2.4.62-4.el9_6.4.aarch64.rp 494 kB/s | 192 kB     00:00    
+(9/28): libxml2-devel-2.9.13-12.el9_6.aarch64.r 1.2 MB/s | 828 kB     00:00    
+(10/28): ncurses-devel-6.2-10.20210508.el9_6.2. 889 kB/s | 517 kB     00:00    
+(11/28): cyrus-sasl-devel-2.1.27-21.el9.aarch64 223 kB/s | 102 kB     00:00    
+(12/28): httpd-tools-2.4.62-4.el9_6.4.aarch64.r 208 kB/s |  77 kB     00:00    
+(13/28): xz-devel-5.2.5-8.el9_0.aarch64.rpm     139 kB/s |  52 kB     00:00    
+(14/28): mariadb-connector-c-3.2.6-1.el9_0.aarc 380 kB/s | 194 kB     00:00    
+(15/28): httpd-filesystem-2.4.62-4.el9_6.4.noar  53 kB/s |  11 kB     00:00    
+(16/28): libdb-devel-5.3.28-57.el9_6.aarch64.rp 106 kB/s |  36 kB     00:00    
+(17/28): apr-util-1.6.1-23.el9.aarch64.rpm      196 kB/s |  95 kB     00:00    
+(18/28): sqlite-devel-3.34.1-8.el9_6.aarch64.rp 281 kB/s | 133 kB     00:00    
+(19/28): expat-devel-2.5.0-5.el9_6.aarch64.rpm  133 kB/s |  51 kB     00:00    
+(20/28): apr-devel-1.7.0-12.el9_3.aarch64.rpm   299 kB/s | 217 kB     00:00    
+(21/28): openssl-devel-3.2.2-6.el9_5.1.aarch64. 1.5 MB/s | 3.2 MB     00:02    
+(22/28): sqlite-3.34.1-8.el9_6.aarch64.rpm      754 kB/s | 737 kB     00:00    
+(23/28): ncurses-c++-libs-6.2-10.20210508.el9_6 113 kB/s |  35 kB     00:00    
+(24/28): mariadb-connector-c-devel-3.2.6-1.el9_ 136 kB/s |  54 kB     00:00    
+(25/28): readline-devel-8.1-4.el9.aarch64.rpm   375 kB/s | 194 kB     00:00    
+(26/28): zlib-devel-1.2.11-40.el9.aarch64.rpm   125 kB/s |  44 kB     00:00    
+(27/28): httpd-core-2.4.62-4.el9_6.4.aarch64.rp 1.0 MB/s | 1.4 MB     00:01    
+(28/28): openldap-devel-2.6.8-4.el9.0.1.aarch64 207 kB/s | 684 kB     00:03    
 --------------------------------------------------------------------------------
-Total                                           1.7 MB/s | 9.0 MB     00:05     
+Total                                           1.4 MB/s | 9.0 MB     00:06     
 Running transaction check
 Transaction check succeeded.
 Running transaction test
@@ -213,7 +214,7 @@ Installed:
 
 Complete!
 25 files removed
---> 574f2a582662
+--> 23693d2c7110
 STEP 7/25: RUN mkdir -p /opt &&     cd /opt &&     git clone https://bitbucket.org/tmidas/midas.git &&     cd midas &&     git submodule update --init --recursive &&     mkdir -p build && cd build &&     cmake ..         -DCMAKE_INSTALL_PREFIX=/opt/midas/install         -DCMAKE_BUILD_TYPE=Release         -DHAVE_ROOT=OFF         -DHAVE_MYSQL=ON         -DHAVE_SQLITE=ON         &&     make -j$(nproc) &&     make install
 Cloning into 'midas'...
 Submodule 'manalyzer' (https://bitbucket.org/tmidas/manalyzer.git) registered for path 'manalyzer'
@@ -286,7 +287,7 @@ Submodule path 'mxml': checked out 'cfce5afcc904f40aa7e8818bb3bfbab2a4c7bfb0'
 -- example_epics: MIDASSYS: /opt/midas
 -- example_epics: EPICSSYS: 
 -- Configuring done (0.5s)
--- Generating done (0.1s)
+-- Generating done (0.0s)
 CMake Warning:
   Manually-specified variables were not used by the project:
 
@@ -296,29 +297,29 @@ CMake Warning:
 -- Build files have been written to: /opt/midas/build
 [  0%] Building CXX object CMakeFiles/objlib-c-compat.dir/src/midas_c_compat.cxx.o
 [  0%] Building CXX object mscb/CMakeFiles/msc.dir/src/msc.cxx.o
-[  0%] Building CXX object mscb/CMakeFiles/mscb.dir/src/mscb.cxx.o
-[  0%] Building CXX object mscb/CMakeFiles/msc.dir/src/mscbrpc.cxx.o
-[  1%] Building CXX object mscb/CMakeFiles/msc.dir/src/mscb.cxx.o
-[  2%] Building CXX object mscb/CMakeFiles/mscb.dir/src/mscbrpc.cxx.o
-[  3%] Building CXX object mscb/CMakeFiles/msc.dir/src/cmdedit.cxx.o
-[  4%] Building CXX object mscb/CMakeFiles/msc.dir/src/mstrlcpy.cxx.o
-[  4%] Building CXX object mscb/CMakeFiles/msc.dir/mxml/mxml.cxx.o
-[  4%] Building CXX object mscb/CMakeFiles/mscb.dir/src/mstrlcpy.cxx.o
-[  5%] Building CXX object mscb/CMakeFiles/mscb.dir/mxml/mxml.cxx.o
+[  1%] Building CXX object mscb/CMakeFiles/mscb.dir/src/mscbrpc.cxx.o
+[  1%] Building CXX object mscb/CMakeFiles/mscb.dir/src/mscb.cxx.o
+[  1%] Building CXX object mscb/CMakeFiles/msc.dir/src/mscbrpc.cxx.o
+[  1%] Building CXX object mscb/CMakeFiles/mscb.dir/src/mstrlcpy.cxx.o
+[  2%] Building CXX object mscb/CMakeFiles/msc.dir/src/mscb.cxx.o
+[  3%] Building CXX object mscb/CMakeFiles/mscb.dir/mxml/mxml.cxx.o
+[  4%] Building CXX object mscb/CMakeFiles/msc.dir/src/cmdedit.cxx.o
+[  5%] Building CXX object mscb/CMakeFiles/msc.dir/src/mstrlcpy.cxx.o
+[  5%] Building CXX object mscb/CMakeFiles/msc.dir/mxml/mxml.cxx.o
 [  5%] Built target git_revision_h
-[  6%] Building CXX object CMakeFiles/objlib.dir/src/midas.cxx.o
 [  6%] Building CXX object CMakeFiles/objlib.dir/src/odb.cxx.o
+[  6%] Building CXX object CMakeFiles/objlib.dir/src/midas.cxx.o
 [  6%] Built target objlib-c-compat
 [  7%] Building CXX object CMakeFiles/objlib.dir/src/odbxx.cxx.o
-[  7%] Building CXX object CMakeFiles/objlib.dir/src/system.cxx.o
 [  8%] Building CXX object CMakeFiles/objlib.dir/src/device_driver.cxx.o
+[  8%] Building CXX object CMakeFiles/objlib.dir/src/system.cxx.o
 [  9%] Building CXX object CMakeFiles/objlib.dir/src/alarm.cxx.o
-[  9%] Linking CXX static library libmscb.a
+[  9%] Building CXX object CMakeFiles/objlib.dir/src/elog.cxx.o
 [ 10%] Linking CXX executable msc
+[ 10%] Linking CXX static library libmscb.a
 [ 10%] Built target mscb
-[ 10%] Building CXX object CMakeFiles/objlib.dir/src/elog.cxx.o
-[ 10%] Built target msc
 [ 11%] Building CXX object CMakeFiles/objlib.dir/src/mrpc.cxx.o
+[ 11%] Built target msc
 [ 11%] Building CXX object CMakeFiles/objlib.dir/mjson/mjson.cxx.o
 [ 12%] Building CXX object CMakeFiles/objlib.dir/src/tmfe.cxx.o
 [ 12%] Building CXX object CMakeFiles/objlib.dir/mvodb/mvodb.cxx.o
@@ -340,197 +341,197 @@ CMake Warning:
 [ 21%] Building CXX object CMakeFiles/objlib.dir/midasio/lz4hc.cxx.o
 [ 22%] Building CXX object CMakeFiles/objlib.dir/midasio/xxhash.cxx.o
 [ 23%] Building CXX object CMakeFiles/objlib.dir/src/crc32c.cxx.o
+[ 23%] Building CXX object CMakeFiles/objlib.dir/src/sha256.cxx.o
+[ 24%] Building CXX object CMakeFiles/objlib.dir/src/sha512.cxx.o
+[ 24%] Building CXX object CMakeFiles/objlib.dir/src/ftplib.cxx.o
 /opt/midas/src/crc32c.cxx:401:2: warning: #warning Hardware accelerated CRC32C is not available. [-Wcpp]
   401 | #warning Hardware accelerated CRC32C is not available.
       |  ^~~~~~~
-[ 23%] Building CXX object CMakeFiles/objlib.dir/src/sha256.cxx.o
 cc1plus: note: unrecognized command-line option '-Wno-vla-cxx-extension' may have been intended to silence earlier diagnostics
-[ 24%] Building CXX object CMakeFiles/objlib.dir/src/sha512.cxx.o
-[ 24%] Building CXX object CMakeFiles/objlib.dir/src/ftplib.cxx.o
 [ 25%] Building CXX object CMakeFiles/objlib.dir/src/mdsupport.cxx.o
 [ 25%] Building CXX object CMakeFiles/objlib.dir/mxml/mxml.cxx.o
 [ 26%] Building CXX object CMakeFiles/objlib.dir/mscb/src/mstrlcpy.cxx.o
 [ 27%] Building C object CMakeFiles/objlib.dir/src/tinyexpr.c.o
 [ 27%] Built target objlib
-[ 27%] Linking CXX shared library libmidas-shared.so
+[ 28%] Linking CXX shared library libmidas-shared.so
 [ 28%] Linking CXX static library libmidas.a
 [ 28%] Built target midas
-[ 28%] Building CXX object CMakeFiles/mfeo.dir/src/mfe.cxx.o
-[ 29%] Building CXX object CMakeFiles/mfe.dir/src/mfe.cxx.o
+[ 29%] Building CXX object CMakeFiles/midas-mfed.dir/src/mfed.cxx.o
 [ 29%] Linking CXX shared library libmidas-c-compat.so
-[ 30%] Building CXX object manalyzer/CMakeFiles/manalyzer.dir/manalyzer.cxx.o
-[ 31%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/bus/null.cxx.o
+[ 29%] Building CXX object CMakeFiles/mfeo.dir/src/mfe.cxx.o
+[ 30%] Building CXX object CMakeFiles/mfe.dir/src/mfe.cxx.o
 [ 31%] Building CXX object progs/CMakeFiles/mserver.dir/mserver.cxx.o
-[ 32%] Building CXX object CMakeFiles/midas-mfed.dir/src/mfed.cxx.o
+[ 31%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/bus/null.cxx.o
+[ 32%] Building CXX object manalyzer/CMakeFiles/manalyzer.dir/manalyzer.cxx.o
 [ 32%] Built target midas-shared
+[ 32%] Building CXX object progs/CMakeFiles/mlogger.dir/mlogger.cxx.o
 [ 32%] Built target midas-c-compat
 [ 32%] Building CXX object progs/CMakeFiles/mhist.dir/mhist.cxx.o
-[ 32%] Building CXX object progs/CMakeFiles/mlogger.dir/mlogger.cxx.o
 [ 33%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/cd_ivc32.cxx.o
 [ 33%] Building CXX object CMakeFiles/midas-mfed.dir/src/mfe.cxx.o
 [ 34%] Linking CXX executable mserver
+[ 34%] Built target mserver
+[ 34%] Building CXX object progs/CMakeFiles/mstat.dir/mstat.cxx.o
 [ 35%] Linking CXX executable mhist
 [ 35%] Built target mhist
-[ 35%] Built target mserver
+[ 35%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/cd_rf.cxx.o
 [ 36%] Building CXX object progs/CMakeFiles/mdump.dir/mdump.cxx.o
-[ 36%] Building CXX object progs/CMakeFiles/mstat.dir/mstat.cxx.o
-[ 36%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/cd_rf.cxx.o
 [ 37%] Linking CXX static library libmfe.a
 [ 37%] Built target mfeo
 [ 37%] Built target mfe
-[ 38%] Building CXX object progs/CMakeFiles/mtransition.dir/mtransition.cxx.o
-[ 39%] Building CXX object progs/CMakeFiles/mhdump.dir/mhdump.cxx.o
-[ 39%] Linking CXX executable mtransition
-[ 41%] Linking CXX executable mdump
-[ 41%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/generic.cxx.o
-[ 41%] Built target mtransition
-[ 41%] Building CXX object progs/CMakeFiles/odbhist.dir/odbhist.cxx.o
-[ 41%] Built target mdump
+[ 38%] Building CXX object progs/CMakeFiles/mhdump.dir/mhdump.cxx.o
+[ 39%] Building CXX object progs/CMakeFiles/mtransition.dir/mtransition.cxx.o
+[ 40%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/generic.cxx.o
+[ 41%] Linking CXX static library libmidas-mfed.a
 [ 42%] Linking CXX executable mstat
-[ 43%] Linking CXX static library libmidas-mfed.a
-[ 43%] Building CXX object progs/CMakeFiles/melog.dir/melog.cxx.o
+[ 42%] Linking CXX executable mtransition
+[ 42%] Built target midas-mfed
+[ 43%] Linking CXX executable mdump
+[ 43%] Building CXX object progs/CMakeFiles/odbhist.dir/odbhist.cxx.o
 [ 43%] Built target mstat
-[ 43%] Built target midas-mfed
-[ 44%] Building CXX object progs/CMakeFiles/mh2sql.dir/mh2sql.cxx.o
-[ 45%] Building CXX object progs/CMakeFiles/hwtest.dir/hwtest.cxx.o
-[ 46%] Linking CXX executable mhdump
-[ 47%] Linking CXX executable odbhist
-[ 47%] Built target mhdump
-[ 47%] Linking CXX executable hwtest
-[ 47%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/hv.cxx.o
+[ 43%] Building CXX object progs/CMakeFiles/melog.dir/melog.cxx.o
+[ 43%] Built target mtransition
+[ 44%] Linking CXX executable mhdump
+[ 45%] Building CXX object progs/CMakeFiles/mh2sql.dir/mh2sql.cxx.o
+[ 46%] Linking CXX executable odbhist
+[ 46%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/hv.cxx.o
+[ 46%] Built target mdump
+[ 47%] Building CXX object progs/CMakeFiles/hwtest.dir/hwtest.cxx.o
 [ 48%] Linking CXX executable melog
+[ 48%] Linking CXX executable hwtest
+[ 48%] Built target odbhist
+[ 48%] Built target mhdump
 [ 49%] Building CXX object progs/CMakeFiles/tmfe_example_multithread.dir/tmfe_example_multithread.cxx.o
-[ 49%] Built target odbhist
-[ 49%] Built target hwtest
-[ 49%] Built target melog
-[ 50%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/multi.cxx.o
+[ 50%] Building CXX object progs/CMakeFiles/tmfe_example_everything.dir/tmfe_example_everything.cxx.o
+[ 50%] Built target hwtest
+[ 50%] Built target melog
 [ 51%] Building CXX object progs/CMakeFiles/tmfe_example_frontend.dir/tmfe_example_frontend.cxx.o
-[ 52%] Building CXX object progs/CMakeFiles/tmfe_example_everything.dir/tmfe_example_everything.cxx.o
+[ 52%] Building CXX object progs/CMakeFiles/tmfe_example_indexed.dir/tmfe_example_indexed.cxx.o
 [ 52%] Linking CXX executable mh2sql
 [ 53%] Linking CXX executable mlogger
 [ 54%] Linking CXX executable tmfe_example_multithread
 [ 54%] Built target mh2sql
-[ 55%] Building CXX object progs/CMakeFiles/tmfe_example_indexed.dir/tmfe_example_indexed.cxx.o
-[ 55%] Built target tmfe_example_multithread
-[ 55%] Built target mlogger
-[ 55%] Building CXX object progs/CMakeFiles/fetest.dir/fetest.cxx.o
-[ 55%] Building CXX object progs/CMakeFiles/test_sleep.dir/test_sleep.cxx.o
-[ 55%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/slowdev.cxx.o
-[ 55%] Linking CXX executable tmfe_example_everything
-[ 55%] Linking CXX executable tmfe_example_frontend
-[ 56%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/device/mscbdev.cxx.o
+[ 54%] Building CXX object progs/CMakeFiles/fetest.dir/fetest.cxx.o
+[ 54%] Built target mlogger
+[ 54%] Building CXX object progs/CMakeFiles/test_sleep.dir/test_sleep.cxx.o
+[ 54%] Linking CXX executable tmfe_example_everything
+[ 54%] Built target tmfe_example_multithread
+[ 54%] Linking CXX executable tmfe_example_frontend
+[ 54%] Building CXX object progs/CMakeFiles/crc32c_sum.dir/crc32c_sum.cxx.o
+[ 55%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/multi.cxx.o
+[ 55%] Linking CXX executable tmfe_example_indexed
+[ 56%] Linking CXX executable crc32c_sum
 [ 56%] Built target tmfe_example_everything
-[ 56%] Building CXX object progs/CMakeFiles/crc32c_sum.dir/crc32c_sum.cxx.o
 [ 56%] Built target tmfe_example_frontend
-[ 57%] Linking CXX executable test_sleep
-[ 58%] Building CXX object progs/CMakeFiles/lazylogger.dir/lazylogger.cxx.o
-[ 58%] Linking CXX executable tmfe_example_indexed
-[ 59%] Linking CXX executable crc32c_sum
-[ 60%] Linking CXX static library libmanalyzer.a
+[ 56%] Built target crc32c_sum
+[ 57%] Building CXX object progs/CMakeFiles/lazylogger.dir/lazylogger.cxx.o
+[ 58%] Building CXX object progs/CMakeFiles/odbinit.dir/odbinit.cxx.o
+[ 58%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/class/slowdev.cxx.o
+[ 58%] Built target tmfe_example_indexed
+[ 59%] Linking CXX executable test_sleep
+[ 60%] Building CXX object progs/CMakeFiles/mchart.dir/mchart.cxx.o
 [ 60%] Built target test_sleep
-[ 60%] Built target tmfe_example_indexed
-[ 60%] Built target manalyzer
-[ 61%] Building CXX object progs/CMakeFiles/odbinit.dir/odbinit.cxx.o
-[ 62%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/device/mscbhv4.cxx.o
-[ 63%] Building CXX object progs/CMakeFiles/mchart.dir/mchart.cxx.o
-[ 63%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/device/nulldev.cxx.o
-[ 63%] Built target crc32c_sum
-[ 64%] Building CXX object progs/CMakeFiles/mjson_test.dir/mjson_test.cxx.o
-[ 65%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/mdev/mdev_mscb.cxx.o
-[ 66%] Linking CXX executable fetest
-[ 67%] Linking CXX executable mjson_test
+[ 61%] Building CXX object progs/CMakeFiles/mjson_test.dir/mjson_test.cxx.o
+[ 62%] Linking CXX static library libmanalyzer.a
+[ 62%] Built target manalyzer
+[ 63%] Building CXX object progs/CMakeFiles/get_record_test.dir/get_record_test.cxx.o
+[ 64%] Linking CXX executable fetest
+[ 65%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/device/mscbdev.cxx.o
+[ 66%] Linking CXX executable mjson_test
+[ 67%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/device/mscbhv4.cxx.o
+[ 67%] Built target fetest
 [ 67%] Built target mjson_test
+[ 67%] Building CXX object progs/CMakeFiles/mfe_link_test.dir/mfe_link_test.cxx.o
 [ 68%] Building CXX object progs/CMakeFiles/odb_lock_test.dir/odb_lock_test.cxx.o
-[ 69%] Building CXX object progs/CMakeFiles/get_record_test.dir/get_record_test.cxx.o
-[ 69%] Built target fetest
-[ 69%] Building CXX object progs/CMakeFiles/mfe_link_test.dir/mfe_link_test.cxx.o
-[ 69%] Linking CXX executable mchart
-[ 69%] Building CXX object progs/CMakeFiles/mfe_link_test_cxx.dir/mfe_link_test_cxx.cxx.o
-[ 69%] Built target mchart
+[ 68%] Linking CXX executable mchart
+[ 68%] Built target mchart
+[ 68%] Building CXX object progs/CMakeFiles/mfe_link_test_cxx.dir/mfe_link_test_cxx.cxx.o
+[ 68%] Linking CXX executable get_record_test
+[ 68%] Linking CXX executable odbinit
+[ 68%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/device/nulldev.cxx.o
+[ 69%] Linking CXX executable mfe_link_test
+[ 69%] Built target get_record_test
 [ 69%] Building CXX object progs/CMakeFiles/feudp.dir/feudp.cxx.o
-[ 70%] Linking CXX executable mfe_link_test
+[ 69%] Built target odbinit
+[ 69%] Building CXX object progs/CMakeFiles/msysmon.dir/msysmon.cxx.o
+[ 69%] Built target mfe_link_test
+[ 70%] Building CXX object drivers/CMakeFiles/midas-drivers.dir/mdev/mdev_mscb.cxx.o
 [ 71%] Linking CXX executable mfe_link_test_cxx
-[ 71%] Linking CXX executable get_record_test
-[ 71%] Linking CXX executable odbinit
-[ 71%] Built target mfe_link_test
-[ 71%] Built target get_record_test
-[ 71%] Built target mfe_link_test_cxx
-[ 71%] Building CXX object progs/CMakeFiles/msysmon.dir/msysmon.cxx.o
-[ 71%] Linking CXX executable odb_lock_test
 [ 71%] Building CXX object progs/CMakeFiles/msequencer.dir/msequencer.cxx.o
-[ 71%] Building CXX object progs/CMakeFiles/mhttpd.dir/mhttpd.cxx.o
-[ 71%] Built target odbinit
+[ 71%] Linking CXX executable odb_lock_test
 [ 71%] Built target odb_lock_test
-[ 71%] Building CXX object progs/CMakeFiles/mhttpd6.dir/mhttpd.cxx.o
+[ 71%] Building CXX object progs/CMakeFiles/mhttpd.dir/mhttpd.cxx.o
+[ 71%] Built target mfe_link_test_cxx
 [ 72%] Building CXX object progs/CMakeFiles/odbedit.dir/odbedit.cxx.o
+[ 72%] Building CXX object progs/CMakeFiles/mhttpd6.dir/mhttpd.cxx.o
 [ 73%] Linking CXX executable feudp
-[ 73%] Linking CXX executable lazylogger
 [ 73%] Built target feudp
 [ 74%] Building CXX object examples/experiment/CMakeFiles/frontend.dir/frontend.cxx.o
-[ 74%] Built target lazylogger
-[ 74%] Building CXX object examples/eventbuilder/CMakeFiles/mevb.dir/mevb.cxx.o
+[ 74%] Linking CXX executable lazylogger
 [ 75%] Linking CXX executable msysmon
+[ 75%] Built target lazylogger
+[ 75%] Linking CXX executable frontend
+[ 75%] Building CXX object examples/eventbuilder/CMakeFiles/mevb.dir/mevb.cxx.o
 [ 75%] Built target msysmon
 [ 76%] Building CXX object examples/mtfe/CMakeFiles/mtfe.dir/mtfe.cxx.o
-[ 76%] Linking CXX executable frontend
 [ 76%] Built target frontend
 [ 77%] Building CXX object examples/lowlevel/CMakeFiles/produce.dir/produce.cxx.o
+[ 77%] Linking CXX executable mtfe
+[ 77%] Linking CXX executable produce
+[ 77%] Built target produce
+[ 77%] Building CXX object examples/lowlevel/CMakeFiles/consume.dir/consume.cxx.o
+[ 77%] Built target mtfe
 [ 78%] Building CXX object examples/eventbuilder/CMakeFiles/mevb.dir/ebuser.cxx.o
-[ 78%] Linking CXX executable mtfe
-[ 78%] Built target mtfe
-[ 78%] Building CXX object examples/lowlevel/CMakeFiles/consume.dir/consume.cxx.o
-[ 78%] Linking CXX static library libmidas-drivers.a
-[ 78%] Linking CXX executable produce
-[ 78%] Built target midas-drivers
 [ 78%] Building CXX object examples/lowlevel/CMakeFiles/rpc_test.dir/rpc_test.cxx.o
-[ 78%] Linking CXX executable mevb
 [ 78%] Building CXX object progs/CMakeFiles/odbedit.dir/cmdedit.cxx.o
-[ 78%] Built target produce
-[ 79%] Building CXX object examples/lowlevel/CMakeFiles/rpc_clnt.dir/rpc_clnt.cxx.o
-[ 80%] Linking CXX executable consume
-[ 80%] Built target mevb
-[ 80%] Building CXX object examples/lowlevel/CMakeFiles/rpc_srvr.dir/rpc_srvr.cxx.o
-[ 81%] Linking CXX executable rpc_test
-[ 81%] Built target consume
+[ 79%] Linking CXX executable consume
+[ 79%] Built target consume
+[ 80%] Linking CXX executable rpc_test
+[ 80%] Linking CXX executable mevb
+[ 81%] Building CXX object examples/lowlevel/CMakeFiles/rpc_clnt.dir/rpc_clnt.cxx.o
+[ 81%] Built target mevb
+[ 81%] Built target rpc_test
+[ 81%] Building CXX object examples/lowlevel/CMakeFiles/rpc_srvr.dir/rpc_srvr.cxx.o
 [ 82%] Building CXX object examples/odbxx/CMakeFiles/odbxx_test.dir/odbxx_test.cxx.o
-[ 83%] Linking CXX executable rpc_clnt
-[ 83%] Built target rpc_test
-[ 84%] Building CXX object progs/CMakeFiles/mhttpd.dir/mongoose616.cxx.o
-[ 84%] Built target rpc_clnt
-[ 85%] Linking CXX executable odbedit
+[ 83%] Linking CXX executable odbedit
+[ 84%] Linking CXX executable rpc_clnt
+[ 84%] Built target odbedit
+[ 85%] Linking CXX executable rpc_srvr
 [ 86%] Building CXX object manalyzer/CMakeFiles/manalyzer_main.dir/manalyzer_main.cxx.o
-[ 87%] Linking CXX executable rpc_srvr
-[ 87%] Built target odbedit
-[ 87%] Building CXX object examples/slowcont/CMakeFiles/scfe.dir/scfe.cxx.o
+[ 86%] Built target rpc_clnt
+[ 87%] Building CXX object progs/CMakeFiles/mhttpd6.dir/mongoose6.cxx.o
+[ 87%] Linking CXX static library libmidas-drivers.a
+[ 87%] Built target midas-drivers
+[ 87%] Building CXX object progs/CMakeFiles/mhttpd6.dir/mgd.cxx.o
 [ 87%] Built target rpc_srvr
+[ 87%] Building CXX object examples/slowcont/CMakeFiles/scfe.dir/scfe.cxx.o
+[ 87%] Linking CXX static library libmanalyzer_main.a
+[ 87%] Built target manalyzer_main
 [ 88%] Building CXX object examples/slowcont/CMakeFiles/mscb_fe.dir/mscb_fe.cxx.o
 [ 89%] Linking CXX executable scfe
-[ 89%] Linking CXX static library libmanalyzer_main.a
-[ 89%] Built target manalyzer_main
 [ 89%] Built target scfe
-[ 90%] Building CXX object manalyzer/CMakeFiles/manalyzer_test.exe.dir/manalyzer_main.cxx.o
-[ 90%] Building CXX object progs/CMakeFiles/mhttpd.dir/mgd.cxx.o
-[ 90%] Linking CXX executable manalyzer_test.exe
-[ 90%] Built target manalyzer_test.exe
-[ 90%] Building CXX object manalyzer/CMakeFiles/manalyzer_example_cxx.exe.dir/manalyzer_example_cxx.cxx.o
-[ 91%] Building CXX object progs/CMakeFiles/mhttpd.dir/__/mscb/src/mscb.cxx.o
+[ 90%] Building CXX object progs/CMakeFiles/mhttpd6.dir/__/mscb/src/mscb.cxx.o
+[ 91%] Building CXX object manalyzer/CMakeFiles/manalyzer_test.exe.dir/manalyzer_main.cxx.o
+[ 91%] Linking CXX executable manalyzer_test.exe
+[ 91%] Built target manalyzer_test.exe
+[ 91%] Building CXX object manalyzer/CMakeFiles/manalyzer_example_cxx.exe.dir/manalyzer_example_cxx.cxx.o
 [ 92%] Linking CXX executable manalyzer_example_cxx.exe
+[ 92%] Linking CXX executable odbxx_test
 [ 92%] Built target manalyzer_example_cxx.exe
 [ 92%] Building CXX object manalyzer/CMakeFiles/manalyzer_example_flow.exe.dir/manalyzer_example_flow.cxx.o
-[ 92%] Linking CXX executable odbxx_test
 [ 92%] Built target odbxx_test
 [ 92%] Building CXX object manalyzer/CMakeFiles/manalyzer_example_flow_queue.exe.dir/manalyzer_example_flow_queue.cxx.o
 [ 93%] Linking CXX executable mscb_fe
-[ 94%] Linking CXX executable manalyzer_example_flow.exe
-[ 94%] Built target mscb_fe
+[ 93%] Built target mscb_fe
+[ 94%] Building CXX object progs/CMakeFiles/mhttpd.dir/mongoose616.cxx.o
 [ 95%] Building CXX object manalyzer/CMakeFiles/manalyzer_example_frontend.exe.dir/manalyzer_example_frontend.cxx.o
+[ 95%] Building CXX object progs/CMakeFiles/mhttpd.dir/mgd.cxx.o
 [ 96%] Linking CXX executable msequencer
-[ 96%] Built target manalyzer_example_flow.exe
-[ 97%] Building CXX object progs/CMakeFiles/mhttpd6.dir/mongoose6.cxx.o
+[ 97%] Linking CXX executable manalyzer_example_flow.exe
 [ 97%] Built target msequencer
-[ 97%] Building CXX object progs/CMakeFiles/mhttpd6.dir/mgd.cxx.o
-[ 98%] Linking CXX executable manalyzer_example_flow_queue.exe
-[ 99%] Building CXX object progs/CMakeFiles/mhttpd6.dir/__/mscb/src/mscb.cxx.o
+[ 98%] Building CXX object progs/CMakeFiles/mhttpd.dir/__/mscb/src/mscb.cxx.o
+[ 99%] Linking CXX executable manalyzer_example_flow_queue.exe
+[ 99%] Built target manalyzer_example_flow.exe
 [ 99%] Built target manalyzer_example_flow_queue.exe
 [ 99%] Linking CXX executable manalyzer_example_frontend.exe
 [ 99%] Built target manalyzer_example_frontend.exe
@@ -1437,15 +1438,15 @@ Install the project...
 -- Installing: /opt/midas/install/lib/midas-targets.cmake
 -- Installing: /opt/midas/install/lib/midas-targets-release.cmake
 -- Installing: /opt/midas/install/lib/cmake/midas/MidasConfig.cmake
---> 14e1bc70ff21
+--> c7329932631f
 STEP 8/25: ENV MIDASSYS=/opt/midas/install
---> beb4253e5688
+--> 58159de7d1fc
 STEP 9/25: ENV PATH=$MIDASSYS/bin:$PATH
---> 7d8ed8791453
+--> d45a7c92b966
 STEP 10/25: ENV LD_LIBRARY_PATH=$MIDASSYS/lib:$LD_LIBRARY_PATH
---> b48f724f8b69
+--> 4307b4e66d34
 STEP 11/25: RUN mkdir -p /opt/midas/experiments/demo &&     cd /opt/midas/experiments/demo
---> d5b727afb1af
+--> bab009c5145a
 STEP 12/25: RUN pip3 install --no-cache-dir     requests     flask     pymongo     sqlalchemy     matplotlib     jupyter
 Requirement already satisfied: requests in /usr/local/lib/python3.9/site-packages (2.32.5)
 Collecting flask
@@ -1456,96 +1457,96 @@ Collecting sqlalchemy
   Downloading sqlalchemy-2.0.44-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (3.2 MB)
 Requirement already satisfied: matplotlib in /usr/local/lib64/python3.9/site-packages (3.9.4)
 Requirement already satisfied: jupyter in /usr/local/lib/python3.9/site-packages (1.1.1)
-Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.9/site-packages (from requests) (3.11)
-Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib64/python3.9/site-packages (from requests) (3.4.4)
-Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.9/site-packages (from requests) (2025.10.5)
 Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.9/site-packages (from requests) (2.5.0)
-Collecting blinker>=1.9.0
-  Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
-Requirement already satisfied: importlib-metadata>=3.6.0 in /usr/local/lib/python3.9/site-packages (from flask) (8.7.0)
-Collecting click>=8.1.3
-  Downloading click-8.1.8-py3-none-any.whl (98 kB)
-Collecting werkzeug>=3.1.0
-  Downloading werkzeug-3.1.3-py3-none-any.whl (224 kB)
-Requirement already satisfied: jinja2>=3.1.2 in /usr/local/lib/python3.9/site-packages (from flask) (3.1.6)
+Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.9/site-packages (from requests) (2025.10.5)
+Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib64/python3.9/site-packages (from requests) (3.4.4)
+Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.9/site-packages (from requests) (3.11)
 Collecting itsdangerous>=2.2.0
   Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Collecting blinker>=1.9.0
+  Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+Collecting click>=8.1.3
+  Downloading click-8.1.8-py3-none-any.whl (98 kB)
+Requirement already satisfied: jinja2>=3.1.2 in /usr/local/lib/python3.9/site-packages (from flask) (3.1.6)
 Requirement already satisfied: markupsafe>=2.1.1 in /usr/local/lib64/python3.9/site-packages (from flask) (3.0.3)
+Collecting werkzeug>=3.1.0
+  Downloading werkzeug-3.1.3-py3-none-any.whl (224 kB)
+Requirement already satisfied: importlib-metadata>=3.6.0 in /usr/local/lib/python3.9/site-packages (from flask) (8.7.0)
 Collecting dnspython<3.0.0,>=1.16.0
   Downloading dnspython-2.7.0-py3-none-any.whl (313 kB)
 Requirement already satisfied: typing-extensions>=4.6.0 in /usr/local/lib/python3.9/site-packages (from sqlalchemy) (4.15.0)
 Collecting greenlet>=1
   Downloading greenlet-3.2.4-cp39-cp39-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (627 kB)
-Requirement already satisfied: numpy>=1.23 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (2.0.2)
 Requirement already satisfied: cycler>=0.10 in /usr/local/lib/python3.9/site-packages (from matplotlib) (0.12.1)
 Requirement already satisfied: pillow>=8 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (11.3.0)
-Requirement already satisfied: kiwisolver>=1.3.1 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (1.4.7)
+Requirement already satisfied: numpy>=1.23 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (2.0.2)
 Requirement already satisfied: python-dateutil>=2.7 in /usr/local/lib/python3.9/site-packages (from matplotlib) (2.9.0.post0)
-Requirement already satisfied: importlib-resources>=3.2.0 in /usr/local/lib/python3.9/site-packages (from matplotlib) (6.5.2)
-Requirement already satisfied: fonttools>=4.22.0 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (4.60.1)
-Requirement already satisfied: packaging>=20.0 in /usr/local/lib/python3.9/site-packages (from matplotlib) (25.0)
 Requirement already satisfied: contourpy>=1.0.1 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (1.3.0)
 Requirement already satisfied: pyparsing>=2.3.1 in /usr/local/lib/python3.9/site-packages (from matplotlib) (3.2.5)
+Requirement already satisfied: kiwisolver>=1.3.1 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (1.4.7)
+Requirement already satisfied: fonttools>=4.22.0 in /usr/local/lib64/python3.9/site-packages (from matplotlib) (4.60.1)
+Requirement already satisfied: importlib-resources>=3.2.0 in /usr/local/lib/python3.9/site-packages (from matplotlib) (6.5.2)
+Requirement already satisfied: packaging>=20.0 in /usr/local/lib/python3.9/site-packages (from matplotlib) (25.0)
 Requirement already satisfied: notebook in /usr/local/lib/python3.9/site-packages (from jupyter) (7.4.7)
 Requirement already satisfied: ipywidgets in /usr/local/lib/python3.9/site-packages (from jupyter) (8.1.7)
+Requirement already satisfied: ipykernel in /usr/local/lib/python3.9/site-packages (from jupyter) (6.31.0)
 Requirement already satisfied: nbconvert in /usr/local/lib/python3.9/site-packages (from jupyter) (7.16.6)
 Requirement already satisfied: jupyterlab in /usr/local/lib/python3.9/site-packages (from jupyter) (4.4.10)
-Requirement already satisfied: ipykernel in /usr/local/lib/python3.9/site-packages (from jupyter) (6.31.0)
 Requirement already satisfied: jupyter-console in /usr/local/lib/python3.9/site-packages (from jupyter) (6.6.3)
 Requirement already satisfied: zipp>=3.20 in /usr/local/lib/python3.9/site-packages (from importlib-metadata>=3.6.0->flask) (3.23.0)
 Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.9/site-packages (from python-dateutil>=2.7->matplotlib) (1.17.0)
+Requirement already satisfied: nest-asyncio>=1.4 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (1.6.0)
+Requirement already satisfied: traitlets>=5.4.0 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (5.14.3)
+Requirement already satisfied: jupyter-client>=8.0.0 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (8.6.3)
+Requirement already satisfied: comm>=0.1.1 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (0.2.3)
+Requirement already satisfied: psutil>=5.7 in /usr/local/lib64/python3.9/site-packages (from ipykernel->jupyter) (7.1.2)
+Requirement already satisfied: pyzmq>=25 in /usr/local/lib64/python3.9/site-packages (from ipykernel->jupyter) (27.1.0)
+Requirement already satisfied: jupyter-core!=5.0.*,>=4.12 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (5.8.1)
+Requirement already satisfied: debugpy>=1.6.5 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (1.8.17)
 Requirement already satisfied: ipython>=7.23.1 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (8.18.1)
 Requirement already satisfied: matplotlib-inline>=0.1 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (0.2.1)
 Requirement already satisfied: tornado>=6.2 in /usr/local/lib64/python3.9/site-packages (from ipykernel->jupyter) (6.5.2)
-Requirement already satisfied: pyzmq>=25 in /usr/local/lib64/python3.9/site-packages (from ipykernel->jupyter) (27.1.0)
-Requirement already satisfied: jupyter-client>=8.0.0 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (8.6.3)
-Requirement already satisfied: traitlets>=5.4.0 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (5.14.3)
-Requirement already satisfied: jupyter-core!=5.0.*,>=4.12 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (5.8.1)
-Requirement already satisfied: debugpy>=1.6.5 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (1.8.17)
-Requirement already satisfied: comm>=0.1.1 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (0.2.3)
-Requirement already satisfied: nest-asyncio>=1.4 in /usr/local/lib/python3.9/site-packages (from ipykernel->jupyter) (1.6.0)
-Requirement already satisfied: psutil>=5.7 in /usr/local/lib64/python3.9/site-packages (from ipykernel->jupyter) (7.1.2)
 Requirement already satisfied: widgetsnbextension~=4.0.14 in /usr/local/lib/python3.9/site-packages (from ipywidgets->jupyter) (4.0.14)
 Requirement already satisfied: jupyterlab_widgets~=3.0.15 in /usr/local/lib/python3.9/site-packages (from ipywidgets->jupyter) (3.0.15)
 Requirement already satisfied: pygments in /usr/local/lib/python3.9/site-packages (from jupyter-console->jupyter) (2.19.2)
 Requirement already satisfied: prompt-toolkit>=3.0.30 in /usr/local/lib/python3.9/site-packages (from jupyter-console->jupyter) (3.0.52)
-Requirement already satisfied: tomli>=1.2.2 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.3.0)
-Requirement already satisfied: jupyterlab-server<3,>=2.27.1 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.28.0)
 Requirement already satisfied: async-lru>=1.0.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.0.5)
-Requirement already satisfied: jupyter-server<3,>=2.4.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.17.0)
-Requirement already satisfied: setuptools>=41.1.0 in /usr/lib/python3.9/site-packages (from jupyterlab->jupyter) (53.0.0)
 Requirement already satisfied: httpx<1,>=0.25.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (0.28.1)
-Requirement already satisfied: notebook-shim>=0.2 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (0.2.4)
+Requirement already satisfied: tomli>=1.2.2 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.3.0)
 Requirement already satisfied: jupyter-lsp>=2.0.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.3.0)
-Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (4.14.2)
-Requirement already satisfied: mistune<4,>=2.0.3 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (3.1.4)
-Requirement already satisfied: jupyterlab-pygments in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.3.0)
-Requirement already satisfied: nbclient>=0.5.0 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.10.2)
+Requirement already satisfied: jupyter-server<3,>=2.4.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.17.0)
+Requirement already satisfied: jupyterlab-server<3,>=2.27.1 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (2.28.0)
+Requirement already satisfied: setuptools>=41.1.0 in /usr/lib/python3.9/site-packages (from jupyterlab->jupyter) (53.0.0)
+Requirement already satisfied: notebook-shim>=0.2 in /usr/local/lib/python3.9/site-packages (from jupyterlab->jupyter) (0.2.4)
 Requirement already satisfied: nbformat>=5.7 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (5.10.4)
-Requirement already satisfied: bleach[css]!=5.0.0 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (6.2.0)
 Requirement already satisfied: defusedxml in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.7.1)
 Requirement already satisfied: pandocfilters>=1.4.1 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (1.5.1)
+Requirement already satisfied: beautifulsoup4 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (4.14.2)
+Requirement already satisfied: jupyterlab-pygments in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.3.0)
+Requirement already satisfied: bleach[css]!=5.0.0 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (6.2.0)
+Requirement already satisfied: mistune<4,>=2.0.3 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (3.1.4)
+Requirement already satisfied: nbclient>=0.5.0 in /usr/local/lib/python3.9/site-packages (from nbconvert->jupyter) (0.10.2)
 Requirement already satisfied: webencodings in /usr/local/lib/python3.9/site-packages (from bleach[css]!=5.0.0->nbconvert->jupyter) (0.5.1)
 Requirement already satisfied: tinycss2<1.5,>=1.1.0 in /usr/local/lib/python3.9/site-packages (from bleach[css]!=5.0.0->nbconvert->jupyter) (1.4.0)
-Requirement already satisfied: httpcore==1.* in /usr/local/lib/python3.9/site-packages (from httpx<1,>=0.25.0->jupyterlab->jupyter) (1.0.9)
 Requirement already satisfied: anyio in /usr/local/lib/python3.9/site-packages (from httpx<1,>=0.25.0->jupyterlab->jupyter) (4.11.0)
+Requirement already satisfied: httpcore==1.* in /usr/local/lib/python3.9/site-packages (from httpx<1,>=0.25.0->jupyterlab->jupyter) (1.0.9)
 Requirement already satisfied: h11>=0.16 in /usr/local/lib/python3.9/site-packages (from httpcore==1.*->httpx<1,>=0.25.0->jupyterlab->jupyter) (0.16.0)
-Requirement already satisfied: stack-data in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (0.6.3)
-Requirement already satisfied: decorator in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (5.2.1)
-Requirement already satisfied: exceptiongroup in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (1.3.0)
 Requirement already satisfied: jedi>=0.16 in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (0.19.2)
+Requirement already satisfied: stack-data in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (0.6.3)
 Requirement already satisfied: pexpect>4.3 in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (4.9.0)
+Requirement already satisfied: exceptiongroup in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (1.3.0)
+Requirement already satisfied: decorator in /usr/local/lib/python3.9/site-packages (from ipython>=7.23.1->ipykernel->jupyter) (5.2.1)
 Requirement already satisfied: platformdirs>=2.5 in /usr/local/lib/python3.9/site-packages (from jupyter-core!=5.0.*,>=4.12->ipykernel->jupyter) (4.4.0)
-Requirement already satisfied: overrides>=5.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (7.7.0)
-Requirement already satisfied: jupyter-events>=0.11.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.12.0)
-Requirement already satisfied: websocket-client>=1.7 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (1.9.0)
-Requirement already satisfied: terminado>=0.8.3 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.18.1)
 Requirement already satisfied: send2trash>=1.8.2 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (1.8.3)
-Requirement already satisfied: prometheus-client>=0.9 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.23.1)
 Requirement already satisfied: argon2-cffi>=21.1 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (25.1.0)
+Requirement already satisfied: websocket-client>=1.7 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (1.9.0)
+Requirement already satisfied: overrides>=5.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (7.7.0)
 Requirement already satisfied: jupyter-server-terminals>=0.4.4 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.5.3)
-Requirement already satisfied: jsonschema>=4.18.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (4.25.1)
+Requirement already satisfied: jupyter-events>=0.11.0 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.12.0)
+Requirement already satisfied: terminado>=0.8.3 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.18.1)
+Requirement already satisfied: prometheus-client>=0.9 in /usr/local/lib/python3.9/site-packages (from jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.23.1)
 Requirement already satisfied: json5>=0.9.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (0.12.1)
+Requirement already satisfied: jsonschema>=4.18.0 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (4.25.1)
 Requirement already satisfied: babel>=2.10 in /usr/local/lib/python3.9/site-packages (from jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (2.17.0)
 Requirement already satisfied: fastjsonschema>=2.15 in /usr/local/lib/python3.9/site-packages (from nbformat>=5.7->nbconvert->jupyter) (2.21.2)
 Requirement already satisfied: wcwidth in /usr/local/lib/python3.9/site-packages (from prompt-toolkit>=3.0.30->jupyter-console->jupyter) (0.2.14)
@@ -1553,24 +1554,24 @@ Requirement already satisfied: soupsieve>1.2 in /usr/local/lib/python3.9/site-pa
 Requirement already satisfied: sniffio>=1.1 in /usr/local/lib/python3.9/site-packages (from anyio->httpx<1,>=0.25.0->jupyterlab->jupyter) (1.3.1)
 Requirement already satisfied: argon2-cffi-bindings in /usr/local/lib64/python3.9/site-packages (from argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (25.1.0)
 Requirement already satisfied: parso<0.9.0,>=0.8.4 in /usr/local/lib/python3.9/site-packages (from jedi>=0.16->ipython>=7.23.1->ipykernel->jupyter) (0.8.5)
-Requirement already satisfied: rpds-py>=0.7.1 in /usr/local/lib64/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (0.27.1)
-Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (2025.9.1)
 Requirement already satisfied: referencing>=0.28.4 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (0.36.2)
+Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (2025.9.1)
 Requirement already satisfied: attrs>=22.2.0 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (25.4.0)
-Requirement already satisfied: rfc3986-validator>=0.1.1 in /usr/local/lib/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.1.1)
-Requirement already satisfied: pyyaml>=5.3 in /usr/local/lib64/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (6.0.3)
-Requirement already satisfied: rfc3339-validator in /usr/local/lib/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.1.4)
+Requirement already satisfied: rpds-py>=0.7.1 in /usr/local/lib64/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (0.27.1)
 Requirement already satisfied: python-json-logger>=2.0.4 in /usr/local/lib/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (4.0.0)
+Requirement already satisfied: rfc3986-validator>=0.1.1 in /usr/local/lib/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.1.1)
+Requirement already satisfied: rfc3339-validator in /usr/local/lib/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (0.1.4)
+Requirement already satisfied: pyyaml>=5.3 in /usr/local/lib64/python3.9/site-packages (from jupyter-events>=0.11.0->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (6.0.3)
 Requirement already satisfied: ptyprocess>=0.5 in /usr/local/lib/python3.9/site-packages (from pexpect>4.3->ipython>=7.23.1->ipykernel->jupyter) (0.7.0)
 Requirement already satisfied: executing>=1.2.0 in /usr/local/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel->jupyter) (2.2.1)
 Requirement already satisfied: asttokens>=2.1.0 in /usr/local/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel->jupyter) (3.0.0)
 Requirement already satisfied: pure-eval in /usr/local/lib/python3.9/site-packages (from stack-data->ipython>=7.23.1->ipykernel->jupyter) (0.2.3)
-Requirement already satisfied: isoduration in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (20.11.0)
-Requirement already satisfied: fqdn in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.5.1)
-Requirement already satisfied: jsonpointer>1.13 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (3.0.0)
 Requirement already satisfied: webcolors>=24.6.0 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (24.11.1)
-Requirement already satisfied: uri-template in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.3.0)
+Requirement already satisfied: jsonpointer>1.13 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (3.0.0)
+Requirement already satisfied: isoduration in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (20.11.0)
 Requirement already satisfied: rfc3987-syntax>=1.1.0 in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.1.0)
+Requirement already satisfied: fqdn in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.5.1)
+Requirement already satisfied: uri-template in /usr/local/lib/python3.9/site-packages (from jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.3.0)
 Requirement already satisfied: cffi>=1.0.1 in /usr/local/lib64/python3.9/site-packages (from argon2-cffi-bindings->argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (2.0.0)
 Requirement already satisfied: pycparser in /usr/local/lib/python3.9/site-packages (from cffi>=1.0.1->argon2-cffi-bindings->argon2-cffi>=21.1->jupyter-server<3,>=2.4.0->jupyterlab->jupyter) (2.23)
 Requirement already satisfied: lark>=1.2.2 in /usr/local/lib/python3.9/site-packages (from rfc3987-syntax>=1.1.0->jsonschema>=4.18.0->jupyterlab-server<3,>=2.27.1->jupyterlab->jupyter) (1.3.1)
@@ -1579,58 +1580,58 @@ Requirement already satisfied: tzdata in /usr/local/lib/python3.9/site-packages 
 Installing collected packages: werkzeug, itsdangerous, greenlet, dnspython, click, blinker, sqlalchemy, pymongo, flask
 Successfully installed blinker-1.9.0 click-8.1.8 dnspython-2.7.0 flask-3.1.2 greenlet-3.2.4 itsdangerous-2.2.0 pymongo-4.15.3 sqlalchemy-2.0.44 werkzeug-3.1.3
 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv
---> ad208634c34d
+--> 25a94fe34815
 STEP 13/25: RUN mkdir -p /home/hpcuser/workspace/midas/experiments &&     mkdir -p /home/hpcuser/workspace/midas/data &&     mkdir -p /home/hpcuser/workspace/midas/config &&     mkdir -p /home/hpcuser/workspace/midas/logs
---> f1d7fe049b03
+--> 1c6f6c178848
 STEP 14/25: RUN echo '#!/bin/bash' > /home/hpcuser/workspace/midas/midas_env.sh &&     echo '# MIDAS Environment Setup (ROOT disabled)' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo '' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'export MIDASSYS=/opt/midas/install' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'export PATH=$MIDASSYS/bin:$PATH' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'export LD_LIBRARY_PATH=$MIDASSYS/lib:$LD_LIBRARY_PATH' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'export MIDAS_EXPT_NAME=demo' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'export MIDAS_EXPT_DIR=/home/hpcuser/workspace/midas/experiments/demo' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo '' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'echo "MIDAS Environment Loaded"' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'echo "MIDAS System: $MIDASSYS"' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'echo "ROOT Support: Disabled"' >> /home/hpcuser/workspace/midas/midas_env.sh &&     echo 'echo "Experiment: $MIDAS_EXPT_NAME"' >> /home/hpcuser/workspace/midas/midas_env.sh
---> 3498290565b6
+--> f61143669d8c
 STEP 15/25: RUN mkdir -p /home/hpcuser/workspace/midas/experiments/demo &&     cd /home/hpcuser/workspace/midas/experiments/demo &&     echo '[/Experiment]' > demo.odb &&     echo 'Name = STRING : [32] Demo Experiment' >> demo.odb &&     echo 'Security = BOOL : n' >> demo.odb &&     echo 'Max sub run = DWORD : 0' >> demo.odb &&     echo '' >> demo.odb &&     echo '[/Logger/Channels/0]' >> demo.odb &&     echo 'Settings/Filename = STRING : [256] run%05d.mid' >> demo.odb &&     echo 'Settings/Format = STRING : [8] MIDAS' >> demo.odb &&     echo 'Settings/ODB dump = BOOL : y' >> demo.odb &&     echo 'Settings/Log messages = DWORD : 1' >> demo.odb &&     echo '' >> demo.odb &&     echo '[/Equipment/Trigger/Common]' >> demo.odb &&     echo 'Event ID = WORD : 1' >> demo.odb &&     echo 'Trigger mask = WORD : 0' >> demo.odb &&     echo 'Buffer = STRING : [32] SYSTEM' >> demo.odb &&     echo 'Type = INT : 2' >> demo.odb &&     echo 'Source = INT : 0' >> demo.odb &&     echo 'Format = STRING : [8] MIDAS' >> demo.odb &&     echo 'Enabled = BOOL : y' >> demo.odb &&     echo 'Read on = INT : 257' >> demo.odb &&     echo 'Period = INT : 500' >> demo.odb &&     echo 'Event limit = DOUBLE : 0' >> demo.odb &&     echo 'Num subevents = DWORD : 0' >> demo.odb &&     echo 'Log history = INT : 0' >> demo.odb &&     echo 'Frontend host = STRING : [32] localhost' >> demo.odb &&     echo 'Frontend name = STRING : [32] Demo Frontend' >> demo.odb &&     echo 'Frontend file name = STRING : [256]' >> demo.odb
---> 2745f3f4373b
+--> 3128c7835330
 STEP 16/25: RUN echo '#!/usr/bin/env python3' > /home/hpcuser/workspace/midas/midas_demo.py &&     echo 'import os, sys, time, json, subprocess' >> /home/hpcuser/workspace/midas/midas_demo.py &&     echo 'print("🐍 MIDAS Python Demo Starting...")' >> /home/hpcuser/workspace/midas/midas_demo.py &&     echo 'print("✅ MIDAS Environment:", os.environ.get("MIDASSYS", "Not set"))' >> /home/hpcuser/workspace/midas/midas_demo.py &&     echo 'print("🎉 MIDAS Python Demo Completed!")' >> /home/hpcuser/workspace/midas/midas_demo.py
---> ab9bfd736596
+--> e0a93cd19f7c
 STEP 17/25: RUN echo '#include <stdio.h>' > /home/hpcuser/workspace/midas/experiments/demo/frontend.c &&     echo 'int main() { printf("Demo frontend placeholder\\n"); return 0; }' >> /home/hpcuser/workspace/midas/experiments/demo/frontend.c
---> bfa6adb7a705
+--> 85121048fe39
 STEP 18/25: RUN echo 'CC = gcc' > /home/hpcuser/workspace/midas/experiments/demo/Makefile &&     echo 'CFLAGS = -I$(MIDASSYS)/include' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile &&     echo 'LDFLAGS = -L$(MIDASSYS)/lib -lmidas' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile &&     echo 'frontend: frontend.c' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile &&     echo '	$(CC) $(CFLAGS) -o frontend frontend.c $(LDFLAGS)' >> /home/hpcuser/workspace/midas/experiments/demo/Makefile
---> dd39c00a2046
+--> 91357f4b24f8
 STEP 19/25: RUN mkdir -p /tmp/workspace-seed &&     cp -r /home/hpcuser/workspace/* /tmp/workspace-seed/ &&     mkdir -p /tmp/workspace-seed/examples /tmp/workspace-seed/reframe /tmp/workspace-seed/docs /tmp/workspace-seed/spack
---> c33825b0ffc7
+--> 94914c781596
 STEP 20/25: RUN chown -R hpcuser:hpcuser /home/hpcuser/workspace/midas &&     chmod +x /home/hpcuser/workspace/midas/midas_env.sh &&     chmod +x /home/hpcuser/workspace/midas/midas_demo.py &&     chmod +x /opt/midas/install/bin/* 2>/dev/null || true
---> 23e55fa05199
+--> b9ed4148fffe
 STEP 21/25: USER hpcuser
---> bc5a4358b6af
+--> 207a465eebaa
 STEP 22/25: WORKDIR /home/hpcuser/workspace
---> d138163c23de
+--> cc52c7242db2
 STEP 23/25: CMD ["/bin/bash"]
---> cb2df25414fd
+--> 054ef7d71387
 STEP 24/25: ENV "OPENSHIFT_BUILD_NAME"="hpc-midas-1" "OPENSHIFT_BUILD_NAMESPACE"="hpc-interview"
---> 2b1af0c45e68
+--> 82f7391845f2
 STEP 25/25: LABEL "io.openshift.build.name"="hpc-midas-1" "io.openshift.build.namespace"="hpc-interview"
-COMMIT temp.builder.openshift.io/hpc-interview/hpc-midas-1:10777c2e
---> b9ba28211cdd
-Successfully tagged temp.builder.openshift.io/hpc-interview/hpc-midas-1:10777c2e
-b9ba28211cdd1ac5dd815d178a7c87e829374f784f8da2c6449c95f7ec33057a
+COMMIT temp.builder.openshift.io/hpc-interview/hpc-midas-1:78859194
+--> a34ab83d2ed5
+Successfully tagged temp.builder.openshift.io/hpc-interview/hpc-midas-1:78859194
+a34ab83d2ed55b8cd72d411171017345bb9260aa6c1d5366a84a71071f2859a0
 
 Pushing image image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-midas:latest ...
 Getting image source signatures
-Copying blob sha256:337715367d611284fdc339eb9140c0c505b9a3eefeda5ec792c3b9df536e2bfa
-Copying blob sha256:a52dc10bb6662bb89c89833cef67065eed2b737c9595562bf296c4c25286e904
+Copying blob sha256:f4190587e15a9dc6e1d365e58f273403a093f9f90eb960562f64984a5e3de77e
+Copying blob sha256:2183d4844dcebcbe2db6c91380442de1c5e3d4adc6c5452e711be9584cd45d8e
 Copying blob sha256:4c81ef64b3e1c73b1efbf25c3df83bf82458baa82dd70e0c270bcd3f075e7ae8
-Copying blob sha256:de84f602012660e13300121530021307255eb26d70bf4870d85341280d1c29ac
-Copying blob sha256:41f539972805291403245d8c6825558389c080f644bba54275b9f693851d5beb
-Copying blob sha256:4e4ec80cd421ba38abe5c8188ee0410dfa3e68ef1981acc21ff1b4f9ae9b0cd2
-Copying blob sha256:601febbf40b6c6f887fe3953adb8bbe5ac3f095320e1a6eda336f404eb612091
-Copying blob sha256:150e1a64257e33451f8c818d80967586d2fb51d6961bc7703c39a47de55d8841
-Copying blob sha256:828affcc42d1851d3ccb252a2b3b8b452989dcd6057f5d2b94c46c5d3958b19a
-Copying blob sha256:8f8189e6d68e87b0fd6c6668abefb82771c89ad360f6f095a2b8c0b6ef29bbbb
-Copying blob sha256:fe0af86c4efc1cbe1c52fd73497526755e131d0f69d3277c174132ed06ea5b4f
-Copying blob sha256:f3356b448411132ab9dbcc240571571983c9c804357cc0600b1b579f5defb44c
-Copying blob sha256:14e007265d82d41bc21ef5cf79e03be83027cd8f3b3b57f7e212dee3be47d6f0
-Copying blob sha256:e88b0d460d7a627e653dcca895fdb553db9bf33f82a4720d0718067d5a3c4dd8
-Copying blob sha256:b98f9aa7af0d116cc5de61adbcd3d88df085408b38e598e4e56a52d66654335b
-Copying blob sha256:cf647d5085db050519964acc06ac63da27ad88593a5976815a8699014809437a
-Copying blob sha256:0daae118837f435d0615f0ce018a5b578dbd61fc6d6486ec2173e2bdfe3c8305
-Copying blob sha256:60fd88b82289ab89f7bb02bdd1dcdf34acc40172da16fc6cc4f62d9484dd74c4
-Copying config sha256:b9ba28211cdd1ac5dd815d178a7c87e829374f784f8da2c6449c95f7ec33057a
+Copying blob sha256:59d55dd9ad6fc59adec3b6a4b9ff87149588cc30f7ef24b03668ebfd9b7d90e8
+Copying blob sha256:d13443ee664c99e55064fd45c55e549594682a945f7d1d892c7b947b48870b0f
+Copying blob sha256:f2916c38b152deeb9288496b29d0d3c5e5c554f41730f1414388beb10283ce3c
+Copying blob sha256:bf764ba39f11f55581850076e462bc5c9828de4e868bfbf4b3597889d697789c
+Copying blob sha256:343e04bd309ea6c9ee0e35d48abc3005bdb24a0e7b81f9340eec61f82b3083fe
+Copying blob sha256:eb94abb09ff019f0b2d8d834603a7f78412663836fc77e1c879269785c5c47a9
+Copying blob sha256:82869bc72fa38d792db390baa6c598f929c254b66f1b4097a9c15c027112a3ce
+Copying blob sha256:55d359324312b79470d965dd8b260db5c5c4109bbe3f089eec99e963b143e9bd
+Copying blob sha256:63de298b73d199cb38f8c18a92846988ef04870bb718cef35f7f17f9215a44fc
+Copying blob sha256:214039611f5253f1c47ba8133420a1e5d3dd18c64a1a8927c8d179bd5681d37f
+Copying blob sha256:2df66e573953500ed2a6ff32454d12da22faa0b5eb2d089c909983155182608c
+Copying blob sha256:2edb6199bb66baff89174c37f164cfb5a9881b8e10b1444d5d9b5e42685d0ba5
+Copying blob sha256:a2353baf34b2dee11369978d8ebbc6d015b5441c6c5d4288463101a238afaad0
+Copying blob sha256:1bede138c81e1b00d9c2c6fbf1332eb329f8bb0cd9c8cf7202d81e7e63b3a646
+Copying blob sha256:2439cbc0f09acd49dd278adc0b19dab5e655cafc45c33db5335a5bc5f6806471
+Copying config sha256:a34ab83d2ed55b8cd72d411171017345bb9260aa6c1d5366a84a71071f2859a0
 Writing manifest to image destination
-Successfully pushed image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-midas@sha256:92398a47d2347e668f153f4619a82c1e73c63eb6c5757bb81d22c043c6013a69
+Successfully pushed image-registry.openshift-image-registry.svc:5000/hpc-interview/hpc-midas@sha256:689b307121b27be3cd109b85bf43d5d2bcccb85c5a0411ee65ebbe6b06877704
 Push successful
